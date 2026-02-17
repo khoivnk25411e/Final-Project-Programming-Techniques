@@ -4,12 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/models/checkin_record.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/participant.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/registration.py" afterDir="false" />
+    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="create models">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/bilamo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/khoi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/bilamoo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/checkin_record.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/event.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/participant.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/registration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_ui_mainwindow.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/attendee_dialog.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/attendee_dialog.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/event_dialog.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/event_dialog.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/mainwindow.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/mainwindow.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/mainwindowEx.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/registration_dialog.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/registration_dialog.ui" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Khoi" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -136,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771163435237</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="create models">
+      <option name="closed" value="true" />
+      <created>1771209654092</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1771209654095</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -155,6 +176,7 @@
     <MESSAGE value="1" />
     <MESSAGE value="create ui" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="create models" />
+    <option name="LAST_COMMIT_MESSAGE" value="create models" />
   </component>
 </project>
