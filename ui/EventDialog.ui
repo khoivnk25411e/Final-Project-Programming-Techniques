@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>400</height>
+    <width>579</width>
+    <height>499</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,6 +25,10 @@
      </item>
      <item row="0" column="1">
       <widget class="QLineEdit" name="nameInput">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 127);
+color: rgb(0, 0, 0);</string>
+       </property>
        <property name="placeholderText">
         <string>Nhập tên sự kiện...</string>
        </property>
@@ -39,6 +43,10 @@
      </item>
      <item row="1" column="1">
       <widget class="QDateEdit" name="dateInput">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 231, 48);
+color: rgb(0, 0, 0);</string>
+       </property>
        <property name="calendarPopup">
         <bool>true</bool>
        </property>
@@ -52,7 +60,12 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QTimeEdit" name="timeInput"/>
+      <widget class="QTimeEdit" name="timeInput">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 127);
+color: rgb(0, 0, 0);</string>
+       </property>
+      </widget>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_4">
@@ -63,6 +76,11 @@
      </item>
      <item row="3" column="1">
       <widget class="QLineEdit" name="locationInput">
+       <property name="styleSheet">
+        <string notr="true">alternate-background-color: rgb(85, 255, 0);
+background-color: rgb(255, 255, 0);
+color: rgb(0, 0, 0);</string>
+       </property>
        <property name="placeholderText">
         <string>Nhập địa điểm...</string>
        </property>
@@ -82,6 +100,10 @@
          <width>16777215</width>
          <height>100</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(85, 255, 255);
+color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
         <string>Nhập mô tả sự kiện...</string>
@@ -120,21 +142,21 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnSave">
-       <property name="text">
-        <string>💾 Lưu</string>
-       </property>
        <property name="styleSheet">
         <string notr="true">padding: 8px 15px;</string>
+       </property>
+       <property name="text">
+        <string>💾 SAVE</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btnCancel">
-       <property name="text">
-        <string>❌ Hủy</string>
-       </property>
        <property name="styleSheet">
         <string notr="true">padding: 8px 15px;</string>
+       </property>
+       <property name="text">
+        <string>❌ CANCEL</string>
        </property>
       </widget>
      </item>
