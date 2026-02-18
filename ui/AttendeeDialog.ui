@@ -6,85 +6,90 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>350</height>
+    <width>566</width>
+    <height>446</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Thêm/Sửa Người Tham Dự</string>
+   <string>Add/Edit Attendee</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
       <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>Họ Tên:</string>
+        <string>Name:</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="nameInput">
-       <property name="placeholderText">
-        <string>Nhập họ tên...</string>
-       </property>
-      </widget>
+      <widget class="QLineEdit" name="nameInput"/>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Email:</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="emailInput">
-       <property name="placeholderText">
-        <string>Nhập email...</string>
-       </property>
-      </widget>
+      <widget class="QLineEdit" name="emailInput"/>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>Số Điện Thoại:</string>
+        <string>Phone:</string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="phoneInput">
-       <property name="placeholderText">
-        <string>Nhập số điện thoại...</string>
-       </property>
-      </widget>
+      <widget class="QLineEdit" name="phoneInput"/>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_4">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>Tổ Chức:</string>
+        <string>Organisation:</string>
        </property>
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="organizationInput">
-       <property name="placeholderText">
-        <string>Nhập tổ chức...</string>
-       </property>
-      </widget>
+      <widget class="QLineEdit" name="organizationInput"/>
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>Chức Vụ:</string>
+        <string>Position:</string>
        </property>
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLineEdit" name="positionInput">
-       <property name="placeholderText">
-        <string>Nhập chức vụ...</string>
-       </property>
-      </widget>
+      <widget class="QLineEdit" name="positionInput"/>
      </item>
     </layout>
    </item>
@@ -118,21 +123,36 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnSave">
-       <property name="text">
-        <string>💾 Lưu</string>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">padding: 8px 15px;</string>
+        <string notr="true">padding: 8px 15px;
+color: rgb(255, 255, 255);
+color: rgb(255, 255, 255);
+background-color: rgb(0, 170, 0);</string>
+       </property>
+       <property name="text">
+        <string>💾 Save</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btnCancel">
-       <property name="text">
-        <string>❌ Hủy</string>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">padding: 8px 15px;</string>
+        <string notr="true">padding: 8px 15px;
+color: rgb(0, 0, 0);
+background-color: rgb(255, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>❌ Cancel</string>
        </property>
       </widget>
      </item>
