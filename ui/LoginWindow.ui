@@ -23,10 +23,11 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Login - Event Management System</string>
+   <string>Login - Event Check-in Management System</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 0, 0);</string>
+   <string notr="true">background-color: rgb(0, 0, 0);
+background-color: rgb(181, 181, 181);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -50,15 +51,14 @@
       <property name="font">
        <font>
         <family>Arial</family>
-        <pointsize>59</pointsize>
+        <pointsize>51</pointsize>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">
-background-color: rgb(0, 0, 0);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
-       <string>🎫</string>
+       <string>💻</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -69,15 +69,18 @@ background-color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="lblTitle">
       <property name="font">
        <font>
-        <family>Arial</family>
-        <pointsize>19</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <family>Palatino Linotype</family>
+        <pointsize>22</pointsize>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #2c3e50; margin-bottom: 6px;
-color: rgb(85, 0, 255);</string>
+       <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;
+color: rgb(0, 0, 0);
+font: 75 &quot;Nirmala UI&quot;;
+font: 22pt &quot;Palatino Linotype&quot;;</string>
       </property>
       <property name="text">
        <string>Event Check-in Management</string>
@@ -91,21 +94,22 @@ color: rgb(85, 0, 255);</string>
      <widget class="QLabel" name="lblSubtitle">
       <property name="font">
        <font>
-        <family>MS Shell Dlg 2</family>
-        <pointsize>11</pointsize>
+        <family>Palatino Linotype</family>
+        <pointsize>18</pointsize>
         <weight>50</weight>
         <italic>false</italic>
         <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #7f8c8d; font-size: 12px; margin-bottom: 24px;
-font: 11pt &quot;MS Shell Dlg 2&quot;;
+       <string notr="true">color: #7f8c8d; font-size: 18px; margin-bottom: 24px;
+font: 18pt &quot;Palatino Linotype&quot;;
+
 color: rgb(0, 0, 0);
-background-color: rgb(158, 158, 158);</string>
+</string>
       </property>
       <property name="text">
-       <string>Login to continue</string>
+       <string>LOGIN TO CONTINUE</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -114,11 +118,17 @@ background-color: rgb(158, 158, 158);</string>
     </item>
     <item>
      <widget class="QWidget" name="cardWidget" native="true">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="styleSheet">
        <string notr="true">QWidget#cardWidget {
     background-color: white;
-    border-radius: 12px;
-    border: 1px solid #dfe6e9;
+    border-radius: 18px;
+    border: 3px solid #dfe6e9;
 }</string>
       </property>
       <layout class="QVBoxLayout" name="cardLayout">
@@ -140,7 +150,7 @@ background-color: rgb(158, 158, 158);</string>
        <item>
         <widget class="QLabel" name="lblUsername">
          <property name="styleSheet">
-          <string notr="true">font-weight: bold; color: #2c3e50; font-size: 12px;
+          <string notr="true">font-weight: bold; color: #2c3e50; font-size: 16px;
 background-color: rgb(255, 255, 255);
 color: rgb(85, 85, 255);</string>
          </property>
@@ -151,19 +161,20 @@ color: rgb(85, 85, 255);</string>
        </item>
        <item>
         <widget class="QLineEdit" name="lineEditUsername">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>40</height>
-          </size>
+         <property name="enabled">
+          <bool>true</bool>
          </property>
          <property name="font">
           <font>
-           <pointsize>8</pointsize>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;
+          <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color: rgb(0, 0, 0);
 background-color: rgb(255, 255, 255);
 border-color: rgb(0, 0, 0);</string>
@@ -180,7 +191,7 @@ border-color: rgb(0, 0, 0);</string>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">font-weight: bold; color: #2c3e50; font-size: 12px;
+          <string notr="true">font-weight: bold; color: #2c3e50; font-size: 16px;
 background-color: rgb(255, 255, 255);
 color: rgb(85, 85, 255);</string>
          </property>
@@ -193,14 +204,12 @@ color: rgb(85, 85, 255);</string>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QLineEdit" name="lineEditPassword">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>40</height>
-            </size>
+           <property name="cursor">
+            <cursorShape>IBeamCursor</cursorShape>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);
+font: 12pt &quot;MS Shell Dlg 2&quot;;
 color: rgb(0, 0, 0);</string>
            </property>
            <property name="echoMode">
@@ -210,12 +219,6 @@ color: rgb(0, 0, 0);</string>
          </item>
          <item>
           <widget class="QPushButton" name="btnTogglePwd">
-           <property name="minimumSize">
-            <size>
-             <width>40</width>
-             <height>40</height>
-            </size>
-           </property>
            <property name="maximumSize">
             <size>
              <width>40</width>
@@ -223,14 +226,14 @@ color: rgb(0, 0, 0);</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">QPushButton { 
-    background: #ecf0f1; 
+            <string notr="true">QPushButton {
+    background: #ecf0f1;
     border-radius: 6px;
-    border: 1px solid #bdc3c7; 
-    font-size: 16px; 
+    border: 1px solid #bdc3c7;
+    font-size: 16px;
 }
-QPushButton:hover { 
-    background: #d5dbdb; 
+QPushButton:hover {
+    background: #d5dbdb;
 }</string>
            </property>
            <property name="text">
@@ -244,12 +247,22 @@ QPushButton:hover {
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="QCheckBox" name="checkBoxRemember">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">color: rgb(149, 167, 189);
-background-color: rgb(255, 255, 255);</string>
+            <string notr="true"/>
            </property>
            <property name="text">
             <string>Remember password</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="tristate">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -258,9 +271,12 @@ background-color: rgb(255, 255, 255);</string>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>40</width>
+             <width>20</width>
              <height>20</height>
             </size>
            </property>
@@ -268,19 +284,24 @@ background-color: rgb(255, 255, 255);</string>
          </item>
          <item>
           <widget class="QPushButton" name="btnForgotPassword">
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+            </font>
+           </property>
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="styleSheet">
-            <string notr="true">QPushButton { 
-    color: #3498db; 
+            <string notr="true">QPushButton {
+    color: #3498db;
     font-size: 12px;
-    border: none; 
-    background: transparent; 
+    border: none;
+    background: transparent;
 }
-QPushButton:hover { 
-    color: #2980b9; 
-    text-decoration: underline; 
+QPushButton:hover {
+    color: #2980b9;
+    text-decoration: underline;
 }</string>
            </property>
            <property name="text">
@@ -294,62 +315,6 @@ QPushButton:hover {
         </layout>
        </item>
        <item>
-        <widget class="QPushButton" name="btnLogin">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>44</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-    background-color: #2ecc71; 
-    color: white;
-    font-size: 14px; 
-    font-weight: bold;
-    border-radius: 8px; 
-    border: none;
-}
-QPushButton:hover { 
-    background-color: #27ae60; 
-}
-QPushButton:pressed { 
-    background-color: #1e8449; 
-}</string>
-         </property>
-         <property name="text">
-          <string>  🔑  Login</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btnExit">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>36</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton { 
-    background: #ecf0f1; 
-    color: #7f8c8d;
-    font-size: 13px; 
-    border-radius: 8px; 
-    border: none; 
-}
-QPushButton:hover { 
-    background: #d5dbdb; 
-    color: #2c3e50; 
-}
-background-color: rgb(255, 85, 0);</string>
-         </property>
-         <property name="text">
-          <string>Exit</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="Line" name="line">
          <property name="styleSheet">
           <string notr="true">color: #ecf0f1;</string>
@@ -359,16 +324,98 @@ background-color: rgb(255, 85, 0);</string>
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="btnLogin">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: #2ecc71;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 12px;
+	border-color: rgb(0, 0, 0);
+}
+QPushButton:hover {
+    background-color: #27ae60;
+}
+QPushButton:pressed {
+    background-color: #1e8449;
+}</string>
+         </property>
+         <property name="text">
+          <string>  🔑  Login</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>16</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnExit">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background: rgb(255, 0, 0);
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string>❌ Exit</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="lblVersion">
       <property name="styleSheet">
-       <string notr="true">color: #b2bec3; font-size: 10px; margin-top: 14px;</string>
+       <string notr="true">color: rgb(0, 0, 0); font-size: 10px; margin-top: 14px;</string>
       </property>
       <property name="text">
-       <string>v1.1.0 – Event Management System © 2026</string>
+       <string>v1.0.0 – Event Management System © 2026</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
