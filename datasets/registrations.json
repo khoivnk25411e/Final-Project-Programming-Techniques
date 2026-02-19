@@ -1,0 +1,20 @@
+{
+    "registrations": [
+        {
+            "RegistrationId": "REG11111",
+            "EventId": "evt_002",
+            "AttendeeId": "att_003",
+            "RegistrationDate": "2026-02-12 09:15:00",
+            "Status": "Đã đăng ký",
+            "CheckinTime": null
+        },
+        {
+            "RegistrationId": "REG22222",
+            "EventId": "evt_001",
+            "AttendeeId": "att_004",
+            "RegistrationDate": "2026-02-13 16:00:00",
+            "Status": "Đã check-in",
+            "CheckinTime": "2026-03-15 08:50:00"
+        }
+    ]
+}

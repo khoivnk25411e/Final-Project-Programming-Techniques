@@ -1,0 +1,44 @@
+{
+    "events": [
+        {
+            "EventId": "evt_001",
+            "EventName": "Hội Thảo Công Nghệ AI 2026",
+            "EventDate": "15/03/2026",
+            "EventTime": "09:00",
+            "Location": "Trung Tâm Hội Nghị Quốc Gia",
+            "Description": "Hội thảo về xu hướng công nghệ AI và ứng dụng trong doanh nghiệp"
+        },
+        {
+            "EventId": "evt_002",
+            "EventName": "Workshop Python Programming",
+            "EventDate": "20/03/2026",
+            "EventTime": "14:00",
+            "Location": "Phòng Lab A203, ĐH Bách Khoa",
+            "Description": "Workshop thực hành lập trình Python từ cơ bản đến nâng cao"
+        },
+        {
+            "EventId": "evt_003",
+            "EventName": "Triển Lãm Khởi Nghiệp 2026",
+            "EventDate": "25/03/2026",
+            "EventTime": "08:30",
+            "Location": "Trung Tâm Triển Lãm Sài Gòn",
+            "Description": "Sự kiện kết nối các startup với nhà đầu tư"
+        },
+        {
+            "EventId": "evt_9c5b2ad7",
+            "EventName": "Chụp hình cùng a tày",
+            "EventDate": "10/11/2025",
+            "EventTime": "08:18",
+            "Location": "120 An Liễng",
+            "Description": "tặc cày"
+        },
+        {
+            "EventId": "evt_cf205162",
+            "EventName": "tra",
+            "EventDate": "19/02/2026",
+            "EventTime": "16:55",
+            "Location": "123",
+            "Description": "33"
+        }
+    ]
+}
