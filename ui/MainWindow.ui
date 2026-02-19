@@ -738,6 +738,16 @@ QPushButton:hover {
                 </property>
                </widget>
               </item>
+              <item>
+               <widget class="QPushButton" name="btnScanQR">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #3498db; color: white; padding: 10px; font-size: 14px;</string>
+                </property>
+                <property name="text">
+                 <string>📷 Scan QR</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>

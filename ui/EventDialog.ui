@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Thêm/Sửa Sự Kiện</string>
+   <string>Add/Edit Event</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -30,7 +30,7 @@
 color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
-        <string>Nhập tên sự kiện...</string>
+        <string>Enter event name...</string>
        </property>
       </widget>
      </item>
@@ -82,7 +82,7 @@ background-color: rgb(255, 255, 0);
 color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
-        <string>Nhập địa điểm...</string>
+        <string>Enter venue...</string>
        </property>
       </widget>
      </item>
@@ -106,7 +106,7 @@ color: rgb(0, 0, 0);</string>
 color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
-        <string>Nhập mô tả sự kiện...</string>
+        <string>Enter event description...</string>
        </property>
       </widget>
      </item>

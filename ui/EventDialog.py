@@ -83,14 +83,14 @@ class Ui_EventDialog(object):
 
     def retranslateUi(self, EventDialog):
         _translate = QtCore.QCoreApplication.translate
-        EventDialog.setWindowTitle(_translate("EventDialog", "Thêm/Sửa Sự Kiện"))
+        EventDialog.setWindowTitle(_translate("EventDialog", "Add/Edit Event"))
         self.label.setText(_translate("EventDialog", "Name"))
-        self.nameInput.setPlaceholderText(_translate("EventDialog", "Nhập tên sự kiện..."))
+        self.nameInput.setPlaceholderText(_translate("EventDialog", "Enter event name..."))
         self.label_2.setText(_translate("EventDialog", "Date"))
         self.label_3.setText(_translate("EventDialog", "Time"))
         self.label_4.setText(_translate("EventDialog", "Place"))
-        self.locationInput.setPlaceholderText(_translate("EventDialog", "Nhập địa điểm..."))
+        self.locationInput.setPlaceholderText(_translate("EventDialog", "Enter venue..."))
         self.label_5.setText(_translate("EventDialog", "Description"))
-        self.descriptionInput.setPlaceholderText(_translate("EventDialog", "Nhập mô tả sự kiện..."))
+        self.descriptionInput.setPlaceholderText(_translate("EventDialog", "Enter event description..."))
         self.btnSave.setText(_translate("EventDialog", "💾 SAVE"))
         self.btnCancel.setText(_translate("EventDialog", "❌ CANCEL"))
