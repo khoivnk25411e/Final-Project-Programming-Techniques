@@ -1,8 +1,8 @@
 import json
 
-from models.mycollections import MyCollections
+from  Event_Check_in_Management.models.mycollections import MyCollections
 
-from models.attendee import Attendee
+from  Event_Check_in_Management.models.attendee import Attendee
 
 
 class Attendees(MyCollections):
