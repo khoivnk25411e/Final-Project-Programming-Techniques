@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/models/checkin_record.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/participant.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/registration.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI_Ex/LoginWindowEx.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/attendee.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/attendees.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/events.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/mycollections.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/registrations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/users.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/LoginWindow.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_ui_mainwindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_ui_mainwindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/mainwindowEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI_Ex/mainwindowEx.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Khoi" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,7 +47,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/khoivnk25411e/Final-Project-Programming-Techniques.git&quot;,
-    &quot;accountId&quot;: &quot;366c485d-a41f-4ec9-9919-ec438a768b59&quot;
+    &quot;accountId&quot;: &quot;14f6ea3e-e30c-413a-ac3b-99950ef814da&quot;
   },
   &quot;recentNewPullRequestHead&quot;: {
     &quot;server&quot;: {
@@ -64,27 +71,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_ui_mainwindow.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Khoi&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/GIT_TDLT/Final-Project-Programming-Techniques/ui&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Python.test.executor": "Run",
+    "Python.test_ui_mainwindow.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Khoa",
+    "last_opened_file_path": "/Users/nguyenthanhcong/QtDesigner/Final-Project-Programming-Techniques/ui"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ui" />
       <recent name="D:\GIT_TDLT\Final-Project-Programming-Techniques\ui" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/UI_Ex" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-4e2b1448bda8-9a97661f3031-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.27397.106" />
+        <option value="bundled-python-sdk-ce6832f46686-7b97d883f26b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.25557.178" />
       </set>
     </attachedChunks>
   </component>
@@ -136,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771163435237</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="test">
+      <option name="closed" value="true" />
+      <created>1771240098644</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1771240098644</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,6 +173,7 @@
     <MESSAGE value="Delete Test" />
     <MESSAGE value="1" />
     <MESSAGE value="create ui" />
+    <MESSAGE value="Merge pull request #9 from khoivnk25411e/Viet-Dat&#10;&#10;test" />
     <MESSAGE value="test" />
     <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
