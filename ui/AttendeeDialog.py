@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'D:\GIT_TDLT\Final-Project-Programming-Techniques\ui\attendee_dialog.ui'
+# Form implementation generated from reading ui file 'D:\HK2_2025_2026\KTLT_K25411E\Event_Check_in_Management\ui\AttendeeDialog.ui'
 #
 # Created by: PyQt6 UI code generator 6.10.0
 #
@@ -70,16 +70,16 @@ class Ui_AttendeeDialog(object):
 
     def retranslateUi(self, AttendeeDialog):
         _translate = QtCore.QCoreApplication.translate
-        AttendeeDialog.setWindowTitle(_translate("AttendeeDialog", "Thêm/Sửa Người Tham Dự"))
-        self.label.setText(_translate("AttendeeDialog", "Họ Tên:"))
-        self.nameInput.setPlaceholderText(_translate("AttendeeDialog", "Nhập họ tên..."))
+        AttendeeDialog.setWindowTitle(_translate("AttendeeDialog", "Add/Edit Attendee"))
+        self.label.setText(_translate("AttendeeDialog", "Full Name:"))
+        self.nameInput.setPlaceholderText(_translate("AttendeeDialog", "Enter full name..."))
         self.label_2.setText(_translate("AttendeeDialog", "Email:"))
-        self.emailInput.setPlaceholderText(_translate("AttendeeDialog", "Nhập email..."))
-        self.label_3.setText(_translate("AttendeeDialog", "Số Điện Thoại:"))
-        self.phoneInput.setPlaceholderText(_translate("AttendeeDialog", "Nhập số điện thoại..."))
-        self.label_4.setText(_translate("AttendeeDialog", "Tổ Chức:"))
-        self.organizationInput.setPlaceholderText(_translate("AttendeeDialog", "Nhập tổ chức..."))
-        self.label_5.setText(_translate("AttendeeDialog", "Chức Vụ:"))
-        self.positionInput.setPlaceholderText(_translate("AttendeeDialog", "Nhập chức vụ..."))
-        self.btnSave.setText(_translate("AttendeeDialog", "💾 Lưu"))
-        self.btnCancel.setText(_translate("AttendeeDialog", "❌ Hủy"))
+        self.emailInput.setPlaceholderText(_translate("AttendeeDialog", "Enter email..."))
+        self.label_3.setText(_translate("AttendeeDialog", "Phone Number:"))
+        self.phoneInput.setPlaceholderText(_translate("AttendeeDialog", "Enter phone number..."))
+        self.label_4.setText(_translate("AttendeeDialog", "Organization:"))
+        self.organizationInput.setPlaceholderText(_translate("AttendeeDialog", "Enter organization..."))
+        self.label_5.setText(_translate("AttendeeDialog", "Position:"))
+        self.positionInput.setPlaceholderText(_translate("AttendeeDialog", "Enter position..."))
+        self.btnSave.setText(_translate("AttendeeDialog", "💾 Save"))
+        self.btnCancel.setText(_translate("AttendeeDialog", "❌ Cancel"))

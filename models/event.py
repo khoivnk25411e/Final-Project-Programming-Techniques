@@ -1,12 +1,11 @@
 class Event:
-    def __init__(self, Event_id=None, Event_Name=None, Date=None, Description=None, Location=None, Time=None, ):
-        self.Event_id = Event_id
-        self.Event_Name = Event_Name
-        self.Date = Date
-        self.Description = Description
+    def __init__(self, EventId=None, EventName=None, EventDate=None, EventTime=None, Location=None, Description=None):
+        self.EventId = EventId
+        self.EventName = EventName
+        self.EventDate = EventDate
+        self.EventTime = EventTime
         self.Location = Location
-        self.Time = Time
-        self.participants = []
+        self.Description = Description
+    
     def __str__(self):
-        infor = f"{self.Id}\t{self.Name}\t{self.Date}\t{self.Description}\t{self.Location}\t{self.Time}"
-        return infor
+        return f"{self.EventId}\t{self.EventName}\t{self.EventDate}\t{self.EventTime}\t{self.Location}"

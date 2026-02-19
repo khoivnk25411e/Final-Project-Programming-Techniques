@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Đăng Ký Người Tham Dự</string>
+   <string>Register Attendee</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -19,7 +19,7 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Chọn Người Tham Dự:</string>
+        <string>Select Attendee:</string>
        </property>
       </widget>
      </item>
@@ -59,7 +59,7 @@
      <item>
       <widget class="QPushButton" name="btnRegister">
        <property name="text">
-        <string>💾 Đăng Ký</string>
+        <string>💾 Register</string>
        </property>
        <property name="styleSheet">
         <string notr="true">padding: 8px 15px;</string>
@@ -69,7 +69,7 @@
      <item>
       <widget class="QPushButton" name="btnCancel">
        <property name="text">
-        <string>❌ Hủy</string>
+        <string>❌ Cancel</string>
        </property>
        <property name="styleSheet">
         <string notr="true">padding: 8px 15px;</string>

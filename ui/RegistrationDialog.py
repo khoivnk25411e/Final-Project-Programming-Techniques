@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'D:\GIT_TDLT\Final-Project-Programming-Techniques\ui\registration_dialog.ui'
+# Form implementation generated from reading ui file 'D:\HK2_2025_2026\KTLT_K25411E\Event_Check_in_Management\ui\RegistrationDialog.ui'
 #
 # Created by: PyQt6 UI code generator 6.10.0
 #
@@ -46,7 +46,7 @@ class Ui_RegistrationDialog(object):
 
     def retranslateUi(self, RegistrationDialog):
         _translate = QtCore.QCoreApplication.translate
-        RegistrationDialog.setWindowTitle(_translate("RegistrationDialog", "Đăng Ký Người Tham Dự"))
-        self.label.setText(_translate("RegistrationDialog", "Chọn Người Tham Dự:"))
-        self.btnRegister.setText(_translate("RegistrationDialog", "💾 Đăng Ký"))
-        self.btnCancel.setText(_translate("RegistrationDialog", "❌ Hủy"))
+        RegistrationDialog.setWindowTitle(_translate("RegistrationDialog", "Register Attendee"))
+        self.label.setText(_translate("RegistrationDialog", "Select Attendee:"))
+        self.btnRegister.setText(_translate("RegistrationDialog", "💾 Register"))
+        self.btnCancel.setText(_translate("RegistrationDialog", "❌ Cancel"))

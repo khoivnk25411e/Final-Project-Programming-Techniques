@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Thêm/Sửa Người Tham Dự</string>
+   <string>Add/Edit Attendee</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -19,14 +19,14 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Họ Tên:</string>
+        <string>Full Name:</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
       <widget class="QLineEdit" name="nameInput">
        <property name="placeholderText">
-        <string>Nhập họ tên...</string>
+        <string>Enter full name...</string>
        </property>
       </widget>
      </item>
@@ -40,49 +40,49 @@
      <item row="1" column="1">
       <widget class="QLineEdit" name="emailInput">
        <property name="placeholderText">
-        <string>Nhập email...</string>
+        <string>Enter email...</string>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Số Điện Thoại:</string>
+        <string>Phone Number:</string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
       <widget class="QLineEdit" name="phoneInput">
        <property name="placeholderText">
-        <string>Nhập số điện thoại...</string>
+        <string>Enter phone number...</string>
        </property>
       </widget>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Tổ Chức:</string>
+        <string>Organization:</string>
        </property>
       </widget>
      </item>
      <item row="3" column="1">
       <widget class="QLineEdit" name="organizationInput">
        <property name="placeholderText">
-        <string>Nhập tổ chức...</string>
+        <string>Enter organization...</string>
        </property>
       </widget>
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="label_5">
        <property name="text">
-        <string>Chức Vụ:</string>
+        <string>Position:</string>
        </property>
       </widget>
      </item>
      <item row="4" column="1">
       <widget class="QLineEdit" name="positionInput">
        <property name="placeholderText">
-        <string>Nhập chức vụ...</string>
+        <string>Enter position...</string>
        </property>
       </widget>
      </item>
@@ -119,7 +119,7 @@
      <item>
       <widget class="QPushButton" name="btnSave">
        <property name="text">
-        <string>💾 Lưu</string>
+        <string>💾 Save</string>
        </property>
        <property name="styleSheet">
         <string notr="true">padding: 8px 15px;</string>
@@ -129,7 +129,7 @@
      <item>
       <widget class="QPushButton" name="btnCancel">
        <property name="text">
-        <string>❌ Hủy</string>
+        <string>❌ Cancel</string>
        </property>
        <property name="styleSheet">
         <string notr="true">padding: 8px 15px;</string>
