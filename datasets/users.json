@@ -1,0 +1,34 @@
+{
+    "users": [
+        {
+            "UserId": "usr_admin01",
+            "FullName": "Epstein",
+            "UserName": "admin",
+            "Password": "mixi123",
+            "Email": "admin@eventms.com",
+            "Role": "admin",
+            "SecurityQuestion": "Tên trường tiểu học của bạn?",
+            "SecurityAnswer": "tieuhoc"
+        },
+        {
+            "UserId": "usr_user01",
+            "FullName": "Nguyễn Văn An",
+            "UserName": "user01",
+            "Password": "user123",
+            "Email": "nguyenvanan@email.com",
+            "Role": "user",
+            "SecurityQuestion": "Tên con vật nuôi đầu tiên của bạn?",
+            "SecurityAnswer": "miumiu"
+        },
+        {
+            "UserId": "usr_user02",
+            "FullName": "Trần Thị Bình",
+            "UserName": "user02",
+            "Password": "user123",
+            "Email": "tranthibinh@email.com",
+            "Role": "user",
+            "SecurityQuestion": "Thành phố bạn sinh ra?",
+            "SecurityAnswer": "hanoi"
+        }
+    ]
+}
