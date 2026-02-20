@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'D:\HK2_2025_2026\KTLT_K25411E\Event_Check_in_Management\ui\LoginWindow.ui'
+# Form implementation generated from reading ui file 'D:\GIT_TDLT\Final-Project-Programming-Techniques\ui\LoginWindow.ui'
 #
 # Created by: PyQt6 UI code generator 6.10.0
 #
@@ -15,7 +15,8 @@ class Ui_LoginWindow(object):
         LoginWindow.resize(480, 560)
         LoginWindow.setMinimumSize(QtCore.QSize(480, 560))
         LoginWindow.setMaximumSize(QtCore.QSize(480, 560))
-        LoginWindow.setStyleSheet("background-color: rgb(0, 0, 0);")
+        LoginWindow.setStyleSheet("background-color: rgb(0, 0, 0);\n"
+"background-color: rgb(181, 181, 181);")
         self.centralwidget = QtWidgets.QWidget(parent=LoginWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -25,45 +26,49 @@ class Ui_LoginWindow(object):
         self.lblLogo = QtWidgets.QLabel(parent=self.centralwidget)
         font = QtGui.QFont()
         font.setFamily("Arial")
-        font.setPointSize(59)
+        font.setPointSize(51)
         self.lblLogo.setFont(font)
-        self.lblLogo.setStyleSheet("\n"
-"background-color: rgb(0, 0, 0);")
+        self.lblLogo.setStyleSheet("")
         self.lblLogo.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lblLogo.setObjectName("lblLogo")
         self.verticalLayout.addWidget(self.lblLogo)
         self.lblTitle = QtWidgets.QLabel(parent=self.centralwidget)
         font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(19)
-        font.setBold(True)
-        font.setWeight(75)
+        font.setFamily("Palatino Linotype")
+        font.setPointSize(22)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
         self.lblTitle.setFont(font)
-        self.lblTitle.setStyleSheet("color: #2c3e50; margin-bottom: 6px;\n"
-"color: rgb(85, 0, 255);")
+        self.lblTitle.setStyleSheet("font: 20pt \"MS Shell Dlg 2\";\n"
+"color: rgb(0, 0, 0);\n"
+"font: 75 \"Nirmala UI\";\n"
+"font: 22pt \"Palatino Linotype\";")
         self.lblTitle.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lblTitle.setObjectName("lblTitle")
         self.verticalLayout.addWidget(self.lblTitle)
         self.lblSubtitle = QtWidgets.QLabel(parent=self.centralwidget)
         font = QtGui.QFont()
-        font.setFamily("MS Shell Dlg 2")
-        font.setPointSize(11)
+        font.setFamily("Palatino Linotype")
+        font.setPointSize(18)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
         self.lblSubtitle.setFont(font)
-        self.lblSubtitle.setStyleSheet("color: #7f8c8d; font-size: 12px; margin-bottom: 24px;\n"
-"font: 11pt \"MS Shell Dlg 2\";\n"
+        self.lblSubtitle.setStyleSheet("color: #7f8c8d; font-size: 18px; margin-bottom: 24px;\n"
+"font: 18pt \"Palatino Linotype\";\n"
+"\n"
 "color: rgb(0, 0, 0);\n"
-"background-color: rgb(158, 158, 158);")
+"")
         self.lblSubtitle.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lblSubtitle.setObjectName("lblSubtitle")
         self.verticalLayout.addWidget(self.lblSubtitle)
         self.cardWidget = QtWidgets.QWidget(parent=self.centralwidget)
+        self.cardWidget.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.cardWidget.setStyleSheet("QWidget#cardWidget {\n"
 "    background-color: white;\n"
-"    border-radius: 12px;\n"
-"    border: 1px solid #dfe6e9;\n"
+"    border-radius: 18px;\n"
+"    border: 3px solid #dfe6e9;\n"
 "}")
         self.cardWidget.setObjectName("cardWidget")
         self.cardLayout = QtWidgets.QVBoxLayout(self.cardWidget)
@@ -71,17 +76,21 @@ class Ui_LoginWindow(object):
         self.cardLayout.setSpacing(14)
         self.cardLayout.setObjectName("cardLayout")
         self.lblUsername = QtWidgets.QLabel(parent=self.cardWidget)
-        self.lblUsername.setStyleSheet("font-weight: bold; color: #2c3e50; font-size: 12px;\n"
+        self.lblUsername.setStyleSheet("font-weight: bold; color: #2c3e50; font-size: 16px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "color: rgb(85, 85, 255);")
         self.lblUsername.setObjectName("lblUsername")
         self.cardLayout.addWidget(self.lblUsername)
         self.lineEditUsername = QtWidgets.QLineEdit(parent=self.cardWidget)
-        self.lineEditUsername.setMinimumSize(QtCore.QSize(0, 40))
+        self.lineEditUsername.setEnabled(True)
         font = QtGui.QFont()
-        font.setPointSize(8)
+        font.setFamily("MS Shell Dlg 2")
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
         self.lineEditUsername.setFont(font)
-        self.lineEditUsername.setStyleSheet("font: 8pt \"MS Shell Dlg 2\";\n"
+        self.lineEditUsername.setStyleSheet("font: 12pt \"MS Shell Dlg 2\";\n"
 "color: rgb(0, 0, 0);\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-color: rgb(0, 0, 0);")
@@ -93,7 +102,7 @@ class Ui_LoginWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblPassword.setFont(font)
-        self.lblPassword.setStyleSheet("font-weight: bold; color: #2c3e50; font-size: 12px;\n"
+        self.lblPassword.setStyleSheet("font-weight: bold; color: #2c3e50; font-size: 16px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "color: rgb(85, 85, 255);")
         self.lblPassword.setObjectName("lblPassword")
@@ -101,23 +110,23 @@ class Ui_LoginWindow(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.lineEditPassword = QtWidgets.QLineEdit(parent=self.cardWidget)
-        self.lineEditPassword.setMinimumSize(QtCore.QSize(0, 40))
+        self.lineEditPassword.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
         self.lineEditPassword.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"font: 12pt \"MS Shell Dlg 2\";\n"
 "color: rgb(0, 0, 0);")
         self.lineEditPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.lineEditPassword.setObjectName("lineEditPassword")
         self.horizontalLayout.addWidget(self.lineEditPassword)
         self.btnTogglePwd = QtWidgets.QPushButton(parent=self.cardWidget)
-        self.btnTogglePwd.setMinimumSize(QtCore.QSize(40, 40))
         self.btnTogglePwd.setMaximumSize(QtCore.QSize(40, 40))
-        self.btnTogglePwd.setStyleSheet("QPushButton { \n"
-"    background: #ecf0f1; \n"
+        self.btnTogglePwd.setStyleSheet("QPushButton {\n"
+"    background: #ecf0f1;\n"
 "    border-radius: 6px;\n"
-"    border: 1px solid #bdc3c7; \n"
-"    font-size: 16px; \n"
+"    border: 1px solid #bdc3c7;\n"
+"    font-size: 16px;\n"
 "}\n"
-"QPushButton:hover { \n"
-"    background: #d5dbdb; \n"
+"QPushButton:hover {\n"
+"    background: #d5dbdb;\n"
 "}")
         self.btnTogglePwd.setObjectName("btnTogglePwd")
         self.horizontalLayout.addWidget(self.btnTogglePwd)
@@ -125,71 +134,89 @@ class Ui_LoginWindow(object):
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.checkBoxRemember = QtWidgets.QCheckBox(parent=self.cardWidget)
-        self.checkBoxRemember.setStyleSheet("color: rgb(149, 167, 189);\n"
-"background-color: rgb(255, 255, 255);")
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.checkBoxRemember.setFont(font)
+        self.checkBoxRemember.setStyleSheet("")
+        self.checkBoxRemember.setCheckable(True)
+        self.checkBoxRemember.setTristate(True)
         self.checkBoxRemember.setObjectName("checkBoxRemember")
         self.horizontalLayout_2.addWidget(self.checkBoxRemember)
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
         self.btnForgotPassword = QtWidgets.QPushButton(parent=self.cardWidget)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        self.btnForgotPassword.setFont(font)
         self.btnForgotPassword.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.btnForgotPassword.setStyleSheet("QPushButton { \n"
-"    color: #3498db; \n"
+        self.btnForgotPassword.setStyleSheet("QPushButton {\n"
+"    color: #3498db;\n"
 "    font-size: 12px;\n"
-"    border: none; \n"
-"    background: transparent; \n"
+"    border: none;\n"
+"    background: transparent;\n"
 "}\n"
-"QPushButton:hover { \n"
-"    color: #2980b9; \n"
-"    text-decoration: underline; \n"
+"QPushButton:hover {\n"
+"    color: #2980b9;\n"
+"    text-decoration: underline;\n"
 "}")
         self.btnForgotPassword.setFlat(True)
         self.btnForgotPassword.setObjectName("btnForgotPassword")
         self.horizontalLayout_2.addWidget(self.btnForgotPassword)
         self.cardLayout.addLayout(self.horizontalLayout_2)
-        self.btnLogin = QtWidgets.QPushButton(parent=self.cardWidget)
-        self.btnLogin.setMinimumSize(QtCore.QSize(0, 44))
-        self.btnLogin.setStyleSheet("QPushButton {\n"
-"    background-color: #2ecc71; \n"
-"    color: white;\n"
-"    font-size: 14px; \n"
-"    font-weight: bold;\n"
-"    border-radius: 8px; \n"
-"    border: none;\n"
-"}\n"
-"QPushButton:hover { \n"
-"    background-color: #27ae60; \n"
-"}\n"
-"QPushButton:pressed { \n"
-"    background-color: #1e8449; \n"
-"}")
-        self.btnLogin.setObjectName("btnLogin")
-        self.cardLayout.addWidget(self.btnLogin)
-        self.btnExit = QtWidgets.QPushButton(parent=self.cardWidget)
-        self.btnExit.setMinimumSize(QtCore.QSize(0, 36))
-        self.btnExit.setStyleSheet("QPushButton { \n"
-"    background: #ecf0f1; \n"
-"    color: #7f8c8d;\n"
-"    font-size: 13px; \n"
-"    border-radius: 8px; \n"
-"    border: none; \n"
-"}\n"
-"QPushButton:hover { \n"
-"    background: #d5dbdb; \n"
-"    color: #2c3e50; \n"
-"}\n"
-"background-color: rgb(255, 85, 0);")
-        self.btnExit.setObjectName("btnExit")
-        self.cardLayout.addWidget(self.btnExit)
         self.line = QtWidgets.QFrame(parent=self.cardWidget)
         self.line.setStyleSheet("color: #ecf0f1;")
         self.line.setFrameShape(QtWidgets.QFrame.Shape.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
         self.line.setObjectName("line")
         self.cardLayout.addWidget(self.line)
+        self.btnLogin = QtWidgets.QPushButton(parent=self.cardWidget)
+        self.btnLogin.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btnLogin.sizePolicy().hasHeightForWidth())
+        self.btnLogin.setSizePolicy(sizePolicy)
+        self.btnLogin.setMinimumSize(QtCore.QSize(0, 30))
+        self.btnLogin.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.btnLogin.setFont(font)
+        self.btnLogin.setStyleSheet("QPushButton {\n"
+"    background-color: #2ecc71;\n"
+"    color: white;\n"
+"    font-size: 14px;\n"
+"    font-weight: bold;\n"
+"    border-radius: 8px;\n"
+"    border: 12px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #27ae60;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #1e8449;\n"
+"}")
+        self.btnLogin.setIconSize(QtCore.QSize(20, 16))
+        self.btnLogin.setObjectName("btnLogin")
+        self.cardLayout.addWidget(self.btnLogin)
+        self.btnExit = QtWidgets.QPushButton(parent=self.cardWidget)
+        self.btnExit.setMinimumSize(QtCore.QSize(0, 30))
+        self.btnExit.setStyleSheet("QPushButton {\n"
+"    background: rgb(255, 0, 0);\n"
+"    color: rgb(0, 0, 0);\n"
+"    font-size: 16px;\n"
+"    border-radius: 8px;\n"
+"    border: none;\n"
+"}\n"
+"\n"
+"")
+        self.btnExit.setObjectName("btnExit")
+        self.cardLayout.addWidget(self.btnExit)
         self.verticalLayout.addWidget(self.cardWidget)
         self.lblVersion = QtWidgets.QLabel(parent=self.centralwidget)
-        self.lblVersion.setStyleSheet("color: #b2bec3; font-size: 10px; margin-top: 14px;")
+        self.lblVersion.setStyleSheet("color: rgb(0, 0, 0); font-size: 10px; margin-top: 14px;")
         self.lblVersion.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lblVersion.setObjectName("lblVersion")
         self.verticalLayout.addWidget(self.lblVersion)
@@ -200,15 +227,15 @@ class Ui_LoginWindow(object):
 
     def retranslateUi(self, LoginWindow):
         _translate = QtCore.QCoreApplication.translate
-        LoginWindow.setWindowTitle(_translate("LoginWindow", "Login - Event Management System"))
-        self.lblLogo.setText(_translate("LoginWindow", "🎫"))
+        LoginWindow.setWindowTitle(_translate("LoginWindow", "Login - Event Check-in Management System"))
+        self.lblLogo.setText(_translate("LoginWindow", "💻"))
         self.lblTitle.setText(_translate("LoginWindow", "Event Check-in Management"))
-        self.lblSubtitle.setText(_translate("LoginWindow", "Login to continue"))
+        self.lblSubtitle.setText(_translate("LoginWindow", "LOGIN TO CONTINUE"))
         self.lblUsername.setText(_translate("LoginWindow", "Username"))
         self.lblPassword.setText(_translate("LoginWindow", "Password"))
         self.btnTogglePwd.setText(_translate("LoginWindow", "👁"))
         self.checkBoxRemember.setText(_translate("LoginWindow", "Remember password"))
         self.btnForgotPassword.setText(_translate("LoginWindow", "Forgot password"))
         self.btnLogin.setText(_translate("LoginWindow", "  🔑  Login"))
-        self.btnExit.setText(_translate("LoginWindow", "Exit"))
-        self.lblVersion.setText(_translate("LoginWindow", "v1.1.0 – Event Management System © 2026"))
+        self.btnExit.setText(_translate("LoginWindow", "❌ Exit"))
+        self.lblVersion.setText(_translate("LoginWindow", "v1.0.0 – Event Management System © 2026"))
