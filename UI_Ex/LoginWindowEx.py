@@ -1,9 +1,10 @@
 import json
 from PyQt6.QtWidgets import QMessageBox, QMainWindow, QLineEdit
 
+from UI_Ex.ChangePasswordDialogEx import ChangePasswordDialogEx
+from UI_Ex.ForgotPasswordDialogEx import ForgotPasswordDialogEx
 from ui.LoginWindow import Ui_LoginWindow
-from Ui_ex.ForgotPasswordDialogEx import ForgotPasswordDialogEx
-from Ui_ex.ChangePasswordDialogEx import ChangePasswordDialogEx
+
 from models.users import Users
 
 REMEMBER_FILE = "datasets/remember.json"

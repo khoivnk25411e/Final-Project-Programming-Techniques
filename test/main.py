@@ -1,10 +1,10 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow
-from ui.MainWindowEx import MainWindowEx
+from UI_Ex.LoginWindowEx import LoginWindowEx
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    main_window = MainWindowEx()
+    main_window = LoginWindowEx()
     main_window.setupUi(QMainWindow())
     main_window.showWindow()
     sys.exit(app.exec())

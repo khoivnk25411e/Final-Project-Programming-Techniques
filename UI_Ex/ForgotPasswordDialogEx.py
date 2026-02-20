@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QDialog, QMessageBox
-from Event_Check_in_Management.ui.ForgotPasswordDialog import Ui_ForgotPasswordDialog
-from Event_Check_in_Management.models.users import Users
+from ui.ForgotPasswordDialog import Ui_ForgotPasswordDialog
+from models.users import Users
 
 
 class ForgotPasswordDialogEx(Ui_ForgotPasswordDialog):

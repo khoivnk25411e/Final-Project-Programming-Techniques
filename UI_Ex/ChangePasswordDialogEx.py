@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QDialog, QMessageBox, QLineEdit
 
-from Event_Check_in_Management.ui.ChangePasswordDialog import Ui_ChangePasswordDialog
-from Event_Check_in_Management.models.users import Users
+from ui.ChangePasswordDialog import Ui_ChangePasswordDialog
+from models.users import Users
 
 
 class ChangePasswordDialogEx(Ui_ChangePasswordDialog):
