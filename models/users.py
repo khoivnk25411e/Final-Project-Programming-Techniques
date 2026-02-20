@@ -1,6 +1,6 @@
 import json
-from Event_Check_in_Management.models.user import User
-from Event_Check_in_Management.models.mycollections import MyCollections
+from models.user import User
+from models.mycollections import MyCollections
 
 class Users(MyCollections):
     def import_json(self, filename):
