@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
-from Event_Check_in_Management.models.registration import Registration
-from Event_Check_in_Management.models.mycollections import MyCollections
+from models.registration import Registration
+from models.mycollections import MyCollections
 
 class Registrations(MyCollections):
     def import_json(self, filename):
