@@ -26,8 +26,8 @@
         },
         {
             "AttendeeId": "att_528b9dc2",
-            "Name": "Võ Ngcọ Khôi",
-            "Email": "khoivnk",
+            "Name": "Võ Ngọc Khôi",
+            "Email": "khoivnk@email.com",
             "Phone": "012312312",
             "Organization": "UEL",
             "Position": "lớp phó"
@@ -35,7 +35,7 @@
         {
             "AttendeeId": "att_09b19113",
             "Name": "ưewerwre",
-            "Email": "fdrgdr",
+            "Email": "fdrgdr@email.com",
             "Phone": "012312312",
             "Organization": "UEL",
             "Position": "Phó BT"
