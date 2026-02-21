@@ -1,8 +1,8 @@
 import json
 from PyQt6.QtWidgets import QMessageBox, QMainWindow, QLineEdit
 
-from Ui_Ex.ChangePasswordDialogEx import ChangePasswordDialogEx
-from Ui_Ex.ForgotPasswordDialogEx import ForgotPasswordDialogEx
+from UI_Ex.ChangePasswordDialogEx import ChangePasswordDialogEx
+from UI_Ex.ForgotPasswordDialogEx import ForgotPasswordDialogEx
 from ui.LoginWindow import Ui_LoginWindow
 
 from models.users import Users
@@ -77,7 +77,7 @@ class LoginWindowEx(Ui_LoginWindow):
         self._open_main_window(user)
 
     def _open_main_window(self, user):
-        from Ui_ex.MainWindowEx import MainWindowEx
+        from UI_Ex.MainWindowEx import MainWindowEx
         self.main_gui = MainWindowEx()
         self.main_gui.login_user = user
         self.main_gui.setupUi(QMainWindow())
