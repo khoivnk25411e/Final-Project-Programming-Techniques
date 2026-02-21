@@ -1,8 +1,8 @@
 import json
 from PyQt6.QtWidgets import QMessageBox, QMainWindow, QLineEdit
 
-from Ui_Ex.ChangePasswordDialogEx import ChangePasswordDialogEx
-from Ui_Ex.ForgotPasswordDialogEx import ForgotPasswordDialogEx
+from UI_Ex.ChangePasswordDialogEx import ChangePasswordDialogEx
+from UI_Ex.ForgotPasswordDialogEx import ForgotPasswordDialogEx
 from ui.LoginWindow import Ui_LoginWindow
 
 from models.users import Users
