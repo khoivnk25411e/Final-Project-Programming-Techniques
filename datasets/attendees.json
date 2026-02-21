@@ -39,6 +39,14 @@
             "Phone": "012312312",
             "Organization": "UEL",
             "Position": "Phó BT"
+        },
+        {
+            "AttendeeId": "att_1ac8d781",
+            "Name": "Nguyễn Thành Đăng Khoa",
+            "Email": "ntdkhoa@email.com",
+            "Phone": "0123456789",
+            "Organization": "UEL",
+            "Position": "Sinh Viên"
         }
     ]
 }

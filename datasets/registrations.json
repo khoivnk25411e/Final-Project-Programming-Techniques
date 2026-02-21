@@ -15,6 +15,14 @@
             "RegistrationDate": "2026-02-13 16:00:00",
             "Status": "Checked-in",
             "CheckinTime": "2026-03-15 08:50:00"
+        },
+        {
+            "RegistrationId": "7B9C461E",
+            "EventId": "evt_9c5b2ad7",
+            "AttendeeId": "att_1ac8d781",
+            "RegistrationDate": "2026-02-21 22:37:13",
+            "Status": "Registered",
+            "CheckinTime": null
         }
     ]
 }
