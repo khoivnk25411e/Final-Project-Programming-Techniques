@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="create test file">
-      <change afterPath="$PROJECT_DIR$/datasets/attendees.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datasets/events.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datasets/registrations.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datasets/remember.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datasets/users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI_Ex/AttendeeDialogEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_Ex/AttendeeDialogEx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI_Ex/ChangePasswordDialogEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_Ex/ChangePasswordDialogEx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI_Ex/EventDialogEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_Ex/EventDialogEx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI_Ex/ForgotPasswordDialogEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_Ex/ForgotPasswordDialogEx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI_Ex/LoginWindowEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_Ex/LoginWindowEx.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +72,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "KHOA",
+    "git-widget-placeholder": "An",
     "last_opened_file_path": "/Users/nguyenthanhcong/QtDesigner/Final-Project-Programming-Techniques/datasets"
   }
 }]]></component>
