@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6.QtCore import QTimer, Qt
 from PyQt6.QtGui import QImage, QPixmap
 
-from Event_Check_in_Management.ui.QRScannerDialog import Ui_QRScannerDialog
+from ui.QRScannerDialog import Ui_QRScannerDialog
 
 try:
     import cv2

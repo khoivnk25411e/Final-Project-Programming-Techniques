@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QDialog, QMessageBox
-from Event_Check_in_Management.ui.UserDialog import Ui_UserDialog
+from ui.UserDialog import Ui_UserDialog
 
 class UserDialogEx(Ui_UserDialog):
     def __init__(self, parent=None, user_data=None):
