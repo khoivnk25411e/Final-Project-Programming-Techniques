@@ -77,7 +77,7 @@ class LoginWindowEx(Ui_LoginWindow):
         self._open_main_window(user)
 
     def _open_main_window(self, user):
-        from Ui_ex.MainWindowEx import MainWindowEx
+        from UI_Ex.MainWindowEx import MainWindowEx
         self.main_gui = MainWindowEx()
         self.main_gui.login_user = user
         self.main_gui.setupUi(QMainWindow())
