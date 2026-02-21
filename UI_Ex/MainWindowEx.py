@@ -4,6 +4,8 @@ from PyQt6.QtCore import Qt, QTimer
 from ui.MainWindow import Ui_MainWindow
 from UI_Ex.EventDialogEx import EventDialogEx
 from UI_Ex.AttendeeDialogEx import AttendeeDialogEx
+from UI_Ex.RegistrationDialogEx import RegistrationDialogEx
+from UI_Ex.UserDialogEx import UserDialogEx
 from UI_Ex.ChangePasswordDialogEx import ChangePasswordDialogEx
 from models.events import Events
 from models.event import Event
@@ -620,6 +622,24 @@ class MainWindowEx(Ui_MainWindow):
             self.load_checkin_stats()
         else:
             QMessageBox.warning(self.MainWindow, "Error", message)
+
+    def scan_qr_checkin(self):
+        from UI_Ex.QRScannerDialogEx import QRScannerDialogEx
+
+        def checkin_callback(qr_code):
+            regs = Registrations()
+            regs.import_json("datasets/registrations.json")
+
+            self.checkinCode.setText(qr_code.upper())
+
+            success, message = regs.checkin(qr_code.upper())
+            if success:
+                regs.export_json("datasets/registrations.json")
+                QTimer.singleShot(500, self.load_checkin_stats)
+            return success, message
+
+        scanner = QRScannerDialogEx(self.MainWindow, callback=checkin_callback)
+        scanner.exec()
 
     def apply_stylesheet(self):
         self.MainWindow.setStyleSheet("""
