@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'D:\HK2_2025_2026\KTLT_K25411E\Event_Check_in_Management\ui\MainWindow.ui'
+# Form implementation generated from reading ui file 'D:\GIT_TDLT\Final-Project-Programming-Techniques\ui\MainWindow.ui'
 #
 # Created by: PyQt6 UI code generator 6.10.0
 #
@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1146, 740)
+        MainWindow.resize(777, 590)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -95,21 +95,29 @@ class Ui_MainWindow(object):
         self.horizontalLayout_header.addWidget(self.btnLogout)
         self.verticalLayout.addWidget(self.headerBar)
         self.contentWidget = QtWidgets.QWidget(parent=self.centralwidget)
+        self.contentWidget.setStyleSheet("background-color: rgb(165, 165, 165);")
         self.contentWidget.setObjectName("contentWidget")
         self.contentLayout = QtWidgets.QVBoxLayout(self.contentWidget)
         self.contentLayout.setContentsMargins(12, 10, 12, 10)
         self.contentLayout.setSpacing(6)
         self.contentLayout.setObjectName("contentLayout")
         self.tabWidget = QtWidgets.QTabWidget(parent=self.contentWidget)
+        self.tabWidget.setStyleSheet("background-color: rgb(185, 185, 185);\n"
+"color: rgb(0, 0, 0);")
         self.tabWidget.setObjectName("tabWidget")
         self.eventTab = QtWidgets.QWidget()
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.eventTab.setFont(font)
         self.eventTab.setObjectName("eventTab")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.eventTab)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.btnAddEvent = QtWidgets.QPushButton(parent=self.eventTab)
-        self.btnAddEvent.setStyleSheet("padding: 10px; font-size: 13px;")
+        self.btnAddEvent.setStyleSheet("padding: 10px; font-size: 13px;\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(39, 174, 96);")
         self.btnAddEvent.setObjectName("btnAddEvent")
         self.horizontalLayout.addWidget(self.btnAddEvent)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -136,9 +144,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.btnViewEvent = QtWidgets.QPushButton(parent=self.eventTab)
+        self.btnViewEvent.setStyleSheet("background-color: rgb(197, 0, 98);\n"
+"color: rgb(255, 255, 255);")
         self.btnViewEvent.setObjectName("btnViewEvent")
         self.horizontalLayout_2.addWidget(self.btnViewEvent)
         self.btnEditEvent = QtWidgets.QPushButton(parent=self.eventTab)
+        self.btnEditEvent.setStyleSheet("color :rgb(255, 255, 255);\n"
+"background-color: rgb(52, 152, 219);")
         self.btnEditEvent.setObjectName("btnEditEvent")
         self.horizontalLayout_2.addWidget(self.btnEditEvent)
         self.btnDeleteEvent = QtWidgets.QPushButton(parent=self.eventTab)
@@ -146,6 +158,9 @@ class Ui_MainWindow(object):
         self.btnDeleteEvent.setObjectName("btnDeleteEvent")
         self.horizontalLayout_2.addWidget(self.btnDeleteEvent)
         self.btnRefreshEvent = QtWidgets.QPushButton(parent=self.eventTab)
+        self.btnRefreshEvent.setStyleSheet("\n"
+"background-color: rgb(130, 0, 195);\n"
+"color: rgb(255, 255, 255);")
         self.btnRefreshEvent.setObjectName("btnRefreshEvent")
         self.horizontalLayout_2.addWidget(self.btnRefreshEvent)
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -168,7 +183,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.btnAddAttendee = QtWidgets.QPushButton(parent=self.attendeeTab)
-        self.btnAddAttendee.setStyleSheet("padding: 10px; font-size: 13px;")
+        self.btnAddAttendee.setStyleSheet("padding: 10px; font-size: 13px;\n"
+"background-color: rgb(39, 174, 96);\n"
+"color: rgb(255, 255, 255);")
         self.btnAddAttendee.setObjectName("btnAddAttendee")
         self.horizontalLayout_4.addWidget(self.btnAddAttendee)
         spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -195,6 +212,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.btnEditAttendee = QtWidgets.QPushButton(parent=self.attendeeTab)
+        self.btnEditAttendee.setStyleSheet("color: rgb(255, 255, 255);\n"
+"background-color: rgb(52, 152, 219);")
         self.btnEditAttendee.setObjectName("btnEditAttendee")
         self.horizontalLayout_5.addWidget(self.btnEditAttendee)
         self.btnDeleteAttendee = QtWidgets.QPushButton(parent=self.attendeeTab)
@@ -202,6 +221,8 @@ class Ui_MainWindow(object):
         self.btnDeleteAttendee.setObjectName("btnDeleteAttendee")
         self.horizontalLayout_5.addWidget(self.btnDeleteAttendee)
         self.btnRefreshAttendee = QtWidgets.QPushButton(parent=self.attendeeTab)
+        self.btnRefreshAttendee.setStyleSheet("color: rgb(255, 255, 255);\n"
+"background-color: rgb(147, 0, 221);")
         self.btnRefreshAttendee.setObjectName("btnRefreshAttendee")
         self.horizontalLayout_5.addWidget(self.btnRefreshAttendee)
         spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -226,7 +247,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
         self.btnRegisterAttendee = QtWidgets.QPushButton(parent=self.registrationTab)
-        self.btnRegisterAttendee.setStyleSheet("padding: 10px; font-size: 13px;")
+        self.btnRegisterAttendee.setStyleSheet("padding: 10px; font-size: 13px;\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(39, 174, 96);")
         self.btnRegisterAttendee.setObjectName("btnRegisterAttendee")
         self.horizontalLayout_7.addWidget(self.btnRegisterAttendee)
         spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -253,6 +276,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
         self.btnGenerateQR = QtWidgets.QPushButton(parent=self.registrationTab)
+        self.btnGenerateQR.setStyleSheet("background-color: rgb(52, 152, 219);\n"
+"color: rgb(255, 255, 255);")
         self.btnGenerateQR.setObjectName("btnGenerateQR")
         self.horizontalLayout_8.addWidget(self.btnGenerateQR)
         self.btnCancelRegistration = QtWidgets.QPushButton(parent=self.registrationTab)
@@ -260,6 +285,8 @@ class Ui_MainWindow(object):
         self.btnCancelRegistration.setObjectName("btnCancelRegistration")
         self.horizontalLayout_8.addWidget(self.btnCancelRegistration)
         self.btnRefreshRegistration = QtWidgets.QPushButton(parent=self.registrationTab)
+        self.btnRefreshRegistration.setStyleSheet("background-color: rgb(145, 0, 218);\n"
+"color: rgb(255, 255, 255);")
         self.btnRefreshRegistration.setObjectName("btnRefreshRegistration")
         self.horizontalLayout_8.addWidget(self.btnRefreshRegistration)
         spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -360,6 +387,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_11 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_11.setObjectName("horizontalLayout_11")
         self.btnRefreshCheckin = QtWidgets.QPushButton(parent=self.checkinTab)
+        self.btnRefreshCheckin.setStyleSheet("background-color: rgb(148, 0, 222);\n"
+"color: rgb(255, 255, 255);")
         self.btnRefreshCheckin.setObjectName("btnRefreshCheckin")
         self.horizontalLayout_11.addWidget(self.btnRefreshCheckin)
         spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -373,7 +402,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_12 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_12.setObjectName("horizontalLayout_12")
         self.btnAddUser = QtWidgets.QPushButton(parent=self.userMgmtTab)
-        self.btnAddUser.setStyleSheet("padding: 10px; font-size: 13px;")
+        self.btnAddUser.setStyleSheet("padding: 10px; font-size: 13px;\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(39, 174, 96);")
         self.btnAddUser.setObjectName("btnAddUser")
         self.horizontalLayout_12.addWidget(self.btnAddUser)
         spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -398,6 +429,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_13 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_13.setObjectName("horizontalLayout_13")
         self.btnEditUser = QtWidgets.QPushButton(parent=self.userMgmtTab)
+        self.btnEditUser.setStyleSheet("background-color: rgb(52, 152, 219);\n"
+"color: rgb(255, 255, 255);")
         self.btnEditUser.setObjectName("btnEditUser")
         self.horizontalLayout_13.addWidget(self.btnEditUser)
         self.btnDeleteUser = QtWidgets.QPushButton(parent=self.userMgmtTab)
@@ -405,9 +438,13 @@ class Ui_MainWindow(object):
         self.btnDeleteUser.setObjectName("btnDeleteUser")
         self.horizontalLayout_13.addWidget(self.btnDeleteUser)
         self.btnResetUserPwd = QtWidgets.QPushButton(parent=self.userMgmtTab)
+        self.btnResetUserPwd.setStyleSheet("background-color: rgb(0, 85, 0);\n"
+"color: rgb(255, 255, 255);")
         self.btnResetUserPwd.setObjectName("btnResetUserPwd")
         self.horizontalLayout_13.addWidget(self.btnResetUserPwd)
         self.btnRefreshUser = QtWidgets.QPushButton(parent=self.userMgmtTab)
+        self.btnRefreshUser.setStyleSheet("background-color: rgb(147, 0, 221);\n"
+"color: rgb(255, 255, 255);")
         self.btnRefreshUser.setObjectName("btnRefreshUser")
         self.horizontalLayout_13.addWidget(self.btnRefreshUser)
         spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -419,7 +456,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

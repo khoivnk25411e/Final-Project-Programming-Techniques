@@ -13,8 +13,8 @@
             "EventId": "evt_001",
             "AttendeeId": "att_004",
             "RegistrationDate": "2026-02-13 16:00:00",
-            "Status": "Đã check-in",
-            "CheckinTime": "2026-02-22 09:36:35"
+            "Status": "Checked-in",
+            "CheckinTime": "2026-02-22 09:45:56"
         },
         {
             "RegistrationId": "7B9C461E",
