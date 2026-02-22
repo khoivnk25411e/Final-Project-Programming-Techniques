@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>777</width>
-    <height>540</height>
+    <height>590</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -208,6 +208,9 @@ QPushButton:hover {
     </item>
     <item>
      <widget class="QWidget" name="contentWidget" native="true">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(165, 165, 165);</string>
+      </property>
       <layout class="QVBoxLayout" name="contentLayout">
        <property name="spacing">
         <number>6</number>
@@ -226,10 +229,19 @@ QPushButton:hover {
        </property>
        <item>
         <widget class="QTabWidget" name="tabWidget">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(185, 185, 185);
+color: rgb(0, 0, 0);</string>
+         </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="eventTab">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <attribute name="title">
            <string>📅 Event Management</string>
           </attribute>
@@ -239,7 +251,9 @@ QPushButton:hover {
              <item>
               <widget class="QPushButton" name="btnAddEvent">
                <property name="styleSheet">
-                <string notr="true">padding: 10px; font-size: 13px;</string>
+                <string notr="true">padding: 10px; font-size: 13px;
+color: rgb(255, 255, 255);
+background-color: rgb(39, 174, 96);</string>
                </property>
                <property name="text">
                 <string>➕ Add New Event</string>
@@ -302,6 +316,10 @@ QPushButton:hover {
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
               <widget class="QPushButton" name="btnViewEvent">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(197, 0, 98);
+color: rgb(255, 255, 255);</string>
+               </property>
                <property name="text">
                 <string>👁 View Details</string>
                </property>
@@ -309,6 +327,10 @@ QPushButton:hover {
              </item>
              <item>
               <widget class="QPushButton" name="btnEditEvent">
+               <property name="styleSheet">
+                <string notr="true">color :rgb(255, 255, 255);
+background-color: rgb(52, 152, 219);</string>
+               </property>
                <property name="text">
                 <string>✏ Update</string>
                </property>
@@ -326,6 +348,11 @@ QPushButton:hover {
              </item>
              <item>
               <widget class="QPushButton" name="btnRefreshEvent">
+               <property name="styleSheet">
+                <string notr="true">
+background-color: rgb(130, 0, 195);
+color: rgb(255, 255, 255);</string>
+               </property>
                <property name="text">
                 <string>🔄 Refresh</string>
                </property>
@@ -376,7 +403,9 @@ QPushButton:hover {
              <item>
               <widget class="QPushButton" name="btnAddAttendee">
                <property name="styleSheet">
-                <string notr="true">padding: 10px; font-size: 13px;</string>
+                <string notr="true">padding: 10px; font-size: 13px;
+background-color: rgb(39, 174, 96);
+color: rgb(255, 255, 255);</string>
                </property>
                <property name="text">
                 <string>➕ Add Attendee</string>
@@ -439,6 +468,10 @@ QPushButton:hover {
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <item>
               <widget class="QPushButton" name="btnEditAttendee">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(52, 152, 219);</string>
+               </property>
                <property name="text">
                 <string>✏ Update</string>
                </property>
@@ -456,6 +489,10 @@ QPushButton:hover {
              </item>
              <item>
               <widget class="QPushButton" name="btnRefreshAttendee">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(147, 0, 221);</string>
+               </property>
                <property name="text">
                 <string>🔄 Refresh</string>
                </property>
@@ -515,7 +552,9 @@ QPushButton:hover {
              <item>
               <widget class="QPushButton" name="btnRegisterAttendee">
                <property name="styleSheet">
-                <string notr="true">padding: 10px; font-size: 13px;</string>
+                <string notr="true">padding: 10px; font-size: 13px;
+color: rgb(255, 255, 255);
+background-color: rgb(39, 174, 96);</string>
                </property>
                <property name="text">
                 <string>➕ Register Attendee</string>
@@ -578,6 +617,10 @@ QPushButton:hover {
             <layout class="QHBoxLayout" name="horizontalLayout_8">
              <item>
               <widget class="QPushButton" name="btnGenerateQR">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(52, 152, 219);
+color: rgb(255, 255, 255);</string>
+               </property>
                <property name="text">
                 <string>📱 Generate QR Code</string>
                </property>
@@ -595,6 +638,10 @@ QPushButton:hover {
              </item>
              <item>
               <widget class="QPushButton" name="btnRefreshRegistration">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(145, 0, 218);
+color: rgb(255, 255, 255);</string>
+               </property>
                <property name="text">
                 <string>🔄 Refresh</string>
                </property>
@@ -803,6 +850,10 @@ background-color: rgb(85, 170, 127);</string>
             <layout class="QHBoxLayout" name="horizontalLayout_11">
              <item>
               <widget class="QPushButton" name="btnRefreshCheckin">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(148, 0, 222);
+color: rgb(255, 255, 255);</string>
+               </property>
                <property name="text">
                 <string>🔄 Refresh</string>
                </property>
@@ -835,7 +886,9 @@ background-color: rgb(85, 170, 127);</string>
              <item>
               <widget class="QPushButton" name="btnAddUser">
                <property name="styleSheet">
-                <string notr="true">padding: 10px; font-size: 13px;</string>
+                <string notr="true">padding: 10px; font-size: 13px;
+color: rgb(255, 255, 255);
+background-color: rgb(39, 174, 96);</string>
                </property>
                <property name="text">
                 <string>➕ Add Account</string>
@@ -893,6 +946,10 @@ background-color: rgb(85, 170, 127);</string>
             <layout class="QHBoxLayout" name="horizontalLayout_13">
              <item>
               <widget class="QPushButton" name="btnEditUser">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(52, 152, 219);
+color: rgb(255, 255, 255);</string>
+               </property>
                <property name="text">
                 <string>✏ Update</string>
                </property>
@@ -910,6 +967,10 @@ background-color: rgb(85, 170, 127);</string>
              </item>
              <item>
               <widget class="QPushButton" name="btnResetUserPwd">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(0, 85, 0);
+color: rgb(255, 255, 255);</string>
+               </property>
                <property name="text">
                 <string>🔑 Reset Password</string>
                </property>
@@ -917,6 +978,10 @@ background-color: rgb(85, 170, 127);</string>
              </item>
              <item>
               <widget class="QPushButton" name="btnRefreshUser">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(147, 0, 221);
+color: rgb(255, 255, 255);</string>
+               </property>
                <property name="text">
                 <string>🔄 Refresh</string>
                </property>
