@@ -616,22 +616,13 @@ class MainWindowEx(Ui_MainWindow):
         regs = Registrations()
         regs.import_json("datasets/registrations.json")
         success, message = regs.checkin(code)
-
-        # English translation for model-level messages if necessary
-        msg_map = {
-            "Check-in successful!": "Check-in successful!",
-            "Registration code does not exist!": "Registration code does not exist!",
-            "This person has already checked in!": "This person has already checked in!"
-        }
-        translated_msg = msg_map.get(message, message)
-
         if success:
             regs.export_json("datasets/registrations.json")
-            QMessageBox.information(self.MainWindow, "Success", translated_msg)
+            QMessageBox.information(self.MainWindow, "Success", message)
             self.checkinCode.clear()
             self.load_checkin_stats()
         else:
-            QMessageBox.warning(self.MainWindow, "Error", translated_msg)
+            QMessageBox.warning(self.MainWindow, "Error", message)
 
     def scan_qr_checkin(self):
         from Ui_ex.QRScannerDialogEx import QRScannerDialogEx
@@ -639,22 +630,12 @@ class MainWindowEx(Ui_MainWindow):
         def checkin_callback(qr_code):
             regs = Registrations()
             regs.import_json("datasets/registrations.json")
-
-            self.checkinCode.setText(qr_code.upper())
-
             success, message = regs.checkin(qr_code.upper())
-
-            msg_map = {
-                "Check-in successful!": "Check-in successful!",
-                "Registration code does not exist!": "Registration code does not exist!",
-                "This person has already checked in!": "This person has already checked in!"
-            }
-            translated_msg = msg_map.get(message, message)
-
             if success:
                 regs.export_json("datasets/registrations.json")
                 QTimer.singleShot(500, self.load_checkin_stats)
-            return success, translated_msg
+            return success, message
+
 
         scanner = QRScannerDialogEx(self.MainWindow, callback=checkin_callback)
         scanner.exec()

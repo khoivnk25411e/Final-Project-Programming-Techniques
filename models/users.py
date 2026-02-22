@@ -34,7 +34,7 @@ class Users(MyCollections):
             json.dump(data, f, ensure_ascii=False, indent=4)
 
     def login(self, username, password):
-        """Trả về User nếu đúng, None nếu sai"""
+
         for it in self.list:
             if it.UserName == username and it.Password == password:
                 return it
