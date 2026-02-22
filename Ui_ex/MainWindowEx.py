@@ -619,9 +619,9 @@ class MainWindowEx(Ui_MainWindow):
 
         # English translation for model-level messages if necessary
         msg_map = {
-            "Check-in thành công!": "Check-in successful!",
-            "Mã đăng ký không tồn tại!": "Registration code does not exist!",
-            "Người này đã check-in rồi!": "This person has already checked in!"
+            "Check-in successful!": "Check-in successful!",
+            "Registration code does not exist!": "Registration code does not exist!",
+            "This person has already checked in!": "This person has already checked in!"
         }
         translated_msg = msg_map.get(message, message)
 
@@ -645,9 +645,9 @@ class MainWindowEx(Ui_MainWindow):
             success, message = regs.checkin(qr_code.upper())
 
             msg_map = {
-                "Check-in thành công!": "Check-in successful!",
-                "Mã đăng ký không tồn tại!": "Registration code does not exist!",
-                "Người này đã check-in rồi!": "This person has already checked in!"
+                "Check-in successful!": "Check-in successful!",
+                "Registration code does not exist!": "Registration code does not exist!",
+                "This person has already checked in!": "This person has already checked in!"
             }
             translated_msg = msg_map.get(message, message)
 
