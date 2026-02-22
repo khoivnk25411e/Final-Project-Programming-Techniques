@@ -1,199 +1,373 @@
-# PHẦN MỀM QUẢN LÝ CHECK-IN SỰ KIỆN
+# EVENT CHECK-IN MANAGEMENT SYSTEM
 
-Phần mềm quản lý sự kiện và check-in người tham dự sử dụng PyQt6 và JSON.
+A comprehensive event management and check-in system built with PyQt6 and JSON storage, featuring user authentication, role-based access control, and QR code scanning capabilities.
 
-## 📋 TÍNH NĂNG
+## 📋 FEATURES
 
-### 1. Quản Lý Sự Kiện
-- ✅ Thêm sự kiện mới
-- ✅ Cập nhật thông tin sự kiện
-- ✅ Xóa sự kiện
-- ✅ Xem danh sách và chi tiết sự kiện
+### 1. Event Management
+- ✅ Create new events
+- ✅ Update event information
+- ✅ Delete events
+- ✅ View event list and details
 
-### 2. Quản Lý Người Tham Dự
-- ✅ Thêm người tham dự
-- ✅ Cập nhật thông tin người tham dự
-- ✅ Xóa người tham dự
-- ✅ Tìm kiếm người tham dự (theo tên, email, SĐT, tổ chức)
+### 2. Attendee Management
+- ✅ Add attendees
+- ✅ Update attendee information
+- ✅ Delete attendees
+- ✅ Search attendees (by name, email, phone, organization)
 
-### 3. Đăng Ký Tham Dự Sự Kiện
-- ✅ Đăng ký người tham dự vào sự kiện
-- ✅ Hủy đăng ký
-- ✅ Xem danh sách đăng ký theo sự kiện
-- ✅ Tạo mã QR cho đăng ký
+### 3. Event Registration
+- ✅ Register attendees for events
+- ✅ Cancel registrations
+- ✅ View registration list by event
+- ✅ Generate QR codes for registrations
 
-### 4. Quản Lý Check-in
-- ✅ Check-in bằng mã đăng ký
-- ✅ Check-in bằng QR code
-- ✅ Kiểm tra trùng check-in
-- ✅ Ghi nhận thời gian check-in
-- ✅ Xem danh sách đã check-in
+### 4. Check-in Management
+- ✅ Check-in via registration code
+- ✅ Check-in via QR code scanning (with camera)
+- ✅ Prevent duplicate check-ins
+- ✅ Record check-in timestamps
+- ✅ View check-in list
 
-### 5. Thống Kê - Báo Cáo
-- ✅ Thống kê số người đăng ký
-- ✅ Thống kê số người đã check-in
-- ✅ Xem danh sách chưa check-in
-- ✅ Thống kê theo từng sự kiện
+### 5. Statistics & Reports
+- ✅ Track number of registrations
+- ✅ Track number of check-ins
+- ✅ View list of non-checked-in attendees
+- ✅ Export reports
 
-### 6. Quản Lý Dữ Liệu
-- ✅ Lưu dữ liệu tự động (JSON)
-- ✅ Tải dữ liệu khi khởi động
-- ✅ Sao lưu dữ liệu
+### 6. User Authentication & Management
+- ✅ Login system with remember me
+- ✅ Forgot password with security questions
+- ✅ Change password
+- ✅ Role-based access (Admin/User)
+- ✅ User account management (Admin only)
 
-## 🏗️ CẤU TRÚC THƯ MỤC
+### 7. System Data Management
+- ✅ Auto-save data (JSON)
+- ✅ Load data on startup
+- ✅ Data backup capabilities
+
+## 🏗️ PROJECT STRUCTURE
 
 ```
 event_management/
-├── models/                 # Các class model
+├── models/                 # Business logic & data models
 │   ├── mycollections.py   # Base collection class
-│   ├── event.py           # Model sự kiện
-│   ├── events.py          # Collection sự kiện
-│   ├── attendee.py        # Model người tham dự
-│   ├── attendees.py       # Collection người tham dự
-│   ├── registration.py    # Model đăng ký
-│   └── registrations.py   # Collection đăng ký
+│   ├── event.py           # Event model
+│   ├── events.py          # Event collection
+│   ├── attendee.py        # Attendee model
+│   ├── attendees.py       # Attendee collection
+│   ├── registration.py    # Registration model
+│   ├── registrations.py   # Registration collection
+│   ├── user.py            # User model
+│   └── users.py           # User collection
 │
-├── ui/                     # Giao diện người dùng
-│   ├── MainWindow.py      # UI chính
-│   ├── MainWindowEx.py    # Logic xử lý chính
-│   ├── EventDialog.py     # Dialog sự kiện
-│   ├── EventDialogEx.py   # Logic xử lý sự kiện
-│   ├── AttendeeDialog.py  # Dialog người tham dự
-│   ├── AttendeeDialogEx.py # Logic xử lý người tham dự
-│   ├── RegistrationDialog.py  # Dialog đăng ký
-│   └── RegistrationDialogEx.py # Logic xử lý đăng ký
+├── ui/                     # User interface components
+│   ├── LoginWindow.py / LoginWindowEx.py           # Login screen
+│   ├── ForgotPasswordDialog.py / Ex.py             # Forgot password
+│   ├── ChangePasswordDialog.py / Ex.py             # Change password
+│   ├── MainWindow.py / MainWindowEx.py             # Main window
+│   ├── EventDialog.py / EventDialogEx.py           # Event dialog
+│   ├── AttendeeDialog.py / AttendeeDialogEx.py     # Attendee dialog
+│   ├── RegistrationDialog.py / Ex.py               # Registration dialog
+│   ├── UserDialog.py / UserDialogEx.py             # User management dialog
+│   ├── QRScannerDialog.py / QRScannerDialogEx.py   # QR scanner
+│   └── *.ui                                         # Qt Designer UI files
 │
-├── datasets/               # Dữ liệu JSON
-│   ├── events.json        # Dữ liệu sự kiện
-│   ├── attendees.json     # Dữ liệu người tham dự
-│   └── registrations.json # Dữ liệu đăng ký
+├── datasets/               # JSON data storage
+│   ├── events.json        # Event data
+│   ├── attendees.json     # Attendee data
+│   ├── registrations.json # Registration data
+│   └── users.json         # User accounts
 │
-├── images/                 # Hình ảnh, icon
+├── images/                 # Icons and images
 │
-├── main.py                 # File chạy chương trình
-└── README.md              # File hướng dẫn này
+├── main.py                 # Application entry point
+├── requirements.txt        # Python dependencies
+└── README.md              # This file
 ```
 
-## 🚀 CÀI ĐẶT
+## 🚀 INSTALLATION
 
-### Yêu Cầu Hệ Thống
-- Python 3.8 trở lên
+### System Requirements
+- Python 3.8 or higher
 - PyQt6
-- qrcode (tùy chọn - cho tính năng tạo QR)
+- opencv-python (for QR scanning)
+- pyzbar (for QR code decoding)
+- qrcode (for QR generation)
 
-### Cài Đặt Thư Viện
+### Install Dependencies
 
 ```bash
-# Cài đặt PyQt6
-pip install PyQt6
+# Install all required packages
+pip install -r requirements.txt
 
-# Cài đặt qrcode (tùy chọn)
+# Or install individually:
+pip install PyQt6
 pip install qrcode[pil]
+pip install opencv-python
+pip install pyzbar
 ```
 
-## 💻 SỬ DỤNG
+## 💻 USAGE
 
-### Chạy Chương Trình
+### Running the Application
 
 ```bash
 python main.py
 ```
 
-### Hướng Dẫn Sử Dụng
+### Default Accounts
 
-#### 1. Quản Lý Sự Kiện
-- Vào tab "📅 Quản Lý Sự Kiện"
-- Click "➕ Thêm Sự Kiện Mới" để thêm sự kiện
-- Chọn sự kiện trong bảng và click:
-  - "👁 Xem Chi Tiết" để xem thông tin chi tiết
-  - "✏ Cập Nhật" để sửa thông tin
-  - "🗑 Xóa" để xóa sự kiện
+| Username | Password | Role |
+|----------|----------|------|
+| `admin` | `admin123` | Admin |
+| `user01` | `user123` | User |
+| `user02` | `user123` | User |
 
-#### 2. Quản Lý Người Tham Dự
-- Vào tab "👥 Người Tham Dự"
-- Sử dụng ô tìm kiếm để tìm người tham dự
-- Click "➕ Thêm Người Tham Dự" để thêm mới
-- Chọn người trong bảng và click:
-  - "✏ Cập Nhật" để sửa thông tin
-  - "🗑 Xóa" để xóa người tham dự
+### User Roles
 
-#### 3. Đăng Ký Sự Kiện
-- Vào tab "📋 Đăng Ký"
-- Chọn sự kiện từ dropdown
-- Click "➕ Đăng Ký Người Tham Dự"
-- Chọn người tham dự và xác nhận
-- Mã đăng ký sẽ được tạo tự động
-- Click "📱 Tạo Mã QR" để tạo QR code cho đăng ký
+**Admin Role:**
+- Full access to all features
+- Can manage user accounts
+- Can add/edit/delete events and attendees
+- Can reset user passwords
 
-#### 4. Check-in
-- Vào tab "✅ Check-in"
-- Chọn sự kiện cần check-in
-- Nhập mã đăng ký hoặc quét QR
-- Click "✓ Check-in" để xác nhận
-- Xem thống kê và danh sách đã check-in
+**User Role:**
+- View-only access to events and attendees
+- Cannot add/delete events or attendees
+- Can register attendees and perform check-ins
+- Can change own password
 
-## 📊 DỮ LIỆU MẪU
+### User Guide
 
-Chương trình đã có sẵn dữ liệu mẫu:
-- 3 sự kiện
-- 5 người tham dự
-- 4 đăng ký (2 đã check-in, 2 chưa check-in)
+#### 1. Login
+- Enter username and password
+- Check "Remember login" to save credentials
+- Click "Forgot password?" if needed
+- First-time users should change password after login
 
-## 🔧 TÍNH NĂNG KỸ THUẬT
+#### 2. Managing Events (Admin)
+- Go to "📅 Event Management" tab
+- Click "➕ Add New Event" to create events
+- Select event and click "✏ Update" to edit
+- Click "🗑 Delete" to remove events (will also delete related registrations)
 
-### Kiến Trúc
-- **MVC Pattern**: Tách biệt Model, View, Controller
-- **JSON Storage**: Lưu trữ dữ liệu dạng JSON
-- **PyQt6**: Framework GUI hiện đại
-- **UUID**: Tạo ID duy nhất cho records
+#### 3. Managing Attendees
+- Go to "👥 Attendees" tab
+- Use search box to find attendees
+- Click "➕ Add Attendee" to add new attendees
+- Select attendee and click "✏ Update" or "🗑 Delete"
 
-### Xử Lý Dữ Liệu
-- Tự động load dữ liệu khi khởi động
-- Tự động lưu khi có thay đổi
-- Validate dữ liệu trước khi lưu
-- Xử lý encoding UTF-8
+#### 4. Event Registration
+- Go to "📋 Registration" tab
+- Select event from dropdown
+- Click "➕ Register Attendee"
+- Select attendee and confirm
+- Registration code will be generated automatically
+- Click "📱 Generate QR" to create QR code for check-in
 
-### Giao Diện
+#### 5. Check-in
+- Go to "✅ Check-in" tab
+- Select event
+- **Method 1:** Enter registration code manually
+- **Method 2:** Click "📷 Scan QR" to use camera
+  - Camera will open automatically
+  - Hold QR code in front of camera
+  - System will auto-detect and check-in
+  - Green frame appears when QR is detected
+- View statistics and check-in list in real-time
+
+#### 6. Managing User Accounts (Admin Only)
+- Go to "👤 Accounts" tab
+- Click "➕ Add Account" to create new users
+- Set role (Admin/User) and security question
+- Click "✏ Update" to edit user information
+- Click "🔑 Reset Password" to reset user's password
+- Click "🗑 Delete" to remove users (cannot delete self)
+
+#### 7. Changing Password
+- Click "🔐 Change Password" button in header
+- Enter current password
+- Enter new password (minimum 6 characters)
+- Confirm new password
+
+#### 8. Forgot Password Recovery
+- Click "Forgot password?" on login screen
+- Enter username
+- Answer security question
+- Set new password
+
+## 📊 SAMPLE DATA
+
+The application includes sample data:
+- **3 events** with different dates and locations
+- **5 attendees** with complete information
+- **4 registrations** (2 checked-in, 2 pending)
+- **3 user accounts** (1 admin, 2 users)
+
+You can:
+- View, edit, or delete sample data
+- Add your own data
+- Reset by deleting JSON files and restarting
+
+## 🔧 TECHNICAL FEATURES
+
+### Architecture
+- **MVC Pattern**: Separation of Model, View, Controller
+- **JSON Storage**: Persistent data storage in JSON format
+- **PyQt6**: Modern GUI framework
+- **UUID**: Unique ID generation for records
+- **Role-Based Access Control**: Admin/User permissions
+
+### Data Handling
+- Auto-load data on startup
+- Auto-save on changes
+- Data validation before saving
+- UTF-8 encoding support for Vietnamese and international characters
+
+### UI Features
 - Responsive design
-- Custom stylesheet
-- Icon và emoji cho UX tốt hơn
-- Thông báo rõ ràng
+- Custom stylesheets
+- Icons and emojis for better UX
+- Clear notifications and feedback
+- Tab-based navigation
+- Real-time camera preview for QR scanning
 
-## 🐛 XỬ LÝ LỖI
+### Security Features
+- Password hashing (can be enhanced with bcrypt)
+- Security questions for password recovery
+- Session management
+- Role-based feature access
+- Cannot delete own admin account
 
-Chương trình xử lý các trường hợp lỗi:
-- File JSON không tồn tại → Tạo file mới
-- Dữ liệu trùng lặp → Thông báo lỗi
-- Input không hợp lệ → Validate và cảnh báo
-- Check-in trùng → Thông báo đã check-in
+## 🐛 ERROR HANDLING
 
-## 📝 GHI CHÚ
+The application handles common errors:
+- Missing JSON files → Creates new files
+- Duplicate data → Shows error message
+- Invalid input → Validates and warns
+- Duplicate check-ins → Prevents and notifies
+- Camera access issues → Shows helpful error messages
+- Missing libraries → Displays installation instructions
 
-- Tất cả dữ liệu được lưu trong thư mục `datasets/`
-- Backup dữ liệu thường xuyên
-- Mã đăng ký được tạo tự động (8 ký tự viết hoa)
-- Thời gian được lưu theo định dạng: `YYYY-MM-DD HH:MM:SS`
-- Ngày tháng hiển thị theo định dạng: `DD/MM/YYYY`
+## 📝 NOTES
 
-## 👨‍💻 PHÁT TRIỂN
+### Data Storage
+- All data is stored in `datasets/` directory
+- Backup data regularly by copying JSON files
+- Registration codes are auto-generated (8 characters uppercase)
+- Timestamps format: `YYYY-MM-DD HH:MM:SS`
+- Dates display format: `DD/MM/YYYY`
 
-Để mở rộng tính năng:
-1. Thêm model mới vào thư mục `models/`
-2. Tạo UI dialog trong thư mục `ui/`
-3. Thêm xử lý logic vào `MainWindowEx.py`
-4. Cập nhật file JSON tương ứng
+### QR Code Scanning
+- Requires webcam/camera access
+- Default camera (index 0) is used
+- Green frame indicates successful QR detection
+- Prevents scanning same code twice within 3 seconds
+- Auto-updates check-in list after successful scan
+
+### Camera Permissions
+- **Windows**: May need to grant camera access in Privacy settings
+- **macOS**: Grant camera permission when prompted
+- **Linux**: Ensure user has video device access
+
+## 👨‍💻 DEVELOPMENT
+
+### Adding New Features
+1. Add model classes to `models/` directory
+2. Create UI dialogs in `ui/` directory
+3. Add logic handlers in `*Ex.py` files
+4. Update corresponding JSON file structure
+
+### Integration Ready
+The system is designed for easy integration with:
+- REST API
+- Database systems (SQLite/MySQL/PostgreSQL)
+- Email services
+- SMS services
+- Cloud storage
+- Web interface
+
+### Extending Functionality
+Easy to add:
+- New user roles
+- Additional fields to models
+- New report types
+- Export formats (Excel, PDF)
+- Email notifications
+- SMS alerts
+- Barcode scanning
+- Badge printing
 
 ## 📄 LICENSE
 
-Phần mềm này được phát triển cho mục đích học tập và nghiên cứu.
+This software is developed for educational and research purposes.
 
-## 📧 LIÊN HỆ
+## 📧 SUPPORT
 
-Nếu có vấn đề hoặc câu hỏi, vui lòng liên hệ qua email hoặc tạo issue.
+For issues or questions, please:
+- Check the documentation
+- Review sample code
+- Create an issue in the repository
+
+## 🔄 VERSION HISTORY
+
+### Version 1.0.0
+- ✅ Event management
+- ✅ Attendee management
+- ✅ Registration system
+- ✅ Manual check-in
+- ✅ QR code generation
+- ✅ Statistics and reports
+- ✅ User authentication system
+- ✅ Role-based access control (Admin/User)
+- ✅ Forgot password with security questions
+- ✅ Change password functionality
+- ✅ User account management
+- ✅ QR code scanning with camera
+- ✅ Auto-detect and check-in
+
+## 🎯 FUTURE ENHANCEMENTS
+
+### Planned for Version 1.1.0
+- [ ] Export reports to Excel
+- [ ] Export reports to PDF
+- [ ] Email notifications
+- [ ] CSV import
+- [ ] Automatic backups
+- [ ] Advanced search with filters
+- [ ] Dashboard with charts
+- [ ] Print attendance badges
+- [ ] Multiple camera support
+- [ ] Multi-language support
+
+### Long-term Goals
+- [ ] Database support (SQLite/MySQL)
+- [ ] User permissions system
+- [ ] Audit logs
+- [ ] REST API
+- [ ] Web interface
+- [ ] Mobile app
+- [ ] Cloud synchronization
+
+## 🙏 ACKNOWLEDGMENTS
+
+Built with:
+- **PyQt6** - GUI Framework
+- **OpenCV** - Camera and image processing
+- **pyzbar** - QR code decoding
+- **qrcode** - QR code generation
+- **Pillow** - Image handling
 
 ---
 
-**Phiên bản:** 1.0.0  
-**Ngày phát hành:** 16/02/2026  
-**Ngôn ngữ:** Python 3.8+  
-**Framework:** PyQt6
+**Version:** 1.1.0  
+**Release Date:** February 16, 2026  
+**Language:** Python 3.8+  
+**Framework:** PyQt6  
+**License:** Educational Use
+
+**Status:** ✅ Production Ready
+
+For more information, visit the project repository or contact the development team.
