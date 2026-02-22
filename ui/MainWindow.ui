@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>777</width>
+    <width>801</width>
     <height>663</height>
    </rect>
   </property>
@@ -236,7 +236,7 @@ QTabBar::tab {
 	color: black;}</string>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="eventTab">
           <property name="font">
@@ -283,7 +283,7 @@ background-color: rgb(39, 174, 96);</string>
            <item>
             <widget class="QTableWidget" name="eventTable">
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(85, 170, 127);</string>
+              <string notr="true">background-color: rgb(48, 69, 88);</string>
              </property>
              <column>
               <property name="text">
@@ -447,7 +447,7 @@ color: rgb(255, 255, 255);</string>
            <item>
             <widget class="QTableWidget" name="attendeeTable">
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(85, 170, 127);</string>
+              <string notr="true">background-color: rgb(48, 69, 88);</string>
              </property>
              <column>
               <property name="text">
@@ -608,7 +608,7 @@ background-color: rgb(39, 174, 96);</string>
            <item>
             <widget class="QTableWidget" name="registrationTable">
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(85, 170, 127);</string>
+              <string notr="true">background-color: rgb(48, 69, 88);</string>
              </property>
              <column>
               <property name="text">
@@ -929,8 +929,7 @@ QGroupBox{
            <item>
             <widget class="QTableWidget" name="checkinTable">
              <property name="styleSheet">
-              <string notr="true">alternate-background-color: rgb(85, 170, 127);
-background-color: rgb(85, 170, 127);</string>
+              <string notr="true">background-color: rgb(48, 69, 88);</string>
              </property>
              <column>
               <property name="text">
@@ -1026,7 +1025,7 @@ background-color: rgb(39, 174, 96);</string>
            <item>
             <widget class="QTableWidget" name="userTable">
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(85, 170, 127);</string>
+              <string notr="true">background-color: rgb(48, 69, 88);</string>
              </property>
              <column>
               <property name="text">

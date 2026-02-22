@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(777, 663)
+        MainWindow.resize(801, 663)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -127,7 +127,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addItem(spacerItem1)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         self.eventTable = QtWidgets.QTableWidget(parent=self.eventTab)
-        self.eventTable.setStyleSheet("background-color: rgb(85, 170, 127);")
+        self.eventTable.setStyleSheet("background-color: rgb(48, 69, 88);")
         self.eventTable.setObjectName("eventTable")
         self.eventTable.setColumnCount(6)
         self.eventTable.setRowCount(0)
@@ -203,7 +203,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.addItem(spacerItem3)
         self.verticalLayout_3.addLayout(self.horizontalLayout_4)
         self.attendeeTable = QtWidgets.QTableWidget(parent=self.attendeeTab)
-        self.attendeeTable.setStyleSheet("background-color: rgb(85, 170, 127);")
+        self.attendeeTable.setStyleSheet("background-color: rgb(48, 69, 88);")
         self.attendeeTable.setObjectName("attendeeTable")
         self.attendeeTable.setColumnCount(6)
         self.attendeeTable.setRowCount(0)
@@ -274,7 +274,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.addItem(spacerItem6)
         self.verticalLayout_4.addLayout(self.horizontalLayout_7)
         self.registrationTable = QtWidgets.QTableWidget(parent=self.registrationTab)
-        self.registrationTable.setStyleSheet("background-color: rgb(85, 170, 127);")
+        self.registrationTable.setStyleSheet("background-color: rgb(48, 69, 88);")
         self.registrationTable.setObjectName("registrationTable")
         self.registrationTable.setColumnCount(6)
         self.registrationTable.setRowCount(0)
@@ -441,8 +441,7 @@ class Ui_MainWindow(object):
         self.label_7.setObjectName("label_7")
         self.verticalLayout_5.addWidget(self.label_7)
         self.checkinTable = QtWidgets.QTableWidget(parent=self.checkinTab)
-        self.checkinTable.setStyleSheet("alternate-background-color: rgb(85, 170, 127);\n"
-"background-color: rgb(85, 170, 127);")
+        self.checkinTable.setStyleSheet("background-color: rgb(48, 69, 88);")
         self.checkinTable.setObjectName("checkinTable")
         self.checkinTable.setColumnCount(5)
         self.checkinTable.setRowCount(0)
@@ -484,7 +483,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_12.addItem(spacerItem10)
         self.verticalLayout_6.addLayout(self.horizontalLayout_12)
         self.userTable = QtWidgets.QTableWidget(parent=self.userMgmtTab)
-        self.userTable.setStyleSheet("background-color: rgb(85, 170, 127);")
+        self.userTable.setStyleSheet("background-color: rgb(48, 69, 88);")
         self.userTable.setObjectName("userTable")
         self.userTable.setColumnCount(5)
         self.userTable.setRowCount(0)
@@ -529,7 +528,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
