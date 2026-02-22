@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'D:\HK2_2025_2026\KTLT_K25411E\Event_Check_in_Management\ui\RegistrationDialog.ui'
+# Form implementation generated from reading ui file 'D:\GIT_TDLT\Final-Project-Programming-Techniques\ui\RegistrationDialog.ui'
 #
 # Created by: PyQt6 UI code generator 6.10.0
 #
@@ -12,15 +12,29 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_RegistrationDialog(object):
     def setupUi(self, RegistrationDialog):
         RegistrationDialog.setObjectName("RegistrationDialog")
-        RegistrationDialog.resize(400, 200)
+        RegistrationDialog.resize(516, 334)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("D:\\GIT_TDLT\\Final-Project-Programming-Techniques\\ui\\../images/select_attendee.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        RegistrationDialog.setWindowIcon(icon)
+        RegistrationDialog.setStyleSheet("background-color: rgb(171, 171, 171);")
         self.verticalLayout = QtWidgets.QVBoxLayout(RegistrationDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.formLayout = QtWidgets.QFormLayout()
         self.formLayout.setObjectName("formLayout")
         self.label = QtWidgets.QLabel(parent=RegistrationDialog)
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        self.label.setFont(font)
+        self.label.setStyleSheet("color: rgb(0, 0, 0);")
         self.label.setObjectName("label")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label)
         self.attendeeCombo = QtWidgets.QComboBox(parent=RegistrationDialog)
+        self.attendeeCombo.setStyleSheet("QComboBox{\n"
+"    border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;    \n"
+"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.attendeeCombo.setObjectName("attendeeCombo")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.attendeeCombo)
         self.verticalLayout.addLayout(self.formLayout)
@@ -31,11 +45,15 @@ class Ui_RegistrationDialog(object):
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
         self.btnRegister = QtWidgets.QPushButton(parent=RegistrationDialog)
-        self.btnRegister.setStyleSheet("padding: 8px 15px;")
+        self.btnRegister.setStyleSheet("padding: 8px 15px;\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(129, 0, 194);")
         self.btnRegister.setObjectName("btnRegister")
         self.horizontalLayout.addWidget(self.btnRegister)
         self.btnCancel = QtWidgets.QPushButton(parent=RegistrationDialog)
-        self.btnCancel.setStyleSheet("padding: 8px 15px;")
+        self.btnCancel.setStyleSheet("padding: 8px 15px;\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(255, 0, 0);")
         self.btnCancel.setObjectName("btnCancel")
         self.horizontalLayout.addWidget(self.btnCancel)
         self.verticalLayout.addLayout(self.horizontalLayout)

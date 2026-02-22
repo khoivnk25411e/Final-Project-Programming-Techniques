@@ -25,6 +25,13 @@
   <property name="windowTitle">
    <string>Add / Edit Account</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../images/add_edit_logo.png</normaloff>../images/add_edit_logo.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(159, 159, 159);</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>12</number>
@@ -70,7 +77,8 @@
      <item row="0" column="0">
       <widget class="QLabel" name="lblFullName">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;</string>
+        <string notr="true">font-weight:bold; font-size:12px;
+color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Full Name:</string>
@@ -85,6 +93,14 @@
          <height>34</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
+       /* (Tùy chọn) Bo góc */
+    padding: 2px;    
+	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+}</string>
+       </property>
        <property name="placeholderText">
         <string>Enter full name...</string>
        </property>
@@ -93,7 +109,8 @@
      <item row="1" column="0">
       <widget class="QLabel" name="lblUsername">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;</string>
+        <string notr="true">font-weight:bold; font-size:12px;
+color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Username:</string>
@@ -108,6 +125,14 @@
          <height>34</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
+       /* (Tùy chọn) Bo góc */
+    padding: 2px;    
+	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+}</string>
+       </property>
        <property name="placeholderText">
         <string>Letters, numbers, underscores only...</string>
        </property>
@@ -116,7 +141,7 @@
      <item row="2" column="0">
       <widget class="QLabel" name="lblEmail">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;</string>
+        <string notr="true">font-weight:bold; font-size:12px;color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Email:</string>
@@ -131,6 +156,14 @@
          <height>34</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
+       /* (Tùy chọn) Bo góc */
+    padding: 2px;    
+	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+}</string>
+       </property>
        <property name="placeholderText">
         <string>example@email.com</string>
        </property>
@@ -139,7 +172,7 @@
      <item row="3" column="0">
       <widget class="QLabel" name="lblPassword">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;</string>
+        <string notr="true">font-weight:bold; font-size:12px;color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Password:</string>
@@ -154,6 +187,14 @@
          <height>34</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
+       /* (Tùy chọn) Bo góc */
+    padding: 2px;    
+	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+}</string>
+       </property>
        <property name="echoMode">
         <enum>QLineEdit::Password</enum>
        </property>
@@ -165,7 +206,7 @@
      <item row="4" column="0">
       <widget class="QLabel" name="lblRole">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;</string>
+        <string notr="true">font-weight:bold; font-size:12px;color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Role:</string>
@@ -179,6 +220,14 @@
          <width>0</width>
          <height>34</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QComboBox{
+    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
+       /* (Tùy chọn) Bo góc */
+    padding: 2px;    
+	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+}</string>
        </property>
        <item>
         <property name="text">
@@ -195,7 +244,7 @@
      <item row="5" column="0">
       <widget class="QLabel" name="lblSecQuestion">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;</string>
+        <string notr="true">font-weight:bold; font-size:12px;color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Security Question:</string>
@@ -210,6 +259,14 @@
          <height>34</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
+       /* (Tùy chọn) Bo góc */
+    padding: 2px;    
+	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+}</string>
+       </property>
        <property name="placeholderText">
         <string>Security question for password recovery...</string>
        </property>
@@ -218,7 +275,7 @@
      <item row="6" column="0">
       <widget class="QLabel" name="lblSecAnswer">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;</string>
+        <string notr="true">font-weight:bold; font-size:12px;color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Answer:</string>
@@ -232,6 +289,14 @@
          <width>0</width>
          <height>34</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
+       /* (Tùy chọn) Bo góc */
+    padding: 2px;    
+	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+}</string>
        </property>
        <property name="placeholderText">
         <string>Answer (case-insensitive)...</string>
@@ -304,8 +369,8 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-    background:#ecf0f1;
-    color:#7f8c8d;
+    background:red;
+    color:white;
     border-radius:6px;
     font-size:13px;
     padding:0 16px;

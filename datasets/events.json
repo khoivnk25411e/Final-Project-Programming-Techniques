@@ -1,14 +1,6 @@
 {
     "events": [
         {
-            "EventId": "evt_001",
-            "EventName": "Hội Thảo Công Nghệ AI 2026",
-            "EventDate": "15/03/2026",
-            "EventTime": "09:00",
-            "Location": "Trung Tâm Hội Nghị Quốc Gia",
-            "Description": "Hội thảo về xu hướng công nghệ AI và ứng dụng trong doanh nghiệp"
-        },
-        {
             "EventId": "evt_002",
             "EventName": "Workshop Python Programming",
             "EventDate": "20/03/2026",
@@ -39,6 +31,14 @@
             "EventTime": "16:55",
             "Location": "123",
             "Description": "33"
+        },
+        {
+            "EventId": "evt_4ebed7bf",
+            "EventName": "Họp Lớp 12",
+            "EventDate": "13/01/2027",
+            "EventTime": "16:48",
+            "Location": "THPT Nguyễn Văn Trỗi",
+            "Description": "Họp Lớp 12C8"
         }
     ]
 }

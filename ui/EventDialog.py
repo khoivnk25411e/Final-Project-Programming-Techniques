@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'D:\HK2_2025_2026\KTLT_K25411E\Event_Check_in_Management\ui\EventDialog.ui'
+# Form implementation generated from reading ui file 'D:\GIT_TDLT\Final-Project-Programming-Techniques\ui\EventDialog.ui'
 #
 # Created by: PyQt6 UI code generator 6.10.0
 #
@@ -12,52 +12,76 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_EventDialog(object):
     def setupUi(self, EventDialog):
         EventDialog.setObjectName("EventDialog")
-        EventDialog.resize(579, 499)
+        EventDialog.resize(543, 371)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("D:\\GIT_TDLT\\Final-Project-Programming-Techniques\\ui\\../images/add_edit_logo.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        EventDialog.setWindowIcon(icon)
+        EventDialog.setStyleSheet("background-color: rgb(166, 166, 166);")
         self.verticalLayout = QtWidgets.QVBoxLayout(EventDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.formLayout = QtWidgets.QFormLayout()
         self.formLayout.setObjectName("formLayout")
         self.label = QtWidgets.QLabel(parent=EventDialog)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label.setFont(font)
+        self.label.setStyleSheet("color: rgb(0, 0, 0);")
         self.label.setObjectName("label")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label)
         self.nameInput = QtWidgets.QLineEdit(parent=EventDialog)
-        self.nameInput.setStyleSheet("background-color: rgb(255, 255, 127);\n"
-"color: rgb(0, 0, 0);")
+        self.nameInput.setStyleSheet("\n"
+"color: rgb(0, 0, 0);\n"
+"background-color: rgb(203, 203, 203);")
         self.nameInput.setObjectName("nameInput")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.nameInput)
         self.label_2 = QtWidgets.QLabel(parent=EventDialog)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_2.setFont(font)
+        self.label_2.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_2.setObjectName("label_2")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_2)
         self.dateInput = QtWidgets.QDateEdit(parent=EventDialog)
-        self.dateInput.setStyleSheet("background-color: rgb(255, 231, 48);\n"
-"color: rgb(0, 0, 0);")
+        self.dateInput.setStyleSheet("color: rgb(0, 0, 0);\n"
+"background-color: rgb(203, 203, 203);")
         self.dateInput.setCalendarPopup(True)
         self.dateInput.setObjectName("dateInput")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.FieldRole, self.dateInput)
         self.label_3 = QtWidgets.QLabel(parent=EventDialog)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_3.setFont(font)
+        self.label_3.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_3.setObjectName("label_3")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_3)
         self.timeInput = QtWidgets.QTimeEdit(parent=EventDialog)
-        self.timeInput.setStyleSheet("background-color: rgb(255, 255, 127);\n"
-"color: rgb(0, 0, 0);")
+        self.timeInput.setStyleSheet("color: rgb(0, 0, 0);\n"
+"background-color: rgb(203, 203, 203);")
         self.timeInput.setObjectName("timeInput")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.ItemRole.FieldRole, self.timeInput)
         self.label_4 = QtWidgets.QLabel(parent=EventDialog)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_4.setFont(font)
+        self.label_4.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_4.setObjectName("label_4")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_4)
         self.locationInput = QtWidgets.QLineEdit(parent=EventDialog)
-        self.locationInput.setStyleSheet("alternate-background-color: rgb(85, 255, 0);\n"
-"background-color: rgb(255, 255, 0);\n"
-"color: rgb(0, 0, 0);")
+        self.locationInput.setStyleSheet("color: rgb(0, 0, 0);\n"
+"background-color: rgb(203, 203, 203);")
         self.locationInput.setObjectName("locationInput")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.ItemRole.FieldRole, self.locationInput)
         self.label_5 = QtWidgets.QLabel(parent=EventDialog)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_5.setFont(font)
+        self.label_5.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_5.setObjectName("label_5")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_5)
         self.descriptionInput = QtWidgets.QTextEdit(parent=EventDialog)
         self.descriptionInput.setMaximumSize(QtCore.QSize(16777215, 100))
-        self.descriptionInput.setStyleSheet("background-color: rgb(85, 255, 255);\n"
-"color: rgb(0, 0, 0);")
+        self.descriptionInput.setStyleSheet("color: rgb(0, 0, 0);\n"
+"background-color: rgb(203, 203, 203);")
         self.descriptionInput.setObjectName("descriptionInput")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.ItemRole.FieldRole, self.descriptionInput)
         self.verticalLayout.addLayout(self.formLayout)
@@ -68,11 +92,15 @@ class Ui_EventDialog(object):
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
         self.btnSave = QtWidgets.QPushButton(parent=EventDialog)
-        self.btnSave.setStyleSheet("padding: 8px 15px;")
+        self.btnSave.setStyleSheet("padding: 8px 15px;\n"
+"background-color: rgb(119, 0, 179);\n"
+"color: rgb(255, 255, 255);")
         self.btnSave.setObjectName("btnSave")
         self.horizontalLayout.addWidget(self.btnSave)
         self.btnCancel = QtWidgets.QPushButton(parent=EventDialog)
-        self.btnCancel.setStyleSheet("padding: 8px 15px;")
+        self.btnCancel.setStyleSheet("padding: 8px 15px;\n"
+"background-color: rgb(203, 0, 0);\n"
+"color: rgb(255, 255, 255);")
         self.btnCancel.setObjectName("btnCancel")
         self.horizontalLayout.addWidget(self.btnCancel)
         self.verticalLayout.addLayout(self.horizontalLayout)

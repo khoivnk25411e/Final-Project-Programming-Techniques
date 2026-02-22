@@ -6,25 +6,49 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>200</height>
+    <width>516</width>
+    <height>334</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Register Attendee</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../images/select_attendee.png</normaloff>../images/select_attendee.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(171, 171, 171);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
       <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
        <property name="text">
         <string>Select Attendee:</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QComboBox" name="attendeeCombo"/>
+      <widget class="QComboBox" name="attendeeCombo">
+       <property name="styleSheet">
+        <string notr="true">QComboBox{
+    border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
+       /* (Tùy chọn) Bo góc */
+    padding: 2px;    
+	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+}</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -58,21 +82,25 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnRegister">
+       <property name="styleSheet">
+        <string notr="true">padding: 8px 15px;
+color: rgb(255, 255, 255);
+background-color: rgb(129, 0, 194);</string>
+       </property>
        <property name="text">
         <string>💾 Register</string>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">padding: 8px 15px;</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btnCancel">
+       <property name="styleSheet">
+        <string notr="true">padding: 8px 15px;
+color: rgb(255, 255, 255);
+background-color: rgb(255, 0, 0);</string>
+       </property>
        <property name="text">
         <string>❌ Cancel</string>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">padding: 8px 15px;</string>
        </property>
       </widget>
      </item>
