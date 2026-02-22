@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(777, 590)
+        MainWindow.resize(777, 663)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -102,13 +102,16 @@ class Ui_MainWindow(object):
         self.contentLayout.setSpacing(6)
         self.contentLayout.setObjectName("contentLayout")
         self.tabWidget = QtWidgets.QTabWidget(parent=self.contentWidget)
-        self.tabWidget.setStyleSheet("background-color: rgb(185, 185, 185);\n"
-"color: rgb(0, 0, 0);")
+        self.tabWidget.setStyleSheet("\n"
+"QTabBar::tab {\n"
+"    border: 1px solid #767676;\n"
+"    color: black;}")
         self.tabWidget.setObjectName("tabWidget")
         self.eventTab = QtWidgets.QWidget()
         font = QtGui.QFont()
         font.setPointSize(12)
         self.eventTab.setFont(font)
+        self.eventTab.setStyleSheet("")
         self.eventTab.setObjectName("eventTab")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.eventTab)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
@@ -174,9 +177,17 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.label = QtWidgets.QLabel(parent=self.attendeeTab)
+        self.label.setStyleSheet("color: rgb(0, 0, 0);")
         self.label.setObjectName("label")
         self.horizontalLayout_3.addWidget(self.label)
         self.attendeeSearch = QtWidgets.QLineEdit(parent=self.attendeeTab)
+        self.attendeeSearch.setStyleSheet("QLineEdit {\n"
+"    border: 1px solid #919191; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    border-color:#707070;\n"
+"    padding: 2px;   \n"
+"    color:black;          /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.attendeeSearch.setObjectName("attendeeSearch")
         self.horizontalLayout_3.addWidget(self.attendeeSearch)
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
@@ -236,9 +247,16 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
         self.label_2 = QtWidgets.QLabel(parent=self.registrationTab)
+        self.label_2.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_6.addWidget(self.label_2)
         self.eventCombo = QtWidgets.QComboBox(parent=self.registrationTab)
+        self.eventCombo.setStyleSheet("QComboBox{\n"
+"    border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;    \n"
+"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.eventCombo.setObjectName("eventCombo")
         self.horizontalLayout_6.addWidget(self.eventCombo)
         spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -300,19 +318,48 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_9.setObjectName("horizontalLayout_9")
         self.label_3 = QtWidgets.QLabel(parent=self.checkinTab)
+        self.label_3.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_3.setObjectName("label_3")
         self.horizontalLayout_9.addWidget(self.label_3)
         self.checkinEventCombo = QtWidgets.QComboBox(parent=self.checkinTab)
+        self.checkinEventCombo.setStyleSheet("QComboBox{\n"
+"    border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;     \n"
+"    color: black;        /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.checkinEventCombo.setObjectName("checkinEventCombo")
         self.horizontalLayout_9.addWidget(self.checkinEventCombo)
         spacerItem8 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_9.addItem(spacerItem8)
         self.verticalLayout_5.addLayout(self.horizontalLayout_9)
         self.statsGroup = QtWidgets.QGroupBox(parent=self.checkinTab)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        font.setKerning(True)
+        font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferDefault)
+        self.statsGroup.setFont(font)
+        self.statsGroup.setAutoFillBackground(False)
+        self.statsGroup.setStyleSheet("QGroupBox::title {\n"
+"    background-color:rgb(165, 165, 165); /* Màu nền của chữ */\n"
+"    color: black;               /* Màu chữ */\n"
+"    subcontrol-position: top left; /* Vị trí */\n"
+"    padding: 2px;             /* Khoảng cách padding */\n"
+"}\n"
+"QGroupBox{\n"
+"    border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"               \n"
+"}")
+        self.statsGroup.setFlat(False)
+        self.statsGroup.setCheckable(False)
         self.statsGroup.setObjectName("statsGroup")
         self.gridLayout = QtWidgets.QGridLayout(self.statsGroup)
         self.gridLayout.setObjectName("gridLayout")
         self.label_4 = QtWidgets.QLabel(parent=self.statsGroup)
+        self.label_4.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_4.setObjectName("label_4")
         self.gridLayout.addWidget(self.label_4, 0, 0, 1, 1)
         self.totalRegisteredLabel = QtWidgets.QLabel(parent=self.statsGroup)
@@ -326,6 +373,7 @@ class Ui_MainWindow(object):
         self.totalRegisteredLabel.setObjectName("totalRegisteredLabel")
         self.gridLayout.addWidget(self.totalRegisteredLabel, 0, 1, 1, 1)
         self.label_5 = QtWidgets.QLabel(parent=self.statsGroup)
+        self.label_5.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_5.setObjectName("label_5")
         self.gridLayout.addWidget(self.label_5, 0, 2, 1, 1)
         self.totalCheckedinLabel = QtWidgets.QLabel(parent=self.statsGroup)
@@ -340,13 +388,38 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.totalCheckedinLabel, 0, 3, 1, 1)
         self.verticalLayout_5.addWidget(self.statsGroup)
         self.checkinGroup = QtWidgets.QGroupBox(parent=self.checkinTab)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        font.setStrikeOut(False)
+        self.checkinGroup.setFont(font)
+        self.checkinGroup.setAutoFillBackground(False)
+        self.checkinGroup.setStyleSheet("QGroupBox::title {\n"
+"    background-color:rgb(165, 165, 165); /* Màu nền của chữ */\n"
+"    color: black;               /* Màu chữ */\n"
+"    subcontrol-position: top left; /* Vị trí */\n"
+"    padding: 2px;             /* Khoảng cách padding */\n"
+"}\n"
+"QGroupBox{\n"
+"    border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"               \n"
+"}")
         self.checkinGroup.setObjectName("checkinGroup")
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.checkinGroup)
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
         self.label_6 = QtWidgets.QLabel(parent=self.checkinGroup)
+        self.label_6.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_6.setObjectName("label_6")
         self.horizontalLayout_10.addWidget(self.label_6)
         self.checkinCode = QtWidgets.QLineEdit(parent=self.checkinGroup)
+        self.checkinCode.setStyleSheet("QLineEdit{\n"
+"    border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;    \n"
+"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.checkinCode.setObjectName("checkinCode")
         self.horizontalLayout_10.addWidget(self.checkinCode)
         self.btnCheckin = QtWidgets.QPushButton(parent=self.checkinGroup)
@@ -456,7 +529,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(4)
+        self.tabWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
