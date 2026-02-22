@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'D:\HK2_2025_2026\KTLT_K25411E\Event_Check_in_Management\ui\ChangePasswordDialog.ui'
+# Form implementation generated from reading ui file 'D:\GIT_TDLT\Final-Project-Programming-Techniques\ui\ChangePasswordDialog.ui'
 #
 # Created by: PyQt6 UI code generator 6.10.0
 #
@@ -15,6 +15,10 @@ class Ui_ChangePasswordDialog(object):
         ChangePasswordDialog.resize(400, 340)
         ChangePasswordDialog.setMinimumSize(QtCore.QSize(400, 340))
         ChangePasswordDialog.setMaximumSize(QtCore.QSize(400, 340))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("D:\\GIT_TDLT\\Final-Project-Programming-Techniques\\ui\\../images/changepass.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        ChangePasswordDialog.setWindowIcon(icon)
+        ChangePasswordDialog.setStyleSheet("background-color: rgb(159, 159, 159);")
         self.verticalLayout = QtWidgets.QVBoxLayout(ChangePasswordDialog)
         self.verticalLayout.setContentsMargins(30, 24, 30, 24)
         self.verticalLayout.setSpacing(12)
@@ -30,23 +34,31 @@ class Ui_ChangePasswordDialog(object):
         self.lblTitle.setObjectName("lblTitle")
         self.verticalLayout.addWidget(self.lblTitle)
         self.lblUser = QtWidgets.QLabel(parent=ChangePasswordDialog)
-        self.lblUser.setStyleSheet("color: #7f8c8d; font-size: 12px;")
+        self.lblUser.setStyleSheet("color: rgb(255, 255, 255);\n"
+"font: 14pt \"Nirmala Text\";")
         self.lblUser.setText("")
         self.lblUser.setObjectName("lblUser")
         self.verticalLayout.addWidget(self.lblUser)
         self.lblOldPwd = QtWidgets.QLabel(parent=ChangePasswordDialog)
-        self.lblOldPwd.setStyleSheet("font-weight: bold; font-size: 12px;")
+        self.lblOldPwd.setStyleSheet("font-weight: bold; font-size: 12px;\n"
+"color: rgb(0, 0, 0);")
         self.lblOldPwd.setObjectName("lblOldPwd")
         self.verticalLayout.addWidget(self.lblOldPwd)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.lineEditOldPwd = QtWidgets.QLineEdit(parent=ChangePasswordDialog)
         self.lineEditOldPwd.setMinimumSize(QtCore.QSize(0, 36))
+        self.lineEditOldPwd.setStyleSheet("QLineEdit{\n"
+"    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;    \n"
+"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.lineEditOldPwd.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.lineEditOldPwd.setObjectName("lineEditOldPwd")
         self.horizontalLayout.addWidget(self.lineEditOldPwd)
         self.btnToggleOld = QtWidgets.QPushButton(parent=ChangePasswordDialog)
-        self.btnToggleOld.setMinimumSize(QtCore.QSize(36, 36))
+        self.btnToggleOld.setMinimumSize(QtCore.QSize(20, 20))
         self.btnToggleOld.setMaximumSize(QtCore.QSize(36, 36))
         self.btnToggleOld.setStyleSheet("QPushButton { \n"
 "    background:#ecf0f1; \n"
@@ -61,18 +73,25 @@ class Ui_ChangePasswordDialog(object):
         self.horizontalLayout.addWidget(self.btnToggleOld)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.lblNewPwd = QtWidgets.QLabel(parent=ChangePasswordDialog)
-        self.lblNewPwd.setStyleSheet("font-weight: bold; font-size: 12px;")
+        self.lblNewPwd.setStyleSheet("font-weight: bold; font-size: 12px;\n"
+"color: rgb(0, 0, 0);")
         self.lblNewPwd.setObjectName("lblNewPwd")
         self.verticalLayout.addWidget(self.lblNewPwd)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.lineEditNewPwd = QtWidgets.QLineEdit(parent=ChangePasswordDialog)
         self.lineEditNewPwd.setMinimumSize(QtCore.QSize(0, 36))
+        self.lineEditNewPwd.setStyleSheet("QLineEdit{\n"
+"    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;    \n"
+"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.lineEditNewPwd.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.lineEditNewPwd.setObjectName("lineEditNewPwd")
         self.horizontalLayout_2.addWidget(self.lineEditNewPwd)
         self.btnToggleNew = QtWidgets.QPushButton(parent=ChangePasswordDialog)
-        self.btnToggleNew.setMinimumSize(QtCore.QSize(36, 36))
+        self.btnToggleNew.setMinimumSize(QtCore.QSize(20, 20))
         self.btnToggleNew.setMaximumSize(QtCore.QSize(36, 36))
         self.btnToggleNew.setStyleSheet("QPushButton { \n"
 "    background:#ecf0f1; \n"
@@ -87,11 +106,18 @@ class Ui_ChangePasswordDialog(object):
         self.horizontalLayout_2.addWidget(self.btnToggleNew)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.lblConfirmPwd = QtWidgets.QLabel(parent=ChangePasswordDialog)
-        self.lblConfirmPwd.setStyleSheet("font-weight: bold; font-size: 12px;")
+        self.lblConfirmPwd.setStyleSheet("font-weight: bold; font-size: 12px;\n"
+"color: rgb(0, 0, 0);")
         self.lblConfirmPwd.setObjectName("lblConfirmPwd")
         self.verticalLayout.addWidget(self.lblConfirmPwd)
         self.lineEditConfirmPwd = QtWidgets.QLineEdit(parent=ChangePasswordDialog)
         self.lineEditConfirmPwd.setMinimumSize(QtCore.QSize(0, 36))
+        self.lineEditConfirmPwd.setStyleSheet("QLineEdit{\n"
+"    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;    \n"
+"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.lineEditConfirmPwd.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.lineEditConfirmPwd.setObjectName("lineEditConfirmPwd")
         self.verticalLayout.addWidget(self.lineEditConfirmPwd)
@@ -119,8 +145,8 @@ class Ui_ChangePasswordDialog(object):
         self.btnCancel = QtWidgets.QPushButton(parent=ChangePasswordDialog)
         self.btnCancel.setMinimumSize(QtCore.QSize(0, 38))
         self.btnCancel.setStyleSheet("QPushButton { \n"
-"    background:#ecf0f1; \n"
-"    color:#7f8c8d; \n"
+"    background:red; \n"
+"    color:White; \n"
 "    border-radius:6px;\n"
 "    font-size:13px; \n"
 "    padding: 0 16px; \n"

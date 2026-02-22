@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'D:\HK2_2025_2026\KTLT_K25411E\Event_Check_in_Management\ui\UserDialog.ui'
+# Form implementation generated from reading ui file 'D:\GIT_TDLT\Final-Project-Programming-Techniques\ui\UserDialog.ui'
 #
 # Created by: PyQt6 UI code generator 6.10.0
 #
@@ -15,6 +15,10 @@ class Ui_UserDialog(object):
         UserDialog.resize(440, 420)
         UserDialog.setMinimumSize(QtCore.QSize(440, 420))
         UserDialog.setMaximumSize(QtCore.QSize(440, 420))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("D:\\GIT_TDLT\\Final-Project-Programming-Techniques\\ui\\../images/add_edit_logo.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        UserDialog.setWindowIcon(icon)
+        UserDialog.setStyleSheet("background-color: rgb(159, 159, 159);")
         self.verticalLayout = QtWidgets.QVBoxLayout(UserDialog)
         self.verticalLayout.setContentsMargins(28, 24, 28, 24)
         self.verticalLayout.setSpacing(12)
@@ -33,62 +37,106 @@ class Ui_UserDialog(object):
         self.formLayout.setSpacing(10)
         self.formLayout.setObjectName("formLayout")
         self.lblFullName = QtWidgets.QLabel(parent=UserDialog)
-        self.lblFullName.setStyleSheet("font-weight:bold; font-size:12px;")
+        self.lblFullName.setStyleSheet("font-weight:bold; font-size:12px;\n"
+"color: rgb(0, 0, 0);")
         self.lblFullName.setObjectName("lblFullName")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.lblFullName)
         self.lineEditFullName = QtWidgets.QLineEdit(parent=UserDialog)
         self.lineEditFullName.setMinimumSize(QtCore.QSize(0, 34))
+        self.lineEditFullName.setStyleSheet("QLineEdit{\n"
+"    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;    \n"
+"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.lineEditFullName.setObjectName("lineEditFullName")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.lineEditFullName)
         self.lblUsername = QtWidgets.QLabel(parent=UserDialog)
-        self.lblUsername.setStyleSheet("font-weight:bold; font-size:12px;")
+        self.lblUsername.setStyleSheet("font-weight:bold; font-size:12px;\n"
+"color: rgb(0, 0, 0);")
         self.lblUsername.setObjectName("lblUsername")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.LabelRole, self.lblUsername)
         self.lineEditUsername = QtWidgets.QLineEdit(parent=UserDialog)
         self.lineEditUsername.setMinimumSize(QtCore.QSize(0, 34))
+        self.lineEditUsername.setStyleSheet("QLineEdit{\n"
+"    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;    \n"
+"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.lineEditUsername.setObjectName("lineEditUsername")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.FieldRole, self.lineEditUsername)
         self.lblEmail = QtWidgets.QLabel(parent=UserDialog)
-        self.lblEmail.setStyleSheet("font-weight:bold; font-size:12px;")
+        self.lblEmail.setStyleSheet("font-weight:bold; font-size:12px;color: rgb(0, 0, 0);")
         self.lblEmail.setObjectName("lblEmail")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.ItemRole.LabelRole, self.lblEmail)
         self.lineEditEmail = QtWidgets.QLineEdit(parent=UserDialog)
         self.lineEditEmail.setMinimumSize(QtCore.QSize(0, 34))
+        self.lineEditEmail.setStyleSheet("QLineEdit{\n"
+"    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;    \n"
+"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.lineEditEmail.setObjectName("lineEditEmail")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.ItemRole.FieldRole, self.lineEditEmail)
         self.lblPassword = QtWidgets.QLabel(parent=UserDialog)
-        self.lblPassword.setStyleSheet("font-weight:bold; font-size:12px;")
+        self.lblPassword.setStyleSheet("font-weight:bold; font-size:12px;color: rgb(0, 0, 0);")
         self.lblPassword.setObjectName("lblPassword")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.ItemRole.LabelRole, self.lblPassword)
         self.lineEditPassword = QtWidgets.QLineEdit(parent=UserDialog)
         self.lineEditPassword.setMinimumSize(QtCore.QSize(0, 34))
+        self.lineEditPassword.setStyleSheet("QLineEdit{\n"
+"    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;    \n"
+"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.lineEditPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.lineEditPassword.setObjectName("lineEditPassword")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.ItemRole.FieldRole, self.lineEditPassword)
         self.lblRole = QtWidgets.QLabel(parent=UserDialog)
-        self.lblRole.setStyleSheet("font-weight:bold; font-size:12px;")
+        self.lblRole.setStyleSheet("font-weight:bold; font-size:12px;color: rgb(0, 0, 0);")
         self.lblRole.setObjectName("lblRole")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.ItemRole.LabelRole, self.lblRole)
         self.comboRole = QtWidgets.QComboBox(parent=UserDialog)
         self.comboRole.setMinimumSize(QtCore.QSize(0, 34))
+        self.comboRole.setStyleSheet("QComboBox{\n"
+"    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;    \n"
+"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.comboRole.setObjectName("comboRole")
         self.comboRole.addItem("")
         self.comboRole.addItem("")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.ItemRole.FieldRole, self.comboRole)
         self.lblSecQuestion = QtWidgets.QLabel(parent=UserDialog)
-        self.lblSecQuestion.setStyleSheet("font-weight:bold; font-size:12px;")
+        self.lblSecQuestion.setStyleSheet("font-weight:bold; font-size:12px;color: rgb(0, 0, 0);")
         self.lblSecQuestion.setObjectName("lblSecQuestion")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.ItemRole.LabelRole, self.lblSecQuestion)
         self.lineEditSecQuestion = QtWidgets.QLineEdit(parent=UserDialog)
         self.lineEditSecQuestion.setMinimumSize(QtCore.QSize(0, 34))
+        self.lineEditSecQuestion.setStyleSheet("QLineEdit{\n"
+"    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;    \n"
+"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.lineEditSecQuestion.setObjectName("lineEditSecQuestion")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.ItemRole.FieldRole, self.lineEditSecQuestion)
         self.lblSecAnswer = QtWidgets.QLabel(parent=UserDialog)
-        self.lblSecAnswer.setStyleSheet("font-weight:bold; font-size:12px;")
+        self.lblSecAnswer.setStyleSheet("font-weight:bold; font-size:12px;color: rgb(0, 0, 0);")
         self.lblSecAnswer.setObjectName("lblSecAnswer")
         self.formLayout.setWidget(6, QtWidgets.QFormLayout.ItemRole.LabelRole, self.lblSecAnswer)
         self.lineEditSecAnswer = QtWidgets.QLineEdit(parent=UserDialog)
         self.lineEditSecAnswer.setMinimumSize(QtCore.QSize(0, 34))
+        self.lineEditSecAnswer.setStyleSheet("QLineEdit{\n"
+"    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
+"       /* (Tùy chọn) Bo góc */\n"
+"    padding: 2px;    \n"
+"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"}")
         self.lineEditSecAnswer.setObjectName("lineEditSecAnswer")
         self.formLayout.setWidget(6, QtWidgets.QFormLayout.ItemRole.FieldRole, self.lineEditSecAnswer)
         self.verticalLayout.addLayout(self.formLayout)
@@ -116,8 +164,8 @@ class Ui_UserDialog(object):
         self.btnCancel = QtWidgets.QPushButton(parent=UserDialog)
         self.btnCancel.setMinimumSize(QtCore.QSize(0, 38))
         self.btnCancel.setStyleSheet("QPushButton{\n"
-"    background:#ecf0f1;\n"
-"    color:#7f8c8d;\n"
+"    background:red;\n"
+"    color:white;\n"
 "    border-radius:6px;\n"
 "    font-size:13px;\n"
 "    padding:0 16px;\n"

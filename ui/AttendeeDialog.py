@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'D:\HK2_2025_2026\KTLT_K25411E\Event_Check_in_Management\ui\AttendeeDialog.ui'
+# Form implementation generated from reading ui file 'D:\GIT_TDLT\Final-Project-Programming-Techniques\ui\AttendeeDialog.ui'
 #
 # Created by: PyQt6 UI code generator 6.10.0
 #
@@ -12,39 +12,73 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_AttendeeDialog(object):
     def setupUi(self, AttendeeDialog):
         AttendeeDialog.setObjectName("AttendeeDialog")
-        AttendeeDialog.resize(500, 350)
+        AttendeeDialog.resize(493, 398)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("D:\\GIT_TDLT\\Final-Project-Programming-Techniques\\ui\\../images/add_edit_logo.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        AttendeeDialog.setWindowIcon(icon)
+        AttendeeDialog.setStyleSheet("background-color: rgb(167, 167, 167);")
         self.verticalLayout = QtWidgets.QVBoxLayout(AttendeeDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.formLayout = QtWidgets.QFormLayout()
         self.formLayout.setObjectName("formLayout")
         self.label = QtWidgets.QLabel(parent=AttendeeDialog)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label.setFont(font)
+        self.label.setStyleSheet("color: rgb(0, 0, 0);")
         self.label.setObjectName("label")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label)
         self.nameInput = QtWidgets.QLineEdit(parent=AttendeeDialog)
+        self.nameInput.setStyleSheet("background-color: rgb(194, 194, 194);\n"
+"color: rgb(0, 0, 0);")
         self.nameInput.setObjectName("nameInput")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.nameInput)
         self.label_2 = QtWidgets.QLabel(parent=AttendeeDialog)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_2.setFont(font)
+        self.label_2.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_2.setObjectName("label_2")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_2)
         self.emailInput = QtWidgets.QLineEdit(parent=AttendeeDialog)
+        self.emailInput.setStyleSheet("background-color: rgb(194, 194, 194);\n"
+"color: rgb(0, 0, 0);")
         self.emailInput.setObjectName("emailInput")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.FieldRole, self.emailInput)
         self.label_3 = QtWidgets.QLabel(parent=AttendeeDialog)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_3.setFont(font)
+        self.label_3.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_3.setObjectName("label_3")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_3)
         self.phoneInput = QtWidgets.QLineEdit(parent=AttendeeDialog)
+        self.phoneInput.setStyleSheet("background-color: rgb(194, 194, 194);\n"
+"color: rgb(0, 0, 0);")
         self.phoneInput.setObjectName("phoneInput")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.ItemRole.FieldRole, self.phoneInput)
         self.label_4 = QtWidgets.QLabel(parent=AttendeeDialog)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_4.setFont(font)
+        self.label_4.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_4.setObjectName("label_4")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_4)
         self.organizationInput = QtWidgets.QLineEdit(parent=AttendeeDialog)
+        self.organizationInput.setStyleSheet("background-color: rgb(194, 194, 194);\n"
+"color: rgb(0, 0, 0);")
         self.organizationInput.setObjectName("organizationInput")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.ItemRole.FieldRole, self.organizationInput)
         self.label_5 = QtWidgets.QLabel(parent=AttendeeDialog)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_5.setFont(font)
+        self.label_5.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_5.setObjectName("label_5")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_5)
         self.positionInput = QtWidgets.QLineEdit(parent=AttendeeDialog)
+        self.positionInput.setStyleSheet("background-color: rgb(194, 194, 194);\n"
+"color: rgb(0, 0, 0);")
         self.positionInput.setObjectName("positionInput")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.ItemRole.FieldRole, self.positionInput)
         self.verticalLayout.addLayout(self.formLayout)
@@ -55,11 +89,15 @@ class Ui_AttendeeDialog(object):
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
         self.btnSave = QtWidgets.QPushButton(parent=AttendeeDialog)
-        self.btnSave.setStyleSheet("padding: 8px 15px;")
+        self.btnSave.setStyleSheet("padding: 8px 15px;\n"
+"background-color: rgb(124, 0, 186);\n"
+"color: rgb(255, 255, 255);")
         self.btnSave.setObjectName("btnSave")
         self.horizontalLayout.addWidget(self.btnSave)
         self.btnCancel = QtWidgets.QPushButton(parent=AttendeeDialog)
-        self.btnCancel.setStyleSheet("padding: 8px 15px;")
+        self.btnCancel.setStyleSheet("padding: 8px 15px;\n"
+"background-color: rgb(255, 0, 0);\n"
+"color: rgb(255, 255, 255);")
         self.btnCancel.setObjectName("btnCancel")
         self.horizontalLayout.addWidget(self.btnCancel)
         self.verticalLayout.addLayout(self.horizontalLayout)
