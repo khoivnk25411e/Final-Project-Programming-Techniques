@@ -31,6 +31,14 @@
             "RegistrationDate": "2026-02-22 11:30:14",
             "Status": "Checked-in",
             "CheckinTime": "2026-02-22 11:30:41"
+        },
+        {
+            "RegistrationId": "665D923C",
+            "EventId": "evt_9c5b2ad7",
+            "AttendeeId": "att_147b18a3",
+            "RegistrationDate": "2026-03-05 18:10:46",
+            "Status": "Checked-in",
+            "CheckinTime": "2026-03-05 18:12:17"
         }
     ]
 }
