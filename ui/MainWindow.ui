@@ -252,6 +252,35 @@ QTabBar::tab {
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_event_search">
+             <item>
+              <widget class="QLabel" name="labelEventSearch">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 0);</string>
+               </property>
+               <property name="text">
+                <string>🔍 Search:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="eventSearch">
+               <property name="styleSheet">
+                <string notr="true">QLineEdit {
+    border: 1px solid #919191;
+    border-color:#707070;
+    padding: 2px;
+    color:black;
+}</string>
+               </property>
+               <property name="placeholderText">
+                <string>Enter event name, location...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
             <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
               <widget class="QPushButton" name="btnAddEvent">
@@ -378,6 +407,66 @@ color: rgb(255, 255, 255);</string>
              </item>
             </layout>
            </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_event_page">
+             <item>
+              <widget class="QPushButton" name="btnExportEvent">
+               <property name="styleSheet">
+                <string notr="true">background-color: #8e44ad; color: white; padding: 6px 12px;</string>
+               </property>
+               <property name="text">
+                <string>📥 Export CSV</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="spacerPageEvent">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnPrevEvent">
+               <property name="styleSheet">
+                <string notr="true">background-color: #2980b9; color: white; padding: 6px 10px;</string>
+               </property>
+               <property name="text">
+                <string>◀ Prev</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblPageEvent">
+               <property name="styleSheet">
+                <string notr="true">color: black; font-size: 12px; padding: 0 8px;</string>
+               </property>
+               <property name="text">
+                <string>Page 1 / 1</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnNextEvent">
+               <property name="styleSheet">
+                <string notr="true">background-color: #2980b9; color: white; padding: 6px 10px;</string>
+               </property>
+               <property name="text">
+                <string>Next ▶</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
           </layout>
          </widget>
          <widget class="QWidget" name="attendeeTab">
@@ -404,7 +493,7 @@ color: rgb(255, 255, 255);</string>
     border: 1px solid #919191; /* Độ dày, Kiểu, Màu */
        /* (Tùy chọn) Bo góc */
 	border-color:#707070;
-    padding: 2px;   
+    padding: 2px;
 	color:black;          /* (Tùy chọn) Khoảng cách chữ */
 }</string>
                </property>
@@ -530,6 +619,66 @@ background-color: rgb(147, 0, 221);</string>
              </item>
             </layout>
            </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_attendee_page">
+             <item>
+              <widget class="QPushButton" name="btnExportAttendee">
+               <property name="styleSheet">
+                <string notr="true">background-color: #8e44ad; color: white; padding: 6px 12px;</string>
+               </property>
+               <property name="text">
+                <string>📥 Export CSV</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="spacerPageAttendee">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnPrevAttendee">
+               <property name="styleSheet">
+                <string notr="true">background-color: #2980b9; color: white; padding: 6px 10px;</string>
+               </property>
+               <property name="text">
+                <string>◀ Prev</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblPageAttendee">
+               <property name="styleSheet">
+                <string notr="true">color: black; font-size: 12px; padding: 0 8px;</string>
+               </property>
+               <property name="text">
+                <string>Page 1 / 1</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnNextAttendee">
+               <property name="styleSheet">
+                <string notr="true">background-color: #2980b9; color: white; padding: 6px 10px;</string>
+               </property>
+               <property name="text">
+                <string>Next ▶</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
           </layout>
          </widget>
          <widget class="QWidget" name="registrationTab">
@@ -555,7 +704,7 @@ background-color: rgb(147, 0, 221);</string>
                 <string notr="true">QComboBox{
     border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
        /* (Tùy chọn) Bo góc */
-    padding: 2px;    
+    padding: 2px;
 	color: black;         /* (Tùy chọn) Khoảng cách chữ */
 }</string>
                </property>
@@ -691,6 +840,66 @@ color: rgb(255, 255, 255);</string>
              </item>
             </layout>
            </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_registration_page">
+             <item>
+              <widget class="QPushButton" name="btnExportRegistration">
+               <property name="styleSheet">
+                <string notr="true">background-color: #8e44ad; color: white; padding: 6px 12px;</string>
+               </property>
+               <property name="text">
+                <string>📥 Export CSV</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="spacerPageRegistration">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnPrevRegistration">
+               <property name="styleSheet">
+                <string notr="true">background-color: #2980b9; color: white; padding: 6px 10px;</string>
+               </property>
+               <property name="text">
+                <string>◀ Prev</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblPageRegistration">
+               <property name="styleSheet">
+                <string notr="true">color: black; font-size: 12px; padding: 0 8px;</string>
+               </property>
+               <property name="text">
+                <string>Page 1 / 1</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnNextRegistration">
+               <property name="styleSheet">
+                <string notr="true">background-color: #2980b9; color: white; padding: 6px 10px;</string>
+               </property>
+               <property name="text">
+                <string>Next ▶</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
           </layout>
          </widget>
          <widget class="QWidget" name="checkinTab">
@@ -716,7 +925,7 @@ color: rgb(255, 255, 255);</string>
                 <string notr="true">QComboBox{
     border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
        /* (Tùy chọn) Bo góc */
-    padding: 2px;     
+    padding: 2px;
 	color: black;        /* (Tùy chọn) Khoảng cách chữ */
 }</string>
                </property>
@@ -761,7 +970,7 @@ color: rgb(255, 255, 255);</string>
 QGroupBox{
     border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
        /* (Tùy chọn) Bo góc */
-               
+
 }</string>
              </property>
              <property name="title">
@@ -856,7 +1065,7 @@ QGroupBox{
 QGroupBox{
     border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
        /* (Tùy chọn) Bo góc */
-               
+
 }</string>
              </property>
              <property name="title">
@@ -879,7 +1088,7 @@ QGroupBox{
                  <string notr="true">QLineEdit{
     border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
        /* (Tùy chọn) Bo góc */
-    padding: 2px;    
+    padding: 2px;
 	color: black;         /* (Tùy chọn) Khoảng cách chữ */
 }</string>
                 </property>
@@ -973,6 +1182,33 @@ color: rgb(255, 255, 255);</string>
              </item>
              <item>
               <spacer name="horizontalSpacer_9">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_checkin_export">
+             <item>
+              <widget class="QPushButton" name="btnExportCheckin">
+               <property name="styleSheet">
+                <string notr="true">background-color: #8e44ad; color: white; padding: 6px 12px;</string>
+               </property>
+               <property name="text">
+                <string>📥 Export CSV</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="spacerCheckinExport">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
