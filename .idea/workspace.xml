@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="fix">
+    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ui_ex/MainWindowEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_ex/MainWindowEx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ui_ex/QRScannerDialogEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_ex/QRScannerDialogEx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ui_ex/RegistrationDialogEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_ex/RegistrationDialogEx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/events.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/events.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datasets/remember.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/remember.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/registrations.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/registrations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/MainWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/MainWindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ui/MainWindow.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,19 +65,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_ui_mainwindow.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/nguyenthanhcong/QtDesigner/Final-Project-Programming-Techniques/Ui_ex&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Python.main.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.test_ui_mainwindow.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "KHOA",
+    "last_opened_file_path": "/Users/nguyenthanhcong/QtDesigner/Final-Project-Programming-Techniques",
+    "settings.editor.selected.configurable": "preferences.externalTools"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Ui_ex" />
@@ -113,7 +121,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-164cda30dcd9-0af03a5fa574-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.26830.99" />
+        <option value="bundled-python-sdk-ce6832f46686-7b97d883f26b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.25557.178" />
       </set>
     </attachedChunks>
   </component>
@@ -237,10 +245,41 @@
       <option name="project" value="LOCAL" />
       <updated>1771684482174</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="...">
+      <option name="closed" value="true" />
+      <created>1771688328302</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1771688328302</updated>
+    </task>
+    <task id="LOCAL-00016" summary="...">
+      <option name="closed" value="true" />
+      <created>1771734659512</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1771734659512</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -263,6 +302,7 @@
     <MESSAGE value="delete" />
     <MESSAGE value="Login Window" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="..." />
+    <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
 </project>

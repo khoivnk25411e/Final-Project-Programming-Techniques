@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import (QMessageBox, QTableWidgetItem, QHeaderView,
                              QDialog, QVBoxLayout, QLabel, QMainWindow)
 from PyQt6.QtCore import Qt, QTimer
+from PyQt6 import QtGui
 from ui.MainWindow import Ui_MainWindow
 from Ui_ex.EventDialogEx import EventDialogEx
 from Ui_ex.AttendeeDialogEx import AttendeeDialogEx
@@ -76,28 +77,39 @@ class MainWindowEx(Ui_MainWindow):
         self.btnChangePassword.clicked.connect(self.change_password)
         self.btnLogout.clicked.connect(self.logout)
 
+        self.eventSearch.textChanged.connect(self.search_events)
         self.btnAddEvent.clicked.connect(self.add_event)
         self.btnViewEvent.clicked.connect(self.view_event_details)
         self.btnEditEvent.clicked.connect(self.edit_event)
         self.btnDeleteEvent.clicked.connect(self.delete_event)
         self.btnRefreshEvent.clicked.connect(self.load_events)
+        self.btnExportEvent.clicked.connect(self.export_events_csv)
+        self.btnPrevEvent.clicked.connect(lambda: self._prev_page("eventTable"))
+        self.btnNextEvent.clicked.connect(lambda: self._next_page("eventTable"))
 
         self.attendeeSearch.textChanged.connect(self.search_attendees)
         self.btnAddAttendee.clicked.connect(self.add_attendee)
         self.btnEditAttendee.clicked.connect(self.edit_attendee)
         self.btnDeleteAttendee.clicked.connect(self.delete_attendee)
         self.btnRefreshAttendee.clicked.connect(self.load_attendees)
+        self.btnExportAttendee.clicked.connect(self.export_attendees_csv)
+        self.btnPrevAttendee.clicked.connect(lambda: self._prev_page("attendeeTable"))
+        self.btnNextAttendee.clicked.connect(lambda: self._next_page("attendeeTable"))
 
         self.eventCombo.currentIndexChanged.connect(self.load_registrations)
         self.btnRegisterAttendee.clicked.connect(self.register_attendee)
         self.btnGenerateQR.clicked.connect(self.generate_qr_code)
         self.btnCancelRegistration.clicked.connect(self.cancel_registration)
         self.btnRefreshRegistration.clicked.connect(self.load_registrations)
+        self.btnExportRegistration.clicked.connect(self.export_registrations_csv)
+        self.btnPrevRegistration.clicked.connect(lambda: self._prev_page("registrationTable"))
+        self.btnNextRegistration.clicked.connect(lambda: self._next_page("registrationTable"))
 
         self.checkinEventCombo.currentIndexChanged.connect(self.load_checkin_stats)
         self.btnCheckin.clicked.connect(self.perform_checkin)
         self.btnScanQR.clicked.connect(self.scan_qr_checkin)
         self.btnRefreshCheckin.clicked.connect(self.load_checkin_stats)
+        self.btnExportCheckin.clicked.connect(self.export_checkin_csv)
 
         user = getattr(self, 'login_user', None)
         if user and user.Role == "admin":
@@ -258,17 +270,52 @@ class MainWindowEx(Ui_MainWindow):
             dlg = ChangePasswordDialogEx(self.MainWindow, current_user=user, skip_old_password=True)
             dlg.exec()
 
-    def load_events(self):
+    PAGE_SIZE = 10
+
+    def _fill_table(self, table, rows_data):
+        table.setRowCount(len(rows_data))
+        for row, cols in enumerate(rows_data):
+            for col, val in enumerate(cols):
+                table.setItem(row, col, QTableWidgetItem(str(val) if val else ""))
+
+    def search_events(self):
+        keyword = self.eventSearch.text().strip()
+        if not keyword:
+            self.load_events()
+            return
         events = Events()
         events.import_json("datasets/events.json")
-        self.eventTable.setRowCount(len(events.list))
-        for row, event in enumerate(events.list):
+        keyword_lower = keyword.lower()
+        results = [
+            e for e in events.list
+            if keyword_lower in e.EventName.lower()
+               or keyword_lower in e.Location.lower()
+               or keyword_lower in (e.Description or "").lower()
+        ]
+        self._setup_pagination(
+            self.eventTable, results,
+            self._fill_event_table,
+            self.lblPageEvent, self.btnPrevEvent, self.btnNextEvent
+        )
+
+    def _fill_event_table(self, event_list):
+        self.eventTable.setRowCount(len(event_list))
+        for row, event in enumerate(event_list):
             self.eventTable.setItem(row, 0, QTableWidgetItem(event.EventId))
             self.eventTable.setItem(row, 1, QTableWidgetItem(event.EventName))
             self.eventTable.setItem(row, 2, QTableWidgetItem(event.EventDate))
             self.eventTable.setItem(row, 3, QTableWidgetItem(event.EventTime))
             self.eventTable.setItem(row, 4, QTableWidgetItem(event.Location))
             self.eventTable.setItem(row, 5, QTableWidgetItem(event.Description or ""))
+
+    def load_events(self):
+        events = Events()
+        events.import_json("datasets/events.json")
+        self._setup_pagination(
+            self.eventTable, events.list,
+            self._fill_event_table,
+            self.lblPageEvent, self.btnPrevEvent, self.btnNextEvent
+        )
 
     def add_event(self):
         dlg = EventDialogEx(self.MainWindow)
@@ -364,17 +411,24 @@ class MainWindowEx(Ui_MainWindow):
             )
             QMessageBox.information(self.MainWindow, "Event Details", details)
 
-    def load_attendees(self):
-        attendees = Attendees()
-        attendees.import_json("datasets/attendees.json")
-        self.attendeeTable.setRowCount(len(attendees.list))
-        for row, a in enumerate(attendees.list):
+    def _fill_attendee_table(self, attendee_list):
+        self.attendeeTable.setRowCount(len(attendee_list))
+        for row, a in enumerate(attendee_list):
             self.attendeeTable.setItem(row, 0, QTableWidgetItem(a.AttendeeId))
             self.attendeeTable.setItem(row, 1, QTableWidgetItem(a.Name))
             self.attendeeTable.setItem(row, 2, QTableWidgetItem(a.Email))
             self.attendeeTable.setItem(row, 3, QTableWidgetItem(a.Phone or ""))
             self.attendeeTable.setItem(row, 4, QTableWidgetItem(a.Organization or ""))
             self.attendeeTable.setItem(row, 5, QTableWidgetItem(a.Position or ""))
+
+    def load_attendees(self):
+        attendees = Attendees()
+        attendees.import_json("datasets/attendees.json")
+        self._setup_pagination(
+            self.attendeeTable, attendees.list,
+            self._fill_attendee_table,
+            self.lblPageAttendee, self.btnPrevAttendee, self.btnNextAttendee
+        )
 
     def search_attendees(self):
         keyword = self.attendeeSearch.text().strip()
@@ -384,14 +438,11 @@ class MainWindowEx(Ui_MainWindow):
         attendees = Attendees()
         attendees.import_json("datasets/attendees.json")
         results = attendees.search_attendees(keyword)
-        self.attendeeTable.setRowCount(len(results))
-        for row, a in enumerate(results):
-            self.attendeeTable.setItem(row, 0, QTableWidgetItem(a.AttendeeId))
-            self.attendeeTable.setItem(row, 1, QTableWidgetItem(a.Name))
-            self.attendeeTable.setItem(row, 2, QTableWidgetItem(a.Email))
-            self.attendeeTable.setItem(row, 3, QTableWidgetItem(a.Phone or ""))
-            self.attendeeTable.setItem(row, 4, QTableWidgetItem(a.Organization or ""))
-            self.attendeeTable.setItem(row, 5, QTableWidgetItem(a.Position or ""))
+        self._setup_pagination(
+            self.attendeeTable, results,
+            self._fill_attendee_table,
+            self.lblPageAttendee, self.btnPrevAttendee, self.btnNextAttendee
+        )
 
     def add_attendee(self):
         dlg = AttendeeDialogEx(self.MainWindow)
@@ -483,23 +534,47 @@ class MainWindowEx(Ui_MainWindow):
         attendees = Attendees()
         attendees.import_json("datasets/attendees.json")
         items = regs.get_registrations_by_event(event_id)
-        self.registrationTable.setRowCount(len(items))
-        for row, reg in enumerate(items):
+
+        self._reg_attendee_map = {}
+        for reg in items:
             att = attendees.find_attendee(reg.AttendeeId)
             if att:
-                self.registrationTable.setItem(row, 0, QTableWidgetItem(reg.RegistrationId))
-                self.registrationTable.setItem(row, 1, QTableWidgetItem(att.Name))
-                self.registrationTable.setItem(row, 2, QTableWidgetItem(att.Email))
-                self.registrationTable.setItem(row, 3, QTableWidgetItem(att.Organization or ""))
-                self.registrationTable.setItem(row, 4, QTableWidgetItem(reg.RegistrationDate))
-                self.registrationTable.setItem(row, 5, QTableWidgetItem(reg.Status))
+                self._reg_attendee_map[reg.RegistrationId] = (reg, att)
+
+        valid_items = [reg for reg in items if reg.RegistrationId in self._reg_attendee_map]
+        self._setup_pagination(
+            self.registrationTable, valid_items,
+            self._fill_registration_table,
+            self.lblPageRegistration, self.btnPrevRegistration, self.btnNextRegistration
+        )
+
+    def _fill_registration_table(self, reg_list):
+        self.registrationTable.setRowCount(len(reg_list))
+        for row, reg in enumerate(reg_list):
+            pair = self._reg_attendee_map.get(reg.RegistrationId)
+            if not pair:
+                continue
+            reg, att = pair
+            is_checkedin = reg.Status == "Checked-in"
+            values = [
+                reg.RegistrationId, att.Name, att.Email,
+                att.Organization or "", reg.RegistrationDate,
+                "✅ " + reg.Status if is_checkedin else reg.Status,
+            ]
+            for col, val in enumerate(values):
+                item = QTableWidgetItem(val)
+                if is_checkedin:
+                    item.setBackground(QtGui.QColor("#F9E79F"))
+                    item.setForeground(QtGui.QColor("#7D6608"))
+                self.registrationTable.setItem(row, col, item)
+        pass
 
     def register_attendee(self):
         if self.eventCombo.count() == 0:
             QMessageBox.warning(self.MainWindow, "Error", "No events available!")
             return
         event_id = self.eventCombo.currentData()
-        dlg = RegistrationDialogEx(self.MainWindow)
+        dlg = RegistrationDialogEx(self.MainWindow, event_id=event_id)
         if dlg.exec() == QDialog.DialogCode.Accepted:
             att_id = dlg.get_selected_attendee_id()
             if not att_id:
@@ -550,28 +625,99 @@ class MainWindowEx(Ui_MainWindow):
             return
         reg_id = self.registrationTable.item(row, 0).text()
         att_name = self.registrationTable.item(row, 1).text()
+        att_email = self.registrationTable.item(row, 2).text()
+        att_org = self.registrationTable.item(row, 3).text()
+
         qr = qrcode.QRCode(version=1, box_size=10, border=5)
         qr.add_data(reg_id)
         qr.make(fit=True)
         img = qr.make_image(fill_color="black", back_color="white")
+
         buf = BytesIO()
-        img.save(buf, format='PNG')
+        img.save(buf, format="PNG")
         buf.seek(0)
         qimage = QImage()
         qimage.loadFromData(buf.read())
         pixmap = QPixmap.fromImage(qimage)
+
+        from PyQt6.QtWidgets import QPushButton, QHBoxLayout, QFileDialog, QApplication
+
         qr_dlg = QDialog(self.MainWindow)
         qr_dlg.setWindowTitle("Check-in QR Code")
-        qr_dlg.resize(400, 450)
+        qr_dlg.setMinimumWidth(420)
+        qr_dlg.setStyleSheet("background-color: #f4f6f7;")
+
         lay = QVBoxLayout()
+        lay.setSpacing(10)
+        lay.setContentsMargins(20, 20, 20, 20)
+
         lbl_img = QLabel()
         lbl_img.setPixmap(pixmap)
         lbl_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        lbl_code = QLabel(f"<h3>{att_name}</h3><h2>Code: {reg_id}</h2>")
-        lbl_code.setAlignment(Qt.AlignmentFlag.AlignCenter)
         lay.addWidget(lbl_img)
-        lay.addWidget(lbl_code)
+
+        info_text = (
+            f"<div style='text-align:center;'>"
+            f"<h3 style='margin:0;color:#2c3e50;'>{att_name}</h3>"
+            f"<p style='margin:2px;color:#7f8c8d;font-size:12px;'>{att_email}</p>"
+            f"<p style='margin:2px;color:#7f8c8d;font-size:12px;'>{att_org}</p>"
+            f"<h2 style='color:#2980b9;margin-top:6px;'>🎫 Code: {reg_id}</h2>"
+            f"</div>"
+        )
+        lbl_info = QLabel(info_text)
+        lbl_info.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        lbl_info.setTextFormat(Qt.TextFormat.RichText)
+        lay.addWidget(lbl_info)
+
+        btn_layout = QHBoxLayout()
+
+        btn_save = QPushButton("💾 Save QR Image")
+        btn_save.setStyleSheet(
+            "QPushButton { background:#27ae60; color:white; border-radius:6px;"
+            "font-size:13px; font-weight:bold; padding:8px 16px; }"
+            "QPushButton:hover { background:#1e8449; }"
+        )
+        btn_copy = QPushButton("📋 Copy Code")
+        btn_copy.setStyleSheet(
+            "QPushButton { background:#3498db; color:white; border-radius:6px;"
+            "font-size:13px; font-weight:bold; padding:8px 16px; }"
+            "QPushButton:hover { background:#2980b9; }"
+        )
+        btn_close = QPushButton("✖ Close")
+        btn_close.setStyleSheet(
+            "QPushButton { background:#e74c3c; color:white; border-radius:6px;"
+            "font-size:13px; padding:8px 16px; }"
+            "QPushButton:hover { background:#c0392b; }"
+        )
+
+        btn_layout.addWidget(btn_save)
+        btn_layout.addWidget(btn_copy)
+        btn_layout.addWidget(btn_close)
+        lay.addLayout(btn_layout)
         qr_dlg.setLayout(lay)
+
+        def save_qr():
+            default_name = f"QR_{att_name.replace(' ', '_')}_{reg_id}.png"
+            file_path, _ = QFileDialog.getSaveFileName(
+                qr_dlg, "Save QR Code", default_name,
+                "PNG Image (*.png);;All Files (*)"
+            )
+            if file_path:
+                buf2 = BytesIO()
+                img.save(buf2, format="PNG")
+                buf2.seek(0)
+                with open(file_path, "wb") as f:
+                    f.write(buf2.read())
+                QMessageBox.information(qr_dlg, "Saved", f"QR Code saved!\n📁 {file_path}")
+
+        def copy_code():
+            QApplication.clipboard().setText(reg_id)
+            QMessageBox.information(qr_dlg, "Copied", f"Code copied to clipboard!\n🎫 {reg_id}")
+
+        btn_save.clicked.connect(save_qr)
+        btn_copy.clicked.connect(copy_code)
+        btn_close.clicked.connect(qr_dlg.accept)
+
         qr_dlg.exec()
 
     def load_checkin_event_combo(self):
@@ -613,9 +759,15 @@ class MainWindowEx(Ui_MainWindow):
         if not code:
             QMessageBox.warning(self.MainWindow, "Error", "Please enter a registration code!")
             return
+
+        event_id = self.checkinEventCombo.currentData()
+        if not event_id:
+            QMessageBox.warning(self.MainWindow, "Error", "Please select an event first!")
+            return
+
         regs = Registrations()
         regs.import_json("datasets/registrations.json")
-        success, message = regs.checkin(code)
+        success, message = regs.checkin_for_event(code, event_id)
         if success:
             regs.export_json("datasets/registrations.json")
             QMessageBox.information(self.MainWindow, "Success", message)
@@ -627,18 +779,176 @@ class MainWindowEx(Ui_MainWindow):
     def scan_qr_checkin(self):
         from Ui_ex.QRScannerDialogEx import QRScannerDialogEx
 
+        event_id = self.checkinEventCombo.currentData()
+        if not event_id:
+            QMessageBox.warning(self.MainWindow, "Error", "Please select an event first!")
+            return
+
         def checkin_callback(qr_code):
             regs = Registrations()
             regs.import_json("datasets/registrations.json")
-            success, message = regs.checkin(qr_code.upper())
+            success, message = regs.checkin_for_event(qr_code.upper(), event_id)
             if success:
                 regs.export_json("datasets/registrations.json")
                 QTimer.singleShot(500, self.load_checkin_stats)
             return success, message
 
-
         scanner = QRScannerDialogEx(self.MainWindow, callback=checkin_callback)
         scanner.exec()
+
+    def _get_file_path(self, default_filename):
+        from PyQt6.QtWidgets import QFileDialog
+        file_path, _ = QFileDialog.getSaveFileName(
+            self.MainWindow, "Export to CSV", default_filename,
+            "CSV Files (*.csv);;All Files (*)"
+        )
+        return file_path
+
+    def _write_csv(self, file_path, headers, rows):
+        import csv
+        with open(file_path, 'w', newline='', encoding='utf-8-sig') as f:
+            writer = csv.writer(f)
+            writer.writerow(headers)
+            writer.writerows(rows)
+
+    def export_events_csv(self):
+        file_path = self._get_file_path("events.csv")
+        if not file_path:
+            return
+        try:
+            events = Events()
+            events.import_json("datasets/events.json")
+            headers = ["ID", "Event Name", "Date", "Time", "Venue", "Description"]
+            rows = [
+                [e.EventId, e.EventName, e.EventDate, e.EventTime,
+                 e.Location, e.Description or ""]
+                for e in events.list
+            ]
+            self._write_csv(file_path, headers, rows)
+            QMessageBox.information(self.MainWindow, "Exported",
+                                    f"✅ Exported {len(rows)} events!\n📁 {file_path}")
+        except Exception as e:
+            QMessageBox.warning(self.MainWindow, "Error", f"Export failed:\n{str(e)}")
+
+    def export_attendees_csv(self):
+        file_path = self._get_file_path("attendees.csv")
+        if not file_path:
+            return
+        try:
+            attendees = Attendees()
+            attendees.import_json("datasets/attendees.json")
+            headers = ["ID", "Full Name", "Email", "Phone", "Organization", "Position"]
+            rows = [
+                [a.AttendeeId, a.Name, a.Email, a.Phone or "",
+                 a.Organization or "", a.Position or ""]
+                for a in attendees.list
+            ]
+            self._write_csv(file_path, headers, rows)
+            QMessageBox.information(self.MainWindow, "Exported",
+                                    f"✅ Exported {len(rows)} attendees!\n📁 {file_path}")
+        except Exception as e:
+            QMessageBox.warning(self.MainWindow, "Error", f"Export failed:\n{str(e)}")
+
+    def export_registrations_csv(self):
+        file_path = self._get_file_path("registrations.csv")
+        if not file_path:
+            return
+        try:
+            event_id = self.eventCombo.currentData()
+            regs = Registrations()
+            regs.import_json("datasets/registrations.json")
+            attendees = Attendees()
+            attendees.import_json("datasets/attendees.json")
+            items = regs.get_registrations_by_event(event_id) if event_id else regs.list
+            headers = ["Reg. ID", "Full Name", "Email", "Organization", "Reg. Date", "Status"]
+            rows = []
+            for reg in items:
+                att = attendees.find_attendee(reg.AttendeeId)
+                rows.append([
+                    reg.RegistrationId,
+                    att.Name if att else "",
+                    att.Email if att else "",
+                    att.Organization or "" if att else "",
+                    reg.RegistrationDate,
+                    reg.Status,
+                ])
+            self._write_csv(file_path, headers, rows)
+            QMessageBox.information(self.MainWindow, "Exported",
+                                    f"✅ Exported {len(rows)} registrations!\n📁 {file_path}")
+        except Exception as e:
+            QMessageBox.warning(self.MainWindow, "Error", f"Export failed:\n{str(e)}")
+
+    def export_checkin_csv(self):
+        file_path = self._get_file_path("checkin_list.csv")
+        if not file_path:
+            return
+        try:
+            event_id = self.checkinEventCombo.currentData()
+            regs = Registrations()
+            regs.import_json("datasets/registrations.json")
+            attendees = Attendees()
+            attendees.import_json("datasets/attendees.json")
+            items = [
+                r for r in (regs.get_registrations_by_event(event_id) if event_id else regs.list)
+                if r.Status == "Checked-in"
+            ]
+            headers = ["Full Name", "Email", "Organization", "Check-in Time", "Reg. Code"]
+            rows = []
+            for reg in items:
+                att = attendees.find_attendee(reg.AttendeeId)
+                rows.append([
+                    att.Name if att else "",
+                    att.Email if att else "",
+                    att.Organization or "" if att else "",
+                    reg.CheckinTime if hasattr(reg, "CheckinTime") else "",
+                    reg.RegistrationId,
+                ])
+            self._write_csv(file_path, headers, rows)
+            QMessageBox.information(self.MainWindow, "Exported",
+                                    f"✅ Exported {len(rows)} check-ins!\n📁 {file_path}")
+        except Exception as e:
+            QMessageBox.warning(self.MainWindow, "Error", f"Export failed:\n{str(e)}")
+
+    def _setup_pagination(self, table, data_list, fill_func, page_label, prev_btn, next_btn):
+        if not hasattr(self, '_pages'):
+            self._pages = {}
+
+        name = table.objectName()
+        self._pages[name] = {
+            'data': data_list,
+            'page': 0,
+            'fill_func': fill_func,
+            'label': page_label,
+            'prev': prev_btn,
+            'next': next_btn,
+        }
+        self._render_page(name)
+
+    def _render_page(self, name):
+        state = self._pages[name]
+        data = state['data']
+        page = state['page']
+        total = max(1, (len(data) + self.PAGE_SIZE - 1) // self.PAGE_SIZE)
+        start = page * self.PAGE_SIZE
+        end = start + self.PAGE_SIZE
+        chunk = data[start:end]
+
+        state['fill_func'](chunk)
+        state['label'].setText(f"Page {page + 1} / {total}")
+        state['prev'].setEnabled(page > 0)
+        state['next'].setEnabled(page < total - 1)
+
+    def _prev_page(self, name):
+        if self._pages[name]['page'] > 0:
+            self._pages[name]['page'] -= 1
+            self._render_page(name)
+
+    def _next_page(self, name):
+        state = self._pages[name]
+        total = max(1, (len(state['data']) + self.PAGE_SIZE - 1) // self.PAGE_SIZE)
+        if state['page'] < total - 1:
+            state['page'] += 1
+            self._render_page(name)
 
     def apply_stylesheet(self):
         self.MainWindow.setStyleSheet("""

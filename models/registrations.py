@@ -72,6 +72,18 @@ class Registrations(MyCollections):
             return True, "Check-in successful"
         return False, "Registration not found"
 
+    def checkin_for_event(self, regId, eventId):
+        reg = self.find_registration(regId)
+        if reg is None:
+            return False, "Registration code not found!"
+        if reg.EventId != eventId:
+            return False, "This code does not belong to the selected event!"
+        if reg.Status == "Checked-in":
+            return False, "This person has already checked in!"
+        reg.Status = "Checked-in"
+        reg.CheckinTime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        return True, "Check-in successful!"
+
     def count_registered_by_event(self, eventId):
         count = 0
         for it in self.list:
