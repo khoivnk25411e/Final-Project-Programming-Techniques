@@ -47,6 +47,14 @@
             "Phone": "0123456789",
             "Organization": "UEL",
             "Position": "Sinh Viên"
+        },
+        {
+            "AttendeeId": "att_147b18a3",
+            "Name": "Phan Minh Thành",
+            "Email": "phanminhthanh@gmail.com",
+            "Phone": "0936363636",
+            "Organization": "UTE",
+            "Position": "Cu tí"
         }
     ]
 }
