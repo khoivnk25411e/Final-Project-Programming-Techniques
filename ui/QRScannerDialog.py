@@ -24,12 +24,12 @@ class Ui_QRScannerDialog(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblTitle.setFont(font)
-        self.lblTitle.setStyleSheet("color: #2c3e50; margin-bottom: 6px;")
+        self.lblTitle.setStyleSheet("color: #1e293b; margin-bottom: 6px;")
         self.lblTitle.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lblTitle.setObjectName("lblTitle")
         self.verticalLayout.addWidget(self.lblTitle)
         self.lblInstruction = QtWidgets.QLabel(parent=QRScannerDialog)
-        self.lblInstruction.setStyleSheet("color: #7f8c8d; font-size: 12px;")
+        self.lblInstruction.setStyleSheet("color: #64748b; font-size: 12px;")
         self.lblInstruction.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lblInstruction.setObjectName("lblInstruction")
         self.verticalLayout.addWidget(self.lblInstruction)
@@ -42,7 +42,7 @@ class Ui_QRScannerDialog(object):
         self.videoLabel.setMaximumSize(QtCore.QSize(640, 480))
         self.videoLabel.setStyleSheet("border: 2px solid #34495e; \n"
 "border-radius: 8px; \n"
-"background-color: #2c3e50;")
+"background-color: #1e293b;")
         self.videoLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.videoLabel.setObjectName("videoLabel")
         self.horizontalLayout_video.addWidget(self.videoLabel)
@@ -50,11 +50,11 @@ class Ui_QRScannerDialog(object):
         self.horizontalLayout_video.addItem(spacerItem1)
         self.verticalLayout.addLayout(self.horizontalLayout_video)
         self.lblStatus = QtWidgets.QLabel(parent=QRScannerDialog)
-        self.lblStatus.setStyleSheet("color: #27ae60; \n"
+        self.lblStatus.setStyleSheet("color: #16a34a; \n"
 "font-size: 13px; \n"
 "font-weight: bold; \n"
 "padding: 8px; \n"
-"background: #d5f4e6; \n"
+"background: #f0fdf4; \n"
 "border-radius: 6px;")
         self.lblStatus.setText("")
         self.lblStatus.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -69,7 +69,7 @@ class Ui_QRScannerDialog(object):
         self.btnClose = QtWidgets.QPushButton(parent=QRScannerDialog)
         self.btnClose.setMinimumSize(QtCore.QSize(0, 40))
         self.btnClose.setStyleSheet("QPushButton {\n"
-"    background: #e74c3c; \n"
+"    background: #ef4444; \n"
 "    color: white; \n"
 "    border-radius: 6px;\n"
 "    font-size: 13px; \n"
@@ -77,7 +77,7 @@ class Ui_QRScannerDialog(object):
 "    padding: 0 20px;\n"
 "}\n"
 "QPushButton:hover { \n"
-"    background: #c0392b; \n"
+"    background: #ef4444; \n"
 "}")
         self.btnClose.setObjectName("btnClose")
         self.horizontalLayout.addWidget(self.btnClose)

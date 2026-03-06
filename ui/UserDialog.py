@@ -18,7 +18,7 @@ class Ui_UserDialog(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("D:\\GIT_TDLT\\Final-Project-Programming-Techniques\\ui\\../images/add_edit_logo.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         UserDialog.setWindowIcon(icon)
-        UserDialog.setStyleSheet("background-color: rgb(159, 159, 159);")
+        UserDialog.setStyleSheet("background-color: #f1f5f9;")
         self.verticalLayout = QtWidgets.QVBoxLayout(UserDialog)
         self.verticalLayout.setContentsMargins(28, 24, 28, 24)
         self.verticalLayout.setSpacing(12)
@@ -30,7 +30,7 @@ class Ui_UserDialog(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblTitle.setFont(font)
-        self.lblTitle.setStyleSheet("color:#2c3e50; margin-bottom:6px;")
+        self.lblTitle.setStyleSheet("color:#1e293b; margin-bottom:6px;")
         self.lblTitle.setObjectName("lblTitle")
         self.verticalLayout.addWidget(self.lblTitle)
         self.formLayout = QtWidgets.QFormLayout()
@@ -149,7 +149,7 @@ class Ui_UserDialog(object):
         self.btnSave = QtWidgets.QPushButton(parent=UserDialog)
         self.btnSave.setMinimumSize(QtCore.QSize(0, 38))
         self.btnSave.setStyleSheet("QPushButton{\n"
-"    background:#2ecc71;\n"
+"    background:#3b82f6;\n"
 "    color:white;\n"
 "    border-radius:6px;\n"
 "    font-size:13px;\n"
@@ -157,21 +157,21 @@ class Ui_UserDialog(object):
 "    padding:0 16px;\n"
 "}\n"
 "QPushButton:hover{\n"
-"    background:#27ae60;\n"
+"    background:#3b82f6;\n"
 "}")
         self.btnSave.setObjectName("btnSave")
         self.horizontalLayout.addWidget(self.btnSave)
         self.btnCancel = QtWidgets.QPushButton(parent=UserDialog)
         self.btnCancel.setMinimumSize(QtCore.QSize(0, 38))
         self.btnCancel.setStyleSheet("QPushButton{\n"
-"    background:red;\n"
+"    background: #ef4444;\n"
 "    color:white;\n"
 "    border-radius:6px;\n"
 "    font-size:13px;\n"
 "    padding:0 16px;\n"
 "}\n"
 "QPushButton:hover{\n"
-"    background:#d5dbdb;\n"
+"    background:#f1f5f9;\n"
 "}")
         self.btnCancel.setObjectName("btnCancel")
         self.horizontalLayout.addWidget(self.btnCancel)
