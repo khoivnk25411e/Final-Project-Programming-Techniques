@@ -15,10 +15,11 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../images/add_edit_logo.png</normaloff>../images/add_edit_logo.png</iconset>
+    <normaloff>../images/add_edit_logo.png</normaloff>../images/add_edit_logo.png
+   </iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(166, 166, 166);</string>
+   <string notr="true">background-color: #f1f5f9;</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -41,9 +42,8 @@
      <item row="0" column="1">
       <widget class="QLineEdit" name="nameInput">
        <property name="styleSheet">
-        <string notr="true">
-color: rgb(0, 0, 0);
-background-color: rgb(203, 203, 203);</string>
+        <string notr="true">color: rgb(0, 0, 0);
+background-color: #f1f5f9;</string>
        </property>
        <property name="placeholderText">
         <string>Enter event name...</string>
@@ -69,7 +69,7 @@ background-color: rgb(203, 203, 203);</string>
       <widget class="QDateEdit" name="dateInput">
        <property name="styleSheet">
         <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(203, 203, 203);</string>
+background-color: #f1f5f9;</string>
        </property>
        <property name="calendarPopup">
         <bool>true</bool>
@@ -95,7 +95,7 @@ background-color: rgb(203, 203, 203);</string>
       <widget class="QTimeEdit" name="timeInput">
        <property name="styleSheet">
         <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(203, 203, 203);</string>
+background-color: #f1f5f9;</string>
        </property>
       </widget>
      </item>
@@ -118,7 +118,7 @@ background-color: rgb(203, 203, 203);</string>
       <widget class="QLineEdit" name="locationInput">
        <property name="styleSheet">
         <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(203, 203, 203);</string>
+background-color: #f1f5f9;</string>
        </property>
        <property name="placeholderText">
         <string>Enter venue...</string>
@@ -150,7 +150,7 @@ background-color: rgb(203, 203, 203);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(203, 203, 203);</string>
+background-color: #f1f5f9;</string>
        </property>
        <property name="placeholderText">
         <string>Enter event description...</string>
@@ -160,7 +160,7 @@ background-color: rgb(203, 203, 203);</string>
     </layout>
    </item>
    <item>
-    <spacer name="verticalSpacer">
+    <spacer name="spacerItem">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -175,7 +175,7 @@ background-color: rgb(203, 203, 203);</string>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <spacer name="horizontalSpacer">
+      <spacer name="spacerItem1">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -191,7 +191,7 @@ background-color: rgb(203, 203, 203);</string>
       <widget class="QPushButton" name="btnSave">
        <property name="styleSheet">
         <string notr="true">padding: 8px 15px;
-background-color: rgb(119, 0, 179);
+background-color: #3b82f6;
 color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
@@ -203,7 +203,7 @@ color: rgb(255, 255, 255);</string>
       <widget class="QPushButton" name="btnCancel">
        <property name="styleSheet">
         <string notr="true">padding: 8px 15px;
-background-color: rgb(203, 0, 0);
+background-color: #ef4444;
 color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
@@ -224,12 +224,12 @@ color: rgb(255, 255, 255);</string>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>400</x>
-     <y>350</y>
+     <x>0</x>
+     <y>0</y>
     </hint>
     <hint type="destinationlabel">
-     <x>250</x>
-     <y>200</y>
+     <x>0</x>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
