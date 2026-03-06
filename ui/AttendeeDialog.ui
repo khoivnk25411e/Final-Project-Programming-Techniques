@@ -15,10 +15,11 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../images/add_edit_logo.png</normaloff>../images/add_edit_logo.png</iconset>
+    <normaloff>../images/add_edit_logo.png</normaloff>../images/add_edit_logo.png
+   </iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(167, 167, 167);</string>
+   <string notr="true">background-color: #f1f5f9;</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -41,7 +42,7 @@
      <item row="0" column="1">
       <widget class="QLineEdit" name="nameInput">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(194, 194, 194);
+        <string notr="true">background-color: #f1f5f9;
 color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
@@ -67,7 +68,7 @@ color: rgb(0, 0, 0);</string>
      <item row="1" column="1">
       <widget class="QLineEdit" name="emailInput">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(194, 194, 194);
+        <string notr="true">background-color: #f1f5f9;
 color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
@@ -93,7 +94,7 @@ color: rgb(0, 0, 0);</string>
      <item row="2" column="1">
       <widget class="QLineEdit" name="phoneInput">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(194, 194, 194);
+        <string notr="true">background-color: #f1f5f9;
 color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
@@ -119,7 +120,7 @@ color: rgb(0, 0, 0);</string>
      <item row="3" column="1">
       <widget class="QLineEdit" name="organizationInput">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(194, 194, 194);
+        <string notr="true">background-color: #f1f5f9;
 color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
@@ -145,7 +146,7 @@ color: rgb(0, 0, 0);</string>
      <item row="4" column="1">
       <widget class="QLineEdit" name="positionInput">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(194, 194, 194);
+        <string notr="true">background-color: #f1f5f9;
 color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
@@ -156,7 +157,7 @@ color: rgb(0, 0, 0);</string>
     </layout>
    </item>
    <item>
-    <spacer name="verticalSpacer">
+    <spacer name="spacerItem">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -171,7 +172,7 @@ color: rgb(0, 0, 0);</string>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <spacer name="horizontalSpacer">
+      <spacer name="spacerItem1">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -187,7 +188,7 @@ color: rgb(0, 0, 0);</string>
       <widget class="QPushButton" name="btnSave">
        <property name="styleSheet">
         <string notr="true">padding: 8px 15px;
-background-color: rgb(124, 0, 186);
+background-color: #3b82f6;
 color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
@@ -199,7 +200,7 @@ color: rgb(255, 255, 255);</string>
       <widget class="QPushButton" name="btnCancel">
        <property name="styleSheet">
         <string notr="true">padding: 8px 15px;
-background-color: rgb(255, 0, 0);
+background-color: #ef4444;
 color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
@@ -220,12 +221,12 @@ color: rgb(255, 255, 255);</string>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>400</x>
-     <y>300</y>
+     <x>0</x>
+     <y>0</y>
     </hint>
     <hint type="destinationlabel">
-     <x>250</x>
-     <y>175</y>
+     <x>0</x>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
