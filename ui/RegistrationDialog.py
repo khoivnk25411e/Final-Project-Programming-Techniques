@@ -16,7 +16,7 @@ class Ui_RegistrationDialog(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("D:\\GIT_TDLT\\Final-Project-Programming-Techniques\\ui\\../images/select_attendee.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         RegistrationDialog.setWindowIcon(icon)
-        RegistrationDialog.setStyleSheet("background-color: rgb(171, 171, 171);")
+        RegistrationDialog.setStyleSheet("background-color: #f1f5f9;")
         self.verticalLayout = QtWidgets.QVBoxLayout(RegistrationDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.formLayout = QtWidgets.QFormLayout()
@@ -47,13 +47,13 @@ class Ui_RegistrationDialog(object):
         self.btnRegister = QtWidgets.QPushButton(parent=RegistrationDialog)
         self.btnRegister.setStyleSheet("padding: 8px 15px;\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(129, 0, 194);")
+"background-color: #3b82f6;")
         self.btnRegister.setObjectName("btnRegister")
         self.horizontalLayout.addWidget(self.btnRegister)
         self.btnCancel = QtWidgets.QPushButton(parent=RegistrationDialog)
         self.btnCancel.setStyleSheet("padding: 8px 15px;\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(255, 0, 0);")
+"background-color: #ef4444;")
         self.btnCancel.setObjectName("btnCancel")
         self.horizontalLayout.addWidget(self.btnCancel)
         self.verticalLayout.addLayout(self.horizontalLayout)

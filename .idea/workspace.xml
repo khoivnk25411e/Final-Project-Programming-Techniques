@@ -6,9 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="Update Open Camera QRscanner for MacOs, Save and Copy buttons Qrcode,Fix Ui, add Export CSV ,">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/attendees.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/attendees.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/registrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/registrations.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/remember.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/remember.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ui_ex/MainWindowEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_ex/MainWindowEx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ui_ex/RegistrationDialogEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_ex/RegistrationDialogEx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/AttendeeDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/AttendeeDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/ChangePasswordDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ChangePasswordDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/EventDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/EventDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/ForgotPasswordDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ForgotPasswordDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/LoginWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/LoginWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/MainWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/QRScannerDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/QRScannerDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/RegistrationDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/RegistrationDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/UserDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/UserDialog.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,22 +41,22 @@
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {}
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/khoivnk25411e/Final-Project-Programming-Techniques.git",
-    "accountId": "a14b289e-526e-48c8-93d9-c5bd981ab71f"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/khoivnk25411e/Final-Project-Programming-Techniques.git&quot;,
+    &quot;accountId&quot;: &quot;a14b289e-526e-48c8-93d9-c5bd981ab71f&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "khoivnk25411e",
-    "repository": "Final-Project-Programming-Techniques"
+    &quot;owner&quot;: &quot;khoivnk25411e&quot;,
+    &quot;repository&quot;: &quot;Final-Project-Programming-Techniques&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -60,20 +68,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Python.main.executor": "Run",
-    "Python.test.executor": "Run",
-    "Python.test_ui_mainwindow.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "KHOA",
-    "last_opened_file_path": "/Users/nguyenthanhcong/QtDesigner/Final-Project-Programming-Techniques",
-    "settings.editor.selected.configurable": "preferences.externalTools"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_ui_mainwindow.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;KHOA&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/nguyenthanhcong/QtDesigner/Final-Project-Programming-Techniques&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.externalTools&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Ui_ex" />

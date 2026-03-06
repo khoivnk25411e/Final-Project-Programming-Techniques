@@ -2,6 +2,16 @@ from PyQt6.QtWidgets import (QMessageBox, QTableWidgetItem, QHeaderView,
                              QDialog, QVBoxLayout, QLabel, QMainWindow)
 from PyQt6.QtCore import Qt, QTimer
 from PyQt6 import QtGui
+
+try:
+    from matplotlib import pyplot as plt
+    from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
+    from matplotlib.backends.backend_qtagg import NavigationToolbar2QT as NavigationToolbar
+    import matplotlib
+    matplotlib.use("QtAgg")
+    MATPLOTLIB_AVAILABLE = True
+except ImportError:
+    MATPLOTLIB_AVAILABLE = False
 from ui.MainWindow import Ui_MainWindow
 from Ui_ex.EventDialogEx import EventDialogEx
 from Ui_ex.AttendeeDialogEx import AttendeeDialogEx
@@ -52,7 +62,7 @@ class MainWindowEx(Ui_MainWindow):
         if is_admin:
             self.lblRoleBadge.setText("ADMIN")
             self.lblRoleBadge.setStyleSheet(
-                "QLabel{background:#e74c3c;color:white;border-radius:5px;"
+                "QLabel{background:#ef4444;color:white;border-radius:5px;"
                 "font-size:11px;font-weight:bold;padding:0 8px;}"
             )
         else:
@@ -64,14 +74,26 @@ class MainWindowEx(Ui_MainWindow):
 
         if not is_admin:
             self.btnAddEvent.setEnabled(False)
+            self.btnEditEvent.setEnabled(False)
             self.btnDeleteEvent.setEnabled(False)
+
             self.btnAddAttendee.setEnabled(False)
+            self.btnEditAttendee.setEnabled(False)
             self.btnDeleteAttendee.setEnabled(False)
+
+            self.btnRegisterAttendee.setEnabled(False)
+            self.btnCancelRegistration.setEnabled(False)
+            self.btnGenerateQR.setEnabled(False)
 
             self.btnCheckin.setEnabled(False)
             self.btnScanQR.setEnabled(False)
             self.checkinCode.setEnabled(False)
             self.checkinCode.setPlaceholderText("Admin access required for Check-in")
+
+            self.btnRefreshEvent.setEnabled(True)
+            self.btnRefreshAttendee.setEnabled(True)
+            self.btnRefreshRegistration.setEnabled(True)
+            self.btnRefreshCheckin.setEnabled(True)
 
     def setupSignalAndSlot(self):
         self.btnChangePassword.clicked.connect(self.change_password)
@@ -82,6 +104,7 @@ class MainWindowEx(Ui_MainWindow):
         self.btnViewEvent.clicked.connect(self.view_event_details)
         self.btnEditEvent.clicked.connect(self.edit_event)
         self.btnDeleteEvent.clicked.connect(self.delete_event)
+        self.btnRefreshEvent.clicked.connect(self.load_events)
         self.btnRefreshEvent.clicked.connect(self.load_events)
         self.btnExportEvent.clicked.connect(self.export_events_csv)
         self.btnPrevEvent.clicked.connect(lambda: self._prev_page("eventTable"))
@@ -111,6 +134,11 @@ class MainWindowEx(Ui_MainWindow):
         self.btnRefreshCheckin.clicked.connect(self.load_checkin_stats)
         self.btnExportCheckin.clicked.connect(self.export_checkin_csv)
 
+        self.statsEventCombo.currentIndexChanged.connect(self.refresh_chart)
+        self.btnStatsBar.clicked.connect(self.show_bar_chart)
+        self.btnStatsLine.clicked.connect(self.show_line_chart)
+        self.btnStatsPie.clicked.connect(self.show_pie_chart)
+
         user = getattr(self, 'login_user', None)
         if user and user.Role == "admin":
             self.btnAddUser.clicked.connect(self.add_user)
@@ -118,6 +146,11 @@ class MainWindowEx(Ui_MainWindow):
             self.btnDeleteUser.clicked.connect(self.delete_user)
             self.btnResetUserPwd.clicked.connect(self.reset_user_password)
             self.btnRefreshUser.clicked.connect(self.load_users)
+        else:
+            self.btnRefreshEvent.clicked.connect(self.load_events)
+            self.btnRefreshAttendee.clicked.connect(self.load_attendees)
+            self.btnRefreshRegistration.clicked.connect(self.load_registrations)
+            self.btnRefreshCheckin.clicked.connect(self.load_checkin_stats)
 
         for tbl in [self.eventTable, self.attendeeTable,
                     self.registrationTable, self.checkinTable]:
@@ -131,6 +164,12 @@ class MainWindowEx(Ui_MainWindow):
         self.load_attendees()
         self.load_event_combo()
         self.load_checkin_event_combo()
+        self.load_stats_event_combo()
+
+        for tbl in [self.eventTable, self.attendeeTable,
+                    self.registrationTable, self.checkinTable, self.userTable]:
+            tbl.setAlternatingRowColors(True)
+        self.setup_chart()
         user = getattr(self, 'login_user', None)
         if user and user.Role == "admin":
             self.load_users()
@@ -289,8 +328,8 @@ class MainWindowEx(Ui_MainWindow):
         results = [
             e for e in events.list
             if keyword_lower in e.EventName.lower()
-               or keyword_lower in e.Location.lower()
-               or keyword_lower in (e.Description or "").lower()
+            or keyword_lower in e.Location.lower()
+            or keyword_lower in (e.Description or "").lower()
         ]
         self._setup_pagination(
             self.eventTable, results,
@@ -534,7 +573,6 @@ class MainWindowEx(Ui_MainWindow):
         attendees = Attendees()
         attendees.import_json("datasets/attendees.json")
         items = regs.get_registrations_by_event(event_id)
-
         self._reg_attendee_map = {}
         for reg in items:
             att = attendees.find_attendee(reg.AttendeeId)
@@ -576,24 +614,42 @@ class MainWindowEx(Ui_MainWindow):
         event_id = self.eventCombo.currentData()
         dlg = RegistrationDialogEx(self.MainWindow, event_id=event_id)
         if dlg.exec() == QDialog.DialogCode.Accepted:
-            att_id = dlg.get_selected_attendee_id()
-            if not att_id:
+            att_ids = dlg.get_selected_attendee_ids()
+            if not att_ids:
                 return
+
             regs = Registrations()
             regs.import_json("datasets/registrations.json")
-            if regs.find_registration_by_event_attendee(event_id, att_id):
-                QMessageBox.warning(self.MainWindow, "Error", "This person is already registered for this event!")
-                return
-            reg = Registration()
-            reg.RegistrationId = str(uuid.uuid4())[:8].upper()
-            reg.EventId = event_id
-            reg.AttendeeId = att_id
-            reg.RegistrationDate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            reg.Status = "Registered"
-            regs.add_item(reg)
-            regs.export_json("datasets/registrations.json")
-            QMessageBox.information(self.MainWindow, "Success",
-                                    f"Registration successful!\nRegistration Code: {reg.RegistrationId}")
+
+            success_list = []
+            skip_list    = []
+
+            for att_id in att_ids:
+                if regs.find_registration_by_event_attendee(event_id, att_id):
+                    skip_list.append(att_id)
+                    continue
+                reg = Registration()
+                reg.RegistrationId   = str(uuid.uuid4())[:8].upper()
+                reg.EventId          = event_id
+                reg.AttendeeId       = att_id
+                reg.RegistrationDate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                reg.Status           = "Registered"
+                regs.add_item(reg)
+                success_list.append(reg.RegistrationId)
+
+            if success_list:
+                regs.export_json("datasets/registrations.json")
+
+            msg = ""
+            if success_list:
+                codes = ", ".join(success_list)
+                msg += f"✅ Registered {len(success_list)} attendee(s)!\nCodes: {codes}"
+            if skip_list:
+                msg += f"\n⚠️ {len(skip_list)} attendee(s) already registered (skipped)."
+
+            if msg:
+                QMessageBox.information(self.MainWindow, "Registration Result", msg)
+
             self.load_registrations()
 
     def cancel_registration(self):
@@ -623,10 +679,10 @@ class MainWindowEx(Ui_MainWindow):
         if row < 0:
             QMessageBox.warning(self.MainWindow, "Error", "Please select a registration!")
             return
-        reg_id = self.registrationTable.item(row, 0).text()
-        att_name = self.registrationTable.item(row, 1).text()
+        reg_id    = self.registrationTable.item(row, 0).text()
+        att_name  = self.registrationTable.item(row, 1).text()
         att_email = self.registrationTable.item(row, 2).text()
-        att_org = self.registrationTable.item(row, 3).text()
+        att_org   = self.registrationTable.item(row, 3).text()
 
         qr = qrcode.QRCode(version=1, box_size=10, border=5)
         qr.add_data(reg_id)
@@ -658,7 +714,7 @@ class MainWindowEx(Ui_MainWindow):
 
         info_text = (
             f"<div style='text-align:center;'>"
-            f"<h3 style='margin:0;color:#2c3e50;'>{att_name}</h3>"
+            f"<h3 style='margin:0;color:#3b82f6;'>{att_name}</h3>"
             f"<p style='margin:2px;color:#7f8c8d;font-size:12px;'>{att_email}</p>"
             f"<p style='margin:2px;color:#7f8c8d;font-size:12px;'>{att_org}</p>"
             f"<h2 style='color:#2980b9;margin-top:6px;'>🎫 Code: {reg_id}</h2>"
@@ -673,21 +729,21 @@ class MainWindowEx(Ui_MainWindow):
 
         btn_save = QPushButton("💾 Save QR Image")
         btn_save.setStyleSheet(
-            "QPushButton { background:#27ae60; color:white; border-radius:6px;"
+            "QPushButton { background:#3b82f6; color:white; border-radius:6px;"
             "font-size:13px; font-weight:bold; padding:8px 16px; }"
-            "QPushButton:hover { background:#1e8449; }"
+            "QPushButton:hover { background:#1e293b; }"
         )
         btn_copy = QPushButton("📋 Copy Code")
         btn_copy.setStyleSheet(
-            "QPushButton { background:#3498db; color:white; border-radius:6px;"
+            "QPushButton { background:#2563eb; color:white; border-radius:6px;"
             "font-size:13px; font-weight:bold; padding:8px 16px; }"
-            "QPushButton:hover { background:#2980b9; }"
+            "QPushButton:hover { background:#2563eb; }"
         )
         btn_close = QPushButton("✖ Close")
         btn_close.setStyleSheet(
-            "QPushButton { background:#e74c3c; color:white; border-radius:6px;"
+            "QPushButton { background:#ef4444; color:white; border-radius:6px;"
             "font-size:13px; padding:8px 16px; }"
-            "QPushButton:hover { background:#c0392b; }"
+            "QPushButton:hover { background:#dc2626; }"
         )
 
         btn_layout.addWidget(btn_save)
@@ -826,7 +882,7 @@ class MainWindowEx(Ui_MainWindow):
             ]
             self._write_csv(file_path, headers, rows)
             QMessageBox.information(self.MainWindow, "Exported",
-                                    f"✅ Exported {len(rows)} events!\n📁 {file_path}")
+                f"✅ Exported {len(rows)} events!\n📁 {file_path}")
         except Exception as e:
             QMessageBox.warning(self.MainWindow, "Error", f"Export failed:\n{str(e)}")
 
@@ -845,7 +901,7 @@ class MainWindowEx(Ui_MainWindow):
             ]
             self._write_csv(file_path, headers, rows)
             QMessageBox.information(self.MainWindow, "Exported",
-                                    f"✅ Exported {len(rows)} attendees!\n📁 {file_path}")
+                f"✅ Exported {len(rows)} attendees!\n📁 {file_path}")
         except Exception as e:
             QMessageBox.warning(self.MainWindow, "Error", f"Export failed:\n{str(e)}")
 
@@ -874,7 +930,7 @@ class MainWindowEx(Ui_MainWindow):
                 ])
             self._write_csv(file_path, headers, rows)
             QMessageBox.information(self.MainWindow, "Exported",
-                                    f"✅ Exported {len(rows)} registrations!\n📁 {file_path}")
+                f"✅ Exported {len(rows)} registrations!\n📁 {file_path}")
         except Exception as e:
             QMessageBox.warning(self.MainWindow, "Error", f"Export failed:\n{str(e)}")
 
@@ -905,7 +961,7 @@ class MainWindowEx(Ui_MainWindow):
                 ])
             self._write_csv(file_path, headers, rows)
             QMessageBox.information(self.MainWindow, "Exported",
-                                    f"✅ Exported {len(rows)} check-ins!\n📁 {file_path}")
+                f"✅ Exported {len(rows)} check-ins!\n📁 {file_path}")
         except Exception as e:
             QMessageBox.warning(self.MainWindow, "Error", f"Export failed:\n{str(e)}")
 
@@ -926,12 +982,12 @@ class MainWindowEx(Ui_MainWindow):
 
     def _render_page(self, name):
         state = self._pages[name]
-        data = state['data']
-        page = state['page']
-        total = max(1, (len(data) + self.PAGE_SIZE - 1) // self.PAGE_SIZE)
-        start = page * self.PAGE_SIZE
-        end = start + self.PAGE_SIZE
-        chunk = data[start:end]
+        data     = state['data']
+        page     = state['page']
+        total    = max(1, (len(data) + self.PAGE_SIZE - 1) // self.PAGE_SIZE)
+        start    = page * self.PAGE_SIZE
+        end      = start + self.PAGE_SIZE
+        chunk    = data[start:end]
 
         state['fill_func'](chunk)
         state['label'].setText(f"Page {page + 1} / {total}")
@@ -950,33 +1006,311 @@ class MainWindowEx(Ui_MainWindow):
             state['page'] += 1
             self._render_page(name)
 
+    def setup_chart(self):
+        if not MATPLOTLIB_AVAILABLE:
+            lbl = QLabel("⚠️ matplotlib not installed!\npip install matplotlib")
+            lbl.setStyleSheet("color: red; font-size: 13px; padding: 20px;")
+            self.verticalLayoutStatsPlot.addWidget(lbl)
+            return
+
+        self.stats_figure, self.stats_ax = plt.subplots()
+        self.stats_figure.patch.set_facecolor("white")
+        self.stats_canvas = FigureCanvas(self.stats_figure)
+
+        self.verticalLayoutStatsPlot.addWidget(self.stats_canvas)
+
+        self.show_bar_chart()
+
+    def _set_active_btn(self, active_btn):
+        for btn in [self.btnStatsBar, self.btnStatsLine, self.btnStatsPie]:
+            if btn is active_btn:
+                btn.setStyleSheet(btn.property("active_style"))
+            else:
+                btn.setStyleSheet(btn.property("inactive_style"))
+
+    def load_stats_event_combo(self):
+        self.statsEventCombo.clear()
+        self.statsEventCombo.addItem("🌐 All Events", None)
+        events = Events()
+        events.import_json("datasets/events.json")
+        for e in events.list:
+            self.statsEventCombo.addItem(f"{e.EventName} - {e.EventDate}", e.EventId)
+
+    def _get_stats_data(self):
+        event_id = self.statsEventCombo.currentData()
+        events = Events()
+        events.import_json("datasets/events.json")
+        regs = Registrations()
+        regs.import_json("datasets/registrations.json")
+
+        data = {}
+        target_events = events.list if event_id is None else [
+            e for e in events.list if e.EventId == event_id
+        ]
+
+        for e in target_events:
+            event_regs = regs.get_registrations_by_event(e.EventId)
+            registered = len(event_regs)
+            checkedin  = sum(1 for r in event_regs if r.Status == "Checked-in")
+            label = e.EventName if len(e.EventName) <= 18 else e.EventName[:15] + "..."
+            data[label] = {"registered": registered, "checkedin": checkedin}
+
+        return data
+
+    def refresh_chart(self):
+        if not MATPLOTLIB_AVAILABLE:
+            return
+        if not hasattr(self, 'stats_ax') or not hasattr(self, 'stats_canvas'):
+            return
+        title = self.stats_ax.get_title()
+        if "Line" in title:
+            self.show_line_chart()
+        elif "Pie" in title:
+            self.show_pie_chart()
+        else:
+            self.show_bar_chart()
+
+    def show_bar_chart(self):
+        if not MATPLOTLIB_AVAILABLE:
+            return
+        if hasattr(self, 'btnStatsBar'):
+            self._set_active_btn(self.btnStatsBar)
+        data = self._get_stats_data()
+        if not data:
+            return
+
+        self.stats_figure.clear()
+        ax = self.stats_figure.add_subplot(111)
+        self.stats_ax = ax
+
+        labels     = list(data.keys())
+        registered = [data[k]["registered"] for k in labels]
+        checkedin  = [data[k]["checkedin"]  for k in labels]
+
+        x     = range(len(labels))
+        width = 0.35
+
+        bars1 = ax.bar([i - width/2 for i in x], registered, width,
+                       label="Registered", color="#3498db", alpha=0.85)
+        bars2 = ax.bar([i + width/2 for i in x], checkedin, width,
+                       label="Checked-in", color="#27ae60", alpha=0.85)
+
+        for bar in bars1:
+            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.1,
+                    str(int(bar.get_height())), ha='center', va='bottom', fontsize=9)
+        for bar in bars2:
+            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.1,
+                    str(int(bar.get_height())), ha='center', va='bottom', fontsize=9)
+
+        ax.set_xticks(list(x))
+        ax.set_xticklabels(labels, rotation=15, ha='right', fontsize=9)
+        ax.set_ylabel("Number of People")
+        ax.set_title("Registration vs Check-in by Event", fontsize=12, fontweight='bold')
+        ax.legend()
+        ax.grid(axis='y', alpha=0.4)
+        ax.set_facecolor("#f9f9f9")
+        self.stats_figure.tight_layout()
+        self.stats_canvas.draw()
+
+    def show_line_chart(self):
+        if not MATPLOTLIB_AVAILABLE:
+            return
+        if hasattr(self, 'btnStatsLine'):
+            self._set_active_btn(self.btnStatsLine)
+
+        regs = Registrations()
+        regs.import_json("datasets/registrations.json")
+        event_id = self.statsEventCombo.currentData()
+
+        items = regs.get_registrations_by_event(event_id) if event_id else regs.list
+
+        if not items:
+            QMessageBox.information(self.MainWindow, "Info", "No registration data!")
+            return
+
+        from collections import Counter
+        date_counts = Counter()
+        for r in items:
+            date_counts[r.RegistrationDate] += 1
+
+        dates  = sorted(date_counts.keys())
+        counts = [date_counts[d] for d in dates]
+
+        cumulative = []
+        total = 0
+        for c in counts:
+            total += c
+            cumulative.append(total)
+
+        self.stats_figure.clear()
+        ax = self.stats_figure.add_subplot(111)
+        self.stats_ax = ax
+
+        ax.plot(dates, cumulative, marker='o', color='#e67e22',
+                linewidth=2, markersize=7, label="Cumulative Registrations")
+        ax.fill_between(range(len(dates)), cumulative, alpha=0.15, color='#e67e22')
+
+        for i, val in enumerate(cumulative):
+            ax.annotate(str(val), (dates[i], val),
+                        textcoords="offset points", xytext=(0, 8),
+                        ha='center', fontsize=9)
+
+        ax.set_xticks(range(len(dates)))
+        ax.set_xticklabels(dates, rotation=15, ha='right', fontsize=9)
+        ax.set_ylabel("Cumulative Registrations")
+        ax.set_title("Line Chart: Registration Trend", fontsize=12, fontweight='bold')
+        ax.legend()
+        ax.grid(alpha=0.4)
+        ax.set_facecolor("#f9f9f9")
+        self.stats_figure.tight_layout()
+        self.stats_canvas.draw()
+
+    def show_pie_chart(self):
+        if not MATPLOTLIB_AVAILABLE:
+            return
+        if hasattr(self, 'btnStatsPie'):
+            self._set_active_btn(self.btnStatsPie)
+
+        regs = Registrations()
+        regs.import_json("datasets/registrations.json")
+        event_id = self.statsEventCombo.currentData()
+
+        items = regs.get_registrations_by_event(event_id) if event_id else regs.list
+
+        checkedin     = sum(1 for r in items if r.Status == "Checked-in")
+        not_checkedin = len(items) - checkedin
+
+        if checkedin + not_checkedin == 0:
+            QMessageBox.information(self.MainWindow, "Info", "No registration data!")
+            return
+
+        self.stats_figure.clear()
+        ax = self.stats_figure.add_subplot(111)
+        self.stats_ax = ax
+
+        sizes  = [checkedin, not_checkedin]
+        labels = [f"Checked-in ({checkedin})", f"Not Checked-in ({not_checkedin})"]
+        colors = ["#27ae60", "#e74c3c"]
+        explode = (0.05, 0)
+
+        wedges, texts, autotexts = ax.pie(
+            sizes, labels=labels, colors=colors,
+            autopct='%1.1f%%', explode=explode,
+            startangle=90, textprops={'fontsize': 10}
+        )
+        for at in autotexts:
+            at.set_fontweight('bold')
+
+        ax.set_title("Pie Chart: Check-in Rate", fontsize=12, fontweight='bold')
+        ax.legend(wedges, labels, loc="lower right", fontsize=9)
+        self.stats_figure.tight_layout()
+        self.stats_canvas.draw()
+
     def apply_stylesheet(self):
         self.MainWindow.setStyleSheet("""
-            QMainWindow { background-color: #ecf0f1; }
+            QMainWindow { background-color: white; }
+
             QPushButton {
-                background-color: #3498db; color: white;
+                background-color: #3b82f6; color: white;
                 border: none; padding: 8px 15px;
-                border-radius: 4px; font-size: 12px;
+                border-radius: 5px; font-size: 12px;
             }
-            QPushButton:hover { background-color: #2980b9; }
-            QPushButton:disabled { background-color: #95a5a6; color: #ecf0f1; }
-            QTableWidget { background-color: white;
-                           border: 1px solid #bdc3c7; border-radius: 4px; }
-            QHeaderView::section { background-color: #34495e; color: white;
-                                   padding: 8px; border: none; font-weight: bold; }
+            QPushButton:hover   { background-color: #2563eb; }
+            QPushButton:pressed { background-color: #1d4ed8; }
+            QPushButton:disabled { background-color: #cbd5e1; color: #94a3b8; }
+
+            QTableWidget {
+                background-color: white;
+                alternate-background-color: #f8fafc;
+                border: 1px solid #e2e8f0;
+                border-radius: 6px;
+                gridline-color: #e2e8f0;
+            }
+            QTableWidget::item {
+                color: #111827;
+                padding: 4px;
+            }
+            QTableWidget::item:selected {
+                background-color: #dbeafe;
+                color: #1e40af;
+            }
+            QHeaderView::section {
+                background-color: #f1f5f9;
+                color: #374151;
+                padding: 8px;
+                border: none;
+                border-bottom: 2px solid #e2e8f0;
+                font-weight: bold;
+                font-size: 12px;
+            }
+
             QLineEdit, QTextEdit, QComboBox, QDateEdit, QTimeEdit {
-                padding: 6px; border: 1px solid #bdc3c7;
-                border-radius: 4px; background-color: white;
+                padding: 6px;
+                border: 1px solid #d1d5db;
+                border-radius: 5px;
+                background-color: white;
+                color: #111827;
             }
-            QLineEdit:disabled { background-color: #e0e0e0; color: #7f8c8d; }
-            QGroupBox { border: 2px solid #bdc3c7; border-radius: 5px;
-                        margin-top: 10px; font-weight: bold; padding: 15px; }
-            QGroupBox::title { subcontrol-origin: margin;
-                               subcontrol-position: top left;
-                               padding: 5px 10px; background-color: white; }
-            QTabWidget::pane { border: 1px solid #bdc3c7; border-radius: 4px; }
-            QTabBar::tab { background: #ecf0f1; padding: 8px 16px;
-                           border-radius: 4px 4px 0 0; font-size: 12px; }
-            QTabBar::tab:selected { background: white; color: #2c3e50;
-                                    font-weight: bold; }
+            QLineEdit:focus, QComboBox:focus {
+                border: 1px solid #3b82f6;
+            }
+            QLineEdit:disabled { background-color: #f9fafb; color: #9ca3af; }
+
+            QGroupBox {
+                border: 1px solid #e5e7eb;
+                border-radius: 6px;
+                margin-top: 10px;
+                font-weight: bold;
+                padding: 15px;
+                background-color: white;
+            }
+            QGroupBox::title {
+                subcontrol-origin: margin;
+                subcontrol-position: top left;
+                padding: 4px 10px;
+                background-color: #f1f5f9;
+                color: #374151;
+                border-radius: 4px;
+            }
+
+            QTabWidget::pane {
+                border: 1px solid #e5e7eb;
+                border-radius: 6px;
+                background: white;
+            }
+            QTabBar::tab {
+                background: #f3f4f6;
+                color: #6b7280;
+                padding: 8px 16px;
+                border-radius: 5px 5px 0 0;
+                font-size: 12px;
+                margin-right: 2px;
+            }
+            QTabBar::tab:selected {
+                background: white;
+                color: #111827;
+                font-weight: bold;
+                border-top: 2px solid #3b82f6;
+            }
+            QTabBar::tab:hover:!selected {
+                background: #e5e7eb;
+                color: #374151;
+            }
+
+            QScrollBar:vertical {
+                background: #f9fafb; width: 8px; border-radius: 4px;
+            }
+            QScrollBar::handle:vertical {
+                background: #d1d5db; border-radius: 4px; min-height: 20px;
+            }
+            QScrollBar:horizontal {
+                background: #f9fafb; height: 8px; border-radius: 4px;
+            }
+            QScrollBar::handle:horizontal {
+                background: #d1d5db; border-radius: 4px; min-width: 20px;
+            }
+
+            QLabel { color: #111827; }
+            QCheckBox { color: #111827; }
+            QWidget#contentWidget { background-color: #f9fafb; }
         """)

@@ -12,7 +12,8 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(801, 663)
+        MainWindow.resize(1000, 700)
+        MainWindow.setMinimumSize(QtCore.QSize(960, 600))
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -24,7 +25,7 @@ class Ui_MainWindow(object):
         self.headerBar.setMaximumSize(QtCore.QSize(16777215, 54))
         self.headerBar.setStyleSheet("QWidget#headerBar {\n"
 "    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,\n"
-"        stop:0 #1a252f, stop:1 #2c3e50);\n"
+"        stop:0 #1e293b, stop:1 #334155);\n"
 "}")
         self.headerBar.setObjectName("headerBar")
         self.horizontalLayout_header = QtWidgets.QHBoxLayout(self.headerBar)
@@ -47,7 +48,7 @@ class Ui_MainWindow(object):
         self.lblRoleBadge.setMinimumSize(QtCore.QSize(0, 26))
         self.lblRoleBadge.setMaximumSize(QtCore.QSize(16777215, 26))
         self.lblRoleBadge.setStyleSheet("QLabel { \n"
-"    background:#27ae60; \n"
+"    background:#3b82f6; \n"
 "    color:white; \n"
 "    border-radius:5px;\n"
 "    font-size:11px; \n"
@@ -65,7 +66,7 @@ class Ui_MainWindow(object):
         self.btnChangePassword.setMinimumSize(QtCore.QSize(0, 30))
         self.btnChangePassword.setMaximumSize(QtCore.QSize(16777215, 30))
         self.btnChangePassword.setStyleSheet("QPushButton { \n"
-"    background:#3498db; \n"
+"    background:#2563eb; \n"
 "    color:white; \n"
 "    border-radius:6px;\n"
 "    font-size:12px; \n"
@@ -73,7 +74,7 @@ class Ui_MainWindow(object):
 "    border:none; \n"
 "}\n"
 "QPushButton:hover { \n"
-"    background:#2980b9; \n"
+"    background:#2563eb; \n"
 "}")
         self.btnChangePassword.setObjectName("btnChangePassword")
         self.horizontalLayout_header.addWidget(self.btnChangePassword)
@@ -81,7 +82,7 @@ class Ui_MainWindow(object):
         self.btnLogout.setMinimumSize(QtCore.QSize(0, 30))
         self.btnLogout.setMaximumSize(QtCore.QSize(16777215, 30))
         self.btnLogout.setStyleSheet("QPushButton { \n"
-"    background:#e74c3c; \n"
+"    background:#ef4444; \n"
 "    color:white; \n"
 "    border-radius:6px;\n"
 "    font-size:12px; \n"
@@ -89,23 +90,22 @@ class Ui_MainWindow(object):
 "    border:none; \n"
 "}\n"
 "QPushButton:hover { \n"
-"    background:#c0392b; \n"
+"    background:#dc2626; \n"
 "}")
         self.btnLogout.setObjectName("btnLogout")
         self.horizontalLayout_header.addWidget(self.btnLogout)
         self.verticalLayout.addWidget(self.headerBar)
         self.contentWidget = QtWidgets.QWidget(parent=self.centralwidget)
-        self.contentWidget.setStyleSheet("background-color: rgb(165, 165, 165);")
+        self.contentWidget.setStyleSheet("background-color: #f8fafc;")
         self.contentWidget.setObjectName("contentWidget")
         self.contentLayout = QtWidgets.QVBoxLayout(self.contentWidget)
         self.contentLayout.setContentsMargins(12, 10, 12, 10)
         self.contentLayout.setSpacing(6)
         self.contentLayout.setObjectName("contentLayout")
         self.tabWidget = QtWidgets.QTabWidget(parent=self.contentWidget)
-        self.tabWidget.setStyleSheet("\n"
-"QTabBar::tab {\n"
-"    border: 1px solid #767676;\n"
-"    color: black;}")
+        self.tabWidget.setStyleSheet(
+            "QTabBar::tab { border: 1px solid #767676; color: black; min-width: 130px; }"
+        )
         self.tabWidget.setObjectName("tabWidget")
         self.eventTab = QtWidgets.QWidget()
         font = QtGui.QFont()
@@ -138,14 +138,14 @@ class Ui_MainWindow(object):
         self.btnAddEvent = QtWidgets.QPushButton(parent=self.eventTab)
         self.btnAddEvent.setStyleSheet("padding: 10px; font-size: 13px;\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(39, 174, 96);")
+"background-color: #3b82f6;")
         self.btnAddEvent.setObjectName("btnAddEvent")
         self.horizontalLayout.addWidget(self.btnAddEvent)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         self.eventTable = QtWidgets.QTableWidget(parent=self.eventTab)
-        self.eventTable.setStyleSheet("background-color: rgb(48, 69, 88);")
+        self.eventTable.setStyleSheet("background-color: white;")
         self.eventTable.setObjectName("eventTable")
         self.eventTable.setColumnCount(6)
         self.eventTable.setRowCount(0)
@@ -165,23 +165,21 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.btnViewEvent = QtWidgets.QPushButton(parent=self.eventTab)
-        self.btnViewEvent.setStyleSheet("background-color: rgb(197, 0, 98);\n"
+        self.btnViewEvent.setStyleSheet("background-color: #2563eb;\n"
 "color: rgb(255, 255, 255);")
         self.btnViewEvent.setObjectName("btnViewEvent")
         self.horizontalLayout_2.addWidget(self.btnViewEvent)
         self.btnEditEvent = QtWidgets.QPushButton(parent=self.eventTab)
         self.btnEditEvent.setStyleSheet("color :rgb(255, 255, 255);\n"
-"background-color: rgb(52, 152, 219);")
+"background-color: #2563eb;")
         self.btnEditEvent.setObjectName("btnEditEvent")
         self.horizontalLayout_2.addWidget(self.btnEditEvent)
         self.btnDeleteEvent = QtWidgets.QPushButton(parent=self.eventTab)
-        self.btnDeleteEvent.setStyleSheet("background-color: #e74c3c; color: white;")
+        self.btnDeleteEvent.setStyleSheet("background-color: #ef4444; color: white;")
         self.btnDeleteEvent.setObjectName("btnDeleteEvent")
         self.horizontalLayout_2.addWidget(self.btnDeleteEvent)
         self.btnRefreshEvent = QtWidgets.QPushButton(parent=self.eventTab)
-        self.btnRefreshEvent.setStyleSheet("\n"
-"background-color: rgb(130, 0, 195);\n"
-"color: rgb(255, 255, 255);")
+        self.btnRefreshEvent.setStyleSheet("background-color: #94a3b8; color: white;")
         self.btnRefreshEvent.setObjectName("btnRefreshEvent")
         self.horizontalLayout_2.addWidget(self.btnRefreshEvent)
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -190,22 +188,22 @@ class Ui_MainWindow(object):
         self.horizontalLayout_event_page = QtWidgets.QHBoxLayout()
         self.horizontalLayout_event_page.setObjectName("horizontalLayout_event_page")
         self.btnExportEvent = QtWidgets.QPushButton(parent=self.eventTab)
-        self.btnExportEvent.setStyleSheet("background-color: #8e44ad; color: white; padding: 6px 12px;")
+        self.btnExportEvent.setStyleSheet("background-color: #94a3b8; color: white; padding: 6px 12px;")
         self.btnExportEvent.setObjectName("btnExportEvent")
         self.horizontalLayout_event_page.addWidget(self.btnExportEvent)
         spacerPage_event = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_event_page.addItem(spacerPage_event)
         self.btnPrevEvent = QtWidgets.QPushButton(parent=self.eventTab)
-        self.btnPrevEvent.setStyleSheet("background-color: #2980b9; color: white; padding: 6px 10px;")
+        self.btnPrevEvent.setStyleSheet("background-color: #2563eb; color: white; padding: 6px 10px;")
         self.btnPrevEvent.setObjectName("btnPrevEvent")
         self.horizontalLayout_event_page.addWidget(self.btnPrevEvent)
         self.lblPageEvent = QtWidgets.QLabel(parent=self.eventTab)
-        self.lblPageEvent.setStyleSheet("color: black; font-size: 12px; padding: 0 8px;")
+        self.lblPageEvent.setStyleSheet("color: #1e293b; font-size: 12px; padding: 0 8px;")
         self.lblPageEvent.setText("Page 1 / 1")
         self.lblPageEvent.setObjectName("lblPageEvent")
         self.horizontalLayout_event_page.addWidget(self.lblPageEvent)
         self.btnNextEvent = QtWidgets.QPushButton(parent=self.eventTab)
-        self.btnNextEvent.setStyleSheet("background-color: #2980b9; color: white; padding: 6px 10px;")
+        self.btnNextEvent.setStyleSheet("background-color: #2563eb; color: white; padding: 6px 10px;")
         self.btnNextEvent.setObjectName("btnNextEvent")
         self.horizontalLayout_event_page.addWidget(self.btnNextEvent)
         self.verticalLayout_2.addLayout(self.horizontalLayout_event_page)
@@ -235,7 +233,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.btnAddAttendee = QtWidgets.QPushButton(parent=self.attendeeTab)
         self.btnAddAttendee.setStyleSheet("padding: 10px; font-size: 13px;\n"
-"background-color: rgb(39, 174, 96);\n"
+"background-color: #3b82f6;\n"
 "color: rgb(255, 255, 255);")
         self.btnAddAttendee.setObjectName("btnAddAttendee")
         self.horizontalLayout_4.addWidget(self.btnAddAttendee)
@@ -243,7 +241,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.addItem(spacerItem3)
         self.verticalLayout_3.addLayout(self.horizontalLayout_4)
         self.attendeeTable = QtWidgets.QTableWidget(parent=self.attendeeTab)
-        self.attendeeTable.setStyleSheet("background-color: rgb(48, 69, 88);")
+        self.attendeeTable.setStyleSheet("background-color: white;")
         self.attendeeTable.setObjectName("attendeeTable")
         self.attendeeTable.setColumnCount(6)
         self.attendeeTable.setRowCount(0)
@@ -264,16 +262,15 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.btnEditAttendee = QtWidgets.QPushButton(parent=self.attendeeTab)
         self.btnEditAttendee.setStyleSheet("color: rgb(255, 255, 255);\n"
-"background-color: rgb(52, 152, 219);")
+"background-color: #2563eb;")
         self.btnEditAttendee.setObjectName("btnEditAttendee")
         self.horizontalLayout_5.addWidget(self.btnEditAttendee)
         self.btnDeleteAttendee = QtWidgets.QPushButton(parent=self.attendeeTab)
-        self.btnDeleteAttendee.setStyleSheet("background-color: #e74c3c; color: white;")
+        self.btnDeleteAttendee.setStyleSheet("background-color: #ef4444; color: white;")
         self.btnDeleteAttendee.setObjectName("btnDeleteAttendee")
         self.horizontalLayout_5.addWidget(self.btnDeleteAttendee)
         self.btnRefreshAttendee = QtWidgets.QPushButton(parent=self.attendeeTab)
-        self.btnRefreshAttendee.setStyleSheet("color: rgb(255, 255, 255);\n"
-"background-color: rgb(147, 0, 221);")
+        self.btnRefreshAttendee.setStyleSheet("background-color: #94a3b8; color: white;")
         self.btnRefreshAttendee.setObjectName("btnRefreshAttendee")
         self.horizontalLayout_5.addWidget(self.btnRefreshAttendee)
         spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -282,22 +279,22 @@ class Ui_MainWindow(object):
         self.horizontalLayout_attendee_page = QtWidgets.QHBoxLayout()
         self.horizontalLayout_attendee_page.setObjectName("horizontalLayout_attendee_page")
         self.btnExportAttendee = QtWidgets.QPushButton(parent=self.attendeeTab)
-        self.btnExportAttendee.setStyleSheet("background-color: #8e44ad; color: white; padding: 6px 12px;")
+        self.btnExportAttendee.setStyleSheet("background-color: #94a3b8; color: white; padding: 6px 12px;")
         self.btnExportAttendee.setObjectName("btnExportAttendee")
         self.horizontalLayout_attendee_page.addWidget(self.btnExportAttendee)
         spacerPage_attendee = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_attendee_page.addItem(spacerPage_attendee)
         self.btnPrevAttendee = QtWidgets.QPushButton(parent=self.attendeeTab)
-        self.btnPrevAttendee.setStyleSheet("background-color: #2980b9; color: white; padding: 6px 10px;")
+        self.btnPrevAttendee.setStyleSheet("background-color: #2563eb; color: white; padding: 6px 10px;")
         self.btnPrevAttendee.setObjectName("btnPrevAttendee")
         self.horizontalLayout_attendee_page.addWidget(self.btnPrevAttendee)
         self.lblPageAttendee = QtWidgets.QLabel(parent=self.attendeeTab)
-        self.lblPageAttendee.setStyleSheet("color: black; font-size: 12px; padding: 0 8px;")
+        self.lblPageAttendee.setStyleSheet("color: #1e293b; font-size: 12px; padding: 0 8px;")
         self.lblPageAttendee.setText("Page 1 / 1")
         self.lblPageAttendee.setObjectName("lblPageAttendee")
         self.horizontalLayout_attendee_page.addWidget(self.lblPageAttendee)
         self.btnNextAttendee = QtWidgets.QPushButton(parent=self.attendeeTab)
-        self.btnNextAttendee.setStyleSheet("background-color: #2980b9; color: white; padding: 6px 10px;")
+        self.btnNextAttendee.setStyleSheet("background-color: #2563eb; color: white; padding: 6px 10px;")
         self.btnNextAttendee.setObjectName("btnNextAttendee")
         self.horizontalLayout_attendee_page.addWidget(self.btnNextAttendee)
         self.verticalLayout_3.addLayout(self.horizontalLayout_attendee_page)
@@ -329,14 +326,14 @@ class Ui_MainWindow(object):
         self.btnRegisterAttendee = QtWidgets.QPushButton(parent=self.registrationTab)
         self.btnRegisterAttendee.setStyleSheet("padding: 10px; font-size: 13px;\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(39, 174, 96);")
+"background-color: #3b82f6;")
         self.btnRegisterAttendee.setObjectName("btnRegisterAttendee")
         self.horizontalLayout_7.addWidget(self.btnRegisterAttendee)
         spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_7.addItem(spacerItem6)
         self.verticalLayout_4.addLayout(self.horizontalLayout_7)
         self.registrationTable = QtWidgets.QTableWidget(parent=self.registrationTab)
-        self.registrationTable.setStyleSheet("background-color: rgb(48, 69, 88);")
+        self.registrationTable.setStyleSheet("background-color: white;")
         self.registrationTable.setObjectName("registrationTable")
         self.registrationTable.setColumnCount(6)
         self.registrationTable.setRowCount(0)
@@ -356,17 +353,16 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
         self.btnGenerateQR = QtWidgets.QPushButton(parent=self.registrationTab)
-        self.btnGenerateQR.setStyleSheet("background-color: rgb(52, 152, 219);\n"
+        self.btnGenerateQR.setStyleSheet("background-color: #2563eb;\n"
 "color: rgb(255, 255, 255);")
         self.btnGenerateQR.setObjectName("btnGenerateQR")
         self.horizontalLayout_8.addWidget(self.btnGenerateQR)
         self.btnCancelRegistration = QtWidgets.QPushButton(parent=self.registrationTab)
-        self.btnCancelRegistration.setStyleSheet("background-color: #e74c3c; color: white;")
+        self.btnCancelRegistration.setStyleSheet("background-color: #ef4444; color: white;")
         self.btnCancelRegistration.setObjectName("btnCancelRegistration")
         self.horizontalLayout_8.addWidget(self.btnCancelRegistration)
         self.btnRefreshRegistration = QtWidgets.QPushButton(parent=self.registrationTab)
-        self.btnRefreshRegistration.setStyleSheet("background-color: rgb(145, 0, 218);\n"
-"color: rgb(255, 255, 255);")
+        self.btnRefreshRegistration.setStyleSheet("background-color: #94a3b8; color: white;")
         self.btnRefreshRegistration.setObjectName("btnRefreshRegistration")
         self.horizontalLayout_8.addWidget(self.btnRefreshRegistration)
         spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -375,22 +371,22 @@ class Ui_MainWindow(object):
         self.horizontalLayout_registration_page = QtWidgets.QHBoxLayout()
         self.horizontalLayout_registration_page.setObjectName("horizontalLayout_registration_page")
         self.btnExportRegistration = QtWidgets.QPushButton(parent=self.registrationTab)
-        self.btnExportRegistration.setStyleSheet("background-color: #8e44ad; color: white; padding: 6px 12px;")
+        self.btnExportRegistration.setStyleSheet("background-color: #94a3b8; color: white; padding: 6px 12px;")
         self.btnExportRegistration.setObjectName("btnExportRegistration")
         self.horizontalLayout_registration_page.addWidget(self.btnExportRegistration)
         spacerPage_registration = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_registration_page.addItem(spacerPage_registration)
         self.btnPrevRegistration = QtWidgets.QPushButton(parent=self.registrationTab)
-        self.btnPrevRegistration.setStyleSheet("background-color: #2980b9; color: white; padding: 6px 10px;")
+        self.btnPrevRegistration.setStyleSheet("background-color: #2563eb; color: white; padding: 6px 10px;")
         self.btnPrevRegistration.setObjectName("btnPrevRegistration")
         self.horizontalLayout_registration_page.addWidget(self.btnPrevRegistration)
         self.lblPageRegistration = QtWidgets.QLabel(parent=self.registrationTab)
-        self.lblPageRegistration.setStyleSheet("color: black; font-size: 12px; padding: 0 8px;")
+        self.lblPageRegistration.setStyleSheet("color: #1e293b; font-size: 12px; padding: 0 8px;")
         self.lblPageRegistration.setText("Page 1 / 1")
         self.lblPageRegistration.setObjectName("lblPageRegistration")
         self.horizontalLayout_registration_page.addWidget(self.lblPageRegistration)
         self.btnNextRegistration = QtWidgets.QPushButton(parent=self.registrationTab)
-        self.btnNextRegistration.setStyleSheet("background-color: #2980b9; color: white; padding: 6px 10px;")
+        self.btnNextRegistration.setStyleSheet("background-color: #2563eb; color: white; padding: 6px 10px;")
         self.btnNextRegistration.setObjectName("btnNextRegistration")
         self.horizontalLayout_registration_page.addWidget(self.btnNextRegistration)
         self.verticalLayout_4.addLayout(self.horizontalLayout_registration_page)
@@ -427,7 +423,7 @@ class Ui_MainWindow(object):
         self.statsGroup.setFont(font)
         self.statsGroup.setAutoFillBackground(False)
         self.statsGroup.setStyleSheet("QGroupBox::title {\n"
-"    background-color:rgb(165, 165, 165); /* Màu nền của chữ */\n"
+"    background-color:#f1f5f9; /* Màu nền của chữ */\n"
 "    color: black;               /* Màu chữ */\n"
 "    subcontrol-position: top left; /* Vị trí */\n"
 "    padding: 2px;             /* Khoảng cách padding */\n"
@@ -453,7 +449,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.totalRegisteredLabel.setFont(font)
-        self.totalRegisteredLabel.setStyleSheet("color: #3498db;")
+        self.totalRegisteredLabel.setStyleSheet("color: #2563eb;")
         self.totalRegisteredLabel.setObjectName("totalRegisteredLabel")
         self.gridLayout.addWidget(self.totalRegisteredLabel, 0, 1, 1, 1)
         self.label_5 = QtWidgets.QLabel(parent=self.statsGroup)
@@ -467,7 +463,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.totalCheckedinLabel.setFont(font)
-        self.totalCheckedinLabel.setStyleSheet("color: #27ae60;")
+        self.totalCheckedinLabel.setStyleSheet("color: #3b82f6;")
         self.totalCheckedinLabel.setObjectName("totalCheckedinLabel")
         self.gridLayout.addWidget(self.totalCheckedinLabel, 0, 3, 1, 1)
         self.verticalLayout_5.addWidget(self.statsGroup)
@@ -480,7 +476,7 @@ class Ui_MainWindow(object):
         self.checkinGroup.setFont(font)
         self.checkinGroup.setAutoFillBackground(False)
         self.checkinGroup.setStyleSheet("QGroupBox::title {\n"
-"    background-color:rgb(165, 165, 165); /* Màu nền của chữ */\n"
+"    background-color:#f1f5f9; /* Màu nền của chữ */\n"
 "    color: black;               /* Màu chữ */\n"
 "    subcontrol-position: top left; /* Vị trí */\n"
 "    padding: 2px;             /* Khoảng cách padding */\n"
@@ -507,11 +503,11 @@ class Ui_MainWindow(object):
         self.checkinCode.setObjectName("checkinCode")
         self.horizontalLayout_10.addWidget(self.checkinCode)
         self.btnCheckin = QtWidgets.QPushButton(parent=self.checkinGroup)
-        self.btnCheckin.setStyleSheet("background-color: #27ae60; color: white; padding: 10px; font-size: 14px;")
+        self.btnCheckin.setStyleSheet("background-color: #3b82f6; color: white; padding: 10px; font-size: 14px;")
         self.btnCheckin.setObjectName("btnCheckin")
         self.horizontalLayout_10.addWidget(self.btnCheckin)
         self.btnScanQR = QtWidgets.QPushButton(parent=self.checkinGroup)
-        self.btnScanQR.setStyleSheet("background-color: #3498db; color: white; padding: 10px; font-size: 14px;")
+        self.btnScanQR.setStyleSheet("background-color: #2563eb; color: white; padding: 10px; font-size: 14px;")
         self.btnScanQR.setObjectName("btnScanQR")
         self.horizontalLayout_10.addWidget(self.btnScanQR)
         self.verticalLayout_5.addWidget(self.checkinGroup)
@@ -525,7 +521,7 @@ class Ui_MainWindow(object):
         self.label_7.setObjectName("label_7")
         self.verticalLayout_5.addWidget(self.label_7)
         self.checkinTable = QtWidgets.QTableWidget(parent=self.checkinTab)
-        self.checkinTable.setStyleSheet("background-color: rgb(48, 69, 88);")
+        self.checkinTable.setStyleSheet("background-color: white;")
         self.checkinTable.setObjectName("checkinTable")
         self.checkinTable.setColumnCount(5)
         self.checkinTable.setRowCount(0)
@@ -543,8 +539,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_11 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_11.setObjectName("horizontalLayout_11")
         self.btnRefreshCheckin = QtWidgets.QPushButton(parent=self.checkinTab)
-        self.btnRefreshCheckin.setStyleSheet("background-color: rgb(148, 0, 222);\n"
-"color: rgb(255, 255, 255);")
+        self.btnRefreshCheckin.setStyleSheet("background-color: #94a3b8; color: white;")
         self.btnRefreshCheckin.setObjectName("btnRefreshCheckin")
         self.horizontalLayout_11.addWidget(self.btnRefreshCheckin)
         spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -553,7 +548,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_checkin_export = QtWidgets.QHBoxLayout()
         self.horizontalLayout_checkin_export.setObjectName("horizontalLayout_checkin_export")
         self.btnExportCheckin = QtWidgets.QPushButton(parent=self.checkinTab)
-        self.btnExportCheckin.setStyleSheet("background-color: #8e44ad; color: white; padding: 6px 12px;")
+        self.btnExportCheckin.setStyleSheet("background-color: #94a3b8; color: white; padding: 6px 12px;")
         self.btnExportCheckin.setObjectName("btnExportCheckin")
         self.horizontalLayout_checkin_export.addWidget(self.btnExportCheckin)
         spacerCheckinExport = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -569,14 +564,14 @@ class Ui_MainWindow(object):
         self.btnAddUser = QtWidgets.QPushButton(parent=self.userMgmtTab)
         self.btnAddUser.setStyleSheet("padding: 10px; font-size: 13px;\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(39, 174, 96);")
+"background-color: #3b82f6;")
         self.btnAddUser.setObjectName("btnAddUser")
         self.horizontalLayout_12.addWidget(self.btnAddUser)
         spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_12.addItem(spacerItem10)
         self.verticalLayout_6.addLayout(self.horizontalLayout_12)
         self.userTable = QtWidgets.QTableWidget(parent=self.userMgmtTab)
-        self.userTable.setStyleSheet("background-color: rgb(48, 69, 88);")
+        self.userTable.setStyleSheet("background-color: white;")
         self.userTable.setObjectName("userTable")
         self.userTable.setColumnCount(5)
         self.userTable.setRowCount(0)
@@ -594,28 +589,141 @@ class Ui_MainWindow(object):
         self.horizontalLayout_13 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_13.setObjectName("horizontalLayout_13")
         self.btnEditUser = QtWidgets.QPushButton(parent=self.userMgmtTab)
-        self.btnEditUser.setStyleSheet("background-color: rgb(52, 152, 219);\n"
+        self.btnEditUser.setStyleSheet("background-color: #2563eb;\n"
 "color: rgb(255, 255, 255);")
         self.btnEditUser.setObjectName("btnEditUser")
         self.horizontalLayout_13.addWidget(self.btnEditUser)
         self.btnDeleteUser = QtWidgets.QPushButton(parent=self.userMgmtTab)
-        self.btnDeleteUser.setStyleSheet("background-color: #e74c3c; color: white;")
+        self.btnDeleteUser.setStyleSheet("background-color: #ef4444; color: white;")
         self.btnDeleteUser.setObjectName("btnDeleteUser")
         self.horizontalLayout_13.addWidget(self.btnDeleteUser)
         self.btnResetUserPwd = QtWidgets.QPushButton(parent=self.userMgmtTab)
-        self.btnResetUserPwd.setStyleSheet("background-color: rgb(0, 85, 0);\n"
+        self.btnResetUserPwd.setStyleSheet("background-color: #3b82f6;\n"
 "color: rgb(255, 255, 255);")
         self.btnResetUserPwd.setObjectName("btnResetUserPwd")
         self.horizontalLayout_13.addWidget(self.btnResetUserPwd)
         self.btnRefreshUser = QtWidgets.QPushButton(parent=self.userMgmtTab)
-        self.btnRefreshUser.setStyleSheet("background-color: rgb(147, 0, 221);\n"
-"color: rgb(255, 255, 255);")
+        self.btnRefreshUser.setStyleSheet("background-color: #94a3b8; color: white;")
         self.btnRefreshUser.setObjectName("btnRefreshUser")
         self.horizontalLayout_13.addWidget(self.btnRefreshUser)
         spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_13.addItem(spacerItem11)
         self.verticalLayout_6.addLayout(self.horizontalLayout_13)
         self.tabWidget.addTab(self.userMgmtTab, "")
+
+        # ── Statistics Tab ──────────────────────────────────────────────────────
+        self.statisticsTab = QtWidgets.QWidget()
+        self.statisticsTab.setObjectName("statisticsTab")
+        self.statisticsTab.setStyleSheet("background-color: #f0f0f0;")
+
+        self.verticalLayout_stats = QtWidgets.QVBoxLayout(self.statisticsTab)
+        self.verticalLayout_stats.setContentsMargins(12, 12, 12, 12)
+        self.verticalLayout_stats.setSpacing(8)
+
+        # ── Row 1: Event selector ────────────────────────────────────────────
+        self.horizontalLayout_stats_top = QtWidgets.QHBoxLayout()
+
+        self.lblStatsEvent = QtWidgets.QLabel(parent=self.statisticsTab)
+        self.lblStatsEvent.setText("Event:")
+        self.lblStatsEvent.setStyleSheet("color:#3b82f6; font-weight:bold; font-size:13px;")
+        self.lblStatsEvent.setObjectName("lblStatsEvent")
+        self.horizontalLayout_stats_top.addWidget(self.lblStatsEvent)
+
+        self.statsEventCombo = QtWidgets.QComboBox(parent=self.statisticsTab)
+        self.statsEventCombo.setMinimumWidth(260)
+        self.statsEventCombo.setStyleSheet("""
+            QComboBox {
+                border: 1px solid #bdc3c7;
+                border-radius: 4px;
+                padding: 4px 8px;
+                color: #1e293b;
+                background: white;
+                font-size: 13px;
+            }
+            QComboBox::drop-down { border: none; }
+        """)
+        self.statsEventCombo.setObjectName("statsEventCombo")
+        self.horizontalLayout_stats_top.addWidget(self.statsEventCombo)
+
+        spacerStatsTop = QtWidgets.QSpacerItem(40, 20,
+            QtWidgets.QSizePolicy.Policy.Expanding,
+            QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_stats_top.addItem(spacerStatsTop)
+
+        self.verticalLayout_stats.addLayout(self.horizontalLayout_stats_top)
+
+        # ── Row 2: Chart type toggle buttons ────────────────────────────────
+        ACTIVE_STYLE = """
+            QPushButton {
+                background-color: #1e293b;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                padding: 7px 20px;
+                font-size: 13px;
+                font-weight: bold;
+            }
+            QPushButton:hover { background-color: #0f172a; }
+        """
+        INACTIVE_STYLE = """
+            QPushButton {
+                background-color: #e2e8f0;
+                color: #64748b;
+                border: none;
+                border-radius: 4px;
+                padding: 7px 20px;
+                font-size: 13px;
+            }
+            QPushButton:hover { background-color: #cccccc; color: #1e293b; }
+        """
+
+        self.horizontalLayout_stats_btns = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_stats_btns.setSpacing(4)
+
+        self.btnStatsBar = QtWidgets.QPushButton("Bar Chart", parent=self.statisticsTab)
+        self.btnStatsBar.setObjectName("btnStatsBar")
+        self.btnStatsBar.setStyleSheet(ACTIVE_STYLE)
+        self.btnStatsBar.setProperty("active_style",  ACTIVE_STYLE)
+        self.btnStatsBar.setProperty("inactive_style", INACTIVE_STYLE)
+        self.horizontalLayout_stats_btns.addWidget(self.btnStatsBar)
+
+        self.btnStatsLine = QtWidgets.QPushButton("Line Chart", parent=self.statisticsTab)
+        self.btnStatsLine.setObjectName("btnStatsLine")
+        self.btnStatsLine.setStyleSheet(INACTIVE_STYLE)
+        self.btnStatsLine.setProperty("active_style",  ACTIVE_STYLE)
+        self.btnStatsLine.setProperty("inactive_style", INACTIVE_STYLE)
+        self.horizontalLayout_stats_btns.addWidget(self.btnStatsLine)
+
+        self.btnStatsPie = QtWidgets.QPushButton("Pie Chart", parent=self.statisticsTab)
+        self.btnStatsPie.setObjectName("btnStatsPie")
+        self.btnStatsPie.setStyleSheet(INACTIVE_STYLE)
+        self.btnStatsPie.setProperty("active_style",  ACTIVE_STYLE)
+        self.btnStatsPie.setProperty("inactive_style", INACTIVE_STYLE)
+        self.horizontalLayout_stats_btns.addWidget(self.btnStatsPie)
+
+        spacerStatsBtns = QtWidgets.QSpacerItem(40, 20,
+            QtWidgets.QSizePolicy.Policy.Expanding,
+            QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_stats_btns.addItem(spacerStatsBtns)
+
+        self.verticalLayout_stats.addLayout(self.horizontalLayout_stats_btns)
+
+        # ── Chart area (không có GroupBox title, không có toolbar) ──────────
+        self.statsChartGroup = QtWidgets.QFrame(parent=self.statisticsTab)
+        self.statsChartGroup.setObjectName("statsChartGroup")
+        self.statsChartGroup.setStyleSheet("""
+            QFrame {
+                background-color: white;
+                border: 1px solid #f1f5f9;
+                border-radius: 6px;
+            }
+        """)
+        self.verticalLayoutStatsPlot = QtWidgets.QVBoxLayout(self.statsChartGroup)
+        self.verticalLayoutStatsPlot.setContentsMargins(4, 4, 4, 4)
+        self.verticalLayoutStatsPlot.setObjectName("verticalLayoutStatsPlot")
+        self.verticalLayout_stats.addWidget(self.statsChartGroup)
+
+        self.tabWidget.addTab(self.statisticsTab, "")
         self.contentLayout.addWidget(self.tabWidget)
         self.verticalLayout.addWidget(self.contentWidget)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -654,7 +762,7 @@ class Ui_MainWindow(object):
         self.btnExportEvent.setText(_translate("MainWindow", "📥 Export CSV"))
         self.btnPrevEvent.setText(_translate("MainWindow", "◀ Prev"))
         self.btnNextEvent.setText(_translate("MainWindow", "Next ▶"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.eventTab), _translate("MainWindow", "📅 Event Management"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.eventTab), _translate("MainWindow", "📅 Events"))
         self.label.setText(_translate("MainWindow", "🔍 Search:"))
         self.attendeeSearch.setPlaceholderText(_translate("MainWindow", "Enter name, email, phone number or organization..."))
         self.btnAddAttendee.setText(_translate("MainWindow", "➕ Add Attendee"))
@@ -697,7 +805,7 @@ class Ui_MainWindow(object):
         self.btnExportRegistration.setText(_translate("MainWindow", "📥 Export CSV"))
         self.btnPrevRegistration.setText(_translate("MainWindow", "◀ Prev"))
         self.btnNextRegistration.setText(_translate("MainWindow", "Next ▶"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.registrationTab), _translate("MainWindow", "📋 Registration"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.registrationTab), _translate("MainWindow", "📋 Register"))
         self.label_3.setText(_translate("MainWindow", "Select Event:"))
         self.statsGroup.setTitle(_translate("MainWindow", "📊 Check-in Statistics"))
         self.label_4.setText(_translate("MainWindow", "Total Registered:"))
@@ -738,4 +846,10 @@ class Ui_MainWindow(object):
         self.btnDeleteUser.setText(_translate("MainWindow", "🗑 Delete"))
         self.btnResetUserPwd.setText(_translate("MainWindow", "🔑 Reset Password"))
         self.btnRefreshUser.setText(_translate("MainWindow", "🔄 Refresh"))
+        self.btnStatsBar.setText(_translate("MainWindow", "📊 Bar Chart"))
+        self.btnStatsLine.setText(_translate("MainWindow", "📈 Line Chart"))
+        self.btnStatsPie.setText(_translate("MainWindow", "🥧 Pie Chart"))
+        self.lblStatsEvent.setText(_translate("MainWindow", "Select Event:"))
+        # statsChartGroup is QFrame, no title needed
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.userMgmtTab), _translate("MainWindow", "👤 Accounts"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.statisticsTab), _translate("MainWindow", "📊 Statistics"))

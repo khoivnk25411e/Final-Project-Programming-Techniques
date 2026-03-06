@@ -16,7 +16,7 @@ class Ui_AttendeeDialog(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("D:\\GIT_TDLT\\Final-Project-Programming-Techniques\\ui\\../images/add_edit_logo.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         AttendeeDialog.setWindowIcon(icon)
-        AttendeeDialog.setStyleSheet("background-color: rgb(167, 167, 167);")
+        AttendeeDialog.setStyleSheet("background-color: #f1f5f9;")
         self.verticalLayout = QtWidgets.QVBoxLayout(AttendeeDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.formLayout = QtWidgets.QFormLayout()
@@ -29,7 +29,7 @@ class Ui_AttendeeDialog(object):
         self.label.setObjectName("label")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label)
         self.nameInput = QtWidgets.QLineEdit(parent=AttendeeDialog)
-        self.nameInput.setStyleSheet("background-color: rgb(194, 194, 194);\n"
+        self.nameInput.setStyleSheet("background-color: #f1f5f9;\n"
 "color: rgb(0, 0, 0);")
         self.nameInput.setObjectName("nameInput")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.nameInput)
@@ -41,7 +41,7 @@ class Ui_AttendeeDialog(object):
         self.label_2.setObjectName("label_2")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_2)
         self.emailInput = QtWidgets.QLineEdit(parent=AttendeeDialog)
-        self.emailInput.setStyleSheet("background-color: rgb(194, 194, 194);\n"
+        self.emailInput.setStyleSheet("background-color: #f1f5f9;\n"
 "color: rgb(0, 0, 0);")
         self.emailInput.setObjectName("emailInput")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.FieldRole, self.emailInput)
@@ -53,7 +53,7 @@ class Ui_AttendeeDialog(object):
         self.label_3.setObjectName("label_3")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_3)
         self.phoneInput = QtWidgets.QLineEdit(parent=AttendeeDialog)
-        self.phoneInput.setStyleSheet("background-color: rgb(194, 194, 194);\n"
+        self.phoneInput.setStyleSheet("background-color: #f1f5f9;\n"
 "color: rgb(0, 0, 0);")
         self.phoneInput.setObjectName("phoneInput")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.ItemRole.FieldRole, self.phoneInput)
@@ -65,7 +65,7 @@ class Ui_AttendeeDialog(object):
         self.label_4.setObjectName("label_4")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_4)
         self.organizationInput = QtWidgets.QLineEdit(parent=AttendeeDialog)
-        self.organizationInput.setStyleSheet("background-color: rgb(194, 194, 194);\n"
+        self.organizationInput.setStyleSheet("background-color: #f1f5f9;\n"
 "color: rgb(0, 0, 0);")
         self.organizationInput.setObjectName("organizationInput")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.ItemRole.FieldRole, self.organizationInput)
@@ -77,7 +77,7 @@ class Ui_AttendeeDialog(object):
         self.label_5.setObjectName("label_5")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_5)
         self.positionInput = QtWidgets.QLineEdit(parent=AttendeeDialog)
-        self.positionInput.setStyleSheet("background-color: rgb(194, 194, 194);\n"
+        self.positionInput.setStyleSheet("background-color: #f1f5f9;\n"
 "color: rgb(0, 0, 0);")
         self.positionInput.setObjectName("positionInput")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.ItemRole.FieldRole, self.positionInput)
@@ -90,13 +90,13 @@ class Ui_AttendeeDialog(object):
         self.horizontalLayout.addItem(spacerItem1)
         self.btnSave = QtWidgets.QPushButton(parent=AttendeeDialog)
         self.btnSave.setStyleSheet("padding: 8px 15px;\n"
-"background-color: rgb(124, 0, 186);\n"
+"background-color: #3b82f6;\n"
 "color: rgb(255, 255, 255);")
         self.btnSave.setObjectName("btnSave")
         self.horizontalLayout.addWidget(self.btnSave)
         self.btnCancel = QtWidgets.QPushButton(parent=AttendeeDialog)
         self.btnCancel.setStyleSheet("padding: 8px 15px;\n"
-"background-color: rgb(255, 0, 0);\n"
+"background-color: #ef4444;\n"
 "color: rgb(255, 255, 255);")
         self.btnCancel.setObjectName("btnCancel")
         self.horizontalLayout.addWidget(self.btnCancel)

@@ -16,7 +16,7 @@ class Ui_EventDialog(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("D:\\GIT_TDLT\\Final-Project-Programming-Techniques\\ui\\../images/add_edit_logo.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         EventDialog.setWindowIcon(icon)
-        EventDialog.setStyleSheet("background-color: rgb(166, 166, 166);")
+        EventDialog.setStyleSheet("background-color: #f1f5f9;")
         self.verticalLayout = QtWidgets.QVBoxLayout(EventDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.formLayout = QtWidgets.QFormLayout()
@@ -31,7 +31,7 @@ class Ui_EventDialog(object):
         self.nameInput = QtWidgets.QLineEdit(parent=EventDialog)
         self.nameInput.setStyleSheet("\n"
 "color: rgb(0, 0, 0);\n"
-"background-color: rgb(203, 203, 203);")
+"background-color: #f1f5f9;")
         self.nameInput.setObjectName("nameInput")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.nameInput)
         self.label_2 = QtWidgets.QLabel(parent=EventDialog)
@@ -43,7 +43,7 @@ class Ui_EventDialog(object):
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_2)
         self.dateInput = QtWidgets.QDateEdit(parent=EventDialog)
         self.dateInput.setStyleSheet("color: rgb(0, 0, 0);\n"
-"background-color: rgb(203, 203, 203);")
+"background-color: #f1f5f9;")
         self.dateInput.setCalendarPopup(True)
         self.dateInput.setObjectName("dateInput")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.FieldRole, self.dateInput)
@@ -56,7 +56,7 @@ class Ui_EventDialog(object):
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_3)
         self.timeInput = QtWidgets.QTimeEdit(parent=EventDialog)
         self.timeInput.setStyleSheet("color: rgb(0, 0, 0);\n"
-"background-color: rgb(203, 203, 203);")
+"background-color: #f1f5f9;")
         self.timeInput.setObjectName("timeInput")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.ItemRole.FieldRole, self.timeInput)
         self.label_4 = QtWidgets.QLabel(parent=EventDialog)
@@ -68,7 +68,7 @@ class Ui_EventDialog(object):
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_4)
         self.locationInput = QtWidgets.QLineEdit(parent=EventDialog)
         self.locationInput.setStyleSheet("color: rgb(0, 0, 0);\n"
-"background-color: rgb(203, 203, 203);")
+"background-color: #f1f5f9;")
         self.locationInput.setObjectName("locationInput")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.ItemRole.FieldRole, self.locationInput)
         self.label_5 = QtWidgets.QLabel(parent=EventDialog)
@@ -81,7 +81,7 @@ class Ui_EventDialog(object):
         self.descriptionInput = QtWidgets.QTextEdit(parent=EventDialog)
         self.descriptionInput.setMaximumSize(QtCore.QSize(16777215, 100))
         self.descriptionInput.setStyleSheet("color: rgb(0, 0, 0);\n"
-"background-color: rgb(203, 203, 203);")
+"background-color: #f1f5f9;")
         self.descriptionInput.setObjectName("descriptionInput")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.ItemRole.FieldRole, self.descriptionInput)
         self.verticalLayout.addLayout(self.formLayout)
@@ -93,13 +93,13 @@ class Ui_EventDialog(object):
         self.horizontalLayout.addItem(spacerItem1)
         self.btnSave = QtWidgets.QPushButton(parent=EventDialog)
         self.btnSave.setStyleSheet("padding: 8px 15px;\n"
-"background-color: rgb(119, 0, 179);\n"
+"background-color: #3b82f6;\n"
 "color: rgb(255, 255, 255);")
         self.btnSave.setObjectName("btnSave")
         self.horizontalLayout.addWidget(self.btnSave)
         self.btnCancel = QtWidgets.QPushButton(parent=EventDialog)
         self.btnCancel.setStyleSheet("padding: 8px 15px;\n"
-"background-color: rgb(203, 0, 0);\n"
+"background-color: #ef4444;\n"
 "color: rgb(255, 255, 255);")
         self.btnCancel.setObjectName("btnCancel")
         self.horizontalLayout.addWidget(self.btnCancel)
