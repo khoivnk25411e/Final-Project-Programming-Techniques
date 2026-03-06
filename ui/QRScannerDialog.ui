@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>720</width>
-    <height>600</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,40 +35,39 @@
       <font>
        <family>Arial</family>
        <pointsize>14</pointsize>
-       <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #2c3e50; margin-bottom: 6px;</string>
+      <string notr="true">color: #1e293b; margin-bottom: 6px;</string>
      </property>
      <property name="text">
-      <string>📷  Scan QR Code for Check-in</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#71eaed;&quot;&gt;📷  Scan QR Code for Check-in&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QLabel" name="lblInstruction">
      <property name="styleSheet">
-      <string notr="true">color: #7f8c8d; font-size: 12px;</string>
+      <string notr="true">color: #64748b; font-size: 12px;</string>
      </property>
      <property name="text">
-      <string>Hold the QR code in front of the camera for automatic check-in</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ed2140;&quot;&gt;Hold the QR code in front of the camera for automatic check-in&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_video">
      <item>
-      <spacer name="horizontalSpacer">
+      <spacer name="spacerItem">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -93,22 +92,22 @@
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid #34495e; 
-border-radius: 8px; 
-background-color: #2c3e50;</string>
+        <string notr="true">border: 2px solid #34495e;
+border-radius: 8px;
+background-color: #1e293b;</string>
        </property>
        <property name="text">
         <string>📷 Starting camera...</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_2">
+      <spacer name="spacerItem1">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -123,25 +122,25 @@ background-color: #2c3e50;</string>
    <item>
     <widget class="QLabel" name="lblStatus">
      <property name="styleSheet">
-      <string notr="true">color: #27ae60; 
-font-size: 13px; 
-font-weight: bold; 
-padding: 8px; 
-background: #d5f4e6; 
+      <string notr="true">color: #16a34a;
+font-size: 13px;
+font-weight: bold;
+padding: 8px;
+background: #f0fdf4;
 border-radius: 6px;</string>
      </property>
      <property name="text">
       <string/>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </item>
    <item>
-    <spacer name="verticalSpacer">
+    <spacer name="spacerItem2">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -154,9 +153,9 @@ border-radius: 6px;</string>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <spacer name="horizontalSpacer_3">
+      <spacer name="spacerItem3">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -176,15 +175,15 @@ border-radius: 6px;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton {
-    background: #e74c3c; 
-    color: white; 
+    background: #ef4444;
+    color: white;
     border-radius: 6px;
-    font-size: 13px; 
-    font-weight: bold; 
+    font-size: 13px;
+    font-weight: bold;
     padding: 0 20px;
 }
-QPushButton:hover { 
-    background: #c0392b; 
+QPushButton:hover {
+    background: #ef4444;
 }</string>
        </property>
        <property name="text">
@@ -205,12 +204,12 @@ QPushButton:hover {
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>360</x>
-     <y>560</y>
+     <x>0</x>
+     <y>0</y>
     </hint>
     <hint type="destinationlabel">
-     <x>360</x>
-     <y>300</y>
+     <x>0</x>
+     <y>0</y>
     </hint>
    </hints>
   </connection>

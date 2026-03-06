@@ -30,7 +30,7 @@
     <normaloff>../images/add_edit_logo.png</normaloff>../images/add_edit_logo.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(159, 159, 159);</string>
+   <string notr="true">background-color: #f1f5f9;</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -59,7 +59,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color:#2c3e50; margin-bottom:6px;</string>
+      <string notr="true">color:#1e293b; margin-bottom:6px;</string>
      </property>
      <property name="text">
       <string>👤  Account Information</string>
@@ -95,10 +95,9 @@ color: rgb(0, 0, 0);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QLineEdit{
-    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
-       /* (Tùy chọn) Bo góc */
-    padding: 2px;    
-	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+    border: 2px solid #6f6f6f;
+    padding: 2px;
+    color: black;
 }</string>
        </property>
        <property name="placeholderText">
@@ -127,10 +126,9 @@ color: rgb(0, 0, 0);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QLineEdit{
-    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
-       /* (Tùy chọn) Bo góc */
-    padding: 2px;    
-	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+    border: 2px solid #6f6f6f;
+    padding: 2px;
+    color: black;
 }</string>
        </property>
        <property name="placeholderText">
@@ -158,10 +156,9 @@ color: rgb(0, 0, 0);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QLineEdit{
-    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
-       /* (Tùy chọn) Bo góc */
-    padding: 2px;    
-	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+    border: 2px solid #6f6f6f;
+    padding: 2px;
+    color: black;
 }</string>
        </property>
        <property name="placeholderText">
@@ -189,10 +186,9 @@ color: rgb(0, 0, 0);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QLineEdit{
-    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
-       /* (Tùy chọn) Bo góc */
-    padding: 2px;    
-	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+    border: 2px solid #6f6f6f;
+    padding: 2px;
+    color: black;
 }</string>
        </property>
        <property name="echoMode">
@@ -223,10 +219,9 @@ color: rgb(0, 0, 0);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QComboBox{
-    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
-       /* (Tùy chọn) Bo góc */
-    padding: 2px;    
-	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+    border: 2px solid #6f6f6f;
+    padding: 2px;
+    color: black;
 }</string>
        </property>
        <item>
@@ -261,10 +256,9 @@ color: rgb(0, 0, 0);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QLineEdit{
-    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
-       /* (Tùy chọn) Bo góc */
-    padding: 2px;    
-	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+    border: 2px solid #6f6f6f;
+    padding: 2px;
+    color: black;
 }</string>
        </property>
        <property name="placeholderText">
@@ -292,10 +286,9 @@ color: rgb(0, 0, 0);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QLineEdit{
-    border: 2px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
-       /* (Tùy chọn) Bo góc */
-    padding: 2px;    
-	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+    border: 2px solid #6f6f6f;
+    padding: 2px;
+    color: black;
 }</string>
        </property>
        <property name="placeholderText">
@@ -306,7 +299,7 @@ color: rgb(0, 0, 0);</string>
     </layout>
    </item>
    <item>
-    <spacer name="verticalSpacer">
+    <spacer name="spacerItem">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -321,7 +314,7 @@ color: rgb(0, 0, 0);</string>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <spacer name="horizontalSpacer">
+      <spacer name="spacerItem1">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -343,7 +336,7 @@ color: rgb(0, 0, 0);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-    background:#2ecc71;
+    background:#3b82f6;
     color:white;
     border-radius:6px;
     font-size:13px;
@@ -351,7 +344,7 @@ color: rgb(0, 0, 0);</string>
     padding:0 16px;
 }
 QPushButton:hover{
-    background:#27ae60;
+    background:#3b82f6;
 }</string>
        </property>
        <property name="text">
@@ -369,14 +362,14 @@ QPushButton:hover{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-    background:red;
+    background: #ef4444;
     color:white;
     border-radius:6px;
     font-size:13px;
     padding:0 16px;
 }
 QPushButton:hover{
-    background:#d5dbdb;
+    background:#f1f5f9;
 }</string>
        </property>
        <property name="text">
@@ -397,12 +390,12 @@ QPushButton:hover{
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>370</x>
-     <y>380</y>
+     <x>0</x>
+     <y>0</y>
     </hint>
     <hint type="destinationlabel">
-     <x>220</x>
-     <y>210</y>
+     <x>0</x>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
