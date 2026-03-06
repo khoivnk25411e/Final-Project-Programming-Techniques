@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="Update UI">
-      <change beforePath="$PROJECT_DIR$/ui/QRScannerDialog.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ui/QRScannerDialog.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/MainWindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ui/MainWindow.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,7 +302,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772770681845</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Update UI">
+      <option name="closed" value="true" />
+      <created>1772770964946</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1772770964946</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>801</width>
-    <height>663</height>
+    <width>1000</width>
+    <height>700</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>960</width>
+    <height>600</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Event Check-in Management System</string>
@@ -47,7 +53,7 @@
       <property name="styleSheet">
        <string notr="true">QWidget#headerBar {
     background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
-        stop:0 #1a252f, stop:1 #2c3e50);
+        stop:0 #1e293b, stop:1 #334155);
 }</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_header">
@@ -85,7 +91,7 @@
         </widget>
        </item>
        <item>
-        <spacer name="horizontalSpacer_header">
+        <spacer name="spacerItem">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -112,13 +118,13 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QLabel { 
-    background:#27ae60; 
-    color:white; 
+          <string notr="true">QLabel {
+    background:#3b82f6;
+    color:white;
     border-radius:5px;
-    font-size:11px; 
-    font-weight:bold; 
-    padding: 0 8px; 
+    font-size:11px;
+    font-weight:bold;
+    padding: 0 8px;
 }</string>
          </property>
          <property name="text">
@@ -154,16 +160,16 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton { 
-    background:#3498db; 
-    color:white; 
+          <string notr="true">QPushButton {
+    background:#2563eb;
+    color:white;
     border-radius:6px;
-    font-size:12px; 
-    padding: 0 12px; 
-    border:none; 
+    font-size:12px;
+    padding: 0 12px;
+    border:none;
 }
-QPushButton:hover { 
-    background:#2980b9; 
+QPushButton:hover {
+    background:#2563eb;
 }</string>
          </property>
          <property name="text">
@@ -186,16 +192,16 @@ QPushButton:hover {
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton { 
-    background:#e74c3c; 
-    color:white; 
+          <string notr="true">QPushButton {
+    background:#ef4444;
+    color:white;
     border-radius:6px;
-    font-size:12px; 
-    padding: 0 12px; 
-    border:none; 
+    font-size:12px;
+    padding: 0 12px;
+    border:none;
 }
-QPushButton:hover { 
-    background:#c0392b; 
+QPushButton:hover {
+    background:#dc2626;
 }</string>
          </property>
          <property name="text">
@@ -209,7 +215,7 @@ QPushButton:hover {
     <item>
      <widget class="QWidget" name="contentWidget" native="true">
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(165, 165, 165);</string>
+       <string notr="true">background-color: #f8fafc;</string>
       </property>
       <layout class="QVBoxLayout" name="contentLayout">
        <property name="spacing">
@@ -230,10 +236,7 @@ QPushButton:hover {
        <item>
         <widget class="QTabWidget" name="tabWidget">
          <property name="styleSheet">
-          <string notr="true">
-QTabBar::tab {
-    border: 1px solid #767676;
-	color: black;}</string>
+          <string notr="true">QTabBar::tab { border: 1px solid #767676; color: black; min-width: 130px; }</string>
          </property>
          <property name="currentIndex">
           <number>0</number>
@@ -244,11 +247,8 @@ QTabBar::tab {
             <pointsize>12</pointsize>
            </font>
           </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
           <attribute name="title">
-           <string>📅 Event Management</string>
+           <string>📅 Events</string>
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
@@ -287,7 +287,7 @@ QTabBar::tab {
                <property name="styleSheet">
                 <string notr="true">padding: 10px; font-size: 13px;
 color: rgb(255, 255, 255);
-background-color: rgb(39, 174, 96);</string>
+background-color: #3b82f6;</string>
                </property>
                <property name="text">
                 <string>➕ Add New Event</string>
@@ -295,7 +295,7 @@ background-color: rgb(39, 174, 96);</string>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer">
+              <spacer name="spacerItem1">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -312,7 +312,7 @@ background-color: rgb(39, 174, 96);</string>
            <item>
             <widget class="QTableWidget" name="eventTable">
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(48, 69, 88);</string>
+              <string notr="true">background-color: white;</string>
              </property>
              <column>
               <property name="text">
@@ -351,7 +351,7 @@ background-color: rgb(39, 174, 96);</string>
              <item>
               <widget class="QPushButton" name="btnViewEvent">
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(197, 0, 98);
+                <string notr="true">background-color: #2563eb;
 color: rgb(255, 255, 255);</string>
                </property>
                <property name="text">
@@ -363,7 +363,7 @@ color: rgb(255, 255, 255);</string>
               <widget class="QPushButton" name="btnEditEvent">
                <property name="styleSheet">
                 <string notr="true">color :rgb(255, 255, 255);
-background-color: rgb(52, 152, 219);</string>
+background-color: #2563eb;</string>
                </property>
                <property name="text">
                 <string>✏ Update</string>
@@ -373,7 +373,7 @@ background-color: rgb(52, 152, 219);</string>
              <item>
               <widget class="QPushButton" name="btnDeleteEvent">
                <property name="styleSheet">
-                <string notr="true">background-color: #e74c3c; color: white;</string>
+                <string notr="true">background-color: #ef4444; color: white;</string>
                </property>
                <property name="text">
                 <string>🗑 Delete</string>
@@ -383,9 +383,7 @@ background-color: rgb(52, 152, 219);</string>
              <item>
               <widget class="QPushButton" name="btnRefreshEvent">
                <property name="styleSheet">
-                <string notr="true">
-background-color: rgb(130, 0, 195);
-color: rgb(255, 255, 255);</string>
+                <string notr="true">background-color: #94a3b8; color: white;</string>
                </property>
                <property name="text">
                 <string>🔄 Refresh</string>
@@ -393,7 +391,7 @@ color: rgb(255, 255, 255);</string>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_2">
+              <spacer name="spacerItem2">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -412,7 +410,7 @@ color: rgb(255, 255, 255);</string>
              <item>
               <widget class="QPushButton" name="btnExportEvent">
                <property name="styleSheet">
-                <string notr="true">background-color: #8e44ad; color: white; padding: 6px 12px;</string>
+                <string notr="true">background-color: #94a3b8; color: white; padding: 6px 12px;</string>
                </property>
                <property name="text">
                 <string>📥 Export CSV</string>
@@ -420,7 +418,7 @@ color: rgb(255, 255, 255);</string>
               </widget>
              </item>
              <item>
-              <spacer name="spacerPageEvent">
+              <spacer name="spacerPage_event">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -435,7 +433,7 @@ color: rgb(255, 255, 255);</string>
              <item>
               <widget class="QPushButton" name="btnPrevEvent">
                <property name="styleSheet">
-                <string notr="true">background-color: #2980b9; color: white; padding: 6px 10px;</string>
+                <string notr="true">background-color: #2563eb; color: white; padding: 6px 10px;</string>
                </property>
                <property name="text">
                 <string>◀ Prev</string>
@@ -445,20 +443,17 @@ color: rgb(255, 255, 255);</string>
              <item>
               <widget class="QLabel" name="lblPageEvent">
                <property name="styleSheet">
-                <string notr="true">color: black; font-size: 12px; padding: 0 8px;</string>
+                <string notr="true">color: #1e293b; font-size: 12px; padding: 0 8px;</string>
                </property>
                <property name="text">
                 <string>Page 1 / 1</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="btnNextEvent">
                <property name="styleSheet">
-                <string notr="true">background-color: #2980b9; color: white; padding: 6px 10px;</string>
+                <string notr="true">background-color: #2563eb; color: white; padding: 6px 10px;</string>
                </property>
                <property name="text">
                 <string>Next ▶</string>
@@ -492,9 +487,9 @@ color: rgb(255, 255, 255);</string>
                 <string notr="true">QLineEdit {
     border: 1px solid #919191; /* Độ dày, Kiểu, Màu */
        /* (Tùy chọn) Bo góc */
-	border-color:#707070;
+    border-color:#707070;
     padding: 2px;
-	color:black;          /* (Tùy chọn) Khoảng cách chữ */
+    color:black;          /* (Tùy chọn) Khoảng cách chữ */
 }</string>
                </property>
                <property name="placeholderText">
@@ -510,7 +505,7 @@ color: rgb(255, 255, 255);</string>
               <widget class="QPushButton" name="btnAddAttendee">
                <property name="styleSheet">
                 <string notr="true">padding: 10px; font-size: 13px;
-background-color: rgb(39, 174, 96);
+background-color: #3b82f6;
 color: rgb(255, 255, 255);</string>
                </property>
                <property name="text">
@@ -519,7 +514,7 @@ color: rgb(255, 255, 255);</string>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_3">
+              <spacer name="spacerItem3">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -536,7 +531,7 @@ color: rgb(255, 255, 255);</string>
            <item>
             <widget class="QTableWidget" name="attendeeTable">
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(48, 69, 88);</string>
+              <string notr="true">background-color: white;</string>
              </property>
              <column>
               <property name="text">
@@ -576,7 +571,7 @@ color: rgb(255, 255, 255);</string>
               <widget class="QPushButton" name="btnEditAttendee">
                <property name="styleSheet">
                 <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(52, 152, 219);</string>
+background-color: #2563eb;</string>
                </property>
                <property name="text">
                 <string>✏ Update</string>
@@ -586,7 +581,7 @@ background-color: rgb(52, 152, 219);</string>
              <item>
               <widget class="QPushButton" name="btnDeleteAttendee">
                <property name="styleSheet">
-                <string notr="true">background-color: #e74c3c; color: white;</string>
+                <string notr="true">background-color: #ef4444; color: white;</string>
                </property>
                <property name="text">
                 <string>🗑 Delete</string>
@@ -596,8 +591,7 @@ background-color: rgb(52, 152, 219);</string>
              <item>
               <widget class="QPushButton" name="btnRefreshAttendee">
                <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(147, 0, 221);</string>
+                <string notr="true">background-color: #94a3b8; color: white;</string>
                </property>
                <property name="text">
                 <string>🔄 Refresh</string>
@@ -605,7 +599,7 @@ background-color: rgb(147, 0, 221);</string>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_4">
+              <spacer name="spacerItem4">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -624,7 +618,7 @@ background-color: rgb(147, 0, 221);</string>
              <item>
               <widget class="QPushButton" name="btnExportAttendee">
                <property name="styleSheet">
-                <string notr="true">background-color: #8e44ad; color: white; padding: 6px 12px;</string>
+                <string notr="true">background-color: #94a3b8; color: white; padding: 6px 12px;</string>
                </property>
                <property name="text">
                 <string>📥 Export CSV</string>
@@ -632,7 +626,7 @@ background-color: rgb(147, 0, 221);</string>
               </widget>
              </item>
              <item>
-              <spacer name="spacerPageAttendee">
+              <spacer name="spacerPage_attendee">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -647,7 +641,7 @@ background-color: rgb(147, 0, 221);</string>
              <item>
               <widget class="QPushButton" name="btnPrevAttendee">
                <property name="styleSheet">
-                <string notr="true">background-color: #2980b9; color: white; padding: 6px 10px;</string>
+                <string notr="true">background-color: #2563eb; color: white; padding: 6px 10px;</string>
                </property>
                <property name="text">
                 <string>◀ Prev</string>
@@ -657,20 +651,17 @@ background-color: rgb(147, 0, 221);</string>
              <item>
               <widget class="QLabel" name="lblPageAttendee">
                <property name="styleSheet">
-                <string notr="true">color: black; font-size: 12px; padding: 0 8px;</string>
+                <string notr="true">color: #1e293b; font-size: 12px; padding: 0 8px;</string>
                </property>
                <property name="text">
                 <string>Page 1 / 1</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="btnNextAttendee">
                <property name="styleSheet">
-                <string notr="true">background-color: #2980b9; color: white; padding: 6px 10px;</string>
+                <string notr="true">background-color: #2563eb; color: white; padding: 6px 10px;</string>
                </property>
                <property name="text">
                 <string>Next ▶</string>
@@ -683,7 +674,7 @@ background-color: rgb(147, 0, 221);</string>
          </widget>
          <widget class="QWidget" name="registrationTab">
           <attribute name="title">
-           <string>📋 Registration</string>
+           <string>📋 Register</string>
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_4">
            <item>
@@ -705,13 +696,13 @@ background-color: rgb(147, 0, 221);</string>
     border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
        /* (Tùy chọn) Bo góc */
     padding: 2px;
-	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+    color: black;         /* (Tùy chọn) Khoảng cách chữ */
 }</string>
                </property>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_5">
+              <spacer name="spacerItem5">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -732,7 +723,7 @@ background-color: rgb(147, 0, 221);</string>
                <property name="styleSheet">
                 <string notr="true">padding: 10px; font-size: 13px;
 color: rgb(255, 255, 255);
-background-color: rgb(39, 174, 96);</string>
+background-color: #3b82f6;</string>
                </property>
                <property name="text">
                 <string>➕ Register Attendee</string>
@@ -740,7 +731,7 @@ background-color: rgb(39, 174, 96);</string>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_6">
+              <spacer name="spacerItem6">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -757,7 +748,7 @@ background-color: rgb(39, 174, 96);</string>
            <item>
             <widget class="QTableWidget" name="registrationTable">
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(48, 69, 88);</string>
+              <string notr="true">background-color: white;</string>
              </property>
              <column>
               <property name="text">
@@ -796,7 +787,7 @@ background-color: rgb(39, 174, 96);</string>
              <item>
               <widget class="QPushButton" name="btnGenerateQR">
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(52, 152, 219);
+                <string notr="true">background-color: #2563eb;
 color: rgb(255, 255, 255);</string>
                </property>
                <property name="text">
@@ -807,7 +798,7 @@ color: rgb(255, 255, 255);</string>
              <item>
               <widget class="QPushButton" name="btnCancelRegistration">
                <property name="styleSheet">
-                <string notr="true">background-color: #e74c3c; color: white;</string>
+                <string notr="true">background-color: #ef4444; color: white;</string>
                </property>
                <property name="text">
                 <string>❌ Cancel Registration</string>
@@ -817,8 +808,7 @@ color: rgb(255, 255, 255);</string>
              <item>
               <widget class="QPushButton" name="btnRefreshRegistration">
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(145, 0, 218);
-color: rgb(255, 255, 255);</string>
+                <string notr="true">background-color: #94a3b8; color: white;</string>
                </property>
                <property name="text">
                 <string>🔄 Refresh</string>
@@ -826,7 +816,7 @@ color: rgb(255, 255, 255);</string>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_7">
+              <spacer name="spacerItem7">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -845,7 +835,7 @@ color: rgb(255, 255, 255);</string>
              <item>
               <widget class="QPushButton" name="btnExportRegistration">
                <property name="styleSheet">
-                <string notr="true">background-color: #8e44ad; color: white; padding: 6px 12px;</string>
+                <string notr="true">background-color: #94a3b8; color: white; padding: 6px 12px;</string>
                </property>
                <property name="text">
                 <string>📥 Export CSV</string>
@@ -853,7 +843,7 @@ color: rgb(255, 255, 255);</string>
               </widget>
              </item>
              <item>
-              <spacer name="spacerPageRegistration">
+              <spacer name="spacerPage_registration">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -868,7 +858,7 @@ color: rgb(255, 255, 255);</string>
              <item>
               <widget class="QPushButton" name="btnPrevRegistration">
                <property name="styleSheet">
-                <string notr="true">background-color: #2980b9; color: white; padding: 6px 10px;</string>
+                <string notr="true">background-color: #2563eb; color: white; padding: 6px 10px;</string>
                </property>
                <property name="text">
                 <string>◀ Prev</string>
@@ -878,20 +868,17 @@ color: rgb(255, 255, 255);</string>
              <item>
               <widget class="QLabel" name="lblPageRegistration">
                <property name="styleSheet">
-                <string notr="true">color: black; font-size: 12px; padding: 0 8px;</string>
+                <string notr="true">color: #1e293b; font-size: 12px; padding: 0 8px;</string>
                </property>
                <property name="text">
                 <string>Page 1 / 1</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="btnNextRegistration">
                <property name="styleSheet">
-                <string notr="true">background-color: #2980b9; color: white; padding: 6px 10px;</string>
+                <string notr="true">background-color: #2563eb; color: white; padding: 6px 10px;</string>
                </property>
                <property name="text">
                 <string>Next ▶</string>
@@ -926,13 +913,13 @@ color: rgb(255, 255, 255);</string>
     border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
        /* (Tùy chọn) Bo góc */
     padding: 2px;
-	color: black;        /* (Tùy chọn) Khoảng cách chữ */
+    color: black;        /* (Tùy chọn) Khoảng cách chữ */
 }</string>
                </property>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_8">
+              <spacer name="spacerItem8">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -953,8 +940,8 @@ color: rgb(255, 255, 255);</string>
                <pointsize>10</pointsize>
                <weight>75</weight>
                <bold>true</bold>
-               <stylestrategy>PreferDefault</stylestrategy>
                <kerning>true</kerning>
+               <stylestrategy>PreferDefault</stylestrategy>
               </font>
              </property>
              <property name="autoFillBackground">
@@ -962,7 +949,7 @@ color: rgb(255, 255, 255);</string>
              </property>
              <property name="styleSheet">
               <string notr="true">QGroupBox::title {
-    background-color:rgb(165, 165, 165); /* Màu nền của chữ */
+    background-color:#f1f5f9; /* Màu nền của chữ */
     color: black;               /* Màu chữ */
     subcontrol-position: top left; /* Vị trí */
     padding: 2px;             /* Khoảng cách padding */
@@ -1004,7 +991,7 @@ QGroupBox{
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">color: #3498db;</string>
+                 <string notr="true">color: #2563eb;</string>
                 </property>
                 <property name="text">
                  <string>0</string>
@@ -1032,7 +1019,7 @@ QGroupBox{
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">color: #27ae60;</string>
+                 <string notr="true">color: #3b82f6;</string>
                 </property>
                 <property name="text">
                  <string>0</string>
@@ -1057,7 +1044,7 @@ QGroupBox{
              </property>
              <property name="styleSheet">
               <string notr="true">QGroupBox::title {
-    background-color:rgb(165, 165, 165); /* Màu nền của chữ */
+    background-color:#f1f5f9; /* Màu nền của chữ */
     color: black;               /* Màu chữ */
     subcontrol-position: top left; /* Vị trí */
     padding: 2px;             /* Khoảng cách padding */
@@ -1089,7 +1076,7 @@ QGroupBox{
     border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */
        /* (Tùy chọn) Bo góc */
     padding: 2px;
-	color: black;         /* (Tùy chọn) Khoảng cách chữ */
+    color: black;         /* (Tùy chọn) Khoảng cách chữ */
 }</string>
                 </property>
                 <property name="placeholderText">
@@ -1100,7 +1087,7 @@ QGroupBox{
               <item>
                <widget class="QPushButton" name="btnCheckin">
                 <property name="styleSheet">
-                 <string notr="true">background-color: #27ae60; color: white; padding: 10px; font-size: 14px;</string>
+                 <string notr="true">background-color: #3b82f6; color: white; padding: 10px; font-size: 14px;</string>
                 </property>
                 <property name="text">
                  <string>✓ Check-in</string>
@@ -1110,7 +1097,7 @@ QGroupBox{
               <item>
                <widget class="QPushButton" name="btnScanQR">
                 <property name="styleSheet">
-                 <string notr="true">background-color: #3498db; color: white; padding: 10px; font-size: 14px;</string>
+                 <string notr="true">background-color: #2563eb; color: white; padding: 10px; font-size: 14px;</string>
                 </property>
                 <property name="text">
                  <string>📷 Scan QR</string>
@@ -1138,7 +1125,7 @@ QGroupBox{
            <item>
             <widget class="QTableWidget" name="checkinTable">
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(48, 69, 88);</string>
+              <string notr="true">background-color: white;</string>
              </property>
              <column>
               <property name="text">
@@ -1172,8 +1159,7 @@ QGroupBox{
              <item>
               <widget class="QPushButton" name="btnRefreshCheckin">
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(148, 0, 222);
-color: rgb(255, 255, 255);</string>
+                <string notr="true">background-color: #94a3b8; color: white;</string>
                </property>
                <property name="text">
                 <string>🔄 Refresh</string>
@@ -1181,7 +1167,7 @@ color: rgb(255, 255, 255);</string>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_9">
+              <spacer name="spacerItem9">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -1200,7 +1186,7 @@ color: rgb(255, 255, 255);</string>
              <item>
               <widget class="QPushButton" name="btnExportCheckin">
                <property name="styleSheet">
-                <string notr="true">background-color: #8e44ad; color: white; padding: 6px 12px;</string>
+                <string notr="true">background-color: #94a3b8; color: white; padding: 6px 12px;</string>
                </property>
                <property name="text">
                 <string>📥 Export CSV</string>
@@ -1236,7 +1222,7 @@ color: rgb(255, 255, 255);</string>
                <property name="styleSheet">
                 <string notr="true">padding: 10px; font-size: 13px;
 color: rgb(255, 255, 255);
-background-color: rgb(39, 174, 96);</string>
+background-color: #3b82f6;</string>
                </property>
                <property name="text">
                 <string>➕ Add Account</string>
@@ -1244,7 +1230,7 @@ background-color: rgb(39, 174, 96);</string>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_10">
+              <spacer name="spacerItem10">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -1261,7 +1247,7 @@ background-color: rgb(39, 174, 96);</string>
            <item>
             <widget class="QTableWidget" name="userTable">
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(48, 69, 88);</string>
+              <string notr="true">background-color: white;</string>
              </property>
              <column>
               <property name="text">
@@ -1295,7 +1281,7 @@ background-color: rgb(39, 174, 96);</string>
              <item>
               <widget class="QPushButton" name="btnEditUser">
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(52, 152, 219);
+                <string notr="true">background-color: #2563eb;
 color: rgb(255, 255, 255);</string>
                </property>
                <property name="text">
@@ -1306,7 +1292,7 @@ color: rgb(255, 255, 255);</string>
              <item>
               <widget class="QPushButton" name="btnDeleteUser">
                <property name="styleSheet">
-                <string notr="true">background-color: #e74c3c; color: white;</string>
+                <string notr="true">background-color: #ef4444; color: white;</string>
                </property>
                <property name="text">
                 <string>🗑 Delete</string>
@@ -1316,7 +1302,7 @@ color: rgb(255, 255, 255);</string>
              <item>
               <widget class="QPushButton" name="btnResetUserPwd">
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(0, 85, 0);
+                <string notr="true">background-color: #3b82f6;
 color: rgb(255, 255, 255);</string>
                </property>
                <property name="text">
@@ -1327,8 +1313,7 @@ color: rgb(255, 255, 255);</string>
              <item>
               <widget class="QPushButton" name="btnRefreshUser">
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(147, 0, 221);
-color: rgb(255, 255, 255);</string>
+                <string notr="true">background-color: #94a3b8; color: white;</string>
                </property>
                <property name="text">
                 <string>🔄 Refresh</string>
@@ -1336,7 +1321,7 @@ color: rgb(255, 255, 255);</string>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_11">
+              <spacer name="spacerItem11">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -1349,6 +1334,248 @@ color: rgb(255, 255, 255);</string>
               </spacer>
              </item>
             </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="statisticsTab">
+          <property name="styleSheet">
+           <string notr="true">background-color: #f0f0f0;</string>
+          </property>
+          <attribute name="title">
+           <string>📊 Statistics</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_stats">
+           <property name="spacing">
+            <number>8</number>
+           </property>
+           <property name="leftMargin">
+            <number>12</number>
+           </property>
+           <property name="topMargin">
+            <number>12</number>
+           </property>
+           <property name="rightMargin">
+            <number>12</number>
+           </property>
+           <property name="bottomMargin">
+            <number>12</number>
+           </property>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_stats_top">
+             <item>
+              <widget class="QLabel" name="lblStatsEvent">
+               <property name="styleSheet">
+                <string notr="true">color:#3b82f6; font-weight:bold; font-size:13px;</string>
+               </property>
+               <property name="text">
+                <string>Select Event:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="statsEventCombo">
+               <property name="minimumSize">
+                <size>
+                 <width>260</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox {
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    padding: 4px 8px;
+    color: #1e293b;
+    background: white;
+    font-size: 13px;
+}
+QComboBox::drop-down { border: none; }</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="spacerStatsTop">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_stats_btns">
+             <property name="spacing">
+              <number>4</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="btnStatsBar">
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+QPushButton:hover { background-color: #0f172a; }</string>
+               </property>
+               <property name="active_style" stdset="0">
+                <string>QPushButton {
+    background-color: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+QPushButton:hover { background-color: #0f172a; }</string>
+               </property>
+               <property name="inactive_style" stdset="0">
+                <string>QPushButton {
+    background-color: #e2e8f0;
+    color: #64748b;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 20px;
+    font-size: 13px;
+}
+QPushButton:hover { background-color: #cccccc; color: #1e293b; }</string>
+               </property>
+               <property name="text">
+                <string>📊 Bar Chart</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnStatsLine">
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: #e2e8f0;
+    color: #64748b;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 20px;
+    font-size: 13px;
+}
+QPushButton:hover { background-color: #cccccc; color: #1e293b; }</string>
+               </property>
+               <property name="active_style" stdset="0">
+                <string>QPushButton {
+    background-color: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+QPushButton:hover { background-color: #0f172a; }</string>
+               </property>
+               <property name="inactive_style" stdset="0">
+                <string>QPushButton {
+    background-color: #e2e8f0;
+    color: #64748b;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 20px;
+    font-size: 13px;
+}
+QPushButton:hover { background-color: #cccccc; color: #1e293b; }</string>
+               </property>
+               <property name="text">
+                <string>📈 Line Chart</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnStatsPie">
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: #e2e8f0;
+    color: #64748b;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 20px;
+    font-size: 13px;
+}
+QPushButton:hover { background-color: #cccccc; color: #1e293b; }</string>
+               </property>
+               <property name="active_style" stdset="0">
+                <string>QPushButton {
+    background-color: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+QPushButton:hover { background-color: #0f172a; }</string>
+               </property>
+               <property name="inactive_style" stdset="0">
+                <string>QPushButton {
+    background-color: #e2e8f0;
+    color: #64748b;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 20px;
+    font-size: 13px;
+}
+QPushButton:hover { background-color: #cccccc; color: #1e293b; }</string>
+               </property>
+               <property name="text">
+                <string>🥧 Pie Chart</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="spacerStatsBtns">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QFrame" name="statsChartGroup">
+             <property name="styleSheet">
+              <string notr="true">QFrame {
+    background-color: white;
+    border: 1px solid #f1f5f9;
+    border-radius: 6px;
+}</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayoutStatsPlot">
+              <property name="leftMargin">
+               <number>4</number>
+              </property>
+              <property name="topMargin">
+               <number>4</number>
+              </property>
+              <property name="rightMargin">
+               <number>4</number>
+              </property>
+              <property name="bottomMargin">
+               <number>4</number>
+              </property>
+             </layout>
+            </widget>
            </item>
           </layout>
          </widget>
