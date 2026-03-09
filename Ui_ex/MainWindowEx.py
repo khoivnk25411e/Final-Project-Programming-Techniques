@@ -292,6 +292,10 @@ class MainWindowEx(Ui_MainWindow):
             tbl.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
             tbl.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
+        # checkinTable: giãn row cao hơn để số thứ tự hiển thị đúng
+        self.checkinTable.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Fixed)
+        self.checkinTable.verticalHeader().setDefaultSectionSize(36)
+
     def load_initial_data(self):
         self.load_dashboard()
         self.load_events()
@@ -438,7 +442,7 @@ class MainWindowEx(Ui_MainWindow):
             dlg = ChangePasswordDialogEx(self.MainWindow, current_user=user, skip_old_password=True)
             dlg.exec()
 
-    PAGE_SIZE = 10
+    PAGE_SIZE = 18
 
     def _pad_table(self, table, actual_count):
         """Đặt số rows = PAGE_SIZE để lấp đầy khoảng trống, rows thừa để trống."""
@@ -1437,7 +1441,7 @@ class MainWindowEx(Ui_MainWindow):
         self._do_export("checkin_list.csv",
                         ["Full Name", "Email", "Organization", "Check-in Time", "Reg. Code"], _rows)
 
-    def _setup_pagination(self, table, data_list, fill_func, page_label, prev_btn, next_btn):
+    def _setup_pagination(self, table, data_list, fill_func, page_label, prev_btn, next_btn, page_size=None):
         if not hasattr(self, '_pages'):
             self._pages = {}
 
@@ -1449,6 +1453,7 @@ class MainWindowEx(Ui_MainWindow):
             'label': page_label,
             'prev': prev_btn,
             'next': next_btn,
+            'page_size': page_size or self.PAGE_SIZE,
         }
         self._render_page(name)
 
@@ -1456,9 +1461,10 @@ class MainWindowEx(Ui_MainWindow):
         state = self._pages[name]
         data = state['data']
         page = state['page']
-        total = max(1, (len(data) + self.PAGE_SIZE - 1) // self.PAGE_SIZE)
-        start = page * self.PAGE_SIZE
-        end = start + self.PAGE_SIZE
+        ps = state.get('page_size', self.PAGE_SIZE)
+        total = max(1, (len(data) + ps - 1) // ps)
+        start = page * ps
+        end = start + ps
         chunk = data[start:end]
 
         state['fill_func'](chunk)
@@ -1473,7 +1479,8 @@ class MainWindowEx(Ui_MainWindow):
 
     def _next_page(self, name):
         state = self._pages[name]
-        total = max(1, (len(state['data']) + self.PAGE_SIZE - 1) // self.PAGE_SIZE)
+        ps = state.get('page_size', self.PAGE_SIZE)
+        total = max(1, (len(state['data']) + ps - 1) // ps)
         if state['page'] < total - 1:
             state['page'] += 1
             self._render_page(name)
