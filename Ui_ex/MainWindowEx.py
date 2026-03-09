@@ -1,13 +1,24 @@
 from PyQt6.QtWidgets import (QMessageBox, QTableWidgetItem, QHeaderView,
-                             QDialog, QVBoxLayout, QLabel, QMainWindow)
-from PyQt6.QtCore import Qt, QTimer
+                             QDialog, QVBoxLayout, QLabel, QMainWindow, QProgressDialog)
+from PyQt6.QtCore import Qt, QTimer, QThread, pyqtSignal
 from PyQt6 import QtGui
+
+# --- THƯ VIỆN GỬI EMAIL ---
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+import qrcode
+from io import BytesIO
+
+# --------------------------
 
 try:
     from matplotlib import pyplot as plt
     from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
     from matplotlib.backends.backend_qtagg import NavigationToolbar2QT as NavigationToolbar
     import matplotlib
+
     matplotlib.use("QtAgg")
     MATPLOTLIB_AVAILABLE = True
 except ImportError:
@@ -39,6 +50,102 @@ except ImportError:
     QR_AVAILABLE = False
 
 
+
+class EmailSenderThread(QThread):
+    progress = pyqtSignal(int, str)  # Tín hiệu cập nhật thanh Progress (tiến độ, câu thông báo)
+    finished_task = pyqtSignal(int, int)  # Tín hiệu khi hoàn thành (số thành công, số thất bại)
+
+    def __init__(self, email_data_list, event_name):
+        super().__init__()
+        self.email_data_list = email_data_list
+        self.event_name = event_name
+
+        self.SENDER_EMAIL = "nguyenthanhdangkhoa9h@gmail.com"
+        self.APP_PASSWORD = "rqwd zbcn fszy qeon"
+
+    def run(self):
+        success = 0
+        failed = 0
+        total = len(self.email_data_list)
+
+        try:
+            # Kết nối tới server Gmail
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.starttls()
+            server.login(self.SENDER_EMAIL, self.APP_PASSWORD)
+
+            for i, data in enumerate(self.email_data_list):
+                self.progress.emit(i + 1, f"Sending Email to {data['name']}...")
+
+                try:
+                    # 1. Tạo form Email
+                    msg = MIMEMultipart()
+                    msg['From'] = self.SENDER_EMAIL
+                    msg['To'] = data['email']
+                    msg['Subject'] = f"🎟 Your Ticket & QR Code - {self.event_name}"
+
+                    # 2. Nội dung Email
+                    body = f"""
+                    <h2>Hello {data['name']},</h2>
+                    <p>You have successfully registered for the event: <b>{self.event_name}</b>.</p>
+                    <p>Your Registration Code is: <b style="color: blue; font-size: 18px;">{data['code']}</b></p>
+                    <p>Please find your QR code attached to this email. Show it at the check-in desk.</p>
+                    <br><p>Best regards,<br>Event Management Team</p>
+                    """
+                    msg.attach(MIMEText(body, 'html'))
+
+                    qr = qrcode.QRCode(version=1, box_size=10, border=5)
+                    qr.add_data(data['code'])
+                    qr.make(fit=True)
+                    img = qr.make_image(fill_color="black", back_color="white")
+
+                    buf = BytesIO()
+                    img.save(buf, format="PNG")
+                    image_data = buf.getvalue()
+
+                    # 4. Đính kèm QR Code vào email
+                    image = MIMEImage(image_data, name=f"QR_{data['code']}.png")
+                    msg.attach(image)
+
+                    # 5. Thực hiện gửi
+                    server.send_message(msg)
+                    success += 1
+                except Exception as e:
+                    print(f"Error sending to {data['email']}: {e}")
+                    failed += 1
+
+            server.quit()
+        except Exception as e:
+            print(f"SMTP Server error: {e}")
+            failed = total
+
+        self.finished_task.emit(success, failed)
+
+
+
+def _msg(parent, kind, title, text):
+    box = QMessageBox(parent)
+    box.setWindowTitle(title)
+    box.setText(text)
+    if kind == "info":
+        box.setIcon(QMessageBox.Icon.Information)
+    elif kind == "warn":
+        box.setIcon(QMessageBox.Icon.Warning)
+    elif kind == "err":
+        box.setIcon(QMessageBox.Icon.Critical)
+    box.setStyleSheet("""
+        QMessageBox        { background-color: white; }
+        QMessageBox QLabel { color: #111827; font-size: 13px; min-width: 260px; }
+        QMessageBox QPushButton {
+            background: #3b82f6; color: white; border: none;
+            padding: 7px 22px; border-radius: 5px;
+            font-size: 12px; min-width: 80px;
+        }
+        QMessageBox QPushButton:hover { background: #2563eb; }
+    """)
+    box.exec()
+
+
 class MainWindowEx(Ui_MainWindow):
     def setupUi(self, MainWindow):
         super().setupUi(MainWindow)
@@ -66,7 +173,11 @@ class MainWindowEx(Ui_MainWindow):
                 "font-size:11px;font-weight:bold;padding:0 8px;}"
             )
         else:
-            self.lblRoleBadge.setText("USER")
+            self.lblRoleBadge.setText("STAFF")
+            self.lblRoleBadge.setStyleSheet(
+                "QLabel{background:#3b82f6;color:white;border-radius:5px;"
+                "font-size:11px;font-weight:bold;padding:0 8px;}"
+            )
 
         idx = self.tabWidget.indexOf(self.userMgmtTab)
         if not is_admin and idx >= 0:
@@ -85,10 +196,10 @@ class MainWindowEx(Ui_MainWindow):
             self.btnCancelRegistration.setEnabled(False)
             self.btnGenerateQR.setEnabled(False)
 
-            self.btnCheckin.setEnabled(False)
-            self.btnScanQR.setEnabled(False)
-            self.checkinCode.setEnabled(False)
-            self.checkinCode.setPlaceholderText("Admin access required for Check-in")
+            self.btnCheckin.setEnabled(True)
+            self.btnScanQR.setEnabled(True)
+            self.checkinCode.setEnabled(True)
+            self.checkinCode.setPlaceholderText("Enter check-in code or scan QR")
 
             self.btnRefreshEvent.setEnabled(True)
             self.btnRefreshAttendee.setEnabled(True)
@@ -104,7 +215,8 @@ class MainWindowEx(Ui_MainWindow):
         self.btnViewEvent.clicked.connect(self.view_event_details)
         self.btnEditEvent.clicked.connect(self.edit_event)
         self.btnDeleteEvent.clicked.connect(self.delete_event)
-        self.btnRefreshEvent.clicked.connect(self.load_events)
+        self.btnRefreshDash.clicked.connect(self.load_dashboard)
+        self.btnImportAttendee.clicked.connect(self.import_attendees_from_file)
         self.btnRefreshEvent.clicked.connect(self.load_events)
         self.btnExportEvent.clicked.connect(self.export_events_csv)
         self.btnPrevEvent.clicked.connect(lambda: self._prev_page("eventTable"))
@@ -114,6 +226,7 @@ class MainWindowEx(Ui_MainWindow):
         self.btnAddAttendee.clicked.connect(self.add_attendee)
         self.btnEditAttendee.clicked.connect(self.edit_attendee)
         self.btnDeleteAttendee.clicked.connect(self.delete_attendee)
+        self.btnHistoryAttendee.clicked.connect(self.view_attendee_history)
         self.btnRefreshAttendee.clicked.connect(self.load_attendees)
         self.btnExportAttendee.clicked.connect(self.export_attendees_csv)
         self.btnPrevAttendee.clicked.connect(lambda: self._prev_page("attendeeTable"))
@@ -125,6 +238,7 @@ class MainWindowEx(Ui_MainWindow):
         self.btnCancelRegistration.clicked.connect(self.cancel_registration)
         self.btnRefreshRegistration.clicked.connect(self.load_registrations)
         self.btnExportRegistration.clicked.connect(self.export_registrations_csv)
+        self.registrationSearch.textChanged.connect(self.search_registrations)
         self.btnPrevRegistration.clicked.connect(lambda: self._prev_page("registrationTable"))
         self.btnNextRegistration.clicked.connect(lambda: self._next_page("registrationTable"))
 
@@ -147,10 +261,19 @@ class MainWindowEx(Ui_MainWindow):
             self.btnResetUserPwd.clicked.connect(self.reset_user_password)
             self.btnRefreshUser.clicked.connect(self.load_users)
         else:
+            self.btnRefreshDash.clicked.connect(self.load_dashboard)
+            self.btnImportAttendee.clicked.connect(self.import_attendees_from_file)
             self.btnRefreshEvent.clicked.connect(self.load_events)
             self.btnRefreshAttendee.clicked.connect(self.load_attendees)
             self.btnRefreshRegistration.clicked.connect(self.load_registrations)
             self.btnRefreshCheckin.clicked.connect(self.load_checkin_stats)
+            self.btnCheckin.clicked.connect(self.perform_checkin)
+            self.btnScanQR.clicked.connect(self.scan_qr_checkin)
+            self.btnExportEvent.clicked.connect(self.export_events_csv)
+            self.btnExportAttendee.clicked.connect(self.export_attendees_csv)
+            self.btnExportRegistration.clicked.connect(self.export_registrations_csv)
+            self.btnExportCheckin.clicked.connect(self.export_checkin_csv)
+            self.registrationSearch.textChanged.connect(self.search_registrations)
 
         for tbl in [self.eventTable, self.attendeeTable,
                     self.registrationTable, self.checkinTable]:
@@ -160,6 +283,7 @@ class MainWindowEx(Ui_MainWindow):
             self.userTable.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
     def load_initial_data(self):
+        self.load_dashboard()
         self.load_events()
         self.load_attendees()
         self.load_event_combo()
@@ -169,6 +293,10 @@ class MainWindowEx(Ui_MainWindow):
         for tbl in [self.eventTable, self.attendeeTable,
                     self.registrationTable, self.checkinTable, self.userTable]:
             tbl.setAlternatingRowColors(True)
+
+        from PyQt6.QtWidgets import QAbstractItemView
+        self.attendeeTable.setSelectionMode(QAbstractItemView.SelectionMode.ExtendedSelection)
+        self.registrationTable.setSelectionMode(QAbstractItemView.SelectionMode.ExtendedSelection)
         self.setup_chart()
         user = getattr(self, 'login_user', None)
         if user and user.Role == "admin":
@@ -197,91 +325,80 @@ class MainWindowEx(Ui_MainWindow):
     def load_users(self):
         users = Users()
         users.import_json("datasets/users.json")
-        self.userTable.setRowCount(len(users.list))
-        for row, u in enumerate(users.list):
-            self.userTable.setItem(row, 0, QTableWidgetItem(u.UserId))
-            self.userTable.setItem(row, 1, QTableWidgetItem(u.FullName))
-            self.userTable.setItem(row, 2, QTableWidgetItem(u.UserName))
-            self.userTable.setItem(row, 3, QTableWidgetItem(u.Email))
-            role_text = "🔑 Admin" if u.Role == "admin" else "👤 User"
-            self.userTable.setItem(row, 4, QTableWidgetItem(role_text))
+        role_lbl = lambda r: "🔑 Admin" if r == "admin" else "🧑‍💼 Staff"
+        self._fill_table(self.userTable, [
+            [u.UserId, u.FullName, u.UserName, u.Email, role_lbl(u.Role)]
+            for u in users.list
+        ])
+
+    def _users_db(self):
+        u = Users()
+        u.import_json("datasets/users.json")
+        return u
+
+    def _apply_user_data(self, user, data):
+        user.FullName = data['full_name']
+        user.UserName = data['username']
+        user.Email = data['email']
+        user.Role = data['role']
+        user.SecurityQuestion = data['sec_question']
+        user.SecurityAnswer = data['sec_answer']
 
     def add_user(self):
         dlg = UserDialogEx(self.MainWindow)
-        if dlg.exec() == QDialog.DialogCode.Accepted:
-            data = dlg.get_data()
-            users = Users()
-            users.import_json("datasets/users.json")
-
-            if users.find_by_username(data['username']):
-                QMessageBox.warning(self.MainWindow, "Error", "Username already exists!")
-                return
-            if users.find_by_email(data['email']):
-                QMessageBox.warning(self.MainWindow, "Error", "Email already exists!")
-                return
-
-            new_user = User()
-            new_user.UserId = "usr_" + str(uuid.uuid4())[:8]
-            new_user.FullName = data['full_name']
-            new_user.UserName = data['username']
-            new_user.Password = data['password']
-            new_user.Email = data['email']
-            new_user.Role = data['role']
-            new_user.SecurityQuestion = data['sec_question']
-            new_user.SecurityAnswer = data['sec_answer']
-
-            users.add_item(new_user)
-            users.export_json("datasets/users.json")
-            QMessageBox.information(self.MainWindow, "Success", "New account created successfully!")
-            self.load_users()
+        if dlg.exec() != QDialog.DialogCode.Accepted: return
+        data = dlg.get_data()
+        users = self._users_db()
+        if users.find_by_username(data['username']):
+            _msg(self.MainWindow, "warn", "Error", "Username already exists!")
+            return
+        if users.find_by_email(data['email']):
+            _msg(self.MainWindow, "warn", "Error", "Email already exists!")
+            return
+        new_user = User()
+        new_user.UserId = "usr_" + str(uuid.uuid4())[:8]
+        self._apply_user_data(new_user, data)
+        new_user.Password = Users.hash_password(data['password'])
+        users.add_item(new_user)
+        users.export_json("datasets/users.json")
+        _msg(self.MainWindow, "info", "Success", "New account created!")
+        self.load_users()
 
     def edit_user(self):
         row = self.userTable.currentRow()
         if row < 0:
-            QMessageBox.warning(self.MainWindow, "Error", "Please select an account to edit!")
+            _msg(self.MainWindow, "warn", "Error", "Please select an account to edit!")
             return
         user_id = self.userTable.item(row, 0).text()
-        users = Users()
-        users.import_json("datasets/users.json")
+        users = self._users_db()
         user = users.find_user(user_id)
-        if not user:
-            return
-
+        if not user: return
         dlg = UserDialogEx(self.MainWindow, user_data=user)
-        if dlg.exec() == QDialog.DialogCode.Accepted:
-            data = dlg.get_data()
-
-            existing_un = users.find_by_username(data['username'])
-            if existing_un and existing_un.UserId != user_id:
-                QMessageBox.warning(self.MainWindow, "Error", "Username already exists!")
-                return
-            existing_em = users.find_by_email(data['email'])
-            if existing_em and existing_em.UserId != user_id:
-                QMessageBox.warning(self.MainWindow, "Error", "Email already exists!")
-                return
-
-            user.FullName = data['full_name']
-            user.UserName = data['username']
-            user.Email = data['email']
-            if data['password']:
-                user.Password = data['password']
-            user.Role = data['role']
-            user.SecurityQuestion = data['sec_question']
-            user.SecurityAnswer = data['sec_answer']
-
-            users.export_json("datasets/users.json")
-            QMessageBox.information(self.MainWindow, "Success", "Account updated successfully!")
-            self.load_users()
+        if dlg.exec() != QDialog.DialogCode.Accepted: return
+        data = dlg.get_data()
+        un = users.find_by_username(data['username'])
+        em = users.find_by_email(data['email'])
+        if un and un.UserId != user_id:
+            _msg(self.MainWindow, "warn", "Error", "Username already exists!")
+            return
+        if em and em.UserId != user_id:
+            _msg(self.MainWindow, "warn", "Error", "Email already exists!")
+            return
+        self._apply_user_data(user, data)
+        if data['password']: user.Password = Users.hash_password(data['password'])
+        users.export_json("datasets/users.json")
+        _msg(self.MainWindow, "info", "Success", "Account updated!")
+        self.load_users()
 
     def delete_user(self):
         row = self.userTable.currentRow()
         if row < 0:
-            QMessageBox.warning(self.MainWindow, "Error", "Please select an account to delete!")
+            _msg(self.MainWindow, "warn", "Error", "Please select an account to delete!")
             return
         user_id = self.userTable.item(row, 0).text()
 
         if getattr(self, 'login_user', None) and self.login_user.UserId == user_id:
-            QMessageBox.warning(self.MainWindow, "Error", "You cannot delete the currently logged-in account!")
+            _msg(self.MainWindow, "warn", "Error", "You cannot delete the currently logged-in account!")
             return
 
         reply = QMessageBox.question(
@@ -293,13 +410,13 @@ class MainWindowEx(Ui_MainWindow):
             users.import_json("datasets/users.json")
             users.delete_user(user_id)
             users.export_json("datasets/users.json")
-            QMessageBox.information(self.MainWindow, "Success", "Account deleted successfully!")
+            _msg(self.MainWindow, "info", "Success", "Account deleted successfully!")
             self.load_users()
 
     def reset_user_password(self):
         row = self.userTable.currentRow()
         if row < 0:
-            QMessageBox.warning(self.MainWindow, "Error", "Please select an account!")
+            _msg(self.MainWindow, "warn", "Error", "Please select an account!")
             return
         user_id = self.userTable.item(row, 0).text()
         users = Users()
@@ -328,8 +445,8 @@ class MainWindowEx(Ui_MainWindow):
         results = [
             e for e in events.list
             if keyword_lower in e.EventName.lower()
-            or keyword_lower in e.Location.lower()
-            or keyword_lower in (e.Description or "").lower()
+               or keyword_lower in e.Location.lower()
+               or keyword_lower in (e.Description or "").lower()
         ]
         self._setup_pagination(
             self.eventTable, results,
@@ -371,7 +488,7 @@ class MainWindowEx(Ui_MainWindow):
             events.import_json("datasets/events.json")
             events.add_item(event)
             events.export_json("datasets/events.json")
-            QMessageBox.information(self.MainWindow, "Success", "New event added successfully!")
+            _msg(self.MainWindow, "info", "Success", "New event added successfully!")
             self.load_events()
             self.load_event_combo()
             self.load_checkin_event_combo()
@@ -379,7 +496,7 @@ class MainWindowEx(Ui_MainWindow):
     def edit_event(self):
         row = self.eventTable.currentRow()
         if row < 0:
-            QMessageBox.warning(self.MainWindow, "Error", "Please select an event to edit!")
+            _msg(self.MainWindow, "warn", "Error", "Please select an event to edit!")
             return
         event_id = self.eventTable.item(row, 0).text()
         events = Events()
@@ -395,7 +512,7 @@ class MainWindowEx(Ui_MainWindow):
                 event.Location = data['location']
                 event.Description = data['description']
                 events.export_json("datasets/events.json")
-                QMessageBox.information(self.MainWindow, "Success", "Event updated successfully!")
+                _msg(self.MainWindow, "info", "Success", "Event updated successfully!")
                 self.load_events()
                 self.load_event_combo()
                 self.load_checkin_event_combo()
@@ -403,7 +520,7 @@ class MainWindowEx(Ui_MainWindow):
     def delete_event(self):
         row = self.eventTable.currentRow()
         if row < 0:
-            QMessageBox.warning(self.MainWindow, "Error", "Please select an event to delete!")
+            _msg(self.MainWindow, "warn", "Error", "Please select an event to delete!")
             return
         reply = QMessageBox.question(
             self.MainWindow, "Confirm",
@@ -418,9 +535,9 @@ class MainWindowEx(Ui_MainWindow):
             events.export_json("datasets/events.json")
             regs = Registrations()
             regs.import_json("datasets/registrations.json")
-            regs.list = [r for r in regs.list if r.EventId != event_id]
+            deleted = regs.delete_by_event(event_id)
             regs.export_json("datasets/registrations.json")
-            QMessageBox.information(self.MainWindow, "Success", "Event deleted successfully!")
+            _msg(self.MainWindow, "info", "Success", f"Event deleted! ({deleted} registrations removed)")
             self.load_events()
             self.load_event_combo()
             self.load_checkin_event_combo()
@@ -428,7 +545,7 @@ class MainWindowEx(Ui_MainWindow):
     def view_event_details(self):
         row = self.eventTable.currentRow()
         if row < 0:
-            QMessageBox.warning(self.MainWindow, "Error", "Please select an event!")
+            _msg(self.MainWindow, "warn", "Error", "Please select an event!")
             return
         event_id = self.eventTable.item(row, 0).text()
         events = Events()
@@ -448,7 +565,7 @@ class MainWindowEx(Ui_MainWindow):
                 f"<hr><p><b>👥 Total Registered:</b> {total_reg}</p>"
                 f"<p><b>✅ Checked-in:</b> {total_checkin}</p>"
             )
-            QMessageBox.information(self.MainWindow, "Event Details", details)
+            _msg(self.MainWindow, "info", "Event Details", details)
 
     def _fill_attendee_table(self, attendee_list):
         self.attendeeTable.setRowCount(len(attendee_list))
@@ -502,13 +619,13 @@ class MainWindowEx(Ui_MainWindow):
             att.Position = data['position']
             attendees.add_item(att)
             attendees.export_json("datasets/attendees.json")
-            QMessageBox.information(self.MainWindow, "Success", "Attendee added successfully!")
+            _msg(self.MainWindow, "info", "Success", "Attendee added successfully!")
             self.load_attendees()
 
     def edit_attendee(self):
         row = self.attendeeTable.currentRow()
         if row < 0:
-            QMessageBox.warning(self.MainWindow, "Error", "Please select an attendee to edit!")
+            _msg(self.MainWindow, "warn", "Error", "Please select an attendee to edit!")
             return
         att_id = self.attendeeTable.item(row, 0).text()
         attendees = Attendees()
@@ -520,7 +637,7 @@ class MainWindowEx(Ui_MainWindow):
                 data = dlg.get_data()
                 for a in attendees.list:
                     if a.Email.lower() == data['email'].lower() and a.AttendeeId != att_id:
-                        QMessageBox.warning(self.MainWindow, "Error", "Email already exists!")
+                        _msg(self.MainWindow, "warn", "Error", "Email already exists!")
                         return
                 att.Name = data['name']
                 att.Email = data['email']
@@ -528,31 +645,294 @@ class MainWindowEx(Ui_MainWindow):
                 att.Organization = data['organization']
                 att.Position = data['position']
                 attendees.export_json("datasets/attendees.json")
-                QMessageBox.information(self.MainWindow, "Success", "Attendee updated successfully!")
+                _msg(self.MainWindow, "info", "Success", "Attendee updated successfully!")
                 self.load_attendees()
 
     def delete_attendee(self):
-        row = self.attendeeTable.currentRow()
-        if row < 0:
-            QMessageBox.warning(self.MainWindow, "Error", "Please select an attendee to delete!")
+        rows = list(set(idx.row() for idx in self.attendeeTable.selectedIndexes()))
+        if not rows:
+            _msg(self.MainWindow, "warn", "Error", "Please select at least one attendee!")
             return
         reply = QMessageBox.question(
             self.MainWindow, "Confirm",
-            "Are you sure you want to delete this attendee?\nAll related registrations will be deleted!",
+            f"Delete {len(rows)} attendee(s)?\nAll related registrations will also be deleted!",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         if reply == QMessageBox.StandardButton.Yes:
-            att_id = self.attendeeTable.item(row, 0).text()
+            att_ids = [self.attendeeTable.item(r, 0).text() for r in rows]
             attendees = Attendees()
             attendees.import_json("datasets/attendees.json")
-            attendees.delete_attendee(att_id)
-            attendees.export_json("datasets/attendees.json")
             regs = Registrations()
             regs.import_json("datasets/registrations.json")
-            regs.list = [r for r in regs.list if r.AttendeeId != att_id]
+            total_regs = 0
+            for att_id in att_ids:
+                attendees.delete_attendee(att_id)
+                total_regs += regs.delete_by_attendee(att_id)
+            attendees.export_json("datasets/attendees.json")
             regs.export_json("datasets/registrations.json")
-            QMessageBox.information(self.MainWindow, "Success", "Attendee deleted successfully!")
+            _msg(self.MainWindow, "info", "Success",
+                 f"Deleted {len(att_ids)} attendee(s)! ({total_regs} registrations removed)")
             self.load_attendees()
+
+    def search_registrations(self):
+        keyword = self.registrationSearch.text().strip().lower()
+        if not keyword:
+            self.load_registrations()
+            return
+        event_id = self.eventCombo.currentData()
+        regs = Registrations()
+        regs.import_json("datasets/registrations.json")
+        attendees = Attendees()
+        attendees.import_json("datasets/attendees.json")
+        all_regs = regs.get_registrations_by_event(event_id) if event_id else regs.list
+
+        filtered = []
+        for r in all_regs:
+            att = attendees.find_attendee(r.AttendeeId)
+            name = att.Name.lower() if att else ""
+            email = att.Email.lower() if att else ""
+            org = att.Organization.lower() if att else ""
+            status = r.Status.lower()
+            if keyword in name or keyword in email or keyword in org or keyword in status:
+                filtered.append(r)
+
+        self.registrationTable.setRowCount(len(filtered))
+        for row, r in enumerate(filtered):
+            att = attendees.find_attendee(r.AttendeeId)
+            name = att.Name if att else "Unknown"
+            email = att.Email if att else ""
+            org = att.Organization if att else ""
+            from PyQt6.QtWidgets import QTableWidgetItem
+            from PyQt6.QtGui import QColor
+            vals = [r.RegistrationId, name, email, org, r.RegistrationDate, r.Status]
+            for col, val in enumerate(vals):
+                item = QTableWidgetItem(str(val))
+                if r.Status == "Checked-in":
+                    item.setForeground(QColor("#16a34a"))
+                self.registrationTable.setItem(row, col, item)
+
+    def load_dashboard(self):
+        from datetime import datetime
+        from PyQt6.QtWidgets import QTableWidgetItem
+        from PyQt6.QtGui import QColor
+
+        events = Events()
+        events.import_json("datasets/events.json")
+        attendees = Attendees()
+        attendees.import_json("datasets/attendees.json")
+        regs = Registrations()
+        regs.import_json("datasets/registrations.json")
+
+        today = datetime.now().strftime("%d/%m/%Y")
+
+        def set_card_num(card_widget, num):
+            for child in card_widget.findChildren(__import__('PyQt6.QtWidgets', fromlist=['QLabel']).QLabel):
+                if child.objectName().endswith("Num"):
+                    child.setText(str(num))
+
+        set_card_num(self.cardTotalEvents, len(events.list))
+        set_card_num(self.cardTotalAttendees, len(attendees.list))
+        set_card_num(self.cardTotalRegs, len(regs.list))
+        checkin_today = sum(1 for r in regs.list
+                            if r.Status == "Checked-in" and
+                            (r.CheckinTime or "").startswith(datetime.now().strftime("%Y-%m-%d")))
+        set_card_num(self.cardTotalCheckin, checkin_today)
+
+        def parse_date(d):
+            try:
+                parts = d.split('/')
+                return datetime(int(parts[2]), int(parts[1]), int(parts[0]))
+            except Exception:
+                return datetime(2000, 1, 1)
+
+        now = datetime.now()
+        upcoming = sorted(
+            [e for e in events.list if parse_date(e.EventDate) >= now],
+            key=lambda e: parse_date(e.EventDate)
+        )[:8]
+
+        self.dashUpcomingTable.setRowCount(len(upcoming))
+        for i, e in enumerate(upcoming):
+            reg_count = regs.count_registered_by_event(e.EventId)
+            for col, val in enumerate([e.EventName, e.EventDate, str(reg_count)]):
+                item = QTableWidgetItem(val)
+                if col == 1 and e.EventDate == today:
+                    item.setForeground(QColor("#16a34a"))
+                    item.setText(f"TODAY — {val}")
+                self.dashUpcomingTable.setItem(i, col, item)
+
+        recent = sorted(
+            [r for r in regs.list if r.Status == "Checked-in" and r.CheckinTime],
+            key=lambda r: r.CheckinTime or "",
+            reverse=True
+        )[:10]
+
+        self.dashRecentTable.setRowCount(len(recent))
+        for i, r in enumerate(recent):
+            att = attendees.find_attendee(r.AttendeeId)
+            evt = events.find_event(r.EventId)
+            name = att.Name if att else "Unknown"
+            evt_name = evt.EventName if evt else "Unknown"
+            time_str = (r.CheckinTime or "")[-8:] if r.CheckinTime else ""
+            for col, val in enumerate([name, evt_name, time_str]):
+                item = QTableWidgetItem(val)
+                item.setForeground(QColor("#16a34a"))
+                self.dashRecentTable.setItem(i, col, item)
+
+    def import_attendees_from_file(self):
+        import csv
+        from PyQt6.QtWidgets import QFileDialog
+
+        path, _ = QFileDialog.getOpenFileName(
+            self.MainWindow, "Import Attendees",
+            "", "Excel/CSV Files (*.xlsx *.xls *.csv);;All Files (*)"
+        )
+        if not path:
+            return
+
+        rows = []
+        errors = []
+
+        try:
+            if path.lower().endswith('.csv'):
+                with open(path, encoding='utf-8-sig') as f:
+                    reader = csv.DictReader(f)
+                    for i, row in enumerate(reader, 2):
+                        rows.append((i, row))
+            else:
+                try:
+                    import openpyxl
+                    wb = openpyxl.load_workbook(path)
+                    ws = wb.active
+                    headers = [str(c.value or "").strip().lower() for c in ws[1]]
+                    for i, row in enumerate(ws.iter_rows(min_row=2, values_only=True), 2):
+                        rows.append((i, dict(zip(headers, row))))
+                except ImportError:
+                    _msg(self.MainWindow, "warn", "Missing Library",
+                         "openpyxl not installed!\nInstall with: pip install openpyxl\n\nOr use CSV format instead.")
+                    return
+        except Exception as e:
+            QMessageBox.critical(self.MainWindow, "Error", f"Cannot read file:\n{e}")
+            return
+
+        def get_val(row_dict, *keys):
+            for k in keys:
+                for dk in row_dict:
+                    if str(dk).strip().lower() == k.lower():
+                        v = row_dict[dk]
+                        return str(v).strip() if v is not None else ""
+            return ""
+
+        attendees = Attendees()
+        attendees.import_json("datasets/attendees.json")
+
+        import uuid, re
+        added = skipped = failed = 0
+
+        for line_num, row in rows:
+            name = get_val(row, 'name', 'full name', 'fullname', 'họ tên', 'ten')
+            email = get_val(row, 'email', 'e-mail', 'email address')
+            phone = get_val(row, 'phone', 'phone number', 'điện thoại', 'sdt')
+            org = get_val(row, 'organization', 'company', 'tổ chức', 'don vi')
+            pos = get_val(row, 'position', 'job title', 'chức vụ', 'chuc vu')
+
+            if not name or not email:
+                errors.append(f"Row {line_num}: Missing name or email")
+                failed += 1
+                continue
+
+            if not re.match(r'^[\w.+-]+@[\w-]+\.[\w.]+$', email):
+                errors.append(f"Row {line_num}: Invalid email '{email}'")
+                failed += 1
+                continue
+
+            if attendees.is_email_taken(email):
+                skipped += 1
+                continue
+
+            att = type('Attendee', (), {})()
+            att.AttendeeId = "att_" + str(uuid.uuid4())[:8]
+            att.Name = name
+            att.Email = email
+            att.Phone = phone
+            att.Organization = org
+            att.Position = pos
+            attendees.add_item(att)
+            added += 1
+
+        attendees.export_json("datasets/attendees.json")
+        self.load_attendees()
+        self.load_dashboard()
+
+        msg = f"Import complete!\n\nAdded: {added}\nSkipped (duplicate email): {skipped}\nFailed: {failed}"
+        if errors:
+            msg += "\n\nErrors (first 5):\n" + "\n".join(errors[:5])
+        _msg(self.MainWindow, "info", "Import Result", msg)
+
+    def view_attendee_history(self):
+        row = self.attendeeTable.currentRow()
+        if row < 0:
+            QMessageBox.warning(self.MainWindow, "Error", "Please select an attendee!")
+            return
+
+        att_id = self.attendeeTable.item(row, 0).text()
+        att_name = self.attendeeTable.item(row, 1).text()
+
+        regs = Registrations()
+        regs.import_json("datasets/registrations.json")
+        events = Events()
+        events.import_json("datasets/events.json")
+
+        att_regs = [r for r in regs.list if r.AttendeeId == att_id]
+
+        from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QLabel,
+                                     QTableWidget, QTableWidgetItem, QHeaderView)
+        from PyQt6.QtGui import QColor
+
+        dlg = QDialog(self.MainWindow)
+        dlg.setWindowTitle(f"📜 History: {att_name}")
+        dlg.setMinimumSize(700, 400)
+        dlg.setStyleSheet("background: white;")
+
+        layout = QVBoxLayout(dlg)
+        layout.setContentsMargins(16, 16, 16, 16)
+        layout.setSpacing(10)
+
+        lbl = QLabel(f"<b>{att_name}</b> — {len(att_regs)} event(s) registered")
+        lbl.setStyleSheet("font-size: 14px; color: #111827; padding-bottom: 4px;")
+        layout.addWidget(lbl)
+
+        table = QTableWidget(len(att_regs), 5)
+        table.setHorizontalHeaderLabels(["Event Name", "Date", "Location", "Reg. Date", "Status"])
+        table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+        table.setAlternatingRowColors(True)
+        table.setStyleSheet("background: white; alternate-background-color: #f8fafc; gridline-color: #e2e8f0;")
+        table.horizontalHeader().setStyleSheet(
+            "QHeaderView::section { background: #f1f5f9; color: #374151; font-weight: bold; padding: 6px; border-bottom: 2px solid #e2e8f0; }"
+        )
+
+        for r_idx, reg in enumerate(att_regs):
+            evt = events.find_event(reg.EventId)
+            evt_name = evt.EventName if evt else "Unknown"
+            evt_date = evt.EventDate if evt else ""
+            evt_loc = evt.Location if evt else ""
+
+            vals = [evt_name, evt_date, evt_loc, reg.RegistrationDate, reg.Status]
+            for c, val in enumerate(vals):
+                item = QTableWidgetItem(str(val))
+                if reg.Status == "Checked-in":
+                    item.setForeground(QColor("#16a34a"))
+                table.setItem(r_idx, c, item)
+
+        layout.addWidget(table)
+
+        if not att_regs:
+            no_data = QLabel("This attendee has no registration history.")
+            no_data.setStyleSheet("color: #6b7280; font-size: 13px;")
+            layout.addWidget(no_data)
+
+        dlg.exec()
 
     def load_event_combo(self):
         self.eventCombo.clear()
@@ -605,11 +985,10 @@ class MainWindowEx(Ui_MainWindow):
                     item.setBackground(QtGui.QColor("#F9E79F"))
                     item.setForeground(QtGui.QColor("#7D6608"))
                 self.registrationTable.setItem(row, col, item)
-        pass
 
     def register_attendee(self):
         if self.eventCombo.count() == 0:
-            QMessageBox.warning(self.MainWindow, "Error", "No events available!")
+            _msg(self.MainWindow, "warn", "Error", "No events available!")
             return
         event_id = self.eventCombo.currentData()
         dlg = RegistrationDialogEx(self.MainWindow, event_id=event_id)
@@ -622,18 +1001,18 @@ class MainWindowEx(Ui_MainWindow):
             regs.import_json("datasets/registrations.json")
 
             success_list = []
-            skip_list    = []
+            skip_list = []
 
             for att_id in att_ids:
                 if regs.find_registration_by_event_attendee(event_id, att_id):
                     skip_list.append(att_id)
                     continue
                 reg = Registration()
-                reg.RegistrationId   = str(uuid.uuid4())[:8].upper()
-                reg.EventId          = event_id
-                reg.AttendeeId       = att_id
+                reg.RegistrationId = str(uuid.uuid4())[:8].upper()
+                reg.EventId = event_id
+                reg.AttendeeId = att_id
                 reg.RegistrationDate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                reg.Status           = "Registered"
+                reg.Status = "Registered"
                 regs.add_item(reg)
                 success_list.append(reg.RegistrationId)
 
@@ -647,134 +1026,155 @@ class MainWindowEx(Ui_MainWindow):
             if skip_list:
                 msg += f"\n⚠️ {len(skip_list)} attendee(s) already registered (skipped)."
 
+            # ── Hỏi gửi email sau khi đăng ký thành công ──
             if msg:
-                QMessageBox.information(self.MainWindow, "Registration Result", msg)
+                _msg(self.MainWindow, "info", "Registration Result", msg)
+
+                if success_list:
+                    reply = QMessageBox.question(
+                        self.MainWindow, "Send Emails",
+                        "Do you want to send QR Codes via email to the newly registered attendees?",
+                        QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+                    )
+
+                    if reply == QMessageBox.StandardButton.Yes:
+                        events = Events()
+                        events.import_json("datasets/events.json")
+                        event_name = events.find_event(event_id).EventName
+
+                        attendees = Attendees()
+                        attendees.import_json("datasets/attendees.json")
+                        email_data = []
+
+                        for reg_id in success_list:
+                            reg = regs.find_registration(reg_id)
+                            att = attendees.find_attendee(reg.AttendeeId)
+                            if att and att.Email:
+                                email_data.append({
+                                    'email': att.Email,
+                                    'name': att.Name,
+                                    'code': reg_id
+                                })
+
+                        if email_data:
+                            self.progress_dialog = QProgressDialog(
+                                "Starting...", "Cancel", 0, len(email_data), self.MainWindow
+                            )
+                            self.progress_dialog.setWindowTitle("Sending Emails")
+                            self.progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
+                            self.progress_dialog.setMinimumDuration(0)
+
+                            self.email_thread = EmailSenderThread(email_data, event_name)
+
+                            def update_progress(current, text):
+                                self.progress_dialog.setValue(current)
+                                self.progress_dialog.setLabelText(text)
+
+                            def email_finished(success_count, fail_count):
+                                self.progress_dialog.close()
+                                _msg(self.MainWindow, "info", "Email Result",
+                                     f"Emails sent successfully: {success_count}\nFailed: {fail_count}")
+
+                            self.email_thread.progress.connect(update_progress)
+                            self.email_thread.finished_task.connect(email_finished)
+                            self.email_thread.start()
 
             self.load_registrations()
 
     def cancel_registration(self):
-        row = self.registrationTable.currentRow()
-        if row < 0:
-            QMessageBox.warning(self.MainWindow, "Error", "Please select a registration to cancel!")
+        rows = list(set(idx.row() for idx in self.registrationTable.selectedIndexes()))
+        if not rows:
+            QMessageBox.warning(self.MainWindow, "Error", "Please select at least one registration!")
             return
         reply = QMessageBox.question(
-            self.MainWindow, "Confirm", "Are you sure you want to cancel this registration?",
+            self.MainWindow, "Confirm",
+            f"Cancel {len(rows)} registration(s)?",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         if reply == QMessageBox.StandardButton.Yes:
-            reg_id = self.registrationTable.item(row, 0).text()
+            reg_ids = [self.registrationTable.item(r, 0).text() for r in rows]
             regs = Registrations()
             regs.import_json("datasets/registrations.json")
-            regs.delete_registration(reg_id)
+            for reg_id in reg_ids:
+                regs.delete_registration(reg_id)
             regs.export_json("datasets/registrations.json")
-            QMessageBox.information(self.MainWindow, "Success", "Registration canceled successfully!")
+            _msg(self.MainWindow, "info", "Success", f"Canceled {len(reg_ids)} registration(s) successfully!")
             self.load_registrations()
 
     def generate_qr_code(self):
         if not QR_AVAILABLE:
-            QMessageBox.warning(self.MainWindow, "Error",
-                                "qrcode library not installed!\nInstall with: pip install qrcode[pil]")
+            _msg(self.MainWindow, "warn", "Error", "qrcode not installed!\nRun: pip install qrcode[pil]")
             return
         row = self.registrationTable.currentRow()
         if row < 0:
-            QMessageBox.warning(self.MainWindow, "Error", "Please select a registration!")
+            _msg(self.MainWindow, "warn", "Error", "Please select a registration!")
             return
-        reg_id    = self.registrationTable.item(row, 0).text()
-        att_name  = self.registrationTable.item(row, 1).text()
-        att_email = self.registrationTable.item(row, 2).text()
-        att_org   = self.registrationTable.item(row, 3).text()
+
+        from PyQt6.QtWidgets import QPushButton, QHBoxLayout, QFileDialog, QApplication
+        reg_id = self.registrationTable.item(row, 0).text()
+        att_name = self.registrationTable.item(row, 1).text()
+        att_info = f"{self.registrationTable.item(row, 2).text()} · {self.registrationTable.item(row, 3).text()}"
 
         qr = qrcode.QRCode(version=1, box_size=10, border=5)
         qr.add_data(reg_id)
         qr.make(fit=True)
         img = qr.make_image(fill_color="black", back_color="white")
-
         buf = BytesIO()
         img.save(buf, format="PNG")
         buf.seek(0)
-        qimage = QImage()
-        qimage.loadFromData(buf.read())
-        pixmap = QPixmap.fromImage(qimage)
+        pixmap = QPixmap.fromImage(QImage.fromData(buf.read()))
 
-        from PyQt6.QtWidgets import QPushButton, QHBoxLayout, QFileDialog, QApplication
-
-        qr_dlg = QDialog(self.MainWindow)
-        qr_dlg.setWindowTitle("Check-in QR Code")
-        qr_dlg.setMinimumWidth(420)
-        qr_dlg.setStyleSheet("background-color: #f4f6f7;")
-
-        lay = QVBoxLayout()
-        lay.setSpacing(10)
+        dlg = QDialog(self.MainWindow)
+        dlg.setWindowTitle("Check-in QR Code")
+        dlg.setMinimumWidth(400)
+        dlg.setStyleSheet("background:white;")
+        lay = QVBoxLayout(dlg)
         lay.setContentsMargins(20, 20, 20, 20)
+        lay.setSpacing(10)
 
-        lbl_img = QLabel()
-        lbl_img.setPixmap(pixmap)
-        lbl_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        lay.addWidget(lbl_img)
+        img_lbl = QLabel()
+        img_lbl.setPixmap(pixmap)
+        img_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        lay.addWidget(img_lbl)
 
-        info_text = (
-            f"<div style='text-align:center;'>"
-            f"<h3 style='margin:0;color:#3b82f6;'>{att_name}</h3>"
-            f"<p style='margin:2px;color:#7f8c8d;font-size:12px;'>{att_email}</p>"
-            f"<p style='margin:2px;color:#7f8c8d;font-size:12px;'>{att_org}</p>"
-            f"<h2 style='color:#2980b9;margin-top:6px;'>🎫 Code: {reg_id}</h2>"
-            f"</div>"
+        info_lbl = QLabel(
+            f"<div style='text-align:center'><h3 style='color:#3b82f6;margin:0'>{att_name}</h3>"
+            f"<p style='color:#64748b;font-size:12px;margin:2px'>{att_info}</p>"
+            f"<h2 style='color:#1e40af'>🎫 {reg_id}</h2></div>"
         )
-        lbl_info = QLabel(info_text)
-        lbl_info.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        lbl_info.setTextFormat(Qt.TextFormat.RichText)
-        lay.addWidget(lbl_info)
+        info_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        info_lbl.setTextFormat(Qt.TextFormat.RichText)
+        lay.addWidget(info_lbl)
 
-        btn_layout = QHBoxLayout()
-
-        btn_save = QPushButton("💾 Save QR Image")
-        btn_save.setStyleSheet(
-            "QPushButton { background:#3b82f6; color:white; border-radius:6px;"
-            "font-size:13px; font-weight:bold; padding:8px 16px; }"
-            "QPushButton:hover { background:#1e293b; }"
-        )
+        _btn_style = lambda bg: (f"QPushButton{{background:{bg};color:white;border-radius:6px;"
+                                 f"font-size:13px;padding:8px 16px;font-weight:bold}}"
+                                 f"QPushButton:hover{{background:#1e293b}}")
+        btn_save = QPushButton("💾 Save Image")
+        btn_save.setStyleSheet(_btn_style("#3b82f6"))
         btn_copy = QPushButton("📋 Copy Code")
-        btn_copy.setStyleSheet(
-            "QPushButton { background:#2563eb; color:white; border-radius:6px;"
-            "font-size:13px; font-weight:bold; padding:8px 16px; }"
-            "QPushButton:hover { background:#2563eb; }"
-        )
+        btn_copy.setStyleSheet(_btn_style("#2563eb"))
         btn_close = QPushButton("✖ Close")
-        btn_close.setStyleSheet(
-            "QPushButton { background:#ef4444; color:white; border-radius:6px;"
-            "font-size:13px; padding:8px 16px; }"
-            "QPushButton:hover { background:#dc2626; }"
-        )
+        btn_close.setStyleSheet(_btn_style("#ef4444"))
 
-        btn_layout.addWidget(btn_save)
-        btn_layout.addWidget(btn_copy)
-        btn_layout.addWidget(btn_close)
-        lay.addLayout(btn_layout)
-        qr_dlg.setLayout(lay)
+        row_btns = QHBoxLayout()
+        for b in (btn_save, btn_copy, btn_close):
+            row_btns.addWidget(b)
+        lay.addLayout(row_btns)
 
         def save_qr():
-            default_name = f"QR_{att_name.replace(' ', '_')}_{reg_id}.png"
-            file_path, _ = QFileDialog.getSaveFileName(
-                qr_dlg, "Save QR Code", default_name,
-                "PNG Image (*.png);;All Files (*)"
-            )
-            if file_path:
+            path, _ = QFileDialog.getSaveFileName(dlg, "Save QR",
+                                                  f"QR_{att_name.replace(' ', '_')}_{reg_id}.png", "PNG (*.png)")
+            if path:
                 buf2 = BytesIO()
                 img.save(buf2, format="PNG")
-                buf2.seek(0)
-                with open(file_path, "wb") as f:
-                    f.write(buf2.read())
-                QMessageBox.information(qr_dlg, "Saved", f"QR Code saved!\n📁 {file_path}")
-
-        def copy_code():
-            QApplication.clipboard().setText(reg_id)
-            QMessageBox.information(qr_dlg, "Copied", f"Code copied to clipboard!\n🎫 {reg_id}")
+                open(path, "wb").write(buf2.getvalue())
+                QMessageBox.information(dlg, "Saved", f"Saved!\n{path}")
 
         btn_save.clicked.connect(save_qr)
-        btn_copy.clicked.connect(copy_code)
-        btn_close.clicked.connect(qr_dlg.accept)
-
-        qr_dlg.exec()
+        btn_copy.clicked.connect(lambda: (QApplication.clipboard().setText(reg_id),
+                                          QMessageBox.information(dlg, "Copied", f"Copied: {reg_id}")))
+        btn_close.clicked.connect(dlg.accept)
+        dlg.exec()
 
     def load_checkin_event_combo(self):
         self.checkinEventCombo.clear()
@@ -813,12 +1213,12 @@ class MainWindowEx(Ui_MainWindow):
     def perform_checkin(self):
         code = self.checkinCode.text().strip().upper()
         if not code:
-            QMessageBox.warning(self.MainWindow, "Error", "Please enter a registration code!")
+            _msg(self.MainWindow, "warn", "Error", "Please enter a registration code!")
             return
 
         event_id = self.checkinEventCombo.currentData()
         if not event_id:
-            QMessageBox.warning(self.MainWindow, "Error", "Please select an event first!")
+            _msg(self.MainWindow, "warn", "Error", "Please select an event first!")
             return
 
         regs = Registrations()
@@ -826,18 +1226,19 @@ class MainWindowEx(Ui_MainWindow):
         success, message = regs.checkin_for_event(code, event_id)
         if success:
             regs.export_json("datasets/registrations.json")
-            QMessageBox.information(self.MainWindow, "Success", message)
+            _msg(self.MainWindow, "info", "✅ Check-in", message)
             self.checkinCode.clear()
             self.load_checkin_stats()
+            self.load_dashboard()
         else:
-            QMessageBox.warning(self.MainWindow, "Error", message)
+            _msg(self.MainWindow, "warn", "Check-in Failed", message)
 
     def scan_qr_checkin(self):
         from Ui_ex.QRScannerDialogEx import QRScannerDialogEx
 
         event_id = self.checkinEventCombo.currentData()
         if not event_id:
-            QMessageBox.warning(self.MainWindow, "Error", "Please select an event first!")
+            _msg(self.MainWindow, "warn", "Error", "Please select an event first!")
             return
 
         def checkin_callback(qr_code):
@@ -867,103 +1268,72 @@ class MainWindowEx(Ui_MainWindow):
             writer.writerow(headers)
             writer.writerows(rows)
 
-    def export_events_csv(self):
-        file_path = self._get_file_path("events.csv")
-        if not file_path:
-            return
+    def _do_export(self, filename, headers, build_rows):
+        path = self._get_file_path(filename)
+        if not path: return
         try:
-            events = Events()
-            events.import_json("datasets/events.json")
-            headers = ["ID", "Event Name", "Date", "Time", "Venue", "Description"]
-            rows = [
-                [e.EventId, e.EventName, e.EventDate, e.EventTime,
-                 e.Location, e.Description or ""]
-                for e in events.list
-            ]
-            self._write_csv(file_path, headers, rows)
-            QMessageBox.information(self.MainWindow, "Exported",
-                f"✅ Exported {len(rows)} events!\n📁 {file_path}")
+            rows = build_rows()
+            self._write_csv(path, headers, rows)
+            _msg(self.MainWindow, "info", "Exported", f"Exported {len(rows)} records!\n{path}")
         except Exception as e:
-            QMessageBox.warning(self.MainWindow, "Error", f"Export failed:\n{str(e)}")
+            _msg(self.MainWindow, "warn", "Error", f"Export failed:\n{e}")
+
+    def export_events_csv(self):
+        events = Events()
+        events.import_json("datasets/events.json")
+        self._do_export("events.csv",
+                        ["ID", "Event Name", "Date", "Time", "Venue", "Description"],
+                        lambda: [[e.EventId, e.EventName, e.EventDate, e.EventTime,
+                                  e.Location, e.Description or ""] for e in events.list])
 
     def export_attendees_csv(self):
-        file_path = self._get_file_path("attendees.csv")
-        if not file_path:
-            return
-        try:
-            attendees = Attendees()
-            attendees.import_json("datasets/attendees.json")
-            headers = ["ID", "Full Name", "Email", "Phone", "Organization", "Position"]
-            rows = [
-                [a.AttendeeId, a.Name, a.Email, a.Phone or "",
-                 a.Organization or "", a.Position or ""]
-                for a in attendees.list
-            ]
-            self._write_csv(file_path, headers, rows)
-            QMessageBox.information(self.MainWindow, "Exported",
-                f"✅ Exported {len(rows)} attendees!\n📁 {file_path}")
-        except Exception as e:
-            QMessageBox.warning(self.MainWindow, "Error", f"Export failed:\n{str(e)}")
+        atts = Attendees()
+        atts.import_json("datasets/attendees.json")
+        self._do_export("attendees.csv",
+                        ["ID", "Full Name", "Email", "Phone", "Organization", "Position"],
+                        lambda: [[a.AttendeeId, a.Name, a.Email, a.Phone or "",
+                                  a.Organization or "", a.Position or ""] for a in atts.list])
 
     def export_registrations_csv(self):
-        file_path = self._get_file_path("registrations.csv")
-        if not file_path:
-            return
-        try:
-            event_id = self.eventCombo.currentData()
-            regs = Registrations()
-            regs.import_json("datasets/registrations.json")
-            attendees = Attendees()
-            attendees.import_json("datasets/attendees.json")
-            items = regs.get_registrations_by_event(event_id) if event_id else regs.list
-            headers = ["Reg. ID", "Full Name", "Email", "Organization", "Reg. Date", "Status"]
-            rows = []
-            for reg in items:
-                att = attendees.find_attendee(reg.AttendeeId)
-                rows.append([
-                    reg.RegistrationId,
-                    att.Name if att else "",
-                    att.Email if att else "",
-                    att.Organization or "" if att else "",
-                    reg.RegistrationDate,
-                    reg.Status,
-                ])
-            self._write_csv(file_path, headers, rows)
-            QMessageBox.information(self.MainWindow, "Exported",
-                f"✅ Exported {len(rows)} registrations!\n📁 {file_path}")
-        except Exception as e:
-            QMessageBox.warning(self.MainWindow, "Error", f"Export failed:\n{str(e)}")
+        regs = Registrations()
+        regs.import_json("datasets/registrations.json")
+        atts = Attendees()
+        atts.import_json("datasets/attendees.json")
+        event_id = self.eventCombo.currentData()
+        items = regs.get_registrations_by_event(event_id) if event_id else regs.list
+
+        def _rows():
+            out = []
+            for r in items:
+                a = atts.find_attendee(r.AttendeeId)
+                out.append([r.RegistrationId, a.Name if a else "", a.Email if a else "",
+                            (a.Organization or "") if a else "",
+                            r.RegistrationDate, r.Status])
+            return out
+
+        self._do_export("registrations.csv",
+                        ["Reg. ID", "Full Name", "Email", "Organization", "Reg. Date", "Status"], _rows)
 
     def export_checkin_csv(self):
-        file_path = self._get_file_path("checkin_list.csv")
-        if not file_path:
-            return
-        try:
-            event_id = self.checkinEventCombo.currentData()
-            regs = Registrations()
-            regs.import_json("datasets/registrations.json")
-            attendees = Attendees()
-            attendees.import_json("datasets/attendees.json")
-            items = [
-                r for r in (regs.get_registrations_by_event(event_id) if event_id else regs.list)
-                if r.Status == "Checked-in"
-            ]
-            headers = ["Full Name", "Email", "Organization", "Check-in Time", "Reg. Code"]
-            rows = []
-            for reg in items:
-                att = attendees.find_attendee(reg.AttendeeId)
-                rows.append([
-                    att.Name if att else "",
-                    att.Email if att else "",
-                    att.Organization or "" if att else "",
-                    reg.CheckinTime if hasattr(reg, "CheckinTime") else "",
-                    reg.RegistrationId,
-                ])
-            self._write_csv(file_path, headers, rows)
-            QMessageBox.information(self.MainWindow, "Exported",
-                f"✅ Exported {len(rows)} check-ins!\n📁 {file_path}")
-        except Exception as e:
-            QMessageBox.warning(self.MainWindow, "Error", f"Export failed:\n{str(e)}")
+        regs = Registrations()
+        regs.import_json("datasets/registrations.json")
+        atts = Attendees()
+        atts.import_json("datasets/attendees.json")
+        event_id = self.checkinEventCombo.currentData()
+        items = [r for r in (regs.get_registrations_by_event(event_id) if event_id else regs.list)
+                 if r.Status == "Checked-in"]
+
+        def _rows():
+            out = []
+            for r in items:
+                a = atts.find_attendee(r.AttendeeId)
+                out.append([a.Name if a else "", a.Email if a else "",
+                            (a.Organization or "") if a else "",
+                            getattr(r, "CheckinTime", ""), r.RegistrationId])
+            return out
+
+        self._do_export("checkin_list.csv",
+                        ["Full Name", "Email", "Organization", "Check-in Time", "Reg. Code"], _rows)
 
     def _setup_pagination(self, table, data_list, fill_func, page_label, prev_btn, next_btn):
         if not hasattr(self, '_pages'):
@@ -982,12 +1352,12 @@ class MainWindowEx(Ui_MainWindow):
 
     def _render_page(self, name):
         state = self._pages[name]
-        data     = state['data']
-        page     = state['page']
-        total    = max(1, (len(data) + self.PAGE_SIZE - 1) // self.PAGE_SIZE)
-        start    = page * self.PAGE_SIZE
-        end      = start + self.PAGE_SIZE
-        chunk    = data[start:end]
+        data = state['data']
+        page = state['page']
+        total = max(1, (len(data) + self.PAGE_SIZE - 1) // self.PAGE_SIZE)
+        start = page * self.PAGE_SIZE
+        end = start + self.PAGE_SIZE
+        chunk = data[start:end]
 
         state['fill_func'](chunk)
         state['label'].setText(f"Page {page + 1} / {total}")
@@ -1018,7 +1388,6 @@ class MainWindowEx(Ui_MainWindow):
         self.stats_canvas = FigureCanvas(self.stats_figure)
 
         self.verticalLayoutStatsPlot.addWidget(self.stats_canvas)
-
         self.show_bar_chart()
 
     def _set_active_btn(self, active_btn):
@@ -1051,7 +1420,7 @@ class MainWindowEx(Ui_MainWindow):
         for e in target_events:
             event_regs = regs.get_registrations_by_event(e.EventId)
             registered = len(event_regs)
-            checkedin  = sum(1 for r in event_regs if r.Status == "Checked-in")
+            checkedin = sum(1 for r in event_regs if r.Status == "Checked-in")
             label = e.EventName if len(e.EventName) <= 18 else e.EventName[:15] + "..."
             data[label] = {"registered": registered, "checkedin": checkedin}
 
@@ -1070,37 +1439,38 @@ class MainWindowEx(Ui_MainWindow):
         else:
             self.show_bar_chart()
 
-    def show_bar_chart(self):
-        if not MATPLOTLIB_AVAILABLE:
-            return
-        if hasattr(self, 'btnStatsBar'):
-            self._set_active_btn(self.btnStatsBar)
-        data = self._get_stats_data()
-        if not data:
-            return
-
+    def _chart_init(self, btn_attr):
+        if not MATPLOTLIB_AVAILABLE: return None
+        if hasattr(self, btn_attr): self._set_active_btn(getattr(self, btn_attr))
         self.stats_figure.clear()
         ax = self.stats_figure.add_subplot(111)
+        ax.set_facecolor("#f9f9f9")
         self.stats_ax = ax
+        return ax
 
-        labels     = list(data.keys())
-        registered = [data[k]["registered"] for k in labels]
-        checkedin  = [data[k]["checkedin"]  for k in labels]
+    def _chart_done(self):
+        self.stats_figure.tight_layout()
+        self.stats_canvas.draw()
 
-        x     = range(len(labels))
-        width = 0.35
+    def show_bar_chart(self):
+        ax = self._chart_init('btnStatsBar')
+        if ax is None: return
+        data = self._get_stats_data()
+        if not data: return
 
-        bars1 = ax.bar([i - width/2 for i in x], registered, width,
-                       label="Registered", color="#3498db", alpha=0.85)
-        bars2 = ax.bar([i + width/2 for i in x], checkedin, width,
-                       label="Checked-in", color="#27ae60", alpha=0.85)
+        labels = list(data.keys())
+        reg = [data[k]["registered"] for k in labels]
+        chk = [data[k]["checkedin"] for k in labels]
+        x, w = range(len(labels)), 0.35
 
-        for bar in bars1:
-            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.1,
-                    str(int(bar.get_height())), ha='center', va='bottom', fontsize=9)
-        for bar in bars2:
-            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.1,
-                    str(int(bar.get_height())), ha='center', va='bottom', fontsize=9)
+        for bars, vals, color, lbl in [
+            ([i - w / 2 for i in x], reg, "#3498db", "Registered"),
+            ([i + w / 2 for i in x], chk, "#27ae60", "Checked-in"),
+        ]:
+            b = ax.bar(bars, vals, w, label=lbl, color=color, alpha=0.85)
+            for bar in b:
+                ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.1,
+                        str(int(bar.get_height())), ha='center', va='bottom', fontsize=9)
 
         ax.set_xticks(list(x))
         ax.set_xticklabels(labels, rotation=15, ha='right', fontsize=9)
@@ -1108,106 +1478,75 @@ class MainWindowEx(Ui_MainWindow):
         ax.set_title("Registration vs Check-in by Event", fontsize=12, fontweight='bold')
         ax.legend()
         ax.grid(axis='y', alpha=0.4)
-        ax.set_facecolor("#f9f9f9")
-        self.stats_figure.tight_layout()
-        self.stats_canvas.draw()
+        self._chart_done()
 
     def show_line_chart(self):
-        if not MATPLOTLIB_AVAILABLE:
-            return
-        if hasattr(self, 'btnStatsLine'):
-            self._set_active_btn(self.btnStatsLine)
-
+        ax = self._chart_init('btnStatsLine')
+        if ax is None: return
+        from collections import Counter
         regs = Registrations()
         regs.import_json("datasets/registrations.json")
         event_id = self.statsEventCombo.currentData()
-
         items = regs.get_registrations_by_event(event_id) if event_id else regs.list
-
         if not items:
-            QMessageBox.information(self.MainWindow, "Info", "No registration data!")
+            _msg(self.MainWindow, "info", "Info", "No registration data!")
             return
 
-        from collections import Counter
-        date_counts = Counter()
-        for r in items:
-            date_counts[r.RegistrationDate] += 1
-
-        dates  = sorted(date_counts.keys())
-        counts = [date_counts[d] for d in dates]
-
-        cumulative = []
+        counts = Counter(r.RegistrationDate for r in items)
+        dates = sorted(counts.keys())
         total = 0
-        for c in counts:
-            total += c
+        cumulative = []
+        for d in dates:
+            total += counts[d]
             cumulative.append(total)
 
-        self.stats_figure.clear()
-        ax = self.stats_figure.add_subplot(111)
-        self.stats_ax = ax
-
         ax.plot(dates, cumulative, marker='o', color='#e67e22',
-                linewidth=2, markersize=7, label="Cumulative Registrations")
+                linewidth=2, markersize=5, label="Cumulative Registrations")
         ax.fill_between(range(len(dates)), cumulative, alpha=0.15, color='#e67e22')
 
-        for i, val in enumerate(cumulative):
-            ax.annotate(str(val), (dates[i], val),
-                        textcoords="offset points", xytext=(0, 8),
-                        ha='center', fontsize=9)
+        n = len(cumulative)
+        show_idx = {0, n - 1} | set(range(0, n, max(1, n // 6))) if n else set()
+        for i in show_idx:
+            ax.annotate(str(cumulative[i]), (dates[i], cumulative[i]),
+                        textcoords="offset points", xytext=(0, 8), ha='center', fontsize=8)
 
-        ax.set_xticks(range(len(dates)))
-        ax.set_xticklabels(dates, rotation=15, ha='right', fontsize=9)
+        step = max(1, n // 8)
+        ax.set_xticks(range(0, n, step))
+        ax.set_xticklabels([dates[i] for i in range(0, n, step)], rotation=30, ha='right', fontsize=8)
         ax.set_ylabel("Cumulative Registrations")
         ax.set_title("Line Chart: Registration Trend", fontsize=12, fontweight='bold')
         ax.legend()
         ax.grid(alpha=0.4)
-        ax.set_facecolor("#f9f9f9")
-        self.stats_figure.tight_layout()
-        self.stats_canvas.draw()
+        self._chart_done()
 
     def show_pie_chart(self):
-        if not MATPLOTLIB_AVAILABLE:
-            return
-        if hasattr(self, 'btnStatsPie'):
-            self._set_active_btn(self.btnStatsPie)
-
+        ax = self._chart_init('btnStatsPie')
+        if ax is None: return
         regs = Registrations()
         regs.import_json("datasets/registrations.json")
         event_id = self.statsEventCombo.currentData()
-
         items = regs.get_registrations_by_event(event_id) if event_id else regs.list
-
-        checkedin     = sum(1 for r in items if r.Status == "Checked-in")
-        not_checkedin = len(items) - checkedin
-
-        if checkedin + not_checkedin == 0:
-            QMessageBox.information(self.MainWindow, "Info", "No registration data!")
+        chk = sum(1 for r in items if r.Status == "Checked-in")
+        if not items:
+            _msg(self.MainWindow, "info", "Info", "No registration data!")
             return
 
-        self.stats_figure.clear()
-        ax = self.stats_figure.add_subplot(111)
-        self.stats_ax = ax
-
-        sizes  = [checkedin, not_checkedin]
-        labels = [f"Checked-in ({checkedin})", f"Not Checked-in ({not_checkedin})"]
-        colors = ["#27ae60", "#e74c3c"]
-        explode = (0.05, 0)
-
-        wedges, texts, autotexts = ax.pie(
-            sizes, labels=labels, colors=colors,
-            autopct='%1.1f%%', explode=explode,
-            startangle=90, textprops={'fontsize': 10}
+        sizes = [chk, len(items) - chk]
+        labels = [f"Checked-in ({chk})", f"Not Checked-in ({len(items) - chk})"]
+        wedges, _, autotexts = ax.pie(
+            sizes, labels=labels, colors=["#27ae60", "#e74c3c"],
+            autopct='%1.1f%%', explode=(0.05, 0), startangle=90,
+            textprops={'fontsize': 10}
         )
         for at in autotexts:
             at.set_fontweight('bold')
-
         ax.set_title("Pie Chart: Check-in Rate", fontsize=12, fontweight='bold')
         ax.legend(wedges, labels, loc="lower right", fontsize=9)
-        self.stats_figure.tight_layout()
-        self.stats_canvas.draw()
+        self._chart_done()
 
     def apply_stylesheet(self):
         self.MainWindow.setStyleSheet("""
+            /* ── Theme B: Slate Blue ── */
             QMainWindow { background-color: white; }
 
             QPushButton {
@@ -1226,91 +1565,61 @@ class MainWindowEx(Ui_MainWindow):
                 border-radius: 6px;
                 gridline-color: #e2e8f0;
             }
-            QTableWidget::item {
-                color: #111827;
-                padding: 4px;
-            }
-            QTableWidget::item:selected {
-                background-color: #dbeafe;
-                color: #1e40af;
-            }
+            QTableWidget::item { color: #111827; padding: 4px; }
+            QTableWidget::item:selected { background-color: #dbeafe; color: #1e40af; }
             QHeaderView::section {
-                background-color: #f1f5f9;
-                color: #374151;
-                padding: 8px;
-                border: none;
+                background-color: #f1f5f9; color: #374151;
+                padding: 8px; border: none;
                 border-bottom: 2px solid #e2e8f0;
-                font-weight: bold;
-                font-size: 12px;
+                font-weight: bold; font-size: 12px;
             }
 
             QLineEdit, QTextEdit, QComboBox, QDateEdit, QTimeEdit {
-                padding: 6px;
-                border: 1px solid #d1d5db;
-                border-radius: 5px;
-                background-color: white;
-                color: #111827;
+                padding: 6px; border: 1px solid #d1d5db;
+                border-radius: 5px; background-color: white; color: #111827;
             }
-            QLineEdit:focus, QComboBox:focus {
-                border: 1px solid #3b82f6;
-            }
+            QLineEdit:focus, QComboBox:focus { border: 1px solid #3b82f6; }
             QLineEdit:disabled { background-color: #f9fafb; color: #9ca3af; }
 
             QGroupBox {
-                border: 1px solid #e5e7eb;
-                border-radius: 6px;
-                margin-top: 10px;
-                font-weight: bold;
-                padding: 15px;
-                background-color: white;
+                border: 1px solid #e5e7eb; border-radius: 6px;
+                margin-top: 10px; font-weight: bold;
+                padding: 15px; background-color: white;
             }
             QGroupBox::title {
-                subcontrol-origin: margin;
-                subcontrol-position: top left;
-                padding: 4px 10px;
-                background-color: #f1f5f9;
-                color: #374151;
-                border-radius: 4px;
+                subcontrol-origin: margin; subcontrol-position: top left;
+                padding: 4px 10px; background-color: #f1f5f9;
+                color: #374151; border-radius: 4px;
             }
 
-            QTabWidget::pane {
-                border: 1px solid #e5e7eb;
-                border-radius: 6px;
-                background: white;
-            }
+            QTabWidget::pane { border: 1px solid #e5e7eb; border-radius: 6px; background: white; }
             QTabBar::tab {
-                background: #f3f4f6;
-                color: #6b7280;
-                padding: 8px 16px;
-                border-radius: 5px 5px 0 0;
-                font-size: 12px;
-                margin-right: 2px;
+                background: #f3f4f6; color: #6b7280;
+                padding: 8px 16px; border-radius: 5px 5px 0 0;
+                font-size: 12px; margin-right: 2px;
             }
-            QTabBar::tab:selected {
-                background: white;
-                color: #111827;
-                font-weight: bold;
-                border-top: 2px solid #3b82f6;
-            }
-            QTabBar::tab:hover:!selected {
-                background: #e5e7eb;
-                color: #374151;
-            }
+            QTabBar::tab:selected { background: white; color: #111827; font-weight: bold; border-top: 2px solid #3b82f6; }
+            QTabBar::tab:hover:!selected { background: #e5e7eb; color: #374151; }
 
-            QScrollBar:vertical {
-                background: #f9fafb; width: 8px; border-radius: 4px;
-            }
-            QScrollBar::handle:vertical {
-                background: #d1d5db; border-radius: 4px; min-height: 20px;
-            }
-            QScrollBar:horizontal {
-                background: #f9fafb; height: 8px; border-radius: 4px;
-            }
-            QScrollBar::handle:horizontal {
-                background: #d1d5db; border-radius: 4px; min-width: 20px;
-            }
+            QScrollBar:vertical { background: #f9fafb; width: 8px; border-radius: 4px; }
+            QScrollBar::handle:vertical { background: #d1d5db; border-radius: 4px; min-height: 20px; }
+            QScrollBar:horizontal { background: #f9fafb; height: 8px; border-radius: 4px; }
+            QScrollBar::handle:horizontal { background: #d1d5db; border-radius: 4px; min-width: 20px; }
 
             QLabel { color: #111827; }
             QCheckBox { color: #111827; }
             QWidget#contentWidget { background-color: #f9fafb; }
+
+            QMessageBox { background-color: white; }
+            QMessageBox QLabel { color: #111827; font-size: 13px; min-width: 280px; }
+            QMessageBox QPushButton {
+                background-color: #3b82f6; color: white; border: none;
+                padding: 7px 22px; border-radius: 5px;
+                font-size: 12px; min-width: 80px;
+            }
+            QMessageBox QPushButton:hover   { background-color: #2563eb; }
+            QMessageBox QPushButton:pressed { background-color: #1d4ed8; }
+
+            QDialog { background-color: white; }
+            QDialog QLabel { color: #111827; }
         """)
