@@ -3,15 +3,12 @@ from PyQt6.QtWidgets import (QMessageBox, QTableWidgetItem, QHeaderView,
 from PyQt6.QtCore import Qt, QTimer, QThread, pyqtSignal
 from PyQt6 import QtGui
 
-# --- THƯ VIỆN GỬI EMAIL ---
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 import qrcode
 from io import BytesIO
-
-# --------------------------
 
 try:
     from matplotlib import pyplot as plt
@@ -49,10 +46,6 @@ try:
 except ImportError:
     QR_AVAILABLE = False
 
-
-# =====================================================================
-# THREAD GỬI EMAIL NGẦM (GIÚP APP KHÔNG BỊ ĐƠ KHI GỬI NHIỀU EMAIL)
-# =====================================================================
 class EmailSenderThread(QThread):
     progress = pyqtSignal(int, str)  # Tín hiệu cập nhật thanh Progress (tiến độ, câu thông báo)
     finished_task = pyqtSignal(int, int)  # Tín hiệu khi hoàn thành (số thành công, số thất bại)
@@ -62,7 +55,6 @@ class EmailSenderThread(QThread):
         self.email_data_list = email_data_list
         self.event_name = event_name
 
-        # 🔴 BẠN HÃY THAY EMAIL VÀ APP PASSWORD CỦA BẠN VÀO ĐÂY NHÉ:
         self.SENDER_EMAIL = "nguyenthanhdangkhoa9h@gmail.com"
         self.APP_PASSWORD = "rqwd zbcn fszy qeon"
 
@@ -72,7 +64,6 @@ class EmailSenderThread(QThread):
         total = len(self.email_data_list)
 
         try:
-            # Kết nối tới server Gmail
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.starttls()
             server.login(self.SENDER_EMAIL, self.APP_PASSWORD)
@@ -81,13 +72,11 @@ class EmailSenderThread(QThread):
                 self.progress.emit(i + 1, f"Sending Email to {data['name']}...")
 
                 try:
-                    # 1. Tạo form Email
                     msg = MIMEMultipart()
                     msg['From'] = self.SENDER_EMAIL
                     msg['To'] = data['email']
                     msg['Subject'] = f"🎟 Your Ticket & QR Code - {self.event_name}"
 
-                    # 2. Nội dung Email
                     body = f"""
                     <h2>Hello {data['name']},</h2>
                     <p>You have successfully registered for the event: <b>{self.event_name}</b>.</p>
@@ -97,7 +86,6 @@ class EmailSenderThread(QThread):
                     """
                     msg.attach(MIMEText(body, 'html'))
 
-                    # 3. Tạo hình QR Code ngầm định trong bộ nhớ ảo
                     qr = qrcode.QRCode(version=1, box_size=10, border=5)
                     qr.add_data(data['code'])
                     qr.make(fit=True)
@@ -107,11 +95,9 @@ class EmailSenderThread(QThread):
                     img.save(buf, format="PNG")
                     image_data = buf.getvalue()
 
-                    # 4. Đính kèm QR Code vào email
                     image = MIMEImage(image_data, name=f"QR_{data['code']}.png")
                     msg.attach(image)
 
-                    # 5. Thực hiện gửi
                     server.send_message(msg)
                     success += 1
                 except Exception as e:
@@ -124,10 +110,6 @@ class EmailSenderThread(QThread):
             failed = total
 
         self.finished_task.emit(success, failed)
-
-
-# =====================================================================
-
 
 def _msg(parent, kind, title, text):
     """QMessageBox với style rõ ràng — tránh chữ trùng màu nền trên Windows."""
@@ -151,7 +133,6 @@ def _msg(parent, kind, title, text):
         QMessageBox QPushButton:hover { background: #2563eb; }
     """)
     box.exec()
-
 
 class MainWindowEx(Ui_MainWindow):
     def setupUi(self, MainWindow):
@@ -222,6 +203,8 @@ class MainWindowEx(Ui_MainWindow):
         self.btnViewEvent.clicked.connect(self.view_event_details)
         self.btnEditEvent.clicked.connect(self.edit_event)
         self.btnDeleteEvent.clicked.connect(self.delete_event)
+        self.btnImportEvent.clicked.connect(self.import_events_from_file)
+        self.btnDownloadEventTemplate.clicked.connect(self.download_event_template)
         self.btnRefreshDash.clicked.connect(self.load_dashboard)
         self.btnImportAttendee.clicked.connect(self.import_attendees_from_file)
         self.btnDownloadTemplate.clicked.connect(self.download_import_template)
@@ -242,6 +225,7 @@ class MainWindowEx(Ui_MainWindow):
         self.eventCombo.currentIndexChanged.connect(self.load_registrations)
         self.btnRegisterAttendee.clicked.connect(self.register_attendee)
         self.btnGenerateQR.clicked.connect(self.generate_qr_code)
+        self.btnSendEmailReg.clicked.connect(self.send_email_selected)
         self.btnCancelRegistration.clicked.connect(self.cancel_registration)
         self.btnRefreshRegistration.clicked.connect(self.load_registrations)
         self.btnExportRegistration.clicked.connect(self.export_registrations_csv)
@@ -271,6 +255,9 @@ class MainWindowEx(Ui_MainWindow):
             self.btnRefreshDash.clicked.connect(self.load_dashboard)
             self.btnImportAttendee.clicked.connect(self.import_attendees_from_file)
             self.btnDownloadTemplate.clicked.connect(self.download_import_template)
+            self.btnImportEvent.clicked.connect(self.import_events_from_file)
+            self.btnDownloadEventTemplate.clicked.connect(self.download_event_template)
+            self.btnSendEmailReg.clicked.connect(self.send_email_selected)
             self.btnRefreshEvent.clicked.connect(self.load_events)
             self.btnRefreshAttendee.clicked.connect(self.load_attendees)
             self.btnRefreshRegistration.clicked.connect(self.load_registrations)
@@ -292,7 +279,6 @@ class MainWindowEx(Ui_MainWindow):
             tbl.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
             tbl.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
-        # checkinTable: giãn row cao hơn để số thứ tự hiển thị đúng
         self.checkinTable.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Fixed)
         self.checkinTable.verticalHeader().setDefaultSectionSize(36)
 
@@ -589,6 +575,156 @@ class MainWindowEx(Ui_MainWindow):
             )
             _msg(self.MainWindow, "info", "Event Details", details)
 
+    def download_event_template(self):
+        """Tạo và tải file mẫu CSV/Excel để import events"""
+        from PyQt6.QtWidgets import QFileDialog
+        import csv
+
+        path, _ = QFileDialog.getSaveFileName(
+            self.MainWindow, "Save Event Template", "events_template",
+            "CSV File (*.csv);;Excel File (*.xlsx)"
+        )
+        if not path:
+            return
+
+        headers = ["name", "date", "time", "location", "description"]
+        sample_rows = [
+            ["Hội thảo AI 2026",        "15/01/2026", "08:00", "Hội trường A, ĐH Bách Khoa", "Hội thảo về trí tuệ nhân tạo"],
+            ["Workshop Python",          "20/02/2026", "13:30", "Phòng Lab 201",               "Workshop lập trình Python cơ bản"],
+            ["Tech Summit HCMC 2026",    "05/03/2026", "09:00", "GEM Center, Q.1",             "Sự kiện công nghệ thường niên"],
+        ]
+
+        try:
+            if path.endswith('.xlsx'):
+                try:
+                    import openpyxl
+                    from openpyxl.styles import Font, PatternFill, Alignment
+                    wb = openpyxl.Workbook()
+                    ws = wb.active
+                    ws.title = "Events Template"
+                    header_fill = PatternFill("solid", fgColor="3B82F6")
+                    header_font = Font(bold=True, color="FFFFFF", size=11)
+                    col_widths = [30, 14, 10, 35, 40]
+                    for col, (h, w) in enumerate(zip(headers, col_widths), 1):
+                        cell = ws.cell(row=1, column=col, value=h)
+                        cell.fill = header_fill
+                        cell.font = header_font
+                        cell.alignment = Alignment(horizontal="center")
+                        ws.column_dimensions[cell.column_letter].width = w
+                    sample_fill = PatternFill("solid", fgColor="FEF9C3")
+                    for r_idx, row in enumerate(sample_rows, 2):
+                        for c_idx, val in enumerate(row, 1):
+                            cell = ws.cell(row=r_idx, column=c_idx, value=val)
+                            cell.fill = sample_fill
+                    note_row = len(sample_rows) + 3
+                    ws.cell(row=note_row, column=1,
+                            value="※ Date format: DD/MM/YYYY — Time format: HH:MM — Xóa các dòng mẫu và điền dữ liệu thật.")
+                    ws.cell(row=note_row, column=1).font = Font(italic=True, color="6B7280")
+                    wb.save(path)
+                except ImportError:
+                    path = path.replace('.xlsx', '.csv')
+                    with open(path, 'w', newline='', encoding='utf-8-sig') as f:
+                        csv.writer(f).writerows([headers] + sample_rows)
+            else:
+                if not path.endswith('.csv'):
+                    path += '.csv'
+                with open(path, 'w', newline='', encoding='utf-8-sig') as f:
+                    csv.writer(f).writerows([headers] + sample_rows)
+
+            _msg(self.MainWindow, "info", "✅ Template Saved",
+                 f"Template saved!\n\n📋 Columns: name, date (DD/MM/YYYY), time (HH:MM), location, description\n\n📁 {path}")
+        except Exception as e:
+            _msg(self.MainWindow, "err", "Error", f"Cannot save template:\n{e}")
+
+    def import_events_from_file(self):
+        """Import events từ file Excel (.xlsx) hoặc CSV (.csv)"""
+        from PyQt6.QtWidgets import QFileDialog
+        import csv, re
+
+        path, _ = QFileDialog.getOpenFileName(
+            self.MainWindow, "Import Events",
+            "", "Excel/CSV Files (*.xlsx *.xls *.csv);;All Files (*)"
+        )
+        if not path:
+            return
+
+        rows = []
+        errors = []
+
+        try:
+            if path.lower().endswith('.csv'):
+                with open(path, encoding='utf-8-sig') as f:
+                    reader = csv.DictReader(f)
+                    for i, row in enumerate(reader, 2):
+                        rows.append((i, row))
+            else:
+                try:
+                    import openpyxl
+                    wb = openpyxl.load_workbook(path)
+                    ws = wb.active
+                    headers = [str(c.value or "").strip().lower() for c in ws[1]]
+                    for i, row in enumerate(ws.iter_rows(min_row=2, values_only=True), 2):
+                        rows.append((i, dict(zip(headers, row))))
+                except ImportError:
+                    _msg(self.MainWindow, "warn", "Missing Library",
+                         "openpyxl not installed!\nInstall: pip install openpyxl\n\nOr use CSV format instead.")
+                    return
+        except Exception as e:
+            _msg(self.MainWindow, "err", "Error", f"Cannot read file:\n{e}")
+            return
+
+        def get_val(row_dict, *keys):
+            for k in keys:
+                for dk in row_dict:
+                    if str(dk).strip().lower() == k.lower():
+                        v = row_dict[dk]
+                        return str(v).strip() if v is not None else ""
+            return ""
+
+        events = Events()
+        events.import_json("datasets/events.json")
+
+        added = failed = 0
+
+        for line_num, row in rows:
+            name     = get_val(row, 'name', 'event name', 'tên sự kiện', 'ten su kien')
+            date     = get_val(row, 'date', 'ngày', 'event date', 'ngay')
+            time     = get_val(row, 'time', 'giờ', 'event time', 'gio')
+            location = get_val(row, 'location', 'place', 'venue', 'địa điểm', 'dia diem')
+            desc     = get_val(row, 'description', 'mô tả', 'mo ta', 'note', 'ghi chú')
+
+            if not name or not date:
+                errors.append(f"Row {line_num}: Missing name or date")
+                failed += 1
+                continue
+
+            if not re.match(r'^\d{1,2}/\d{1,2}/\d{4}$', date):
+                errors.append(f"Row {line_num}: Invalid date format '{date}' (expected DD/MM/YYYY)")
+                failed += 1
+                continue
+
+            evt = Event()
+            evt.EventId      = "evt_" + str(uuid.uuid4())[:8]
+            evt.EventName    = name
+            evt.EventDate    = date
+            evt.EventTime    = time or "00:00"
+            evt.Location     = location
+            evt.Description  = desc
+            events.add_item(evt)
+            added += 1
+
+        if added > 0:
+            events.export_json("datasets/events.json")
+            self.load_events()
+            self.load_event_combo()
+            self.load_checkin_event_combo()
+            self.load_dashboard()
+
+        msg = f"Import complete!\n\nAdded: {added}\nFailed: {failed}"
+        if errors:
+            msg += "\n\nErrors (first 5):\n" + "\n".join(errors[:5])
+        _msg(self.MainWindow, "info", "Import Result", msg)
+
     def _fill_attendee_table(self, attendee_list):
         self.attendeeTable.setRowCount(len(attendee_list))
         for row, a in enumerate(attendee_list):
@@ -816,7 +952,6 @@ class MainWindowEx(Ui_MainWindow):
         if not path:
             return
 
-        # Dữ liệu mẫu
         headers = ["name", "email", "phone", "organization", "position"]
         sample_rows = [
             ["Nguyễn Văn A", "nguyenvana@email.com", "0901234567", "FPT Software", "Developer"],
@@ -833,7 +968,6 @@ class MainWindowEx(Ui_MainWindow):
                     ws = wb.active
                     ws.title = "Attendees Template"
 
-                    # Header style: nền xanh, chữ trắng, bold
                     header_fill = PatternFill("solid", fgColor="3B82F6")
                     header_font = Font(bold=True, color="FFFFFF", size=11)
                     for col, h in enumerate(headers, 1):
@@ -843,14 +977,12 @@ class MainWindowEx(Ui_MainWindow):
                         cell.alignment = Alignment(horizontal="center")
                         ws.column_dimensions[cell.column_letter].width = 22
 
-                    # Sample rows: nền vàng nhạt
                     sample_fill = PatternFill("solid", fgColor="FEF9C3")
                     for r_idx, row in enumerate(sample_rows, 2):
                         for c_idx, val in enumerate(row, 1):
                             cell = ws.cell(row=r_idx, column=c_idx, value=val)
                             cell.fill = sample_fill
 
-                    # Ghi chú ở dòng cuối
                     note_row = len(sample_rows) + 3
                     ws.cell(row=note_row, column=1,
                             value="※ Xóa các dòng mẫu trên và điền dữ liệu thật vào. Giữ nguyên dòng header.")
@@ -868,7 +1000,6 @@ class MainWindowEx(Ui_MainWindow):
                         writer.writerow(headers)
                         writer.writerows(sample_rows)
             else:
-                # CSV
                 if not path.endswith('.csv'):
                     path += '.csv'
                 with open(path, 'w', newline='', encoding='utf-8-sig') as f:
@@ -1131,7 +1262,6 @@ class MainWindowEx(Ui_MainWindow):
             if skip_list:
                 msg += f"\n⚠️ {len(skip_list)} attendee(s) already registered (skipped)."
 
-            # ── Hỏi gửi email sau khi đăng ký thành công ──
             if msg:
                 _msg(self.MainWindow, "info", "Registration Result", msg)
 
@@ -1205,6 +1335,76 @@ class MainWindowEx(Ui_MainWindow):
             regs.export_json("datasets/registrations.json")
             _msg(self.MainWindow, "info", "Success", f"Canceled {len(reg_ids)} registration(s) successfully!")
             self.load_registrations()
+
+    def send_email_selected(self):
+        """Gửi email QR Code chủ động cho các registration được chọn trong bảng"""
+        rows = list(set(idx.row() for idx in self.registrationTable.selectedIndexes()))
+        if not rows:
+            _msg(self.MainWindow, "warn", "Error", "Please select at least one registration to send email!")
+            return
+
+        reg_ids = [self.registrationTable.item(r, 0).text() for r in rows]
+
+        regs = Registrations()
+        regs.import_json("datasets/registrations.json")
+        attendees = Attendees()
+        attendees.import_json("datasets/attendees.json")
+        events = Events()
+        events.import_json("datasets/events.json")
+
+        event_id = self.eventCombo.currentData()
+        evt = events.find_event(event_id)
+        event_name = evt.EventName if evt else "Event"
+
+        email_data = []
+        no_email = []
+        for reg_id in reg_ids:
+            reg = regs.find_registration(reg_id)
+            if not reg:
+                continue
+            att = attendees.find_attendee(reg.AttendeeId)
+            if att and att.Email:
+                email_data.append({'email': att.Email, 'name': att.Name, 'code': reg_id})
+            else:
+                no_email.append(reg_id)
+
+        if not email_data:
+            _msg(self.MainWindow, "warn", "No Emails", "None of the selected registrations have an email address!")
+            return
+
+        warn_txt = ""
+        if no_email:
+            warn_txt = f"\n\n⚠️ {len(no_email)} registration(s) skipped (no email)."
+
+        reply = QMessageBox.question(
+            self.MainWindow, "Send Emails",
+            f"Send QR Code email to {len(email_data)} attendee(s) for event:\n«{event_name}»?{warn_txt}",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+        if reply != QMessageBox.StandardButton.Yes:
+            return
+
+        self.progress_dialog = QProgressDialog(
+            "Starting...", "Cancel", 0, len(email_data), self.MainWindow
+        )
+        self.progress_dialog.setWindowTitle("Sending Emails")
+        self.progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
+        self.progress_dialog.setMinimumDuration(0)
+
+        self.email_thread = EmailSenderThread(email_data, event_name)
+
+        def update_progress(current, text):
+            self.progress_dialog.setValue(current)
+            self.progress_dialog.setLabelText(text)
+
+        def email_finished(success_count, fail_count):
+            self.progress_dialog.close()
+            _msg(self.MainWindow, "info", "Email Result",
+                 f"✅ Sent successfully: {success_count}\n❌ Failed: {fail_count}")
+
+        self.email_thread.progress.connect(update_progress)
+        self.email_thread.finished_task.connect(email_finished)
+        self.email_thread.start()
 
     def generate_qr_code(self):
         if not QR_AVAILABLE:

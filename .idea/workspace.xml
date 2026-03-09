@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="Add Download Attendees Template">
+    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="Update UI">
       <change beforePath="$PROJECT_DIR$/Ui_ex/MainWindowEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_ex/MainWindowEx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/MainWindow.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -445,7 +446,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773036428603</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Update UI">
+      <option name="closed" value="true" />
+      <created>1773037643495</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1773037643495</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -489,7 +498,6 @@
     <MESSAGE value="..." />
     <MESSAGE value="Update Open Camera QRscanner for MacOs, Save and Copy buttons Qrcode,Fix Ui, add Export CSV ," />
     <MESSAGE value="Update UI, Add Statistics,Fix Logic error" />
-    <MESSAGE value="Update UI" />
     <MESSAGE value="more Attendees" />
     <MESSAGE value="update models" />
     <MESSAGE value="update models, datasets" />
@@ -499,6 +507,7 @@
     <MESSAGE value="update" />
     <MESSAGE value="fix" />
     <MESSAGE value="Add Download Attendees Template" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Download Attendees Template" />
+    <MESSAGE value="Update UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update UI" />
   </component>
 </project>
