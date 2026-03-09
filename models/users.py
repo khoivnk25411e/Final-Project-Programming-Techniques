@@ -1,4 +1,5 @@
 import json
+import hashlib
 from models.user import User
 from models.mycollections import MyCollections
 
@@ -33,10 +34,15 @@ class Users(MyCollections):
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
 
-    def login(self, username, password):
+    @staticmethod
+    def hash_password(password):
+        """Hash mật khẩu bằng SHA-256"""
+        return hashlib.sha256(password.encode('utf-8')).hexdigest()
 
+    def login(self, username, password):
+        hashed = self.hash_password(password)
         for it in self.list:
-            if it.UserName == username and it.Password == password:
+            if it.UserName == username and it.Password == hashed:
                 return it
         return None
 
@@ -77,4 +83,20 @@ class Users(MyCollections):
         if user:
             self.list.remove(user)
             return True
+        return False
+
+    def is_username_taken(self, username, exclude_id=None):
+        """Kiểm tra username đã tồn tại chưa (bỏ qua user đang edit)"""
+        for it in self.list:
+            if it.UserName.lower() == username.lower():
+                if exclude_id is None or it.UserId != exclude_id:
+                    return True
+        return False
+
+    def is_email_taken(self, email, exclude_id=None):
+        """Kiểm tra email đã tồn tại chưa (bỏ qua user đang edit)"""
+        for it in self.list:
+            if it.Email.lower() == email.lower():
+                if exclude_id is None or it.UserId != exclude_id:
+                    return True
         return False

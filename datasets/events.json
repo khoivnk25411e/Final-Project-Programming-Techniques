@@ -1,44 +1,84 @@
 {
     "events": [
         {
-            "EventId": "evt_002",
-            "EventName": "Workshop Python Programming",
-            "EventDate": "20/03/2026",
-            "EventTime": "14:00",
-            "Location": "Phòng Lab A203, ĐH Bách Khoa",
-            "Description": "Workshop thực hành lập trình Python từ cơ bản đến nâng cao"
-        },
-        {
-            "EventId": "evt_003",
-            "EventName": "Triển Lãm Khởi Nghiệp 2026",
-            "EventDate": "25/02/2026",
+            "EventId": "evt_09388197",
+            "EventName": "Hội thảo AI & Machine Learning 2026",
+            "EventDate": "15/01/2026",
             "EventTime": "08:30",
-            "Location": "Trung Tâm Triển Lãm Sài Gòn",
-            "Description": "Sự kiện kết nối các startup với nhà đầu tư"
+            "Location": "Hội trường A - ĐH Bách Khoa TP.HCM",
+            "Description": "Chủ đề: Ứng dụng AI trong công nghiệp và giáo dục"
         },
         {
-            "EventId": "evt_9c5b2ad7",
-            "EventName": "Chụp hình cùng a Do",
-            "EventDate": "12/09/2026",
-            "EventTime": "08:18",
-            "Location": "120 An Liễng",
-            "Description": "Sự kiện kết nối các NPC với Team Hoàn Tiền"
+            "EventId": "evt_dc3f6a81",
+            "EventName": "Workshop: Docker & Kubernetes Thực chiến",
+            "EventDate": "22/01/2026",
+            "EventTime": "09:00",
+            "Location": "Phòng Lab 201 - FPT Software HCM",
+            "Description": "Thực hành triển khai microservices với container"
         },
         {
-            "EventId": "evt_cf205162",
-            "EventName": "tra",
-            "EventDate": "19/02/2026",
-            "EventTime": "16:55",
-            "Location": "123",
-            "Description": "33"
+            "EventId": "evt_a0eb40c7",
+            "EventName": "Ngày hội việc làm IT 2026",
+            "EventDate": "05/02/2026",
+            "EventTime": "08:00",
+            "Location": "Nhà thi đấu Phú Thọ TP.HCM",
+            "Description": "Kết nối 50+ doanh nghiệp công nghệ hàng đầu"
         },
         {
-            "EventId": "evt_4ebed7bf",
-            "EventName": "Họp Lớp 12",
-            "EventDate": "13/01/2027",
-            "EventTime": "16:48",
-            "Location": "THPT Nguyễn Văn Trỗi",
-            "Description": "Họp Lớp 12C8"
+            "EventId": "evt_14f89c68",
+            "EventName": "Seminar: Bảo mật Web & Ethical Hacking",
+            "EventDate": "18/02/2026",
+            "EventTime": "14:00",
+            "Location": "Hội trường B - ĐH CNTT TP.HCM",
+            "Description": "Giới thiệu OWASP Top 10 và các kỹ thuật pentest"
+        },
+        {
+            "EventId": "evt_45ff2a50",
+            "EventName": "Tech Talk: Startup & Product Development",
+            "EventDate": "01/03/2026",
+            "EventTime": "10:00",
+            "Location": "Không gian Đổi mới Sáng tạo TP.HCM",
+            "Description": "Chia sẻ từ founders của Momo, Tiki, Sky Mavis"
+        },
+        {
+            "EventId": "evt_065941c0",
+            "EventName": "Hackathon: Giải pháp Chuyển đổi Số 2026",
+            "EventDate": "08/03/2026",
+            "EventTime": "08:00",
+            "Location": "ĐH Kinh tế TP.HCM - Cơ sở Nguyễn Tri Phương",
+            "Description": "48h hackathon, giải thưởng 100 triệu đồng"
+        },
+        {
+            "EventId": "evt_f0fa0152",
+            "EventName": "Hội nghị Cloud Computing Việt Nam",
+            "EventDate": "20/03/2026",
+            "EventTime": "08:30",
+            "Location": "GEM Center - Q.1 TP.HCM",
+            "Description": "AWS, Azure, GCP — xu hướng cloud 2026"
+        },
+        {
+            "EventId": "evt_668ee425",
+            "EventName": "Workshop: React Native & Flutter",
+            "EventDate": "28/03/2026",
+            "EventTime": "09:00",
+            "Location": "Phòng Lab KMS Technology",
+            "Description": "Phát triển ứng dụng mobile đa nền tảng"
+        },
+        {
+            "EventId": "evt_41ab62ff",
+            "EventName": "Data Science Summit 2026",
+            "EventDate": "10/04/2026",
+            "EventTime": "08:00",
+            "Location": "Hội trường Nguyễn Du - ĐH Khoa học TN",
+            "Description": "Phân tích dữ liệu lớn và BI trong doanh nghiệp"
+        },
+        {
+            "EventId": "evt_67aec66a",
+            "EventName": "DevFest Ho Chi Minh City 2026",
+            "EventDate": "25/04/2026",
+            "EventTime": "08:30",
+            "Location": "Saigon Innovation Hub - Quận 3",
+            "Description": "Google Developer Festival — Android, Flutter, Firebase"
         }
     ]
 }
