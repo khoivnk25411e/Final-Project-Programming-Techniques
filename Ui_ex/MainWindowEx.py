@@ -50,7 +50,9 @@ except ImportError:
     QR_AVAILABLE = False
 
 
-
+# =====================================================================
+# THREAD GỬI EMAIL NGẦM (GIÚP APP KHÔNG BỊ ĐƠ KHI GỬI NHIỀU EMAIL)
+# =====================================================================
 class EmailSenderThread(QThread):
     progress = pyqtSignal(int, str)  # Tín hiệu cập nhật thanh Progress (tiến độ, câu thông báo)
     finished_task = pyqtSignal(int, int)  # Tín hiệu khi hoàn thành (số thành công, số thất bại)
@@ -60,6 +62,7 @@ class EmailSenderThread(QThread):
         self.email_data_list = email_data_list
         self.event_name = event_name
 
+        # 🔴 BẠN HÃY THAY EMAIL VÀ APP PASSWORD CỦA BẠN VÀO ĐÂY NHÉ:
         self.SENDER_EMAIL = "nguyenthanhdangkhoa9h@gmail.com"
         self.APP_PASSWORD = "rqwd zbcn fszy qeon"
 
@@ -94,6 +97,7 @@ class EmailSenderThread(QThread):
                     """
                     msg.attach(MIMEText(body, 'html'))
 
+                    # 3. Tạo hình QR Code ngầm định trong bộ nhớ ảo
                     qr = qrcode.QRCode(version=1, box_size=10, border=5)
                     qr.add_data(data['code'])
                     qr.make(fit=True)
@@ -122,8 +126,11 @@ class EmailSenderThread(QThread):
         self.finished_task.emit(success, failed)
 
 
+# =====================================================================
+
 
 def _msg(parent, kind, title, text):
+    """QMessageBox với style rõ ràng — tránh chữ trùng màu nền trên Windows."""
     box = QMessageBox(parent)
     box.setWindowTitle(title)
     box.setText(text)
@@ -275,12 +282,14 @@ class MainWindowEx(Ui_MainWindow):
             self.btnExportCheckin.clicked.connect(self.export_checkin_csv)
             self.registrationSearch.textChanged.connect(self.search_registrations)
 
-        for tbl in [self.eventTable, self.attendeeTable,
-                    self.registrationTable, self.checkinTable]:
-            tbl.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-
+        all_tables = [self.eventTable, self.attendeeTable,
+                      self.registrationTable, self.checkinTable]
         if user and user.Role == "admin":
-            self.userTable.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+            all_tables.append(self.userTable)
+
+        for tbl in all_tables:
+            tbl.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+            tbl.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
     def load_initial_data(self):
         self.load_dashboard()
