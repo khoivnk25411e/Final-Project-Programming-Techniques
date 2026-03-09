@@ -9,6 +9,7 @@ from ui.QRScannerDialog import Ui_QRScannerDialog
 
 IS_MACOS = sys.platform == "darwin"
 
+# ── macOS: tự tìm và set DYLD_LIBRARY_PATH trước khi import pyzbar ──────────
 if IS_MACOS:
     def _find_zbar_lib():
         candidates = [
@@ -36,6 +37,7 @@ if IS_MACOS:
         _current = os.environ.get("DYLD_LIBRARY_PATH", "")
         if _zbar_path not in _current:
             os.environ["DYLD_LIBRARY_PATH"] = f"{_zbar_path}:{_current}"
+# ─────────────────────────────────────────────────────────────────────────────
 
 try:
     import cv2
@@ -54,6 +56,7 @@ class QRScannerDialogEx(Ui_QRScannerDialog):
         self.timer = QTimer()
         self.last_scanned = None
 
+        # Fix vấn đề 6: gắn closeEvent đúng lên self.dialog
         self.dialog.closeEvent = self._on_close_event
         self.dialog.rejected.connect(self.cleanup)
 
