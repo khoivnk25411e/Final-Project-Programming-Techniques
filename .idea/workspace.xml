@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="update models, datasets">
+    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="update validate email and phone numbers">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ui_ex/ChangePasswordDialogEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_ex/ChangePasswordDialogEx.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/EventDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/EventDialog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/ForgotPasswordDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ForgotPasswordDialog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/LoginWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/LoginWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/MainWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/QRScannerDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/QRScannerDialog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/RegistrationDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/RegistrationDialog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/UserDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/UserDialog.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +45,17 @@
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {}
 }</component>
+  <component name="GitHubPullRequestState"><![CDATA[{
+  "prStates": [
+    {
+      "id": {
+        "id": "PR_kwDORMqRhs7I9b9X",
+        "number": 61
+      },
+      "lastSeen": 1773033431670
+    }
+  ]
+}]]></component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/khoivnk25411e/Final-Project-Programming-Techniques.git&quot;,
@@ -377,7 +383,23 @@
       <option name="project" value="LOCAL" />
       <updated>1773033014574</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="update models, datasets">
+      <option name="closed" value="true" />
+      <created>1773033348787</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1773033348787</updated>
+    </task>
+    <task id="LOCAL-00031" summary="update validate email and phone numbers">
+      <option name="closed" value="true" />
+      <created>1773033633268</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1773033633268</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -426,6 +448,7 @@
     <MESSAGE value="more Attendees" />
     <MESSAGE value="update models" />
     <MESSAGE value="update models, datasets" />
-    <option name="LAST_COMMIT_MESSAGE" value="update models, datasets" />
+    <MESSAGE value="update validate email and phone numbers" />
+    <option name="LAST_COMMIT_MESSAGE" value="update validate email and phone numbers" />
   </component>
 </project>

@@ -54,7 +54,7 @@ class ChangePasswordDialogEx(Ui_ChangePasswordDialog):
                     self.dialog, "Error", "Please enter your current password!"
                 )
                 return
-            if old_pwd != self.current_user.Password:
+            if Users.hash_password(old_pwd) != self.current_user.Password:
                 QMessageBox.warning(
                     self.dialog, "Incorrect", "Current password is incorrect!"
                 )
@@ -72,22 +72,21 @@ class ChangePasswordDialogEx(Ui_ChangePasswordDialog):
             )
             return
 
-        if not self.skip_old_password and new_pwd == self.current_user.Password:
+        if not self.skip_old_password and Users.hash_password(new_pwd) == self.current_user.Password:
             QMessageBox.warning(
                 self.dialog, "Error", "New password must be different from old password!"
             )
             return
 
-        # Save new password
         users = Users()
         users.import_json("datasets/users.json")
         user = users.find_user(self.current_user.UserId)
 
         if user:
-            user.Password = new_pwd
+            hashed = Users.hash_password(new_pwd)
+            user.Password = hashed
             users.export_json("datasets/users.json")
-            # Update in-memory object
-            self.current_user.Password = new_pwd
+            self.current_user.Password = hashed
 
         QMessageBox.information(
             self.dialog, "Success", "Password changed successfully!"
