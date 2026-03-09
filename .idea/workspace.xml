@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="update validate email and phone numbers">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ui_ex/ChangePasswordDialogEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_ex/ChangePasswordDialogEx.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/users.py" afterDir="false" />
+    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="update">
+      <change beforePath="$PROJECT_DIR$/Ui_ex/MainWindowEx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_ex/MainWindowEx.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -399,7 +397,23 @@
       <option name="project" value="LOCAL" />
       <updated>1773033633268</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="update ChangePassword">
+      <option name="closed" value="true" />
+      <created>1773034287966</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1773034287966</updated>
+    </task>
+    <task id="LOCAL-00033" summary="update">
+      <option name="closed" value="true" />
+      <created>1773034411035</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1773034411035</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -449,6 +463,8 @@
     <MESSAGE value="update models" />
     <MESSAGE value="update models, datasets" />
     <MESSAGE value="update validate email and phone numbers" />
-    <option name="LAST_COMMIT_MESSAGE" value="update validate email and phone numbers" />
+    <MESSAGE value="update ChangePassword" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
 </project>
