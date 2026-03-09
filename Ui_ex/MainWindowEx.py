@@ -224,7 +224,7 @@ class MainWindowEx(Ui_MainWindow):
         self.btnDeleteEvent.clicked.connect(self.delete_event)
         self.btnRefreshDash.clicked.connect(self.load_dashboard)
         self.btnImportAttendee.clicked.connect(self.import_attendees_from_file)
-        self.btnRefreshEvent.clicked.connect(self.load_events)
+        self.btnDownloadTemplate.clicked.connect(self.download_import_template)
         self.btnExportEvent.clicked.connect(self.export_events_csv)
         self.btnPrevEvent.clicked.connect(lambda: self._prev_page("eventTable"))
         self.btnNextEvent.clicked.connect(lambda: self._next_page("eventTable"))
@@ -270,6 +270,7 @@ class MainWindowEx(Ui_MainWindow):
         else:
             self.btnRefreshDash.clicked.connect(self.load_dashboard)
             self.btnImportAttendee.clicked.connect(self.import_attendees_from_file)
+            self.btnDownloadTemplate.clicked.connect(self.download_import_template)
             self.btnRefreshEvent.clicked.connect(self.load_events)
             self.btnRefreshAttendee.clicked.connect(self.load_attendees)
             self.btnRefreshRegistration.clicked.connect(self.load_registrations)
@@ -335,10 +336,12 @@ class MainWindowEx(Ui_MainWindow):
         users = Users()
         users.import_json("datasets/users.json")
         role_lbl = lambda r: "🔑 Admin" if r == "admin" else "🧑‍💼 Staff"
-        self._fill_table(self.userTable, [
+        rows_data = [
             [u.UserId, u.FullName, u.UserName, u.Email, role_lbl(u.Role)]
             for u in users.list
-        ])
+        ]
+        self._fill_table(self.userTable, rows_data)
+        self._pad_table(self.userTable, len(rows_data))
 
     def _users_db(self):
         u = Users()
@@ -437,6 +440,11 @@ class MainWindowEx(Ui_MainWindow):
 
     PAGE_SIZE = 10
 
+    def _pad_table(self, table, actual_count):
+        """Đặt số rows = PAGE_SIZE để lấp đầy khoảng trống, rows thừa để trống."""
+        if actual_count < self.PAGE_SIZE:
+            table.setRowCount(self.PAGE_SIZE)
+
     def _fill_table(self, table, rows_data):
         table.setRowCount(len(rows_data))
         for row, cols in enumerate(rows_data):
@@ -472,6 +480,7 @@ class MainWindowEx(Ui_MainWindow):
             self.eventTable.setItem(row, 3, QTableWidgetItem(event.EventTime))
             self.eventTable.setItem(row, 4, QTableWidgetItem(event.Location))
             self.eventTable.setItem(row, 5, QTableWidgetItem(event.Description or ""))
+        self._pad_table(self.eventTable, len(event_list))
 
     def load_events(self):
         events = Events()
@@ -585,6 +594,7 @@ class MainWindowEx(Ui_MainWindow):
             self.attendeeTable.setItem(row, 3, QTableWidgetItem(a.Phone or ""))
             self.attendeeTable.setItem(row, 4, QTableWidgetItem(a.Organization or ""))
             self.attendeeTable.setItem(row, 5, QTableWidgetItem(a.Position or ""))
+        self._pad_table(self.attendeeTable, len(attendee_list))
 
     def load_attendees(self):
         attendees = Attendees()
@@ -787,6 +797,87 @@ class MainWindowEx(Ui_MainWindow):
                 item = QTableWidgetItem(val)
                 item.setForeground(QColor("#16a34a"))
                 self.dashRecentTable.setItem(i, col, item)
+
+    def download_import_template(self):
+        """Tạo và tải file mẫu CSV/Excel để import attendees"""
+        from PyQt6.QtWidgets import QFileDialog
+        import csv
+
+        path, selected_filter = QFileDialog.getSaveFileName(
+            self.MainWindow,
+            "Save Import Template",
+            "attendees_template",
+            "CSV File (*.csv);;Excel File (*.xlsx)"
+        )
+        if not path:
+            return
+
+        # Dữ liệu mẫu
+        headers = ["name", "email", "phone", "organization", "position"]
+        sample_rows = [
+            ["Nguyễn Văn A", "nguyenvana@email.com", "0901234567", "FPT Software", "Developer"],
+            ["Trần Thị B",   "tranthib@email.com",   "0912345678", "VNG Corporation", "Manager"],
+            ["Lê Văn C",     "levanc@email.com",      "0923456789", "HCMUT", "Student"],
+        ]
+
+        try:
+            if path.endswith('.xlsx'):
+                try:
+                    import openpyxl
+                    from openpyxl.styles import Font, PatternFill, Alignment
+                    wb = openpyxl.Workbook()
+                    ws = wb.active
+                    ws.title = "Attendees Template"
+
+                    # Header style: nền xanh, chữ trắng, bold
+                    header_fill = PatternFill("solid", fgColor="3B82F6")
+                    header_font = Font(bold=True, color="FFFFFF", size=11)
+                    for col, h in enumerate(headers, 1):
+                        cell = ws.cell(row=1, column=col, value=h)
+                        cell.fill = header_fill
+                        cell.font = header_font
+                        cell.alignment = Alignment(horizontal="center")
+                        ws.column_dimensions[cell.column_letter].width = 22
+
+                    # Sample rows: nền vàng nhạt
+                    sample_fill = PatternFill("solid", fgColor="FEF9C3")
+                    for r_idx, row in enumerate(sample_rows, 2):
+                        for c_idx, val in enumerate(row, 1):
+                            cell = ws.cell(row=r_idx, column=c_idx, value=val)
+                            cell.fill = sample_fill
+
+                    # Ghi chú ở dòng cuối
+                    note_row = len(sample_rows) + 3
+                    ws.cell(row=note_row, column=1,
+                            value="※ Xóa các dòng mẫu trên và điền dữ liệu thật vào. Giữ nguyên dòng header.")
+                    ws.cell(row=note_row, column=1).font = Font(italic=True, color="6B7280")
+
+                    if not path.endswith('.xlsx'):
+                        path += '.xlsx'
+                    wb.save(path)
+                except ImportError:
+                    _msg(self.MainWindow, "warn", "Missing Library",
+                         "openpyxl not installed!\nSaving as CSV instead.\n\nInstall: pip install openpyxl")
+                    path = path.replace('.xlsx', '.csv')
+                    with open(path, 'w', newline='', encoding='utf-8-sig') as f:
+                        writer = csv.writer(f)
+                        writer.writerow(headers)
+                        writer.writerows(sample_rows)
+            else:
+                # CSV
+                if not path.endswith('.csv'):
+                    path += '.csv'
+                with open(path, 'w', newline='', encoding='utf-8-sig') as f:
+                    writer = csv.writer(f)
+                    writer.writerow(headers)
+                    writer.writerows(sample_rows)
+
+            _msg(self.MainWindow, "info", "✅ Template Saved",
+                 f"Template saved!\n\n📋 Columns: name, email, phone, organization, position\n\n"
+                 f"Fill in your data and use '📂 Import Excel/CSV' to import.\n\n📁 {path}")
+
+        except Exception as e:
+            _msg(self.MainWindow, "err", "Error", f"Cannot save template:\n{e}")
 
     def import_attendees_from_file(self):
         import csv
@@ -994,6 +1085,7 @@ class MainWindowEx(Ui_MainWindow):
                     item.setBackground(QtGui.QColor("#F9E79F"))
                     item.setForeground(QtGui.QColor("#7D6608"))
                 self.registrationTable.setItem(row, col, item)
+        self._pad_table(self.registrationTable, len(reg_list))
 
     def register_attendee(self):
         if self.eventCombo.count() == 0:
@@ -1218,6 +1310,7 @@ class MainWindowEx(Ui_MainWindow):
                 self.checkinTable.setItem(row, 2, QTableWidgetItem(att.Organization or ""))
                 self.checkinTable.setItem(row, 3, QTableWidgetItem(reg.CheckinTime or ""))
                 self.checkinTable.setItem(row, 4, QTableWidgetItem(reg.RegistrationId))
+        self._pad_table(self.checkinTable, len(checkedin))
 
     def perform_checkin(self):
         code = self.checkinCode.text().strip().upper()
