@@ -2,6 +2,7 @@ import json
 from models.event import Event
 from models.mycollections import MyCollections
 
+
 class Events(MyCollections):
     def import_json(self, filename):
         try:
@@ -9,9 +10,9 @@ class Events(MyCollections):
                 data = json.load(json_file)
                 for p in data['events']:
                     it = Event(
-                        p['EventId'], 
-                        p['EventName'], 
-                        p['EventDate'], 
+                        p['EventId'],
+                        p['EventName'],
+                        p['EventDate'],
                         p['EventTime'],
                         p['Location'],
                         p['Description']
@@ -19,7 +20,7 @@ class Events(MyCollections):
                     self.add_item(it)
         except FileNotFoundError:
             pass
-    
+
     def export_json(self, filename):
         data = {'events': []}
         for it in self.list:
@@ -33,13 +34,13 @@ class Events(MyCollections):
             })
         with open(filename, 'w', encoding='utf-8') as outfile:
             json.dump(data, outfile, ensure_ascii=False, indent=4)
-    
+
     def find_event(self, eventId):
         for it in self.list:
             if it.EventId == eventId:
                 return it
         return None
-    
+
     def update_event(self, event):
         exist_event = self.find_event(event.EventId)
         if exist_event is None:
@@ -52,7 +53,7 @@ class Events(MyCollections):
             exist_event.Location = event.Location
             exist_event.Description = event.Description
             return True
-    
+
     def delete_event(self, eventId):
         event = self.find_event(eventId)
         if event:

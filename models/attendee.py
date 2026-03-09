@@ -6,6 +6,6 @@ class Attendee:
         self.Phone = Phone
         self.Organization = Organization
         self.Position = Position
-    
+
     def __str__(self):
         return f"{self.AttendeeId}\t{self.Name}\t{self.Email}\t{self.Phone}\t{self.Organization}\t{self.Position}"

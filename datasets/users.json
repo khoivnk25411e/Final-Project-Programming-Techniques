@@ -1,34 +1,34 @@
 {
     "users": [
         {
-            "UserId": "usr_admin01",
+            "UserId": "usr_admin001",
             "FullName": "Epstein",
             "UserName": "admin",
-            "Password": "mixi123",
-            "Email": "admin@eventms.com",
+            "Password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+            "Email": "admin@eventapp.com",
             "Role": "admin",
             "SecurityQuestion": "Tên trường tiểu học của bạn?",
-            "SecurityAnswer": "tieuhoc"
+            "SecurityAnswer": "tieu hoc nguyen du"
         },
         {
-            "UserId": "usr_user01",
-            "FullName": "Nguyễn Văn An",
-            "UserName": "user01",
-            "Password": "user123",
-            "Email": "nguyenvanan@email.com",
+            "UserId": "usr_staff001",
+            "FullName": "Nguyễn Văn Staff",
+            "UserName": "staff",
+            "Password": "10176e7b7b24d317acfcf8d2064cfd2f24e154f7b5a96603077d5ef813d6a6b6",
+            "Email": "staff@eventapp.com",
             "Role": "user",
-            "SecurityQuestion": "Tên con vật nuôi đầu tiên của bạn?",
-            "SecurityAnswer": "miumiu"
+            "SecurityQuestion": "Tên thú cưng đầu tiên của bạn?",
+            "SecurityAnswer": "miu"
         },
         {
-            "UserId": "usr_user02",
-            "FullName": "Trần Thị Bình",
-            "UserName": "user02",
-            "Password": "user123",
-            "Email": "tranthibinh@email.com",
-            "Role": "user",
-            "SecurityQuestion": "Thành phố bạn sinh ra?",
-            "SecurityAnswer": "hanoi"
+            "UserId": "usr_02dcf9fe",
+            "FullName": "Phùng Thanh Staff",
+            "UserName": "dochet1989",
+            "Password": "c407809894633e73a340136f69705aac17d9da91a3af1ee69a8b2124a6429e25",
+            "Email": "dochet1989@email.com",
+            "Role": null,
+            "SecurityQuestion": "Anh đó sinh năm bao nhiêu ?",
+            "SecurityAnswer": "1989"
         }
     ]
 }

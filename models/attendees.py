@@ -21,7 +21,7 @@ class Attendees(MyCollections):
                     self.add_item(it)
         except FileNotFoundError:
             pass
-    
+
     def export_json(self, filename):
         data = {'attendees': []}
         for it in self.list:
@@ -35,13 +35,13 @@ class Attendees(MyCollections):
             })
         with open(filename, 'w', encoding='utf-8') as outfile:
             json.dump(data, outfile, ensure_ascii=False, indent=4)
-    
+
     def find_attendee(self, attendeeId):
         for it in self.list:
             if it.AttendeeId == attendeeId:
                 return it
         return None
-    
+
     def update_attendee(self, attendee):
         exist_attendee = self.find_attendee(attendee.AttendeeId)
         if exist_attendee is None:
@@ -54,22 +54,30 @@ class Attendees(MyCollections):
             exist_attendee.Organization = attendee.Organization
             exist_attendee.Position = attendee.Position
             return True
-    
+
     def delete_attendee(self, attendeeId):
         attendee = self.find_attendee(attendeeId)
         if attendee:
             self.list.remove(attendee)
             return True
         return False
-    
+
     def search_attendees(self, keyword):
         results = []
         keyword_lower = keyword.lower()
         for it in self.list:
             if (keyword_lower in it.Name.lower() or
-                keyword_lower in it.Email.lower() or
-                keyword_lower in it.Phone.lower() or
-                keyword_lower in it.Organization.lower() or
-                keyword_lower in it.Position.lower()):
+                    keyword_lower in it.Email.lower() or
+                    keyword_lower in it.Phone.lower() or
+                    keyword_lower in it.Organization.lower() or
+                    keyword_lower in it.Position.lower()):
                 results.append(it)
         return results
+
+    def is_email_taken(self, email, exclude_id=None):
+        """Kiểm tra email attendee đã tồn tại chưa"""
+        for it in self.list:
+            if it.Email.lower() == email.lower():
+                if exclude_id is None or it.AttendeeId != exclude_id:
+                    return True
+        return False
