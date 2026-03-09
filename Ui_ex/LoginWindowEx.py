@@ -2,6 +2,29 @@ import json
 from PyQt6.QtWidgets import QMessageBox, QMainWindow, QLineEdit
 
 from ui.LoginWindow import Ui_LoginWindow
+
+
+def _msg(parent, kind, title, text):
+    box = QMessageBox(parent)
+    box.setWindowTitle(title)
+    box.setText(text)
+    if kind == "warn":
+        box.setIcon(QMessageBox.Icon.Warning)
+    elif kind == "info":
+        box.setIcon(QMessageBox.Icon.Information)
+    elif kind == "err":
+        box.setIcon(QMessageBox.Icon.Critical)
+    box.setStyleSheet("""
+        QMessageBox        { background-color: white; }
+        QMessageBox QLabel { color: #111827; font-size: 13px; min-width: 260px; }
+        QMessageBox QPushButton {
+            background: #3b82f6; color: white; border: none;
+            padding: 7px 22px; border-radius: 5px;
+            font-size: 12px; min-width: 80px;
+        }
+        QMessageBox QPushButton:hover { background: #2563eb; }
+    """)
+    box.exec()
 from Ui_ex.ForgotPasswordDialogEx import ForgotPasswordDialogEx
 from Ui_ex.ChangePasswordDialogEx import ChangePasswordDialogEx
 from models.users import Users
@@ -40,13 +63,14 @@ class LoginWindowEx(Ui_LoginWindow):
                 data = json.load(f)
                 if data.get('remember'):
                     self.lineEditUsername.setText(data.get('username', ''))
-                    self.lineEditPassword.setText(data.get('password', ''))
+                    # Không điền password tự động vì lý do bảo mật
                     self.checkBoxRemember.setChecked(True)
         except FileNotFoundError:
             pass
 
     def save_remember(self, username, password, remember):
-        data = {'remember': remember, 'username': username, 'password': password}
+        # Chỉ lưu username, KHÔNG lưu password plain text
+        data = {'remember': remember, 'username': username if remember else ''}
         with open(REMEMBER_FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
 
@@ -55,7 +79,7 @@ class LoginWindowEx(Ui_LoginWindow):
         password = self.lineEditPassword.text()
 
         if not username or not password:
-            QMessageBox.warning(self.MainWindow, "Error", "Please enter both username and password!")
+            _msg(self.MainWindow, "warn", "Error", "Please enter both username and password!")
             return
 
         users = Users()
@@ -63,8 +87,7 @@ class LoginWindowEx(Ui_LoginWindow):
         user = users.login(username, password)
 
         if user is None:
-            QMessageBox.warning(self.MainWindow, "Login Failed",
-                                "Invalid username or password!")
+            _msg(self.MainWindow, "warn", "Login Failed", "Invalid username or password!")
             self.lineEditPassword.clear()
             self.lineEditPassword.setFocus()
             return
