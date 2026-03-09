@@ -74,8 +74,7 @@ class Ui_ForgotPasswordDialog(object):
         self.lblQuestion.setObjectName("lblQuestion")
         self.verticalLayout.addWidget(self.lblQuestion)
         self.lblQuestionText = QtWidgets.QLabel(parent=ForgotPasswordDialog)
-        self.lblQuestionText.setStyleSheet("color: #3b82f6; font-style: italic; font-size: 12px; padding: 6px 10px; background:#f0f7ff; border-radius:6px;\n"
-"background-color: rgb(211, 209, 242);")
+        self.lblQuestionText.setStyleSheet("color: #3b82f6; font-style: italic; font-size: 12px; padding: 6px 10px; background:#f0f7ff; border-radius:6px;")
         self.lblQuestionText.setText("")
         self.lblQuestionText.setWordWrap(True)
         self.lblQuestionText.setObjectName("lblQuestionText")

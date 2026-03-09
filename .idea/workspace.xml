@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="update models">
-      <change beforePath="$PROJECT_DIR$/datasets/events.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/events.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/registrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/registrations.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/remember.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/remember.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/attendee.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/attendee.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/attendees.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/attendees.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/events.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/events.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/mycollections.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/mycollections.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/registration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/registrations.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/registrations.py" afterDir="false" />
+    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="update models, datasets">
       <change beforePath="$PROJECT_DIR$/models/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/EventDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/EventDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/ForgotPasswordDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ForgotPasswordDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/LoginWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/LoginWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/MainWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/QRScannerDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/QRScannerDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/RegistrationDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/RegistrationDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/UserDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/UserDialog.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -372,7 +369,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773032742891</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="update models, datasets">
+      <option name="closed" value="true" />
+      <created>1773033014574</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1773033014574</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -420,6 +425,7 @@
     <MESSAGE value="fix" />
     <MESSAGE value="more Attendees" />
     <MESSAGE value="update models" />
-    <option name="LAST_COMMIT_MESSAGE" value="update models" />
+    <MESSAGE value="update models, datasets" />
+    <option name="LAST_COMMIT_MESSAGE" value="update models, datasets" />
   </component>
 </project>
