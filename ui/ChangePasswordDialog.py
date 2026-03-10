@@ -15,10 +15,6 @@ class Ui_ChangePasswordDialog(object):
         ChangePasswordDialog.resize(400, 340)
         ChangePasswordDialog.setMinimumSize(QtCore.QSize(400, 340))
         ChangePasswordDialog.setMaximumSize(QtCore.QSize(400, 340))
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../images/changepass.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        ChangePasswordDialog.setWindowIcon(icon)
-        ChangePasswordDialog.setStyleSheet("background-color: #f1f5f9;")
         self.verticalLayout = QtWidgets.QVBoxLayout(ChangePasswordDialog)
         self.verticalLayout.setContentsMargins(30, 24, 30, 24)
         self.verticalLayout.setSpacing(12)
@@ -28,101 +24,50 @@ class Ui_ChangePasswordDialog(object):
         font.setFamily("Arial")
         font.setPointSize(14)
         font.setBold(True)
-        font.setWeight(75)
         self.lblTitle.setFont(font)
-        self.lblTitle.setStyleSheet("color: #1e293b; margin-bottom: 4px;")
         self.lblTitle.setObjectName("lblTitle")
         self.verticalLayout.addWidget(self.lblTitle)
         self.lblUser = QtWidgets.QLabel(parent=ChangePasswordDialog)
-        self.lblUser.setStyleSheet("color: rgb(87, 139, 240);\n"
-"font: 14pt \"Nirmala Text\";")
         self.lblUser.setText("")
         self.lblUser.setObjectName("lblUser")
         self.verticalLayout.addWidget(self.lblUser)
         self.lblOldPwd = QtWidgets.QLabel(parent=ChangePasswordDialog)
-        self.lblOldPwd.setStyleSheet("font-weight: bold; font-size: 12px;\n"
-"color: rgb(0, 0, 0);")
         self.lblOldPwd.setObjectName("lblOldPwd")
         self.verticalLayout.addWidget(self.lblOldPwd)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.lineEditOldPwd = QtWidgets.QLineEdit(parent=ChangePasswordDialog)
         self.lineEditOldPwd.setMinimumSize(QtCore.QSize(0, 36))
-        self.lineEditOldPwd.setStyleSheet("QLineEdit{\n"
-"    border: 2px solid #6f6f6f;\n"
-"    padding: 2px;\n"
-"    color: black;\n"
-"}")
         self.lineEditOldPwd.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.lineEditOldPwd.setObjectName("lineEditOldPwd")
         self.horizontalLayout.addWidget(self.lineEditOldPwd)
         self.btnToggleOld = QtWidgets.QPushButton(parent=ChangePasswordDialog)
-        self.btnToggleOld.setMinimumSize(QtCore.QSize(36, 36))
+        self.btnToggleOld.setMinimumSize(QtCore.QSize(20, 20))
         self.btnToggleOld.setMaximumSize(QtCore.QSize(36, 36))
-        self.btnToggleOld.setStyleSheet("QPushButton {\n"
-"    background:#ecf0f1;\n"
-"    border-radius:6px;\n"
-"    border:1px solid #bdc3c7;\n"
-"    font-size:14px;\n"
-"    padding: 0px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background:#f1f5f9;\n"
-"}")
         self.btnToggleOld.setObjectName("btnToggleOld")
         self.horizontalLayout.addWidget(self.btnToggleOld)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.lblNewPwd = QtWidgets.QLabel(parent=ChangePasswordDialog)
-        self.lblNewPwd.setStyleSheet("font-weight: bold; font-size: 12px;\n"
-"color: rgb(0, 0, 0);")
         self.lblNewPwd.setObjectName("lblNewPwd")
         self.verticalLayout.addWidget(self.lblNewPwd)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.lineEditNewPwd = QtWidgets.QLineEdit(parent=ChangePasswordDialog)
         self.lineEditNewPwd.setMinimumSize(QtCore.QSize(0, 36))
-        self.lineEditNewPwd.setStyleSheet("QLineEdit{\n"
-"    border: 2px solid #6f6f6f;\n"
-"    padding: 2px;\n"
-"    color: black;\n"
-"}")
         self.lineEditNewPwd.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.lineEditNewPwd.setObjectName("lineEditNewPwd")
         self.horizontalLayout_2.addWidget(self.lineEditNewPwd)
         self.btnToggleNew = QtWidgets.QPushButton(parent=ChangePasswordDialog)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Maximum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.btnToggleNew.sizePolicy().hasHeightForWidth())
-        self.btnToggleNew.setSizePolicy(sizePolicy)
-        self.btnToggleNew.setMinimumSize(QtCore.QSize(36, 36))
+        self.btnToggleNew.setMinimumSize(QtCore.QSize(20, 20))
         self.btnToggleNew.setMaximumSize(QtCore.QSize(36, 36))
-        self.btnToggleNew.setSizeIncrement(QtCore.QSize(0, 6))
-        self.btnToggleNew.setStyleSheet("QPushButton {\n"
-"    background:#ecf0f1;\n"
-"    border-radius:6px;\n"
-"    border:1px solid #bdc3c7;\n"
-"    font-size:14px;\n"
-"    padding: 0px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background:#f1f5f9;\n"
-"}")
         self.btnToggleNew.setObjectName("btnToggleNew")
         self.horizontalLayout_2.addWidget(self.btnToggleNew)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.lblConfirmPwd = QtWidgets.QLabel(parent=ChangePasswordDialog)
-        self.lblConfirmPwd.setStyleSheet("font-weight: bold; font-size: 12px;\n"
-"color: rgb(0, 0, 0);")
         self.lblConfirmPwd.setObjectName("lblConfirmPwd")
         self.verticalLayout.addWidget(self.lblConfirmPwd)
         self.lineEditConfirmPwd = QtWidgets.QLineEdit(parent=ChangePasswordDialog)
         self.lineEditConfirmPwd.setMinimumSize(QtCore.QSize(0, 36))
-        self.lineEditConfirmPwd.setStyleSheet("QLineEdit{\n"
-"    border: 2px solid #6f6f6f;\n"
-"    padding: 2px;\n"
-"    color: black;\n"
-"}")
         self.lineEditConfirmPwd.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.lineEditConfirmPwd.setObjectName("lineEditConfirmPwd")
         self.verticalLayout.addWidget(self.lineEditConfirmPwd)
@@ -134,31 +79,10 @@ class Ui_ChangePasswordDialog(object):
         self.horizontalLayout_3.addItem(spacerItem1)
         self.btnSave = QtWidgets.QPushButton(parent=ChangePasswordDialog)
         self.btnSave.setMinimumSize(QtCore.QSize(0, 38))
-        self.btnSave.setStyleSheet("QPushButton {\n"
-"    background:#3b82f6;\n"
-"    color:white;\n"
-"    border-radius:6px;\n"
-"    font-size:13px;\n"
-"    font-weight:bold;\n"
-"    padding: 0 16px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background:#3b82f6;\n"
-"}")
         self.btnSave.setObjectName("btnSave")
         self.horizontalLayout_3.addWidget(self.btnSave)
         self.btnCancel = QtWidgets.QPushButton(parent=ChangePasswordDialog)
         self.btnCancel.setMinimumSize(QtCore.QSize(0, 38))
-        self.btnCancel.setStyleSheet("QPushButton {\n"
-"    background: #ef4444;\n"
-"    color:White;\n"
-"    border-radius:6px;\n"
-"    font-size:13px;\n"
-"    padding: 0 16px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background:#f1f5f9;\n"
-"}")
         self.btnCancel.setObjectName("btnCancel")
         self.horizontalLayout_3.addWidget(self.btnCancel)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
@@ -170,14 +94,27 @@ class Ui_ChangePasswordDialog(object):
     def retranslateUi(self, ChangePasswordDialog):
         _translate = QtCore.QCoreApplication.translate
         ChangePasswordDialog.setWindowTitle(_translate("ChangePasswordDialog", "Change Password"))
+        ChangePasswordDialog.setStyleSheet(_translate("ChangePasswordDialog", "background-color: #f1f5f9;"))
+        self.lblTitle.setStyleSheet(_translate("ChangePasswordDialog", "color: #1e293b; margin-bottom: 4px;"))
         self.lblTitle.setText(_translate("ChangePasswordDialog", "🔐  Change Password"))
+        self.lblUser.setStyleSheet(_translate("ChangePasswordDialog", "color: rgb(255, 255, 255); font: 14pt \"Nirmala Text\";"))
+        self.lblOldPwd.setStyleSheet(_translate("ChangePasswordDialog", "font-weight: bold; font-size: 12px; color: rgb(0, 0, 0);"))
         self.lblOldPwd.setText(_translate("ChangePasswordDialog", "Current password:"))
+        self.lineEditOldPwd.setStyleSheet(_translate("ChangePasswordDialog", "QLineEdit { border: 2px solid #6f6f6f; padding: 2px; color: black; }"))
         self.lineEditOldPwd.setPlaceholderText(_translate("ChangePasswordDialog", "Enter current password..."))
+        self.btnToggleOld.setStyleSheet(_translate("ChangePasswordDialog", "QPushButton { background:#ecf0f1; border-radius:6px; border:1px solid #bdc3c7; font-size:14px; } QPushButton:hover { background:#f1f5f9; }"))
         self.btnToggleOld.setText(_translate("ChangePasswordDialog", "👁"))
+        self.lblNewPwd.setStyleSheet(_translate("ChangePasswordDialog", "font-weight: bold; font-size: 12px; color: rgb(0, 0, 0);"))
         self.lblNewPwd.setText(_translate("ChangePasswordDialog", "New password:"))
+        self.lineEditNewPwd.setStyleSheet(_translate("ChangePasswordDialog", "QLineEdit { border: 2px solid #6f6f6f; padding: 2px; color: black; }"))
         self.lineEditNewPwd.setPlaceholderText(_translate("ChangePasswordDialog", "Minimum 6 characters..."))
+        self.btnToggleNew.setStyleSheet(_translate("ChangePasswordDialog", "QPushButton { background:#ecf0f1; border-radius:6px; border:1px solid #bdc3c7; font-size:14px; } QPushButton:hover { background:#f1f5f9; }"))
         self.btnToggleNew.setText(_translate("ChangePasswordDialog", "👁"))
+        self.lblConfirmPwd.setStyleSheet(_translate("ChangePasswordDialog", "font-weight: bold; font-size: 12px; color: rgb(0, 0, 0);"))
         self.lblConfirmPwd.setText(_translate("ChangePasswordDialog", "Confirm new password:"))
+        self.lineEditConfirmPwd.setStyleSheet(_translate("ChangePasswordDialog", "QLineEdit { border: 2px solid #6f6f6f; padding: 2px; color: black; }"))
         self.lineEditConfirmPwd.setPlaceholderText(_translate("ChangePasswordDialog", "Re-enter new password..."))
+        self.btnSave.setStyleSheet(_translate("ChangePasswordDialog", "QPushButton { background:#3b82f6; color:white; border-radius:6px; font-size:13px; font-weight:bold; padding: 0 16px; } QPushButton:hover { background:#2563eb; }"))
         self.btnSave.setText(_translate("ChangePasswordDialog", "💾  Save Password"))
+        self.btnCancel.setStyleSheet(_translate("ChangePasswordDialog", "QPushButton { background: #ef4444; color:white; border-radius:6px; font-size:13px; padding: 0 16px; } QPushButton:hover { background:#dc2626; }"))
         self.btnCancel.setText(_translate("ChangePasswordDialog", "Cancel"))

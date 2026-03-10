@@ -15,10 +15,6 @@ class Ui_ForgotPasswordDialog(object):
         ForgotPasswordDialog.resize(420, 320)
         ForgotPasswordDialog.setMinimumSize(QtCore.QSize(420, 320))
         ForgotPasswordDialog.setMaximumSize(QtCore.QSize(420, 320))
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../images/changepass.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        ForgotPasswordDialog.setWindowIcon(icon)
-        ForgotPasswordDialog.setStyleSheet("background-color: #f1f5f9;")
         self.verticalLayout = QtWidgets.QVBoxLayout(ForgotPasswordDialog)
         self.verticalLayout.setContentsMargins(30, 24, 30, 24)
         self.verticalLayout.setSpacing(12)
@@ -29,66 +25,36 @@ class Ui_ForgotPasswordDialog(object):
         font.setPointSize(14)
         font.setBold(True)
         self.lblTitle.setFont(font)
-        self.lblTitle.setStyleSheet("color: #1e293b; margin-bottom: 4px;")
         self.lblTitle.setObjectName("lblTitle")
         self.verticalLayout.addWidget(self.lblTitle)
         self.lblDesc = QtWidgets.QLabel(parent=ForgotPasswordDialog)
-        self.lblDesc.setStyleSheet("color: #64748b; font-size: 12px; color: rgb(255, 255, 255);")
         self.lblDesc.setWordWrap(True)
         self.lblDesc.setObjectName("lblDesc")
         self.verticalLayout.addWidget(self.lblDesc)
         self.lblUsername = QtWidgets.QLabel(parent=ForgotPasswordDialog)
-        self.lblUsername.setStyleSheet("font-weight: bold; font-size: 12px; color: rgb(0, 0, 0);")
         self.lblUsername.setObjectName("lblUsername")
         self.verticalLayout.addWidget(self.lblUsername)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setContentsMargins(-1, -1, -1, 0)
-        self.horizontalLayout.setSpacing(1)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.lineEditUsername = QtWidgets.QLineEdit(parent=ForgotPasswordDialog)
-        self.lineEditUsername.setMinimumSize(QtCore.QSize(0, 20))
-        self.lineEditUsername.setStyleSheet("QLineEdit{\n"
-"    border: 2px solid #6f6f6f;\n"
-"    padding: 2px;\n"
-"    color: black;\n"
-"}")
         self.lineEditUsername.setObjectName("lineEditUsername")
         self.horizontalLayout.addWidget(self.lineEditUsername)
         self.btnVerifyUser = QtWidgets.QPushButton(parent=ForgotPasswordDialog)
-        self.btnVerifyUser.setMinimumSize(QtCore.QSize(0, 19))
-        self.btnVerifyUser.setStyleSheet("QPushButton {\n"
-"    background:#3b82f6;\n"
-"    color:white;\n"
-"    border-radius:6px;\n"
-"    font-size:12px;\n"
-"    padding: 0 12px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background:#3b82f6;\n"
-"}")
         self.btnVerifyUser.setObjectName("btnVerifyUser")
         self.horizontalLayout.addWidget(self.btnVerifyUser)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.lblQuestion = QtWidgets.QLabel(parent=ForgotPasswordDialog)
-        self.lblQuestion.setStyleSheet("font-weight: bold; font-size: 12px; color: rgb(0, 0, 0);")
         self.lblQuestion.setObjectName("lblQuestion")
         self.verticalLayout.addWidget(self.lblQuestion)
         self.lblQuestionText = QtWidgets.QLabel(parent=ForgotPasswordDialog)
-        self.lblQuestionText.setStyleSheet("color: #3b82f6; font-style: italic; font-size: 12px; padding: 6px 10px; background:#f0f7ff; border-radius:6px;")
         self.lblQuestionText.setText("")
         self.lblQuestionText.setWordWrap(True)
         self.lblQuestionText.setObjectName("lblQuestionText")
         self.verticalLayout.addWidget(self.lblQuestionText)
         self.lblAnswer = QtWidgets.QLabel(parent=ForgotPasswordDialog)
-        self.lblAnswer.setStyleSheet("font-weight: bold; font-size: 12px;")
         self.lblAnswer.setObjectName("lblAnswer")
         self.verticalLayout.addWidget(self.lblAnswer)
         self.lineEditAnswer = QtWidgets.QLineEdit(parent=ForgotPasswordDialog)
-        self.lineEditAnswer.setStyleSheet("QLineEdit{\n"
-"    border: 2px solid #6f6f6f;\n"
-"    padding: 2px;\n"
-"    color: black;\n"
-"}")
         self.lineEditAnswer.setObjectName("lineEditAnswer")
         self.verticalLayout.addWidget(self.lineEditAnswer)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
@@ -98,30 +64,9 @@ class Ui_ForgotPasswordDialog(object):
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem1)
         self.btnConfirm = QtWidgets.QPushButton(parent=ForgotPasswordDialog)
-        self.btnConfirm.setStyleSheet("QPushButton {\n"
-"    background:#3b82f6;\n"
-"    color:white;\n"
-"    border-radius:6px;\n"
-"    font-size:13px;\n"
-"    font-weight:bold;\n"
-"    padding: 0 16px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background:#3b82f6;\n"
-"}")
         self.btnConfirm.setObjectName("btnConfirm")
         self.horizontalLayout_2.addWidget(self.btnConfirm)
         self.btnCancel = QtWidgets.QPushButton(parent=ForgotPasswordDialog)
-        self.btnCancel.setStyleSheet("QPushButton {\n"
-"    background: #ef4444;\n"
-"    color:white;\n"
-"    border-radius:6px;\n"
-"    font-size:13px;\n"
-"    padding: 0 16px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background:#f1f5f9;\n"
-"}")
         self.btnCancel.setObjectName("btnCancel")
         self.horizontalLayout_2.addWidget(self.btnCancel)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
@@ -133,13 +78,25 @@ class Ui_ForgotPasswordDialog(object):
     def retranslateUi(self, ForgotPasswordDialog):
         _translate = QtCore.QCoreApplication.translate
         ForgotPasswordDialog.setWindowTitle(_translate("ForgotPasswordDialog", "Forgot Password"))
+        ForgotPasswordDialog.setStyleSheet(_translate("ForgotPasswordDialog", "background-color: #f1f5f9;"))
+        self.lblTitle.setStyleSheet(_translate("ForgotPasswordDialog", "color: #1e293b; margin-bottom: 4px;"))
         self.lblTitle.setText(_translate("ForgotPasswordDialog", "🔓  Forgot Password"))
-        self.lblDesc.setText(_translate("ForgotPasswordDialog", "<html><head/><body><p><span style=\" font-size:12pt; color:#0079fd;\">Enter your username and answer the security question.</span></p></body></html>"))
+        self.lblDesc.setStyleSheet(_translate("ForgotPasswordDialog", "color: #64748b; font-size: 12px;"))
+        self.lblDesc.setText(_translate("ForgotPasswordDialog", "Enter your username and answer the security question."))
+        self.lblUsername.setStyleSheet(_translate("ForgotPasswordDialog", "font-weight: bold; font-size: 12px; color: rgb(0, 0, 0);"))
         self.lblUsername.setText(_translate("ForgotPasswordDialog", "Username:"))
+        self.lineEditUsername.setStyleSheet(_translate("ForgotPasswordDialog", "QLineEdit { border: 2px solid #6f6f6f; padding: 2px; color: black; }"))
         self.lineEditUsername.setPlaceholderText(_translate("ForgotPasswordDialog", "Enter username..."))
+        self.btnVerifyUser.setStyleSheet(_translate("ForgotPasswordDialog", "QPushButton { background:#3b82f6; color:white; border-radius:6px; font-size:12px; padding: 0 12px; } QPushButton:hover { background:#2563eb; }"))
         self.btnVerifyUser.setText(_translate("ForgotPasswordDialog", "Verify"))
+        self.lblQuestion.setStyleSheet(_translate("ForgotPasswordDialog", "font-weight: bold; font-size: 12px; color: rgb(0, 0, 0);"))
         self.lblQuestion.setText(_translate("ForgotPasswordDialog", "Security question:"))
-        self.lblAnswer.setText(_translate("ForgotPasswordDialog", "<html><head/><body><p><span style=\" font-size:12pt; color:#3b82f5;\">Answer:</span></p></body></html>"))
+        self.lblQuestionText.setStyleSheet(_translate("ForgotPasswordDialog", "color: #3b82f6; font-style: italic; font-size: 12px; padding: 6px 10px; background:#f0f7ff; border-radius:6px;"))
+        self.lblAnswer.setStyleSheet(_translate("ForgotPasswordDialog", "font-weight: bold; font-size: 12px; color: rgb(0, 0, 0);"))
+        self.lblAnswer.setText(_translate("ForgotPasswordDialog", "Answer:"))
+        self.lineEditAnswer.setStyleSheet(_translate("ForgotPasswordDialog", "QLineEdit { border: 2px solid #6f6f6f; padding: 2px; color: black; }"))
         self.lineEditAnswer.setPlaceholderText(_translate("ForgotPasswordDialog", "Enter your answer..."))
+        self.btnConfirm.setStyleSheet(_translate("ForgotPasswordDialog", "QPushButton { background:#3b82f6; color:white; border-radius:6px; font-size:13px; font-weight:bold; padding: 0 16px; } QPushButton:hover { background:#2563eb; }"))
         self.btnConfirm.setText(_translate("ForgotPasswordDialog", "✔  Reset Password"))
+        self.btnCancel.setStyleSheet(_translate("ForgotPasswordDialog", "QPushButton { background: #ef4444; color:white; border-radius:6px; font-size:13px; padding: 0 16px; } QPushButton:hover { background:#dc2626; }"))
         self.btnCancel.setText(_translate("ForgotPasswordDialog", "Cancel"))

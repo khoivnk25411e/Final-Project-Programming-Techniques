@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="Edit Staff Functions">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="fix ui">
+      <change beforePath="$PROJECT_DIR$/ui/AttendeeDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/AttendeeDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/ChangePasswordDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ChangePasswordDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/EventDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/EventDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/ForgotPasswordDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ForgotPasswordDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/ForgotPasswordDialog.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ForgotPasswordDialog.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/LoginWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/LoginWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/LoginWindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ui/LoginWindow.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/QRScannerDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/QRScannerDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/QRScannerDialog.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ui/QRScannerDialog.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/RegistrationDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/RegistrationDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/RegistrationDialog.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ui/RegistrationDialog.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/UserDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/UserDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/UserDialog.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ui/UserDialog.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,20 +93,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_ui_mainwindow.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/nguyenthanhcong/QtDesigner/Final-Project-Programming-Techniques&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.externalTools&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Python.main.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.test_ui_mainwindow.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "#73 on KHOA",
+    "last_opened_file_path": "/Users/nguyenthanhcong/QtDesigner/Final-Project-Programming-Techniques",
+    "settings.editor.selected.configurable": "preferences.externalTools"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Ui_ex" />
@@ -461,7 +473,23 @@
       <option name="project" value="LOCAL" />
       <updated>1773039138233</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="fix ui">
+      <option name="closed" value="true" />
+      <created>1773123093484</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1773123093484</updated>
+    </task>
+    <task id="LOCAL-00041" summary="fix ui">
+      <option name="closed" value="true" />
+      <created>1773123225701</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1773123225701</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -491,7 +519,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Delete Test" />
     <MESSAGE value="1" />
     <MESSAGE value="create ui" />
     <MESSAGE value="test" />
@@ -516,6 +543,7 @@
     <MESSAGE value="Add Download Attendees Template" />
     <MESSAGE value="Update UI" />
     <MESSAGE value="Update Import and Download Template Buttons for Event Tab&#10;Update Send Email buttons and the old email sending functionality will be retained after registration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Import and Download Template Buttons for Event Tab&#10;Update Send Email buttons and the old email sending functionality will be retained after registration." />
+    <MESSAGE value="fix ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix ui" />
   </component>
 </project>
