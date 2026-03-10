@@ -45,7 +45,7 @@ class UserDialogEx(Ui_UserDialog):
             'full_name':       self.lineEditFullName.text().strip(),
             'username':        self.lineEditUsername.text().strip(),
             'email':           self.lineEditEmail.text().strip(),
-            'password':        self.lineEditPassword.text(),   # empty = keep current
+            'password':        self.lineEditPassword.text(),
             'role':            self.comboRole.currentData(),
             'sec_question':    self.lineEditSecQuestion.text().strip(),
             'sec_answer':      self.lineEditSecAnswer.text().strip().lower()
