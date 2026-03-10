@@ -13,13 +13,8 @@
   <property name="windowTitle">
    <string>Add/Edit Attendee</string>
   </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>../images/add_edit_logo.png</normaloff>../images/add_edit_logo.png
-   </iconset>
-  </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #f1f5f9;</string>
+   <string>background-color: #f1f5f9;</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -32,7 +27,7 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
+        <string>color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Full Name:</string>
@@ -42,8 +37,7 @@
      <item row="0" column="1">
       <widget class="QLineEdit" name="nameInput">
        <property name="styleSheet">
-        <string notr="true">background-color: #f1f5f9;
-color: rgb(0, 0, 0);</string>
+        <string>background-color: #f1f5f9; color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
         <string>Enter full name...</string>
@@ -58,7 +52,7 @@ color: rgb(0, 0, 0);</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
+        <string>color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Email:</string>
@@ -68,8 +62,7 @@ color: rgb(0, 0, 0);</string>
      <item row="1" column="1">
       <widget class="QLineEdit" name="emailInput">
        <property name="styleSheet">
-        <string notr="true">background-color: #f1f5f9;
-color: rgb(0, 0, 0);</string>
+        <string>background-color: #f1f5f9; color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
         <string>Enter email...</string>
@@ -84,7 +77,7 @@ color: rgb(0, 0, 0);</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
+        <string>color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Phone Number:</string>
@@ -94,8 +87,7 @@ color: rgb(0, 0, 0);</string>
      <item row="2" column="1">
       <widget class="QLineEdit" name="phoneInput">
        <property name="styleSheet">
-        <string notr="true">background-color: #f1f5f9;
-color: rgb(0, 0, 0);</string>
+        <string>background-color: #f1f5f9; color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
         <string>Enter phone number...</string>
@@ -110,7 +102,7 @@ color: rgb(0, 0, 0);</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
+        <string>color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Organization:</string>
@@ -120,8 +112,7 @@ color: rgb(0, 0, 0);</string>
      <item row="3" column="1">
       <widget class="QLineEdit" name="organizationInput">
        <property name="styleSheet">
-        <string notr="true">background-color: #f1f5f9;
-color: rgb(0, 0, 0);</string>
+        <string>background-color: #f1f5f9; color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
         <string>Enter organization...</string>
@@ -136,7 +127,7 @@ color: rgb(0, 0, 0);</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
+        <string>color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Position:</string>
@@ -146,8 +137,7 @@ color: rgb(0, 0, 0);</string>
      <item row="4" column="1">
       <widget class="QLineEdit" name="positionInput">
        <property name="styleSheet">
-        <string notr="true">background-color: #f1f5f9;
-color: rgb(0, 0, 0);</string>
+        <string>background-color: #f1f5f9; color: rgb(0, 0, 0);</string>
        </property>
        <property name="placeholderText">
         <string>Enter position...</string>
@@ -159,12 +149,12 @@ color: rgb(0, 0, 0);</string>
    <item>
     <spacer name="spacerItem">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>40</height>
+       <height>30</height>
       </size>
      </property>
     </spacer>
@@ -174,7 +164,7 @@ color: rgb(0, 0, 0);</string>
      <item>
       <spacer name="spacerItem1">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -187,9 +177,7 @@ color: rgb(0, 0, 0);</string>
      <item>
       <widget class="QPushButton" name="btnSave">
        <property name="styleSheet">
-        <string notr="true">padding: 8px 15px;
-background-color: #3b82f6;
-color: rgb(255, 255, 255);</string>
+        <string>padding: 8px 15px; background-color: #3b82f6; color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>💾 Save</string>
@@ -199,9 +187,7 @@ color: rgb(255, 255, 255);</string>
      <item>
       <widget class="QPushButton" name="btnCancel">
        <property name="styleSheet">
-        <string notr="true">padding: 8px 15px;
-background-color: #ef4444;
-color: rgb(255, 255, 255);</string>
+        <string>padding: 8px 15px; background-color: #ef4444; color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>❌ Cancel</string>
@@ -221,12 +207,12 @@ color: rgb(255, 255, 255);</string>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
     </hint>
     <hint type="destinationlabel">
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
     </hint>
    </hints>
   </connection>
