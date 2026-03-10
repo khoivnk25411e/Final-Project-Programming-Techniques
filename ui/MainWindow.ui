@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>700</height>
+    <width>960</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -37,7 +37,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QWidget" name="headerBar">
+     <widget class="QFrame" name="headerBar">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -51,9 +51,12 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string>QWidget#headerBar { background: qlineargradient(x1:0,y1:0,x2:1,y2:0, stop:0 #1e293b, stop:1 #334155); }</string>
+       <string>QFrame#headerBar { background: qlineargradient(x1:0,y1:0,x2:1,y2:0, stop:0 #1e293b, stop:1 #334155); }</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_header">
+       <property name="spacing">
+        <number>10</number>
+       </property>
        <property name="leftMargin">
         <number>16</number>
        </property>
@@ -65,9 +68,6 @@
        </property>
        <property name="bottomMargin">
         <number>0</number>
-       </property>
-       <property name="spacing">
-        <number>10</number>
        </property>
        <item>
         <widget class="QLabel" name="titleLabel">
@@ -204,7 +204,7 @@
          <string>QTabBar::tab { border: 1px solid #767676; color: black; min-width: 130px; }</string>
         </property>
         <property name="currentIndex">
-         <number>4</number>
+         <number>6</number>
         </property>
         <widget class="QWidget" name="dashboardTab">
          <attribute name="title">
@@ -1693,7 +1693,8 @@ QComboBox QAbstractItemView { background-color: white; color: black; selection-b
                </size>
               </property>
               <property name="styleSheet">
-               <string>QComboBox { border: 1px solid #bdc3c7; border-radius: 4px; padding: 4px 8px; color: #1e293b; background: white; font-size: 13px; } QComboBox::drop-down { border: none; }</string>
+               <string notr="true">QComboBox { border: 1px solid #bdc3c7; border-radius: 4px; padding: 4px 8px; color: #1e293b; background: white; font-size: 13px; } QComboBox::drop-down { border: none; }
+QComboBox QAbstractItemView { background-color: white; color: black; selection-background-color: #3b82f6; selection-color: white; }</string>
               </property>
              </widget>
             </item>
@@ -1719,9 +1720,15 @@ QComboBox QAbstractItemView { background-color: white; color: black; selection-b
             </property>
             <item>
              <widget class="QPushButton" name="btnStatsBar">
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton { background-color: #1e293b; color: white; border: none; border-radius: 4px; padding: 7px 20px; font-size: 13px; font-weight: bold; } QPushButton:hover { background-color: #0f172a; };
-color: black</string>
+               <string notr="true">background-color: rgb(208, 208, 208);
+color: rgb(0, 0, 0);</string>
               </property>
               <property name="text">
                <string>📊 Bar Chart</string>
@@ -1730,9 +1737,15 @@ color: black</string>
             </item>
             <item>
              <widget class="QPushButton" name="btnStatsLine">
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton { background-color: #e2e8f0; color: #64748b; border: none; border-radius: 4px; padding: 7px 20px; font-size: 13px; } QPushButton:hover { background-color: #cccccc; color: #1e293b; };
-color: black</string>
+               <string notr="true">background-color: rgb(220, 220, 220);
+color: rgb(0, 0, 0);</string>
               </property>
               <property name="text">
                <string>📈 Line Chart</string>
@@ -1742,8 +1755,8 @@ color: black</string>
             <item>
              <widget class="QPushButton" name="btnStatsPie">
               <property name="styleSheet">
-               <string notr="true">QPushButton { background-color: #e2e8f0; color: #64748b; border: none; border-radius: 4px; padding: 7px 20px; font-size: 13px; } QPushButton:hover { background-color: #cccccc; color: #1e293b; };
-color: black</string>
+               <string notr="true">background-color: rgb(220, 220, 220);
+color: rgb(0, 0, 0);</string>
               </property>
               <property name="text">
                <string>🥧 Pie Chart</string>
