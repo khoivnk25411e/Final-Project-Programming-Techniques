@@ -823,6 +823,14 @@
             "Phone": "0938383838",
             "Organization": "UEL",
             "Position": "Sinh Viên"
+        },
+        {
+            "AttendeeId": "att_8f3226fc",
+            "Name": "Obama",
+            "Email": "Obama@gmail.com",
+            "Phone": "03570123123",
+            "Organization": "USA-WHITE HOUSE",
+            "Position": "Presidents"
         }
     ]
 }
