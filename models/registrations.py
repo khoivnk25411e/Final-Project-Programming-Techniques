@@ -37,7 +37,6 @@ class Registrations(MyCollections):
             json.dump(data, outfile, ensure_ascii=False, indent=4)
 
     def find_registration(self, regId):
-        """Tìm theo RegistrationId — case-insensitive để tránh lỗi nhập code"""
         regId_upper = regId.strip().upper()
         for it in self.list:
             if it.RegistrationId.strip().upper() == regId_upper:
@@ -89,19 +88,16 @@ class Registrations(MyCollections):
         return count
 
     def delete_by_event(self, eventId):
-        """Xoá tất cả registrations của 1 event (cascade delete)"""
         before = len(self.list)
         self.list = [r for r in self.list if r.EventId != eventId]
         return before - len(self.list)
 
     def delete_by_attendee(self, attendeeId):
-        """Xoá tất cả registrations của 1 attendee (cascade delete)"""
         before = len(self.list)
         self.list = [r for r in self.list if r.AttendeeId != attendeeId]
         return before - len(self.list)
 
     def checkin_for_event(self, code, event_id):
-        """Check-in bằng RegistrationId, validate đúng event"""
         reg = self.find_registration(code)
         if reg is None:
             return False, f"Code not found: '{code}'\nMake sure you selected the correct event and entered the right code."

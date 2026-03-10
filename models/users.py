@@ -86,7 +86,6 @@ class Users(MyCollections):
         return False
 
     def is_username_taken(self, username, exclude_id=None):
-        """Kiểm tra username đã tồn tại chưa (bỏ qua user đang edit)"""
         for it in self.list:
             if it.UserName.lower() == username.lower():
                 if exclude_id is None or it.UserId != exclude_id:
@@ -94,7 +93,6 @@ class Users(MyCollections):
         return False
 
     def is_email_taken(self, email, exclude_id=None):
-        """Kiểm tra email đã tồn tại chưa (bỏ qua user đang edit)"""
         for it in self.list:
             if it.Email.lower() == email.lower():
                 if exclude_id is None or it.UserId != exclude_id:

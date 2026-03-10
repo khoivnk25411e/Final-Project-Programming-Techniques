@@ -6,7 +6,7 @@ class User:
         self.UserName = UserName
         self.Password = Password
         self.Email = Email
-        self.Role = Role                       # "admin" hoặc "user"
+        self.Role = Role
         self.SecurityQuestion = SecurityQuestion
         self.SecurityAnswer = SecurityAnswer
 

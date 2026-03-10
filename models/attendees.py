@@ -75,7 +75,6 @@ class Attendees(MyCollections):
         return results
 
     def is_email_taken(self, email, exclude_id=None):
-        """Kiểm tra email attendee đã tồn tại chưa"""
         for it in self.list:
             if it.Email.lower() == email.lower():
                 if exclude_id is None or it.AttendeeId != exclude_id:

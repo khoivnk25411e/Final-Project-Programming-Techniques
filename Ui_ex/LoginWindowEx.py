@@ -69,7 +69,6 @@ class LoginWindowEx(Ui_LoginWindow):
             pass
 
     def save_remember(self, username, password, remember):
-        # Chỉ lưu username, KHÔNG lưu password plain text
         data = {'remember': remember, 'username': username if remember else ''}
         with open(REMEMBER_FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)

@@ -47,8 +47,8 @@ except ImportError:
     QR_AVAILABLE = False
 
 class EmailSenderThread(QThread):
-    progress = pyqtSignal(int, str)  # Tín hiệu cập nhật thanh Progress (tiến độ, câu thông báo)
-    finished_task = pyqtSignal(int, int)  # Tín hiệu khi hoàn thành (số thành công, số thất bại)
+    progress = pyqtSignal(int, str)
+    finished_task = pyqtSignal(int, int)
 
     def __init__(self, email_data_list, event_name):
         super().__init__()
@@ -112,7 +112,6 @@ class EmailSenderThread(QThread):
         self.finished_task.emit(success, failed)
 
 def _msg(parent, kind, title, text):
-    """QMessageBox với style rõ ràng — tránh chữ trùng màu nền trên Windows."""
     box = QMessageBox(parent)
     box.setWindowTitle(title)
     box.setText(text)
@@ -419,7 +418,6 @@ class MainWindowEx(Ui_MainWindow):
     PAGE_SIZE = 18
 
     def _pad_table(self, table, actual_count):
-        """Đặt số rows = PAGE_SIZE để lấp đầy khoảng trống, rows thừa để trống."""
         if actual_count < self.PAGE_SIZE:
             table.setRowCount(self.PAGE_SIZE)
 
@@ -564,7 +562,6 @@ class MainWindowEx(Ui_MainWindow):
             _msg(self.MainWindow, "info", "Event Details", details)
 
     def download_event_template(self):
-        """Tạo và tải file mẫu CSV/Excel để import events"""
         from PyQt6.QtWidgets import QFileDialog
         import csv
 
@@ -625,7 +622,6 @@ class MainWindowEx(Ui_MainWindow):
             _msg(self.MainWindow, "err", "Error", f"Cannot save template:\n{e}")
 
     def import_events_from_file(self):
-        """Import events từ file Excel (.xlsx) hoặc CSV (.csv)"""
         from PyQt6.QtWidgets import QFileDialog
         import csv, re
 
@@ -927,7 +923,6 @@ class MainWindowEx(Ui_MainWindow):
                 self.dashRecentTable.setItem(i, col, item)
 
     def download_import_template(self):
-        """Tạo và tải file mẫu CSV/Excel để import attendees"""
         from PyQt6.QtWidgets import QFileDialog
         import csv
 
@@ -1325,7 +1320,6 @@ class MainWindowEx(Ui_MainWindow):
             self.load_registrations()
 
     def send_email_selected(self):
-        """Gửi email QR Code chủ động cho các registration được chọn trong bảng"""
         rows = list(set(idx.row() for idx in self.registrationTable.selectedIndexes()))
         if not rows:
             _msg(self.MainWindow, "warn", "Error", "Please select at least one registration to send email!")

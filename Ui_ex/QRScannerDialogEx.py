@@ -8,8 +8,6 @@ from PyQt6.QtGui import QImage, QPixmap
 from ui.QRScannerDialog import Ui_QRScannerDialog
 
 IS_MACOS = sys.platform == "darwin"
-
-# ── macOS: tự tìm và set DYLD_LIBRARY_PATH trước khi import pyzbar ──────────
 if IS_MACOS:
     def _find_zbar_lib():
         candidates = [
