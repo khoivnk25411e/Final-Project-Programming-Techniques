@@ -3,7 +3,6 @@ from ui.UserDialog import Ui_UserDialog
 
 class UserDialogEx(Ui_UserDialog):
     def __init__(self, parent=None, user_data=None):
-        """user_data: User object if editing, None if creating new"""
         self.dialog = QDialog(parent)
         super().setupUi(self.dialog)
         self.user_data = user_data
@@ -18,14 +17,11 @@ class UserDialogEx(Ui_UserDialog):
         self.lineEditFullName.setText(self.user_data.FullName)
         self.lineEditUsername.setText(self.user_data.UserName)
         self.lineEditEmail.setText(self.user_data.Email)
-        # Leave password blank (keep current if not entered)
         self.lineEditSecQuestion.setText(self.user_data.SecurityQuestion or "")
         self.lineEditSecAnswer.setText(self.user_data.SecurityAnswer or "")
-        # Set role
         idx = self.comboRole.findData(self.user_data.Role)
         if idx >= 0:
             self.comboRole.setCurrentIndex(idx)
-        # Do not allow changing own role if necessary (handled in Ex)
 
     def validate_and_accept(self):
         full_name = self.lineEditFullName.text().strip()
