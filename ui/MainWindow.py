@@ -212,6 +212,7 @@ class Ui_MainWindow(object):
         self.eventTable = QtWidgets.QTableWidget(parent=self.eventTab)
         self.eventTable.setObjectName("eventTable")
         self.eventTable.setColumnCount(6)
+        self.eventTable.setObjectName("eventTable")
         self.eventTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.eventTable.setHorizontalHeaderItem(0, item)
@@ -291,6 +292,7 @@ class Ui_MainWindow(object):
         self.attendeeTable = QtWidgets.QTableWidget(parent=self.attendeeTab)
         self.attendeeTable.setObjectName("attendeeTable")
         self.attendeeTable.setColumnCount(6)
+        self.attendeeTable.setObjectName("attendeeTable")
         self.attendeeTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.attendeeTable.setHorizontalHeaderItem(0, item)
@@ -377,6 +379,7 @@ class Ui_MainWindow(object):
         self.registrationTable = QtWidgets.QTableWidget(parent=self.registrationTab)
         self.registrationTable.setObjectName("registrationTable")
         self.registrationTable.setColumnCount(6)
+        self.registrationTable.setObjectName("registrationTable")
         self.registrationTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.registrationTable.setHorizontalHeaderItem(0, item)
@@ -506,6 +509,7 @@ class Ui_MainWindow(object):
         self.checkinTable = QtWidgets.QTableWidget(parent=self.checkinTab)
         self.checkinTable.setObjectName("checkinTable")
         self.checkinTable.setColumnCount(5)
+        self.checkinTable.setObjectName("checkinTable")
         self.checkinTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.checkinTable.setHorizontalHeaderItem(0, item)
@@ -550,6 +554,7 @@ class Ui_MainWindow(object):
         self.userTable = QtWidgets.QTableWidget(parent=self.userMgmtTab)
         self.userTable.setObjectName("userTable")
         self.userTable.setColumnCount(5)
+        self.userTable.setObjectName("userTable")
         self.userTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.userTable.setHorizontalHeaderItem(0, item)
@@ -620,6 +625,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_stats_btns.addItem(spacerItem17)
         self.verticalLayout_stats.addLayout(self.horizontalLayout_stats_btns)
         self.statsChartGroup = QtWidgets.QFrame(parent=self.statisticsTab)
+        self.statsChartGroup.setStyleSheet("QFrame {\n"
+"    background-color: white;\n"
+"    border: 1px solid #f1f5f9;\n"
+"    border-radius: 6px;\n"
+"}")
+        self.statsChartGroup.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.statsChartGroup.setObjectName("statsChartGroup")
         self.verticalLayoutStatsPlot = QtWidgets.QVBoxLayout(self.statsChartGroup)
         self.verticalLayoutStatsPlot.setContentsMargins(4, 4, 4, 4)
