@@ -39,10 +39,10 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #1e293b; margin-bottom: 6px;</string>
+      <string notr="true">color: rgb(59, 230, 190); margin-bottom: 6px;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#71eaed;&quot;&gt;📷  Scan QR Code for Check-in&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>📷  Scan QR Code for Check-in</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -52,10 +52,10 @@
    <item>
     <widget class="QLabel" name="lblInstruction">
      <property name="styleSheet">
-      <string notr="true">color: #64748b; font-size: 12px;</string>
+      <string notr="true">color: rgb(251, 7, 33); font-size: 12px;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ed2140;&quot;&gt;Hold the QR code in front of the camera for automatic check-in&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>Hold the QR code in front of the camera for automatic check-in</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -92,9 +92,7 @@
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: 2px solid #34495e;
-border-radius: 8px;
-background-color: #1e293b;</string>
+        <string>border: 2px solid #34495e; border-radius: 8px; background-color: #1e293b;</string>
        </property>
        <property name="text">
         <string>📷 Starting camera...</string>
@@ -122,12 +120,7 @@ background-color: #1e293b;</string>
    <item>
     <widget class="QLabel" name="lblStatus">
      <property name="styleSheet">
-      <string notr="true">color: #16a34a;
-font-size: 13px;
-font-weight: bold;
-padding: 8px;
-background: #f0fdf4;
-border-radius: 6px;</string>
+      <string>color: #16a34a; font-size: 13px; font-weight: bold; padding: 8px; background: #f0fdf4; border-radius: 6px;</string>
      </property>
      <property name="text">
       <string/>
@@ -174,17 +167,7 @@ border-radius: 6px;</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton {
-    background: #ef4444;
-    color: white;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: bold;
-    padding: 0 20px;
-}
-QPushButton:hover {
-    background: #ef4444;
-}</string>
+        <string>QPushButton { background: #ef4444; color: white; border-radius: 6px; font-size: 13px; font-weight: bold; padding: 0 20px; } QPushButton:hover { background: #dc2626; }</string>
        </property>
        <property name="text">
         <string>Close</string>
@@ -204,12 +187,12 @@ QPushButton:hover {
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
     </hint>
     <hint type="destinationlabel">
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
     </hint>
    </hints>
   </connection>

@@ -13,12 +13,8 @@
   <property name="windowTitle">
    <string>Register Attendee</string>
   </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>../images/select_attendee.png</normaloff>../images/select_attendee.png</iconset>
-  </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #f1f5f9;</string>
+   <string>background-color: #f1f5f9;</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -31,7 +27,7 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
+        <string>color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Select Attendee:</string>
@@ -41,11 +37,7 @@
      <item row="0" column="1">
       <widget class="QComboBox" name="attendeeCombo">
        <property name="styleSheet">
-        <string notr="true">QComboBox{
-    border: 1px solid #6f6f6f;
-    padding: 2px;
-    color: black;
-}</string>
+        <string notr="true">QComboBox { border: 1px solid #6f6f6f; padding: 2px; color: black; }</string>
        </property>
       </widget>
      </item>
@@ -54,7 +46,7 @@
    <item>
     <spacer name="spacerItem">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -69,7 +61,7 @@
      <item>
       <spacer name="spacerItem1">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -82,9 +74,7 @@
      <item>
       <widget class="QPushButton" name="btnRegister">
        <property name="styleSheet">
-        <string notr="true">padding: 8px 15px;
-color: rgb(255, 255, 255);
-background-color: #3b82f6;</string>
+        <string>padding: 8px 15px; color: rgb(255, 255, 255); background-color: #3b82f6;</string>
        </property>
        <property name="text">
         <string>💾 Register</string>
@@ -94,9 +84,7 @@ background-color: #3b82f6;</string>
      <item>
       <widget class="QPushButton" name="btnCancel">
        <property name="styleSheet">
-        <string notr="true">padding: 8px 15px;
-color: rgb(255, 255, 255);
-background-color: #ef4444;</string>
+        <string>padding: 8px 15px; color: rgb(255, 255, 255); background-color: #ef4444;</string>
        </property>
        <property name="text">
         <string>❌ Cancel</string>
@@ -116,12 +104,12 @@ background-color: #ef4444;</string>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
     </hint>
     <hint type="destinationlabel">
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
     </hint>
    </hints>
   </connection>

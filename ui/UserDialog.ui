@@ -23,14 +23,10 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Add / Edit Account</string>
-  </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>../images/add_edit_logo.png</normaloff>../images/add_edit_logo.png</iconset>
+   <string>Add / Edit Staff Account</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #f1f5f9;</string>
+   <string>background-color: white;</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -54,15 +50,14 @@
       <font>
        <family>Arial</family>
        <pointsize>13</pointsize>
-       <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color:#1e293b; margin-bottom:6px;</string>
+      <string>color:#2c3e50; margin-bottom:6px;</string>
      </property>
      <property name="text">
-      <string>👤  Account Information</string>
+      <string>🧑‍💼  Staff Account Information</string>
      </property>
     </widget>
    </item>
@@ -77,8 +72,7 @@
      <item row="0" column="0">
       <widget class="QLabel" name="lblFullName">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;
-color: rgb(0, 0, 0);</string>
+        <string>font-weight:bold; font-size:12px; color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Full Name:</string>
@@ -94,11 +88,7 @@ color: rgb(0, 0, 0);</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QLineEdit{
-    border: 2px solid #6f6f6f;
-    padding: 2px;
-    color: black;
-}</string>
+        <string>QLineEdit { border: 1px solid #d1d5db; border-radius: 5px; padding: 6px; background: white; color: #111827; }</string>
        </property>
        <property name="placeholderText">
         <string>Enter full name...</string>
@@ -108,8 +98,7 @@ color: rgb(0, 0, 0);</string>
      <item row="1" column="0">
       <widget class="QLabel" name="lblUsername">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;
-color: rgb(0, 0, 0);</string>
+        <string>font-weight:bold; font-size:12px; color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Username:</string>
@@ -125,11 +114,7 @@ color: rgb(0, 0, 0);</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QLineEdit{
-    border: 2px solid #6f6f6f;
-    padding: 2px;
-    color: black;
-}</string>
+        <string>QLineEdit { border: 1px solid #d1d5db; border-radius: 5px; padding: 6px; background: white; color: #111827; }</string>
        </property>
        <property name="placeholderText">
         <string>Letters, numbers, underscores only...</string>
@@ -139,7 +124,7 @@ color: rgb(0, 0, 0);</string>
      <item row="2" column="0">
       <widget class="QLabel" name="lblEmail">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;color: rgb(0, 0, 0);</string>
+        <string>font-weight:bold; font-size:12px; color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Email:</string>
@@ -155,11 +140,7 @@ color: rgb(0, 0, 0);</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QLineEdit{
-    border: 2px solid #6f6f6f;
-    padding: 2px;
-    color: black;
-}</string>
+        <string>QLineEdit { border: 1px solid #d1d5db; border-radius: 5px; padding: 6px; background: white; color: #111827; }</string>
        </property>
        <property name="placeholderText">
         <string>example@email.com</string>
@@ -169,7 +150,7 @@ color: rgb(0, 0, 0);</string>
      <item row="3" column="0">
       <widget class="QLabel" name="lblPassword">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;color: rgb(0, 0, 0);</string>
+        <string>font-weight:bold; font-size:12px; color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Password:</string>
@@ -185,14 +166,10 @@ color: rgb(0, 0, 0);</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QLineEdit{
-    border: 2px solid #6f6f6f;
-    padding: 2px;
-    color: black;
-}</string>
+        <string>QLineEdit { border: 1px solid #d1d5db; border-radius: 5px; padding: 6px; background: white; color: #111827; }</string>
        </property>
        <property name="echoMode">
-        <enum>QLineEdit::Password</enum>
+        <enum>QLineEdit::EchoMode::Password</enum>
        </property>
        <property name="placeholderText">
         <string>Minimum 6 characters (leave blank to keep current when editing)...</string>
@@ -202,7 +179,7 @@ color: rgb(0, 0, 0);</string>
      <item row="4" column="0">
       <widget class="QLabel" name="lblRole">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;color: rgb(0, 0, 0);</string>
+        <string>font-weight:bold; font-size:12px; color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Role:</string>
@@ -218,15 +195,11 @@ color: rgb(0, 0, 0);</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QComboBox{
-    border: 2px solid #6f6f6f;
-    padding: 2px;
-    color: black;
-}</string>
+        <string>QComboBox { border: 1px solid #d1d5db; border-radius: 5px; padding: 6px; background: white; color: #111827; }</string>
        </property>
        <item>
         <property name="text">
-         <string>👤  User</string>
+         <string>🧑‍💼  Staff</string>
         </property>
        </item>
        <item>
@@ -239,7 +212,7 @@ color: rgb(0, 0, 0);</string>
      <item row="5" column="0">
       <widget class="QLabel" name="lblSecQuestion">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;color: rgb(0, 0, 0);</string>
+        <string>font-weight:bold; font-size:12px; color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Security Question:</string>
@@ -255,11 +228,7 @@ color: rgb(0, 0, 0);</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QLineEdit{
-    border: 2px solid #6f6f6f;
-    padding: 2px;
-    color: black;
-}</string>
+        <string>QLineEdit { border: 1px solid #d1d5db; border-radius: 5px; padding: 6px; background: white; color: #111827; }</string>
        </property>
        <property name="placeholderText">
         <string>Security question for password recovery...</string>
@@ -269,7 +238,7 @@ color: rgb(0, 0, 0);</string>
      <item row="6" column="0">
       <widget class="QLabel" name="lblSecAnswer">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold; font-size:12px;color: rgb(0, 0, 0);</string>
+        <string>font-weight:bold; font-size:12px; color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Answer:</string>
@@ -285,11 +254,7 @@ color: rgb(0, 0, 0);</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QLineEdit{
-    border: 2px solid #6f6f6f;
-    padding: 2px;
-    color: black;
-}</string>
+        <string>QLineEdit { border: 1px solid #d1d5db; border-radius: 5px; padding: 6px; background: white; color: #111827; }</string>
        </property>
        <property name="placeholderText">
         <string>Answer (case-insensitive)...</string>
@@ -301,7 +266,7 @@ color: rgb(0, 0, 0);</string>
    <item>
     <spacer name="spacerItem">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -316,7 +281,7 @@ color: rgb(0, 0, 0);</string>
      <item>
       <spacer name="spacerItem1">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -335,17 +300,7 @@ color: rgb(0, 0, 0);</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton{
-    background:#3b82f6;
-    color:white;
-    border-radius:6px;
-    font-size:13px;
-    font-weight:bold;
-    padding:0 16px;
-}
-QPushButton:hover{
-    background:#3b82f6;
-}</string>
+        <string>QPushButton { background:#3b82f6; color:white; border-radius:6px; font-size:13px; font-weight:bold; padding:0 16px; } QPushButton:hover { background:#2563eb; }</string>
        </property>
        <property name="text">
         <string>💾 Save</string>
@@ -361,16 +316,7 @@ QPushButton:hover{
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton{
-    background: #ef4444;
-    color:white;
-    border-radius:6px;
-    font-size:13px;
-    padding:0 16px;
-}
-QPushButton:hover{
-    background:#f1f5f9;
-}</string>
+        <string>QPushButton { background:#ef4444; color:white; border-radius:6px; font-size:13px; padding:0 16px; } QPushButton:hover { background:#dc2626; }</string>
        </property>
        <property name="text">
         <string>Cancel</string>
@@ -390,12 +336,12 @@ QPushButton:hover{
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
     </hint>
     <hint type="destinationlabel">
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
     </hint>
    </hints>
   </connection>
