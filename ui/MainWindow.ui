@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>960</width>
-    <height>600</height>
+    <width>1000</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -37,7 +37,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QFrame" name="headerBar">
+     <widget class="QWidget" name="headerBar" native="true">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -51,7 +51,7 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string>QFrame#headerBar { background: qlineargradient(x1:0,y1:0,x2:1,y2:0, stop:0 #1e293b, stop:1 #334155); }</string>
+       <string>QWidget#headerBar { background: qlineargradient(x1:0,y1:0,x2:1,y2:0, stop:0 #1e293b, stop:1 #334155); }</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_header">
        <property name="spacing">
@@ -204,7 +204,7 @@
          <string>QTabBar::tab { border: 1px solid #767676; color: black; min-width: 130px; }</string>
         </property>
         <property name="currentIndex">
-         <number>6</number>
+         <number>5</number>
         </property>
         <widget class="QWidget" name="dashboardTab">
          <attribute name="title">
@@ -464,6 +464,12 @@
                  <property name="styleSheet">
                   <string>background:white;alternate-background-color:#f8fafc;gridline-color:#e2e8f0;</string>
                  </property>
+                 <property name="horizontalScrollBarPolicy">
+                  <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
+                 </property>
                  <property name="editTriggers">
                   <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
                  </property>
@@ -473,6 +479,12 @@
                  <property name="selectionMode">
                   <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
                  </property>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>120</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
                  <column>
                   <property name="text">
                    <string>Event Name</string>
@@ -507,12 +519,21 @@
                  <property name="styleSheet">
                   <string>background:white;alternate-background-color:#f8fafc;gridline-color:#e2e8f0;</string>
                  </property>
+                 <property name="horizontalScrollBarPolicy">
+                  <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+                 </property>
                  <property name="editTriggers">
                   <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
                  </property>
                  <property name="alternatingRowColors">
                   <bool>true</bool>
                  </property>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>120</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
                  <column>
                   <property name="text">
                    <string>Name</string>
@@ -1030,8 +1051,7 @@
             <item>
              <widget class="QComboBox" name="eventCombo">
               <property name="styleSheet">
-               <string notr="true">QComboBox { border: 1px solid #6f6f6f; padding: 2px; color: black; }
-QComboBox QAbstractItemView { background-color: white; color: black; selection-background-color: #3b82f6; selection-color: white; }</string>
+               <string>QComboBox { border: 1px solid #6f6f6f; padding: 2px; color: black; }</string>
               </property>
              </widget>
             </item>
@@ -1274,8 +1294,7 @@ QComboBox QAbstractItemView { background-color: white; color: black; selection-b
             <item>
              <widget class="QComboBox" name="checkinEventCombo">
               <property name="styleSheet">
-               <string notr="true">QComboBox { border: 1px solid #6f6f6f; padding: 2px; color: black; }
-QComboBox QAbstractItemView { background-color: white; color: black; selection-background-color: #3b82f6; selection-color: white; }</string>
+               <string>QComboBox { border: 1px solid #6f6f6f; padding: 2px; color: black; }</string>
               </property>
              </widget>
             </item>
@@ -1693,8 +1712,7 @@ QComboBox QAbstractItemView { background-color: white; color: black; selection-b
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">QComboBox { border: 1px solid #bdc3c7; border-radius: 4px; padding: 4px 8px; color: #1e293b; background: white; font-size: 13px; } QComboBox::drop-down { border: none; }
-QComboBox QAbstractItemView { background-color: white; color: black; selection-background-color: #3b82f6; selection-color: white; }</string>
+               <string>QComboBox { border: 1px solid #bdc3c7; border-radius: 4px; padding: 4px 8px; color: #1e293b; background: white; font-size: 13px; } QComboBox::drop-down { border: none; } QComboBox QAbstractItemView { background: white; color: #1e293b; selection-background-color: #3b82f6; selection-color: white; border: 1px solid #bdc3c7; }</string>
               </property>
              </widget>
             </item>
@@ -1720,15 +1738,8 @@ QComboBox QAbstractItemView { background-color: white; color: black; selection-b
             </property>
             <item>
              <widget class="QPushButton" name="btnStatsBar">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>30</height>
-               </size>
-              </property>
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(208, 208, 208);
-color: rgb(0, 0, 0);</string>
+               <string>QPushButton { background-color: #3b82f6; color: white; border: none; border-radius: 4px; padding: 7px 20px; font-size: 13px; font-weight: bold; } QPushButton:hover { background-color: #2563eb; }</string>
               </property>
               <property name="text">
                <string>📊 Bar Chart</string>
@@ -1737,15 +1748,8 @@ color: rgb(0, 0, 0);</string>
             </item>
             <item>
              <widget class="QPushButton" name="btnStatsLine">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>30</height>
-               </size>
-              </property>
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(220, 220, 220);
-color: rgb(0, 0, 0);</string>
+               <string>QPushButton { background-color: #e2e8f0; color: #1e293b; border: 1px solid #cbd5e1; border-radius: 4px; padding: 7px 20px; font-size: 13px; } QPushButton:hover { background-color: #3b82f6; color: white; border-color: #3b82f6; }</string>
               </property>
               <property name="text">
                <string>📈 Line Chart</string>
@@ -1755,8 +1759,7 @@ color: rgb(0, 0, 0);</string>
             <item>
              <widget class="QPushButton" name="btnStatsPie">
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(220, 220, 220);
-color: rgb(0, 0, 0);</string>
+               <string>QPushButton { background-color: #e2e8f0; color: #1e293b; border: 1px solid #cbd5e1; border-radius: 4px; padding: 7px 20px; font-size: 13px; } QPushButton:hover { background-color: #3b82f6; color: white; border-color: #3b82f6; }</string>
               </property>
               <property name="text">
                <string>🥧 Pie Chart</string>

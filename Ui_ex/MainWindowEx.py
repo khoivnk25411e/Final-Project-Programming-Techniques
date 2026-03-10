@@ -1681,12 +1681,29 @@ class MainWindowEx(Ui_MainWindow):
         self.verticalLayoutStatsPlot.addWidget(self.stats_canvas)
         self.show_bar_chart()
 
+    _STATS_BTN_ACTIVE = (
+        "QPushButton {"
+        "  background-color: #3b82f6; color: white;"
+        "  border: none; border-radius: 4px;"
+        "  padding: 7px 20px; font-size: 13px; font-weight: bold;"
+        "}"
+        "QPushButton:hover { background-color: #2563eb; }"
+    )
+    _STATS_BTN_INACTIVE = (
+        "QPushButton {"
+        "  background-color: #e2e8f0; color: #1e293b;"
+        "  border: 1px solid #cbd5e1; border-radius: 4px;"
+        "  padding: 7px 20px; font-size: 13px;"
+        "}"
+        "QPushButton:hover { background-color: #3b82f6; color: white; border-color: #3b82f6; }"
+    )
+
     def _set_active_btn(self, active_btn):
         for btn in [self.btnStatsBar, self.btnStatsLine, self.btnStatsPie]:
             if btn is active_btn:
-                btn.setStyleSheet(btn.property("active_style"))
+                btn.setStyleSheet(self._STATS_BTN_ACTIVE)
             else:
-                btn.setStyleSheet(btn.property("inactive_style"))
+                btn.setStyleSheet(self._STATS_BTN_INACTIVE)
 
     def load_stats_event_combo(self):
         self.statsEventCombo.clear()
