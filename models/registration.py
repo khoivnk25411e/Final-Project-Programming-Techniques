@@ -2,7 +2,7 @@ from datetime import datetime
 
 
 class Registration:
-    def __init__(self, RegistrationId=None, EventId=None, AttendeeId=None, RegistrationDate=None, Status="Đã đăng ký",
+    def __init__(self, RegistrationId=None, EventId=None, AttendeeId=None, RegistrationDate=None, Status="Checked-in",
                  CheckinTime=None):
         self.RegistrationId = RegistrationId
         self.EventId = EventId

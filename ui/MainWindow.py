@@ -103,19 +103,147 @@ class Ui_MainWindow(object):
         self.contentLayout.setSpacing(6)
         self.contentLayout.setObjectName("contentLayout")
         self.tabWidget = QtWidgets.QTabWidget(parent=self.contentWidget)
-        self.tabWidget.setStyleSheet(
-            "QTabBar::tab { border: 1px solid #767676; color: black; min-width: 130px; }"
-        )
+        self.tabWidget.setStyleSheet("QTabBar::tab { border: 1px solid #767676; color: black; min-width: 130px; }")
         self.tabWidget.setObjectName("tabWidget")
+        self.dashboardTab = QtWidgets.QWidget()
+        self.dashboardTab.setObjectName("dashboardTab")
+        self.dashLayout = QtWidgets.QVBoxLayout(self.dashboardTab)
+        self.dashLayout.setContentsMargins(20, 20, 20, 20)
+        self.dashLayout.setSpacing(16)
+        self.dashLayout.setObjectName("dashLayout")
+        self.dashRow1 = QtWidgets.QHBoxLayout()
+        self.dashRow1.setSpacing(14)
+        self.dashRow1.setObjectName("dashRow1")
+        self.cardTotalEvents = QtWidgets.QWidget(parent=self.dashboardTab)
+        self.cardTotalEvents.setMinimumSize(QtCore.QSize(0, 100))
+        self.cardTotalEvents.setStyleSheet("QWidget#cardTotalEvents{background:#3b82f6;border-radius:10px;padding:8px;}")
+        self.cardTotalEvents.setObjectName("cardTotalEvents")
+        self.cl_cardTotalEvents = QtWidgets.QVBoxLayout(self.cardTotalEvents)
+        self.cl_cardTotalEvents.setContentsMargins(16, 12, 16, 12)
+        self.cl_cardTotalEvents.setObjectName("cl_cardTotalEvents")
+        self.cardTotalEventsNum = QtWidgets.QLabel(parent=self.cardTotalEvents)
+        self.cardTotalEventsNum.setStyleSheet("color:white;font-size:32px;font-weight:bold;background:transparent;")
+        self.cardTotalEventsNum.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.cardTotalEventsNum.setObjectName("cardTotalEventsNum")
+        self.cl_cardTotalEvents.addWidget(self.cardTotalEventsNum)
+        self.cardTotalEventsLbl = QtWidgets.QLabel(parent=self.cardTotalEvents)
+        self.cardTotalEventsLbl.setStyleSheet("color:rgba(255,255,255,0.85);font-size:12px;background:transparent;")
+        self.cardTotalEventsLbl.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.cardTotalEventsLbl.setObjectName("cardTotalEventsLbl")
+        self.cl_cardTotalEvents.addWidget(self.cardTotalEventsLbl)
+        self.dashRow1.addWidget(self.cardTotalEvents)
+        self.cardTotalAttendees = QtWidgets.QWidget(parent=self.dashboardTab)
+        self.cardTotalAttendees.setMinimumSize(QtCore.QSize(0, 100))
+        self.cardTotalAttendees.setStyleSheet("QWidget#cardTotalAttendees{background:#8b5cf6;border-radius:10px;padding:8px;}")
+        self.cardTotalAttendees.setObjectName("cardTotalAttendees")
+        self.cl_cardTotalAttendees = QtWidgets.QVBoxLayout(self.cardTotalAttendees)
+        self.cl_cardTotalAttendees.setContentsMargins(16, 12, 16, 12)
+        self.cl_cardTotalAttendees.setObjectName("cl_cardTotalAttendees")
+        self.cardTotalAttendeesNum = QtWidgets.QLabel(parent=self.cardTotalAttendees)
+        self.cardTotalAttendeesNum.setStyleSheet("color:white;font-size:32px;font-weight:bold;background:transparent;")
+        self.cardTotalAttendeesNum.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.cardTotalAttendeesNum.setObjectName("cardTotalAttendeesNum")
+        self.cl_cardTotalAttendees.addWidget(self.cardTotalAttendeesNum)
+        self.cardTotalAttendeesLbl = QtWidgets.QLabel(parent=self.cardTotalAttendees)
+        self.cardTotalAttendeesLbl.setStyleSheet("color:rgba(255,255,255,0.85);font-size:12px;background:transparent;")
+        self.cardTotalAttendeesLbl.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.cardTotalAttendeesLbl.setObjectName("cardTotalAttendeesLbl")
+        self.cl_cardTotalAttendees.addWidget(self.cardTotalAttendeesLbl)
+        self.dashRow1.addWidget(self.cardTotalAttendees)
+        self.cardTotalRegs = QtWidgets.QWidget(parent=self.dashboardTab)
+        self.cardTotalRegs.setMinimumSize(QtCore.QSize(0, 100))
+        self.cardTotalRegs.setStyleSheet("QWidget#cardTotalRegs{background:#f59e0b;border-radius:10px;padding:8px;}")
+        self.cardTotalRegs.setObjectName("cardTotalRegs")
+        self.cl_cardTotalRegs = QtWidgets.QVBoxLayout(self.cardTotalRegs)
+        self.cl_cardTotalRegs.setContentsMargins(16, 12, 16, 12)
+        self.cl_cardTotalRegs.setObjectName("cl_cardTotalRegs")
+        self.cardTotalRegsNum = QtWidgets.QLabel(parent=self.cardTotalRegs)
+        self.cardTotalRegsNum.setStyleSheet("color:white;font-size:32px;font-weight:bold;background:transparent;")
+        self.cardTotalRegsNum.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.cardTotalRegsNum.setObjectName("cardTotalRegsNum")
+        self.cl_cardTotalRegs.addWidget(self.cardTotalRegsNum)
+        self.cardTotalRegsLbl = QtWidgets.QLabel(parent=self.cardTotalRegs)
+        self.cardTotalRegsLbl.setStyleSheet("color:rgba(255,255,255,0.85);font-size:12px;background:transparent;")
+        self.cardTotalRegsLbl.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.cardTotalRegsLbl.setObjectName("cardTotalRegsLbl")
+        self.cl_cardTotalRegs.addWidget(self.cardTotalRegsLbl)
+        self.dashRow1.addWidget(self.cardTotalRegs)
+        self.cardTotalCheckin = QtWidgets.QWidget(parent=self.dashboardTab)
+        self.cardTotalCheckin.setMinimumSize(QtCore.QSize(0, 100))
+        self.cardTotalCheckin.setStyleSheet("QWidget#cardTotalCheckin{background:#10b981;border-radius:10px;padding:8px;}")
+        self.cardTotalCheckin.setObjectName("cardTotalCheckin")
+        self.cl_cardTotalCheckin = QtWidgets.QVBoxLayout(self.cardTotalCheckin)
+        self.cl_cardTotalCheckin.setContentsMargins(16, 12, 16, 12)
+        self.cl_cardTotalCheckin.setObjectName("cl_cardTotalCheckin")
+        self.cardTotalCheckinNum = QtWidgets.QLabel(parent=self.cardTotalCheckin)
+        self.cardTotalCheckinNum.setStyleSheet("color:white;font-size:32px;font-weight:bold;background:transparent;")
+        self.cardTotalCheckinNum.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.cardTotalCheckinNum.setObjectName("cardTotalCheckinNum")
+        self.cl_cardTotalCheckin.addWidget(self.cardTotalCheckinNum)
+        self.cardTotalCheckinLbl = QtWidgets.QLabel(parent=self.cardTotalCheckin)
+        self.cardTotalCheckinLbl.setStyleSheet("color:rgba(255,255,255,0.85);font-size:12px;background:transparent;")
+        self.cardTotalCheckinLbl.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.cardTotalCheckinLbl.setObjectName("cardTotalCheckinLbl")
+        self.cl_cardTotalCheckin.addWidget(self.cardTotalCheckinLbl)
+        self.dashRow1.addWidget(self.cardTotalCheckin)
+        self.dashLayout.addLayout(self.dashRow1)
+        self.dashRow2 = QtWidgets.QHBoxLayout()
+        self.dashRow2.setSpacing(14)
+        self.dashRow2.setObjectName("dashRow2")
+        self.dashUpcomingGroup = QtWidgets.QGroupBox(parent=self.dashboardTab)
+        self.dashUpcomingGroup.setStyleSheet("QGroupBox{font-weight:bold;font-size:13px;color:#1e293b;border:1px solid #e2e8f0;border-radius:8px;margin-top:8px;background:white;} QGroupBox::title{subcontrol-origin:margin;padding:0 8px;background:#f1f5f9;border-radius:4px;}")
+        self.dashUpcomingGroup.setObjectName("dashUpcomingGroup")
+        self.ugLayout = QtWidgets.QVBoxLayout(self.dashUpcomingGroup)
+        self.ugLayout.setObjectName("ugLayout")
+        self.dashUpcomingTable = QtWidgets.QTableWidget(parent=self.dashUpcomingGroup)
+        self.dashUpcomingTable.setStyleSheet("background:white;alternate-background-color:#f8fafc;gridline-color:#e2e8f0;")
+        self.dashUpcomingTable.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.dashUpcomingTable.setAlternatingRowColors(True)
+        self.dashUpcomingTable.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
+        self.dashUpcomingTable.setObjectName("dashUpcomingTable")
+        self.dashUpcomingTable.setColumnCount(3)
+        self.dashUpcomingTable.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.dashUpcomingTable.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.dashUpcomingTable.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.dashUpcomingTable.setHorizontalHeaderItem(2, item)
+        self.ugLayout.addWidget(self.dashUpcomingTable)
+        self.dashRow2.addWidget(self.dashUpcomingGroup)
+        self.dashRecentGroup = QtWidgets.QGroupBox(parent=self.dashboardTab)
+        self.dashRecentGroup.setStyleSheet("QGroupBox{font-weight:bold;font-size:13px;color:#1e293b;border:1px solid #e2e8f0;border-radius:8px;margin-top:8px;background:white;} QGroupBox::title{subcontrol-origin:margin;padding:0 8px;background:#f1f5f9;border-radius:4px;}")
+        self.dashRecentGroup.setObjectName("dashRecentGroup")
+        self.rcLayout = QtWidgets.QVBoxLayout(self.dashRecentGroup)
+        self.rcLayout.setObjectName("rcLayout")
+        self.dashRecentTable = QtWidgets.QTableWidget(parent=self.dashRecentGroup)
+        self.dashRecentTable.setStyleSheet("background:white;alternate-background-color:#f8fafc;gridline-color:#e2e8f0;")
+        self.dashRecentTable.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.dashRecentTable.setAlternatingRowColors(True)
+        self.dashRecentTable.setObjectName("dashRecentTable")
+        self.dashRecentTable.setColumnCount(3)
+        self.dashRecentTable.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.dashRecentTable.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.dashRecentTable.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.dashRecentTable.setHorizontalHeaderItem(2, item)
+        self.rcLayout.addWidget(self.dashRecentTable)
+        self.dashRow2.addWidget(self.dashRecentGroup)
+        self.dashLayout.addLayout(self.dashRow2)
+        self.btnRefreshDash = QtWidgets.QPushButton(parent=self.dashboardTab)
+        self.btnRefreshDash.setStyleSheet("background:#94a3b8;color:white;padding:7px 18px;border-radius:5px;font-size:12px;max-width:180px;")
+        self.btnRefreshDash.setObjectName("btnRefreshDash")
+        self.dashLayout.addWidget(self.btnRefreshDash, 0, QtCore.Qt.AlignmentFlag.AlignRight)
+        self.tabWidget.addTab(self.dashboardTab, "")
         self.eventTab = QtWidgets.QWidget()
         font = QtGui.QFont()
         font.setPointSize(12)
         self.eventTab.setFont(font)
-        self.eventTab.setStyleSheet("")
         self.eventTab.setObjectName("eventTab")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.eventTab)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        # Search bar cho Event (vấn đề 10)
         self.horizontalLayout_event_search = QtWidgets.QHBoxLayout()
         self.horizontalLayout_event_search.setObjectName("horizontalLayout_event_search")
         self.labelEventSearch = QtWidgets.QLabel(parent=self.eventTab)
@@ -132,7 +260,6 @@ class Ui_MainWindow(object):
         self.eventSearch.setObjectName("eventSearch")
         self.horizontalLayout_event_search.addWidget(self.eventSearch)
         self.verticalLayout_2.addLayout(self.horizontalLayout_event_search)
-
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.btnAddEvent = QtWidgets.QPushButton(parent=self.eventTab)
@@ -154,8 +281,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         self.eventTable = QtWidgets.QTableWidget(parent=self.eventTab)
         self.eventTable.setStyleSheet("background-color: white;")
-        self.eventTable.setObjectName("eventTable")
         self.eventTable.setColumnCount(6)
+        self.eventTable.setObjectName("eventTable")
         self.eventTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.eventTable.setHorizontalHeaderItem(0, item)
@@ -199,15 +326,14 @@ class Ui_MainWindow(object):
         self.btnExportEvent.setStyleSheet("background-color: #94a3b8; color: white; padding: 6px 12px;")
         self.btnExportEvent.setObjectName("btnExportEvent")
         self.horizontalLayout_event_page.addWidget(self.btnExportEvent)
-        spacerPage_event = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_event_page.addItem(spacerPage_event)
+        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_event_page.addItem(spacerItem3)
         self.btnPrevEvent = QtWidgets.QPushButton(parent=self.eventTab)
         self.btnPrevEvent.setStyleSheet("background-color: #2563eb; color: white; padding: 6px 10px;")
         self.btnPrevEvent.setObjectName("btnPrevEvent")
         self.horizontalLayout_event_page.addWidget(self.btnPrevEvent)
         self.lblPageEvent = QtWidgets.QLabel(parent=self.eventTab)
         self.lblPageEvent.setStyleSheet("color: #1e293b; font-size: 12px; padding: 0 8px;")
-        self.lblPageEvent.setText("Page 1 / 1")
         self.lblPageEvent.setObjectName("lblPageEvent")
         self.horizontalLayout_event_page.addWidget(self.lblPageEvent)
         self.btnNextEvent = QtWidgets.QPushButton(parent=self.eventTab)
@@ -215,91 +341,6 @@ class Ui_MainWindow(object):
         self.btnNextEvent.setObjectName("btnNextEvent")
         self.horizontalLayout_event_page.addWidget(self.btnNextEvent)
         self.verticalLayout_2.addLayout(self.horizontalLayout_event_page)
-        # ── Dashboard Tab ──────────────────────────────────────
-        self.dashboardTab = QtWidgets.QWidget()
-        self.dashboardTab.setObjectName("dashboardTab")
-        self.dashLayout = QtWidgets.QVBoxLayout(self.dashboardTab)
-        self.dashLayout.setContentsMargins(20, 20, 20, 20)
-        self.dashLayout.setSpacing(16)
-
-        # Row 1: 4 stat cards
-        self.dashRow1 = QtWidgets.QHBoxLayout()
-        self.dashRow1.setSpacing(14)
-
-        def make_card(obj_name, bg, label_text):
-            card = QtWidgets.QWidget()
-            card.setObjectName(obj_name)
-            card.setStyleSheet(f"QWidget#{obj_name}{{background:{bg};border-radius:10px;padding:8px;}}")
-            card.setMinimumHeight(100)
-            cl = QtWidgets.QVBoxLayout(card)
-            cl.setContentsMargins(16, 12, 16, 12)
-            num_lbl = QtWidgets.QLabel("0")
-            num_lbl.setObjectName(f"{obj_name}Num")
-            num_lbl.setStyleSheet("color:white;font-size:32px;font-weight:bold;background:transparent;")
-            num_lbl.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-            cl.addWidget(num_lbl)
-            txt_lbl = QtWidgets.QLabel(label_text)
-            txt_lbl.setStyleSheet("color:rgba(255,255,255,0.85);font-size:12px;background:transparent;")
-            txt_lbl.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-            cl.addWidget(txt_lbl)
-            return card
-
-        self.cardTotalEvents    = make_card("cardTotalEvents",    "#3b82f6", "Total Events")
-        self.cardTotalAttendees = make_card("cardTotalAttendees", "#8b5cf6", "Total Attendees")
-        self.cardTotalRegs      = make_card("cardTotalRegs",      "#f59e0b", "Total Registrations")
-        self.cardTotalCheckin   = make_card("cardTotalCheckin",   "#10b981", "Checked-in Today")
-
-        self.dashRow1.addWidget(self.cardTotalEvents)
-        self.dashRow1.addWidget(self.cardTotalAttendees)
-        self.dashRow1.addWidget(self.cardTotalRegs)
-        self.dashRow1.addWidget(self.cardTotalCheckin)
-        self.dashLayout.addLayout(self.dashRow1)
-
-        # Row 2: Upcoming events + Recent checkins
-        self.dashRow2 = QtWidgets.QHBoxLayout()
-        self.dashRow2.setSpacing(14)
-
-        # Upcoming events
-        self.dashUpcomingGroup = QtWidgets.QGroupBox("📅 Upcoming Events")
-        self.dashUpcomingGroup.setStyleSheet("QGroupBox{font-weight:bold;font-size:13px;color:#1e293b;border:1px solid #e2e8f0;border-radius:8px;margin-top:8px;background:white;} QGroupBox::title{subcontrol-origin:margin;padding:0 8px;background:#f1f5f9;border-radius:4px;}")
-        ugLayout = QtWidgets.QVBoxLayout(self.dashUpcomingGroup)
-        self.dashUpcomingTable = QtWidgets.QTableWidget(0, 3)
-        self.dashUpcomingTable.setObjectName("dashUpcomingTable")
-        self.dashUpcomingTable.setHorizontalHeaderLabels(["Event Name", "Date", "Registered"])
-        self.dashUpcomingTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
-        self.dashUpcomingTable.setEditTriggers(QtWidgets.QTableWidget.EditTrigger.NoEditTriggers)
-        self.dashUpcomingTable.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
-        self.dashUpcomingTable.setAlternatingRowColors(True)
-        self.dashUpcomingTable.setStyleSheet("background:white;alternate-background-color:#f8fafc;gridline-color:#e2e8f0;")
-        self.dashUpcomingTable.horizontalHeader().setStyleSheet("QHeaderView::section{background:#f1f5f9;color:#374151;font-weight:bold;padding:6px;border-bottom:2px solid #e2e8f0;}")
-        ugLayout.addWidget(self.dashUpcomingTable)
-        self.dashRow2.addWidget(self.dashUpcomingGroup, 3)
-
-        # Recent check-ins
-        self.dashRecentGroup = QtWidgets.QGroupBox("✅ Recent Check-ins")
-        self.dashRecentGroup.setStyleSheet("QGroupBox{font-weight:bold;font-size:13px;color:#1e293b;border:1px solid #e2e8f0;border-radius:8px;margin-top:8px;background:white;} QGroupBox::title{subcontrol-origin:margin;padding:0 8px;background:#f1f5f9;border-radius:4px;}")
-        rcLayout = QtWidgets.QVBoxLayout(self.dashRecentGroup)
-        self.dashRecentTable = QtWidgets.QTableWidget(0, 3)
-        self.dashRecentTable.setObjectName("dashRecentTable")
-        self.dashRecentTable.setHorizontalHeaderLabels(["Name", "Event", "Time"])
-        self.dashRecentTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
-        self.dashRecentTable.setEditTriggers(QtWidgets.QTableWidget.EditTrigger.NoEditTriggers)
-        self.dashRecentTable.setAlternatingRowColors(True)
-        self.dashRecentTable.setStyleSheet("background:white;alternate-background-color:#f8fafc;gridline-color:#e2e8f0;")
-        self.dashRecentTable.horizontalHeader().setStyleSheet("QHeaderView::section{background:#f1f5f9;color:#374151;font-weight:bold;padding:6px;border-bottom:2px solid #e2e8f0;}")
-        rcLayout.addWidget(self.dashRecentTable)
-        self.dashRow2.addWidget(self.dashRecentGroup, 2)
-
-        self.dashLayout.addLayout(self.dashRow2)
-
-        # Refresh button
-        self.btnRefreshDash = QtWidgets.QPushButton("🔄 Refresh Dashboard")
-        self.btnRefreshDash.setObjectName("btnRefreshDash")
-        self.btnRefreshDash.setStyleSheet("background:#94a3b8;color:white;padding:7px 18px;border-radius:5px;font-size:12px;max-width:180px;")
-        self.dashLayout.addWidget(self.btnRefreshDash, alignment=QtCore.Qt.AlignmentFlag.AlignRight)
-
-        self.tabWidget.addTab(self.dashboardTab, "")
-        # ── End Dashboard Tab ──────────────────────────────────
         self.tabWidget.addTab(self.eventTab, "")
         self.attendeeTab = QtWidgets.QWidget()
         self.attendeeTab.setObjectName("attendeeTab")
@@ -313,11 +354,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.label)
         self.attendeeSearch = QtWidgets.QLineEdit(parent=self.attendeeTab)
         self.attendeeSearch.setStyleSheet("QLineEdit {\n"
-"    border: 1px solid #919191; /* Độ dày, Kiểu, Màu */\n"
-"       /* (Tùy chọn) Bo góc */\n"
+"    border: 1px solid #919191;\n"
 "    border-color:#707070;\n"
-"    padding: 2px;   \n"
-"    color:black;          /* (Tùy chọn) Khoảng cách chữ */\n"
+"    padding: 2px;\n"
+"    color:black;\n"
 "}")
         self.attendeeSearch.setObjectName("attendeeSearch")
         self.horizontalLayout_3.addWidget(self.attendeeSearch)
@@ -338,13 +378,13 @@ class Ui_MainWindow(object):
         self.btnDownloadTemplate.setStyleSheet("background-color: #10b981; color: white; padding: 10px; font-size: 13px; border-radius: 5px;")
         self.btnDownloadTemplate.setObjectName("btnDownloadTemplate")
         self.horizontalLayout_4.addWidget(self.btnDownloadTemplate)
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_4.addItem(spacerItem3)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem4)
         self.verticalLayout_3.addLayout(self.horizontalLayout_4)
         self.attendeeTable = QtWidgets.QTableWidget(parent=self.attendeeTab)
         self.attendeeTable.setStyleSheet("background-color: white;")
-        self.attendeeTable.setObjectName("attendeeTable")
         self.attendeeTable.setColumnCount(6)
+        self.attendeeTable.setObjectName("attendeeTable")
         self.attendeeTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.attendeeTable.setHorizontalHeaderItem(0, item)
@@ -378,8 +418,8 @@ class Ui_MainWindow(object):
         self.btnRefreshAttendee.setStyleSheet("background-color: #94a3b8; color: white;")
         self.btnRefreshAttendee.setObjectName("btnRefreshAttendee")
         self.horizontalLayout_5.addWidget(self.btnRefreshAttendee)
-        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem4)
+        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem5)
         self.verticalLayout_3.addLayout(self.horizontalLayout_5)
         self.horizontalLayout_attendee_page = QtWidgets.QHBoxLayout()
         self.horizontalLayout_attendee_page.setObjectName("horizontalLayout_attendee_page")
@@ -387,15 +427,14 @@ class Ui_MainWindow(object):
         self.btnExportAttendee.setStyleSheet("background-color: #94a3b8; color: white; padding: 6px 12px;")
         self.btnExportAttendee.setObjectName("btnExportAttendee")
         self.horizontalLayout_attendee_page.addWidget(self.btnExportAttendee)
-        spacerPage_attendee = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_attendee_page.addItem(spacerPage_attendee)
+        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_attendee_page.addItem(spacerItem6)
         self.btnPrevAttendee = QtWidgets.QPushButton(parent=self.attendeeTab)
         self.btnPrevAttendee.setStyleSheet("background-color: #2563eb; color: white; padding: 6px 10px;")
         self.btnPrevAttendee.setObjectName("btnPrevAttendee")
         self.horizontalLayout_attendee_page.addWidget(self.btnPrevAttendee)
         self.lblPageAttendee = QtWidgets.QLabel(parent=self.attendeeTab)
         self.lblPageAttendee.setStyleSheet("color: #1e293b; font-size: 12px; padding: 0 8px;")
-        self.lblPageAttendee.setText("Page 1 / 1")
         self.lblPageAttendee.setObjectName("lblPageAttendee")
         self.horizontalLayout_attendee_page.addWidget(self.lblPageAttendee)
         self.btnNextAttendee = QtWidgets.QPushButton(parent=self.attendeeTab)
@@ -416,15 +455,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.addWidget(self.label_2)
         self.eventCombo = QtWidgets.QComboBox(parent=self.registrationTab)
         self.eventCombo.setStyleSheet("QComboBox{\n"
-"    border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
-"       /* (Tùy chọn) Bo góc */\n"
-"    padding: 2px;    \n"
-"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"    border: 1px solid #6f6f6f;\n"
+"    padding: 2px;\n"
+"    color: black;\n"
 "}")
         self.eventCombo.setObjectName("eventCombo")
         self.horizontalLayout_6.addWidget(self.eventCombo)
-        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem5)
+        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_6.addItem(spacerItem7)
         self.verticalLayout_4.addLayout(self.horizontalLayout_6)
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
@@ -434,24 +472,24 @@ class Ui_MainWindow(object):
 "background-color: #3b82f6;")
         self.btnRegisterAttendee.setObjectName("btnRegisterAttendee")
         self.horizontalLayout_7.addWidget(self.btnRegisterAttendee)
-        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_7.addItem(spacerItem6)
+        spacerItem8 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem8)
         self.verticalLayout_4.addLayout(self.horizontalLayout_7)
-        # Search bar Registration
         self.horizontalLayout_reg_search = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_reg_search.setObjectName("horizontalLayout_reg_search")
         self.lblRegSearch = QtWidgets.QLabel(parent=self.registrationTab)
-        self.lblRegSearch.setText("🔍 Search:")
         self.lblRegSearch.setStyleSheet("color: #374151; font-size: 13px;")
+        self.lblRegSearch.setObjectName("lblRegSearch")
         self.horizontalLayout_reg_search.addWidget(self.lblRegSearch)
         self.registrationSearch = QtWidgets.QLineEdit(parent=self.registrationTab)
-        self.registrationSearch.setPlaceholderText("Enter name, email or status (Registered / Checked-in)...")
         self.registrationSearch.setStyleSheet("padding: 6px; border: 1px solid #d1d5db; border-radius: 5px;")
+        self.registrationSearch.setObjectName("registrationSearch")
         self.horizontalLayout_reg_search.addWidget(self.registrationSearch)
         self.verticalLayout_4.addLayout(self.horizontalLayout_reg_search)
         self.registrationTable = QtWidgets.QTableWidget(parent=self.registrationTab)
         self.registrationTable.setStyleSheet("background-color: white;")
-        self.registrationTable.setObjectName("registrationTable")
         self.registrationTable.setColumnCount(6)
+        self.registrationTable.setObjectName("registrationTable")
         self.registrationTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.registrationTable.setHorizontalHeaderItem(0, item)
@@ -485,8 +523,8 @@ class Ui_MainWindow(object):
         self.btnRefreshRegistration.setStyleSheet("background-color: #94a3b8; color: white;")
         self.btnRefreshRegistration.setObjectName("btnRefreshRegistration")
         self.horizontalLayout_8.addWidget(self.btnRefreshRegistration)
-        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_8.addItem(spacerItem7)
+        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_8.addItem(spacerItem9)
         self.verticalLayout_4.addLayout(self.horizontalLayout_8)
         self.horizontalLayout_registration_page = QtWidgets.QHBoxLayout()
         self.horizontalLayout_registration_page.setObjectName("horizontalLayout_registration_page")
@@ -494,15 +532,14 @@ class Ui_MainWindow(object):
         self.btnExportRegistration.setStyleSheet("background-color: #94a3b8; color: white; padding: 6px 12px;")
         self.btnExportRegistration.setObjectName("btnExportRegistration")
         self.horizontalLayout_registration_page.addWidget(self.btnExportRegistration)
-        spacerPage_registration = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_registration_page.addItem(spacerPage_registration)
+        spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_registration_page.addItem(spacerItem10)
         self.btnPrevRegistration = QtWidgets.QPushButton(parent=self.registrationTab)
         self.btnPrevRegistration.setStyleSheet("background-color: #2563eb; color: white; padding: 6px 10px;")
         self.btnPrevRegistration.setObjectName("btnPrevRegistration")
         self.horizontalLayout_registration_page.addWidget(self.btnPrevRegistration)
         self.lblPageRegistration = QtWidgets.QLabel(parent=self.registrationTab)
         self.lblPageRegistration.setStyleSheet("color: #1e293b; font-size: 12px; padding: 0 8px;")
-        self.lblPageRegistration.setText("Page 1 / 1")
         self.lblPageRegistration.setObjectName("lblPageRegistration")
         self.horizontalLayout_registration_page.addWidget(self.lblPageRegistration)
         self.btnNextRegistration = QtWidgets.QPushButton(parent=self.registrationTab)
@@ -523,15 +560,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9.addWidget(self.label_3)
         self.checkinEventCombo = QtWidgets.QComboBox(parent=self.checkinTab)
         self.checkinEventCombo.setStyleSheet("QComboBox{\n"
-"    border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
-"       /* (Tùy chọn) Bo góc */\n"
-"    padding: 2px;     \n"
-"    color: black;        /* (Tùy chọn) Khoảng cách chữ */\n"
+"    border: 1px solid #6f6f6f;\n"
+"    padding: 2px;\n"
+"    color: black;\n"
 "}")
         self.checkinEventCombo.setObjectName("checkinEventCombo")
         self.horizontalLayout_9.addWidget(self.checkinEventCombo)
-        spacerItem8 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_9.addItem(spacerItem8)
+        spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_9.addItem(spacerItem11)
         self.verticalLayout_5.addLayout(self.horizontalLayout_9)
         self.statsGroup = QtWidgets.QGroupBox(parent=self.checkinTab)
         font = QtGui.QFont()
@@ -539,22 +575,16 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         font.setKerning(True)
-        font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferDefault)
         self.statsGroup.setFont(font)
-        self.statsGroup.setAutoFillBackground(False)
         self.statsGroup.setStyleSheet("QGroupBox::title {\n"
-"    background-color:#f1f5f9; /* Màu nền của chữ */\n"
-"    color: black;               /* Màu chữ */\n"
-"    subcontrol-position: top left; /* Vị trí */\n"
-"    padding: 2px;             /* Khoảng cách padding */\n"
+"    background-color:#f1f5f9;\n"
+"    color: black;\n"
+"    subcontrol-position: top left;\n"
+"    padding: 2px;\n"
 "}\n"
 "QGroupBox{\n"
-"    border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
-"       /* (Tùy chọn) Bo góc */\n"
-"               \n"
+"    border: 1px solid #6f6f6f;\n"
 "}")
-        self.statsGroup.setFlat(False)
-        self.statsGroup.setCheckable(False)
         self.statsGroup.setObjectName("statsGroup")
         self.gridLayout = QtWidgets.QGridLayout(self.statsGroup)
         self.gridLayout.setObjectName("gridLayout")
@@ -592,19 +622,15 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
-        font.setStrikeOut(False)
         self.checkinGroup.setFont(font)
-        self.checkinGroup.setAutoFillBackground(False)
         self.checkinGroup.setStyleSheet("QGroupBox::title {\n"
-"    background-color:#f1f5f9; /* Màu nền của chữ */\n"
-"    color: black;               /* Màu chữ */\n"
-"    subcontrol-position: top left; /* Vị trí */\n"
-"    padding: 2px;             /* Khoảng cách padding */\n"
+"    background-color:#f1f5f9;\n"
+"    color: black;\n"
+"    subcontrol-position: top left;\n"
+"    padding: 2px;\n"
 "}\n"
 "QGroupBox{\n"
-"    border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
-"       /* (Tùy chọn) Bo góc */\n"
-"               \n"
+"    border: 1px solid #6f6f6f;\n"
 "}")
         self.checkinGroup.setObjectName("checkinGroup")
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.checkinGroup)
@@ -615,10 +641,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_10.addWidget(self.label_6)
         self.checkinCode = QtWidgets.QLineEdit(parent=self.checkinGroup)
         self.checkinCode.setStyleSheet("QLineEdit{\n"
-"    border: 1px solid #6f6f6f; /* Độ dày, Kiểu, Màu */\n"
-"       /* (Tùy chọn) Bo góc */\n"
-"    padding: 2px;    \n"
-"    color: black;         /* (Tùy chọn) Khoảng cách chữ */\n"
+"    border: 1px solid #6f6f6f;\n"
+"    padding: 2px;\n"
+"    color: black;\n"
 "}")
         self.checkinCode.setObjectName("checkinCode")
         self.horizontalLayout_10.addWidget(self.checkinCode)
@@ -642,8 +667,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.addWidget(self.label_7)
         self.checkinTable = QtWidgets.QTableWidget(parent=self.checkinTab)
         self.checkinTable.setStyleSheet("background-color: white;")
-        self.checkinTable.setObjectName("checkinTable")
         self.checkinTable.setColumnCount(5)
+        self.checkinTable.setObjectName("checkinTable")
         self.checkinTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.checkinTable.setHorizontalHeaderItem(0, item)
@@ -662,8 +687,8 @@ class Ui_MainWindow(object):
         self.btnRefreshCheckin.setStyleSheet("background-color: #94a3b8; color: white;")
         self.btnRefreshCheckin.setObjectName("btnRefreshCheckin")
         self.horizontalLayout_11.addWidget(self.btnRefreshCheckin)
-        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_11.addItem(spacerItem9)
+        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_11.addItem(spacerItem12)
         self.verticalLayout_5.addLayout(self.horizontalLayout_11)
         self.horizontalLayout_checkin_export = QtWidgets.QHBoxLayout()
         self.horizontalLayout_checkin_export.setObjectName("horizontalLayout_checkin_export")
@@ -671,8 +696,8 @@ class Ui_MainWindow(object):
         self.btnExportCheckin.setStyleSheet("background-color: #94a3b8; color: white; padding: 6px 12px;")
         self.btnExportCheckin.setObjectName("btnExportCheckin")
         self.horizontalLayout_checkin_export.addWidget(self.btnExportCheckin)
-        spacerCheckinExport = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_checkin_export.addItem(spacerCheckinExport)
+        spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_checkin_export.addItem(spacerItem13)
         self.verticalLayout_5.addLayout(self.horizontalLayout_checkin_export)
         self.tabWidget.addTab(self.checkinTab, "")
         self.userMgmtTab = QtWidgets.QWidget()
@@ -687,13 +712,13 @@ class Ui_MainWindow(object):
 "background-color: #3b82f6;")
         self.btnAddUser.setObjectName("btnAddUser")
         self.horizontalLayout_12.addWidget(self.btnAddUser)
-        spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_12.addItem(spacerItem10)
+        spacerItem14 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_12.addItem(spacerItem14)
         self.verticalLayout_6.addLayout(self.horizontalLayout_12)
         self.userTable = QtWidgets.QTableWidget(parent=self.userMgmtTab)
         self.userTable.setStyleSheet("background-color: white;")
-        self.userTable.setObjectName("userTable")
         self.userTable.setColumnCount(5)
+        self.userTable.setObjectName("userTable")
         self.userTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.userTable.setHorizontalHeaderItem(0, item)
@@ -726,123 +751,94 @@ class Ui_MainWindow(object):
         self.btnRefreshUser.setStyleSheet("background-color: #94a3b8; color: white;")
         self.btnRefreshUser.setObjectName("btnRefreshUser")
         self.horizontalLayout_13.addWidget(self.btnRefreshUser)
-        spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_13.addItem(spacerItem11)
+        spacerItem15 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_13.addItem(spacerItem15)
         self.verticalLayout_6.addLayout(self.horizontalLayout_13)
         self.tabWidget.addTab(self.userMgmtTab, "")
-
-        # ── Statistics Tab ──────────────────────────────────────────────────────
         self.statisticsTab = QtWidgets.QWidget()
-        self.statisticsTab.setObjectName("statisticsTab")
         self.statisticsTab.setStyleSheet("background-color: #f0f0f0;")
-
+        self.statisticsTab.setObjectName("statisticsTab")
         self.verticalLayout_stats = QtWidgets.QVBoxLayout(self.statisticsTab)
         self.verticalLayout_stats.setContentsMargins(12, 12, 12, 12)
         self.verticalLayout_stats.setSpacing(8)
-
-        # ── Row 1: Event selector ────────────────────────────────────────────
+        self.verticalLayout_stats.setObjectName("verticalLayout_stats")
         self.horizontalLayout_stats_top = QtWidgets.QHBoxLayout()
-
+        self.horizontalLayout_stats_top.setObjectName("horizontalLayout_stats_top")
         self.lblStatsEvent = QtWidgets.QLabel(parent=self.statisticsTab)
-        self.lblStatsEvent.setText("Event:")
         self.lblStatsEvent.setStyleSheet("color:#3b82f6; font-weight:bold; font-size:13px;")
         self.lblStatsEvent.setObjectName("lblStatsEvent")
         self.horizontalLayout_stats_top.addWidget(self.lblStatsEvent)
-
         self.statsEventCombo = QtWidgets.QComboBox(parent=self.statisticsTab)
-        self.statsEventCombo.setMinimumWidth(260)
-        self.statsEventCombo.setStyleSheet("""
-            QComboBox {
-                border: 1px solid #bdc3c7;
-                border-radius: 4px;
-                padding: 4px 8px;
-                color: #1e293b;
-                background: white;
-                font-size: 13px;
-            }
-            QComboBox::drop-down { border: none; }
-        """)
+        self.statsEventCombo.setMinimumSize(QtCore.QSize(260, 0))
+        self.statsEventCombo.setStyleSheet("QComboBox {\n"
+"    border: 1px solid #bdc3c7;\n"
+"    border-radius: 4px;\n"
+"    padding: 4px 8px;\n"
+"    color: #1e293b;\n"
+"    background: white;\n"
+"    font-size: 13px;\n"
+"}\n"
+"QComboBox::drop-down { border: none; }")
         self.statsEventCombo.setObjectName("statsEventCombo")
         self.horizontalLayout_stats_top.addWidget(self.statsEventCombo)
-
-        spacerStatsTop = QtWidgets.QSpacerItem(40, 20,
-            QtWidgets.QSizePolicy.Policy.Expanding,
-            QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_stats_top.addItem(spacerStatsTop)
-
+        spacerItem16 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_stats_top.addItem(spacerItem16)
         self.verticalLayout_stats.addLayout(self.horizontalLayout_stats_top)
-
-        # ── Row 2: Chart type toggle buttons ────────────────────────────────
-        ACTIVE_STYLE = """
-            QPushButton {
-                background-color: #1e293b;
-                color: white;
-                border: none;
-                border-radius: 4px;
-                padding: 7px 20px;
-                font-size: 13px;
-                font-weight: bold;
-            }
-            QPushButton:hover { background-color: #0f172a; }
-        """
-        INACTIVE_STYLE = """
-            QPushButton {
-                background-color: #e2e8f0;
-                color: #64748b;
-                border: none;
-                border-radius: 4px;
-                padding: 7px 20px;
-                font-size: 13px;
-            }
-            QPushButton:hover { background-color: #cccccc; color: #1e293b; }
-        """
-
         self.horizontalLayout_stats_btns = QtWidgets.QHBoxLayout()
         self.horizontalLayout_stats_btns.setSpacing(4)
-
-        self.btnStatsBar = QtWidgets.QPushButton("Bar Chart", parent=self.statisticsTab)
+        self.horizontalLayout_stats_btns.setObjectName("horizontalLayout_stats_btns")
+        self.btnStatsBar = QtWidgets.QPushButton(parent=self.statisticsTab)
+        self.btnStatsBar.setStyleSheet("QPushButton {\n"
+"    background-color: #1e293b;\n"
+"    color: white;\n"
+"    border: none;\n"
+"    border-radius: 4px;\n"
+"    padding: 7px 20px;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"}\n"
+"QPushButton:hover { background-color: #0f172a; }")
         self.btnStatsBar.setObjectName("btnStatsBar")
-        self.btnStatsBar.setStyleSheet(ACTIVE_STYLE)
-        self.btnStatsBar.setProperty("active_style",  ACTIVE_STYLE)
-        self.btnStatsBar.setProperty("inactive_style", INACTIVE_STYLE)
         self.horizontalLayout_stats_btns.addWidget(self.btnStatsBar)
-
-        self.btnStatsLine = QtWidgets.QPushButton("Line Chart", parent=self.statisticsTab)
+        self.btnStatsLine = QtWidgets.QPushButton(parent=self.statisticsTab)
+        self.btnStatsLine.setStyleSheet("QPushButton {\n"
+"    background-color: #e2e8f0;\n"
+"    color: #64748b;\n"
+"    border: none;\n"
+"    border-radius: 4px;\n"
+"    padding: 7px 20px;\n"
+"    font-size: 13px;\n"
+"}\n"
+"QPushButton:hover { background-color: #cccccc; color: #1e293b; }")
         self.btnStatsLine.setObjectName("btnStatsLine")
-        self.btnStatsLine.setStyleSheet(INACTIVE_STYLE)
-        self.btnStatsLine.setProperty("active_style",  ACTIVE_STYLE)
-        self.btnStatsLine.setProperty("inactive_style", INACTIVE_STYLE)
         self.horizontalLayout_stats_btns.addWidget(self.btnStatsLine)
-
-        self.btnStatsPie = QtWidgets.QPushButton("Pie Chart", parent=self.statisticsTab)
+        self.btnStatsPie = QtWidgets.QPushButton(parent=self.statisticsTab)
+        self.btnStatsPie.setStyleSheet("QPushButton {\n"
+"    background-color: #e2e8f0;\n"
+"    color: #64748b;\n"
+"    border: none;\n"
+"    border-radius: 4px;\n"
+"    padding: 7px 20px;\n"
+"    font-size: 13px;\n"
+"}\n"
+"QPushButton:hover { background-color: #cccccc; color: #1e293b; }")
         self.btnStatsPie.setObjectName("btnStatsPie")
-        self.btnStatsPie.setStyleSheet(INACTIVE_STYLE)
-        self.btnStatsPie.setProperty("active_style",  ACTIVE_STYLE)
-        self.btnStatsPie.setProperty("inactive_style", INACTIVE_STYLE)
         self.horizontalLayout_stats_btns.addWidget(self.btnStatsPie)
-
-        spacerStatsBtns = QtWidgets.QSpacerItem(40, 20,
-            QtWidgets.QSizePolicy.Policy.Expanding,
-            QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_stats_btns.addItem(spacerStatsBtns)
-
+        spacerItem17 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_stats_btns.addItem(spacerItem17)
         self.verticalLayout_stats.addLayout(self.horizontalLayout_stats_btns)
-
-        # ── Chart area (không có GroupBox title, không có toolbar) ──────────
         self.statsChartGroup = QtWidgets.QFrame(parent=self.statisticsTab)
+        self.statsChartGroup.setStyleSheet("QFrame {\n"
+"    background-color: white;\n"
+"    border: 1px solid #f1f5f9;\n"
+"    border-radius: 6px;\n"
+"}")
+        self.statsChartGroup.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.statsChartGroup.setObjectName("statsChartGroup")
-        self.statsChartGroup.setStyleSheet("""
-            QFrame {
-                background-color: white;
-                border: 1px solid #f1f5f9;
-                border-radius: 6px;
-            }
-        """)
         self.verticalLayoutStatsPlot = QtWidgets.QVBoxLayout(self.statsChartGroup)
         self.verticalLayoutStatsPlot.setContentsMargins(4, 4, 4, 4)
         self.verticalLayoutStatsPlot.setObjectName("verticalLayoutStatsPlot")
         self.verticalLayout_stats.addWidget(self.statsChartGroup)
-
         self.tabWidget.addTab(self.statisticsTab, "")
         self.contentLayout.addWidget(self.tabWidget)
         self.verticalLayout.addWidget(self.contentWidget)
@@ -860,6 +856,30 @@ class Ui_MainWindow(object):
         self.lblLoginUser.setText(_translate("MainWindow", "👤  Staff"))
         self.btnChangePassword.setText(_translate("MainWindow", "🔐 Change Password"))
         self.btnLogout.setText(_translate("MainWindow", "🚪 Logout"))
+        self.cardTotalEventsNum.setText(_translate("MainWindow", "0"))
+        self.cardTotalEventsLbl.setText(_translate("MainWindow", "Total Events"))
+        self.cardTotalAttendeesNum.setText(_translate("MainWindow", "0"))
+        self.cardTotalAttendeesLbl.setText(_translate("MainWindow", "Total Attendees"))
+        self.cardTotalRegsNum.setText(_translate("MainWindow", "0"))
+        self.cardTotalRegsLbl.setText(_translate("MainWindow", "Total Registrations"))
+        self.cardTotalCheckinNum.setText(_translate("MainWindow", "0"))
+        self.cardTotalCheckinLbl.setText(_translate("MainWindow", "Checked-in Today"))
+        self.dashUpcomingGroup.setTitle(_translate("MainWindow", "📅 Upcoming Events"))
+        item = self.dashUpcomingTable.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "Event Name"))
+        item = self.dashUpcomingTable.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Date"))
+        item = self.dashUpcomingTable.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Registered"))
+        self.dashRecentGroup.setTitle(_translate("MainWindow", "✅ Recent Check-ins"))
+        item = self.dashRecentTable.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "Name"))
+        item = self.dashRecentTable.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Event"))
+        item = self.dashRecentTable.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Time"))
+        self.btnRefreshDash.setText(_translate("MainWindow", "🔄 Refresh Dashboard"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.dashboardTab), _translate("MainWindow", "🏠 Dashboard"))
         self.labelEventSearch.setText(_translate("MainWindow", "🔍 Search:"))
         self.eventSearch.setPlaceholderText(_translate("MainWindow", "Enter event name, location..."))
         self.btnAddEvent.setText(_translate("MainWindow", "➕ Add New Event"))
@@ -883,8 +903,8 @@ class Ui_MainWindow(object):
         self.btnRefreshEvent.setText(_translate("MainWindow", "🔄 Refresh"))
         self.btnExportEvent.setText(_translate("MainWindow", "📥 Export CSV"))
         self.btnPrevEvent.setText(_translate("MainWindow", "◀ Prev"))
+        self.lblPageEvent.setText(_translate("MainWindow", "Page 1 / 1"))
         self.btnNextEvent.setText(_translate("MainWindow", "Next ▶"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.dashboardTab), _translate("MainWindow", "🏠 Dashboard"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.eventTab), _translate("MainWindow", "📅 Events"))
         self.label.setText(_translate("MainWindow", "🔍 Search:"))
         self.attendeeSearch.setPlaceholderText(_translate("MainWindow", "Enter name, email, phone number or organization..."))
@@ -909,10 +929,13 @@ class Ui_MainWindow(object):
         self.btnRefreshAttendee.setText(_translate("MainWindow", "🔄 Refresh"))
         self.btnExportAttendee.setText(_translate("MainWindow", "📥 Export CSV"))
         self.btnPrevAttendee.setText(_translate("MainWindow", "◀ Prev"))
+        self.lblPageAttendee.setText(_translate("MainWindow", "Page 1 / 1"))
         self.btnNextAttendee.setText(_translate("MainWindow", "Next ▶"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.attendeeTab), _translate("MainWindow", "👥 Attendees"))
         self.label_2.setText(_translate("MainWindow", "Select Event:"))
         self.btnRegisterAttendee.setText(_translate("MainWindow", "➕ Register Attendee"))
+        self.lblRegSearch.setText(_translate("MainWindow", "🔍 Search:"))
+        self.registrationSearch.setPlaceholderText(_translate("MainWindow", "Enter name, email or status (Registered / Checked-in)..."))
         item = self.registrationTable.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Check-in Code"))
         item = self.registrationTable.horizontalHeaderItem(1)
@@ -931,6 +954,7 @@ class Ui_MainWindow(object):
         self.btnRefreshRegistration.setText(_translate("MainWindow", "🔄 Refresh"))
         self.btnExportRegistration.setText(_translate("MainWindow", "📥 Export CSV"))
         self.btnPrevRegistration.setText(_translate("MainWindow", "◀ Prev"))
+        self.lblPageRegistration.setText(_translate("MainWindow", "Page 1 / 1"))
         self.btnNextRegistration.setText(_translate("MainWindow", "Next ▶"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.registrationTab), _translate("MainWindow", "📋 Registrations"))
         self.label_3.setText(_translate("MainWindow", "Select Event:"))
@@ -973,10 +997,9 @@ class Ui_MainWindow(object):
         self.btnDeleteUser.setText(_translate("MainWindow", "🗑 Delete"))
         self.btnResetUserPwd.setText(_translate("MainWindow", "🔑 Reset Password"))
         self.btnRefreshUser.setText(_translate("MainWindow", "🔄 Refresh"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.userMgmtTab), _translate("MainWindow", "👤 Staff Accounts"))
+        self.lblStatsEvent.setText(_translate("MainWindow", "Select Event:"))
         self.btnStatsBar.setText(_translate("MainWindow", "📊 Bar Chart"))
         self.btnStatsLine.setText(_translate("MainWindow", "📈 Line Chart"))
         self.btnStatsPie.setText(_translate("MainWindow", "🥧 Pie Chart"))
-        self.lblStatsEvent.setText(_translate("MainWindow", "Select Event:"))
-        # statsChartGroup is QFrame, no title needed
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.userMgmtTab), _translate("MainWindow", "👤 Staff Accounts"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.statisticsTab), _translate("MainWindow", "📊 Statistics"))
