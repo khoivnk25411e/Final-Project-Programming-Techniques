@@ -3517,8 +3517,8 @@
             "EventId": "evt_41ab62ff",
             "AttendeeId": "att_84815fe6",
             "RegistrationDate": "20/03/2026",
-            "Status": "Registered",
-            "CheckinTime": null
+            "Status": "Checked-in",
+            "CheckinTime": "2026-03-10 22:27:28"
         },
         {
             "RegistrationId": "reg_03b149ae",

@@ -145,6 +145,16 @@ class MainWindowEx(Ui_MainWindow):
     def showWindow(self):
         self.MainWindow.show()
 
+    def _check_permission(self):
+        """Returns True if current user is admin. Shows warning if not."""
+        user = getattr(self, 'login_user', None)
+        if user and user.Role == "admin":
+            return True
+        _msg(self.MainWindow, "warn", "Access Denied",
+             "⛔ You do not have permission to perform this action.\n"
+             "Please contact an administrator.")
+        return False
+
     def _apply_role_ui(self):
         user = getattr(self, 'login_user', None)
         if user is None:
@@ -171,19 +181,6 @@ class MainWindowEx(Ui_MainWindow):
             self.tabWidget.removeTab(idx)
 
         if not is_admin:
-            self.btnAddEvent.setEnabled(False)
-            self.btnEditEvent.setEnabled(False)
-            self.btnDeleteEvent.setEnabled(False)
-            self.btnImportEvent.setEnabled(False)
-            self.btnDownloadEventTemplate.setEnabled(False)
-
-            self.btnAddAttendee.setEnabled(False)
-            self.btnEditAttendee.setEnabled(False)
-            self.btnDeleteAttendee.setEnabled(False)
-            self.btnHistoryAttendee.setEnabled(False)
-            self.btnImportAttendee.setEnabled(False)
-            self.btnDownloadTemplate.setEnabled(False)
-
             self.btnRegisterAttendee.setEnabled(True)
             self.btnCancelRegistration.setEnabled(True)
             self.btnGenerateQR.setEnabled(True)
@@ -468,6 +465,7 @@ class MainWindowEx(Ui_MainWindow):
         )
 
     def add_event(self):
+        if not self._check_permission(): return
         dlg = EventDialogEx(self.MainWindow)
         if dlg.exec() == QDialog.DialogCode.Accepted:
             data = dlg.get_data()
@@ -488,6 +486,7 @@ class MainWindowEx(Ui_MainWindow):
             self.load_checkin_event_combo()
 
     def edit_event(self):
+        if not self._check_permission(): return
         row = self.eventTable.currentRow()
         if row < 0:
             _msg(self.MainWindow, "warn", "Error", "Please select an event to edit!")
@@ -512,6 +511,7 @@ class MainWindowEx(Ui_MainWindow):
                 self.load_checkin_event_combo()
 
     def delete_event(self):
+        if not self._check_permission(): return
         row = self.eventTable.currentRow()
         if row < 0:
             _msg(self.MainWindow, "warn", "Error", "Please select an event to delete!")
@@ -562,6 +562,7 @@ class MainWindowEx(Ui_MainWindow):
             _msg(self.MainWindow, "info", "Event Details", details)
 
     def download_event_template(self):
+        if not self._check_permission(): return
         from PyQt6.QtWidgets import QFileDialog
         import csv
 
@@ -622,6 +623,7 @@ class MainWindowEx(Ui_MainWindow):
             _msg(self.MainWindow, "err", "Error", f"Cannot save template:\n{e}")
 
     def import_events_from_file(self):
+        if not self._check_permission(): return
         from PyQt6.QtWidgets import QFileDialog
         import csv, re
 
@@ -744,6 +746,7 @@ class MainWindowEx(Ui_MainWindow):
         )
 
     def add_attendee(self):
+        if not self._check_permission(): return
         dlg = AttendeeDialogEx(self.MainWindow)
         if dlg.exec() == QDialog.DialogCode.Accepted:
             data = dlg.get_data()
@@ -766,6 +769,7 @@ class MainWindowEx(Ui_MainWindow):
             self.load_attendees()
 
     def edit_attendee(self):
+        if not self._check_permission(): return
         row = self.attendeeTable.currentRow()
         if row < 0:
             _msg(self.MainWindow, "warn", "Error", "Please select an attendee to edit!")
@@ -792,6 +796,7 @@ class MainWindowEx(Ui_MainWindow):
                 self.load_attendees()
 
     def delete_attendee(self):
+        if not self._check_permission(): return
         rows = list(set(idx.row() for idx in self.attendeeTable.selectedIndexes()))
         if not rows:
             _msg(self.MainWindow, "warn", "Error", "Please select at least one attendee!")
@@ -923,6 +928,7 @@ class MainWindowEx(Ui_MainWindow):
                 self.dashRecentTable.setItem(i, col, item)
 
     def download_import_template(self):
+        if not self._check_permission(): return
         from PyQt6.QtWidgets import QFileDialog
         import csv
 
@@ -998,6 +1004,7 @@ class MainWindowEx(Ui_MainWindow):
             _msg(self.MainWindow, "err", "Error", f"Cannot save template:\n{e}")
 
     def import_attendees_from_file(self):
+        if not self._check_permission(): return
         import csv
         from PyQt6.QtWidgets import QFileDialog
 
@@ -1088,6 +1095,7 @@ class MainWindowEx(Ui_MainWindow):
         _msg(self.MainWindow, "info", "Import Result", msg)
 
     def view_attendee_history(self):
+        if not self._check_permission(): return
         row = self.attendeeTable.currentRow()
         if row < 0:
             QMessageBox.warning(self.MainWindow, "Error", "Please select an attendee!")
