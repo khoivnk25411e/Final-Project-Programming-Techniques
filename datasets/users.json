@@ -29,6 +29,16 @@
             "Role": null,
             "SecurityQuestion": "Anh đó sinh năm bao nhiêu ?",
             "SecurityAnswer": "1989"
+        },
+        {
+            "UserId": "usr_f6179af6",
+            "FullName": "DODODO",
+            "UserName": "anhdo",
+            "Password": "917c5a1d8e856835cd897e864fd724a5ab40d84f7ede1b20e7cfb40a2ac63285",
+            "Email": "anhdo.khoga@gmail.com",
+            "Role": "staff",
+            "SecurityQuestion": "Mon an yeu thich",
+            "SecurityAnswer": "kho ga"
         }
     ]
 }
