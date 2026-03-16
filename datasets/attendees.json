@@ -831,6 +831,14 @@
             "Phone": "03570123123",
             "Organization": "USA-WHITE HOUSE",
             "Position": "Presidents"
+        },
+        {
+            "AttendeeId": "att_5dace30f",
+            "Name": "Thích Hoàng Khang",
+            "Email": "khangt2109@gmail.com",
+            "Phone": "095656565",
+            "Organization": "UEL",
+            "Position": "SV"
         }
     ]
 }
