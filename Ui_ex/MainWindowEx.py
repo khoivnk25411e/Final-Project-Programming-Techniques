@@ -125,11 +125,11 @@ def _msg(parent, kind, title, text):
         QMessageBox        { background-color: white; }
         QMessageBox QLabel { color: #111827; font-size: 13px; min-width: 260px; }
         QMessageBox QPushButton {
-            background: #3b82f6; color: white; border: none;
+            background: #1565c0; color: white; border: none;
             padding: 7px 22px; border-radius: 5px;
             font-size: 12px; min-width: 80px;
         }
-        QMessageBox QPushButton:hover { background: #2563eb; }
+        QMessageBox QPushButton:hover { background: #1976d2; }
     """)
     box.exec()
 
@@ -141,6 +141,8 @@ class MainWindowEx(Ui_MainWindow):
         self.setupSignalAndSlot()
         self.load_initial_data()
         self.apply_stylesheet()
+        self._setup_sidebar()
+        self._setup_status_bar()
 
     def showWindow(self):
         self.MainWindow.show()
@@ -166,19 +168,18 @@ class MainWindowEx(Ui_MainWindow):
         if is_admin:
             self.lblRoleBadge.setText("ADMIN")
             self.lblRoleBadge.setStyleSheet(
-                "QLabel{background:#ef4444;color:white;border-radius:5px;"
+                "QLabel{background:#c62828;color:white;border-radius:5px;"
                 "font-size:11px;font-weight:bold;padding:0 8px;}"
             )
         else:
             self.lblRoleBadge.setText("STAFF")
             self.lblRoleBadge.setStyleSheet(
-                "QLabel{background:#3b82f6;color:white;border-radius:5px;"
+                "QLabel{background:#1565c0;color:white;border-radius:5px;"
                 "font-size:11px;font-weight:bold;padding:0 8px;}"
             )
 
-        idx = self.tabWidget.indexOf(self.userMgmtTab)
-        if not is_admin and idx >= 0:
-            self.tabWidget.removeTab(idx)
+        # Ẩn Staff nav nếu không phải admin
+        self._hide_staff_nav = not is_admin
 
         if not is_admin:
             self.btnRegisterAttendee.setEnabled(True)
@@ -195,6 +196,108 @@ class MainWindowEx(Ui_MainWindow):
             self.btnRefreshAttendee.setEnabled(True)
             self.btnRefreshRegistration.setEnabled(True)
             self.btnRefreshCheckin.setEnabled(True)
+
+    # Style cho button bị vô hiệu hoá (staff không có quyền)
+    _DISABLED_BTN_STYLE = (
+        "QPushButton {"
+        "  background-color: #eceff1; color: #b0bec5;"
+        "  border: 1px solid #eceff1; border-radius: 6px;"
+        "  padding: 7px 14px; font-size: 12px;"
+        "}"
+        "QPushButton:hover { background-color: #eceff1; color: #b0bec5; }"
+    )
+
+    def _dim_button(self, btn):
+        """Làm mờ button nhưng vẫn enabled để hiện thông báo khi bấm."""
+        btn.setStyleSheet(self._DISABLED_BTN_STYLE)
+
+    # ══════════════════════════════════════════════════════════════
+    #  SIDEBAR NAVIGATION
+    # ══════════════════════════════════════════════════════════════
+    _NAV_PAGES = [
+        ("navDashboard",    0, "🏠  Dashboard"),
+        ("navEvents",       1, "📅  Events"),
+        ("navAttendees",    2, "👥  Attendees"),
+        ("navRegistration", 3, "📋  Registrations"),
+        ("navCheckin",      4, "✅  Check-in"),
+        ("navStaff",        5, "👤  Staff Accounts"),
+        ("navStatistics",   6, "📊  Statistics"),
+    ]
+
+    def _setup_sidebar(self):
+        for nav_attr, page_idx, title in self._NAV_PAGES:
+            btn = getattr(self, nav_attr, None)
+            if btn is None:
+                continue
+            btn.clicked.connect(
+                lambda checked, i=page_idx, t=title, b=btn: self._nav_to(i, t, b)
+            )
+        if getattr(self, '_hide_staff_nav', False):
+            staff_btn = getattr(self, 'navStaff', None)
+            if staff_btn:
+                staff_btn.hide()
+        self._nav_to(0, "🏠  Dashboard", getattr(self, 'navDashboard', None))
+
+    def _nav_to(self, page_index, title, active_btn):
+        self.stackedWidget.setCurrentIndex(page_index)
+        if hasattr(self, 'pageTitle'):
+            self.pageTitle.setText(title)
+        for nav_attr, _, _ in self._NAV_PAGES:
+            btn = getattr(self, nav_attr, None)
+            if btn:
+                btn.setChecked(btn is active_btn)
+        self._update_status_page(title)
+
+    # ══════════════════════════════════════════════════════════════
+    #  STATUS BAR
+    # ══════════════════════════════════════════════════════════════
+    def _setup_status_bar(self):
+        user = getattr(self, 'login_user', None)
+        if user and hasattr(self, 'lblStatusUser'):
+            self.lblStatusUser.setText(
+                f"👤  {user.FullName}  ({user.Role.upper()})"
+            )
+        self._status_timer = QTimer(self.MainWindow)
+        self._status_timer.timeout.connect(self._tick_clock)
+        self._status_timer.start(1000)
+        self._tick_clock()
+
+    def _tick_clock(self):
+        if hasattr(self, 'lblStatusTime'):
+            self.lblStatusTime.setText(
+                datetime.now().strftime("🕐 %H:%M:%S   %d/%m/%Y")
+            )
+
+    def _update_status_page(self, page_title):
+        if not hasattr(self, 'lblStatusRecords'):
+            return
+        try:
+            if "Event" in page_title:
+                e = Events(); e.import_json("datasets/events.json")
+                self.lblStatusRecords.setText(f"📋  {len(e.list)} events total")
+                self.lblStatusEvent.setText("")
+            elif "Attendee" in page_title:
+                a = Attendees(); a.import_json("datasets/attendees.json")
+                self.lblStatusRecords.setText(f"👥  {len(a.list)} attendees total")
+                self.lblStatusEvent.setText("")
+            elif "Registration" in page_title:
+                r = Registrations(); r.import_json("datasets/registrations.json")
+                self.lblStatusRecords.setText(f"📝  {len(r.list)} registrations total")
+                self.lblStatusEvent.setText("")
+            elif "Check-in" in page_title:
+                r = Registrations(); r.import_json("datasets/registrations.json")
+                chk = sum(1 for x in r.list if x.Status == "Checked-in")
+                self.lblStatusRecords.setText(f"✅  {chk} checked-in")
+                self.lblStatusEvent.setText("")
+            else:
+                self.lblStatusRecords.setText("")
+                self.lblStatusEvent.setText("")
+        except Exception:
+            pass
+
+    def _status_set_event(self, event_name):
+        if hasattr(self, 'lblStatusEvent') and event_name:
+            self.lblStatusEvent.setText(f"📅  {event_name}")
 
     def setupSignalAndSlot(self):
         self.btnChangePassword.clicked.connect(self.change_password)
@@ -387,8 +490,13 @@ class MainWindowEx(Ui_MainWindow):
             _msg(self.MainWindow, "warn", "Error", "You cannot delete the currently logged-in account!")
             return
 
+        users_tmp = Users()
+        users_tmp.import_json("datasets/users.json")
+        _user_to_del = users_tmp.find_user(user_id)
+        _del_name = f"{_user_to_del.FullName} ({_user_to_del.UserName})" if _user_to_del else user_id
         reply = QMessageBox.question(
-            self.MainWindow, "Confirm", "Are you sure you want to delete this account?",
+            self.MainWindow, "Confirm Delete Account",
+            f"Delete account:\n\n  👤 {_del_name}\n\nThis action cannot be undone.",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         if reply == QMessageBox.StandardButton.Yes:
@@ -516,13 +624,18 @@ class MainWindowEx(Ui_MainWindow):
         if row < 0:
             _msg(self.MainWindow, "warn", "Error", "Please select an event to delete!")
             return
+        event_id = self.eventTable.item(row, 0).text()
+        events_tmp = Events()
+        events_tmp.import_json("datasets/events.json")
+        _evt = events_tmp.find_event(event_id)
+        _evt_name = _evt.EventName if _evt else event_id
+        _evt_date = f" ({_evt.EventDate})" if _evt else ""
         reply = QMessageBox.question(
-            self.MainWindow, "Confirm",
-            "Are you sure you want to delete this event?\nAll related registrations will be deleted!",
+            self.MainWindow, "Confirm Delete Event",
+            f"Delete event:\n\n  📅 {_evt_name}{_evt_date}\n\nAll related registrations will also be deleted.",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         if reply == QMessageBox.StandardButton.Yes:
-            event_id = self.eventTable.item(row, 0).text()
             events = Events()
             events.import_json("datasets/events.json")
             events.delete_event(event_id)
@@ -801,9 +914,16 @@ class MainWindowEx(Ui_MainWindow):
         if not rows:
             _msg(self.MainWindow, "warn", "Error", "Please select at least one attendee!")
             return
+        _att_names = [self.attendeeTable.item(r, 1).text() for r in rows]
+        if len(_att_names) == 1:
+            _att_msg = f"  👤 {_att_names[0]}"
+        else:
+            _att_msg = "\n".join(f"  👤 {n}" for n in _att_names[:5])
+            if len(_att_names) > 5:
+                _att_msg += f"\n  ... and {len(_att_names)-5} more"
         reply = QMessageBox.question(
-            self.MainWindow, "Confirm",
-            f"Delete {len(rows)} attendee(s)?\nAll related registrations will also be deleted!",
+            self.MainWindow, f"Confirm Delete {len(rows)} Attendee(s)",
+            f"Delete the following attendee(s)?\n\n{_att_msg}\n\nAll related registrations will also be deleted.",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         if reply == QMessageBox.StandardButton.Yes:
@@ -856,7 +976,7 @@ class MainWindowEx(Ui_MainWindow):
             for col, val in enumerate(vals):
                 item = QTableWidgetItem(str(val))
                 if r.Status == "Checked-in":
-                    item.setForeground(QColor("#16a34a"))
+                    item.setForeground(QColor("#2e7d32"))
                 self.registrationTable.setItem(row, col, item)
 
     def load_dashboard(self):
@@ -905,7 +1025,7 @@ class MainWindowEx(Ui_MainWindow):
             for col, val in enumerate([e.EventName, e.EventDate, str(reg_count)]):
                 item = QTableWidgetItem(val)
                 if col == 1 and e.EventDate == today:
-                    item.setForeground(QColor("#16a34a"))
+                    item.setForeground(QColor("#2e7d32"))
                     item.setText(f"TODAY — {val}")
                 self.dashUpcomingTable.setItem(i, col, item)
 
@@ -924,7 +1044,7 @@ class MainWindowEx(Ui_MainWindow):
             time_str = (r.CheckinTime or "")[-8:] if r.CheckinTime else ""
             for col, val in enumerate([name, evt_name, time_str]):
                 item = QTableWidgetItem(val)
-                item.setForeground(QColor("#16a34a"))
+                item.setForeground(QColor("#2e7d32"))
                 self.dashRecentTable.setItem(i, col, item)
 
     def download_import_template(self):
@@ -1148,7 +1268,7 @@ class MainWindowEx(Ui_MainWindow):
             for c, val in enumerate(vals):
                 item = QTableWidgetItem(str(val))
                 if reg.Status == "Checked-in":
-                    item.setForeground(QColor("#16a34a"))
+                    item.setForeground(QColor("#2e7d32"))
                 table.setItem(r_idx, c, item)
 
         layout.addWidget(table)
@@ -1208,8 +1328,8 @@ class MainWindowEx(Ui_MainWindow):
             for col, val in enumerate(values):
                 item = QTableWidgetItem(val)
                 if is_checkedin:
-                    item.setBackground(QtGui.QColor("#F9E79F"))
-                    item.setForeground(QtGui.QColor("#7D6608"))
+                    item.setBackground(QtGui.QColor("#e8f5e9"))
+                    item.setForeground(QtGui.QColor("#1b5e20"))
                 self.registrationTable.setItem(row, col, item)
         self._pad_table(self.registrationTable, len(reg_list))
 
@@ -1312,9 +1432,19 @@ class MainWindowEx(Ui_MainWindow):
         if not rows:
             QMessageBox.warning(self.MainWindow, "Error", "Please select at least one registration!")
             return
+        _reg_names = []
+        for _r in rows:
+            _name = self.registrationTable.item(_r, 1)
+            _reg_names.append(_name.text() if _name else "?")
+        if len(_reg_names) == 1:
+            _reg_msg = f"  🧾 {_reg_names[0]}"
+        else:
+            _reg_msg = "\n".join(f"  🧾 {n}" for n in _reg_names[:5])
+            if len(_reg_names) > 5:
+                _reg_msg += f"\n  ... and {len(_reg_names)-5} more"
         reply = QMessageBox.question(
-            self.MainWindow, "Confirm",
-            f"Cancel {len(rows)} registration(s)?",
+            self.MainWindow, f"Confirm Cancel {len(rows)} Registration(s)",
+            f"Cancel registration for:\n\n{_reg_msg}\n\nThis will remove them from the event.",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         if reply == QMessageBox.StandardButton.Yes:
@@ -1433,9 +1563,9 @@ class MainWindowEx(Ui_MainWindow):
         lay.addWidget(img_lbl)
 
         info_lbl = QLabel(
-            f"<div style='text-align:center'><h3 style='color:#3b82f6;margin:0'>{att_name}</h3>"
+            f"<div style='text-align:center'><h3 style='color:#1565c0;margin:0'>{att_name}</h3>"
             f"<p style='color:#64748b;font-size:12px;margin:2px'>{att_info}</p>"
-            f"<h2 style='color:#1e40af'>🎫 {reg_id}</h2></div>"
+            f"<h2 style='color:#0d47a1'>🎫 {reg_id}</h2></div>"
         )
         info_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
         info_lbl.setTextFormat(Qt.TextFormat.RichText)
@@ -1445,11 +1575,11 @@ class MainWindowEx(Ui_MainWindow):
                                  f"font-size:13px;padding:8px 16px;font-weight:bold}}"
                                  f"QPushButton:hover{{background:#1e293b}}")
         btn_save = QPushButton("💾 Save Image")
-        btn_save.setStyleSheet(_btn_style("#3b82f6"))
+        btn_save.setStyleSheet(_btn_style("#1565c0"))
         btn_copy = QPushButton("📋 Copy Code")
-        btn_copy.setStyleSheet(_btn_style("#2563eb"))
+        btn_copy.setStyleSheet(_btn_style("#1976d2"))
         btn_close = QPushButton("✖ Close")
-        btn_close.setStyleSheet(_btn_style("#ef4444"))
+        btn_close.setStyleSheet(_btn_style("#c62828"))
 
         row_btns = QHBoxLayout()
         for b in (btn_save, btn_copy, btn_close):
@@ -1691,11 +1821,11 @@ class MainWindowEx(Ui_MainWindow):
 
     _STATS_BTN_ACTIVE = (
         "QPushButton {"
-        "  background-color: #3b82f6; color: white;"
+        "  background-color: #1565c0; color: white;"
         "  border: none; border-radius: 4px;"
         "  padding: 7px 20px; font-size: 13px; font-weight: bold;"
         "}"
-        "QPushButton:hover { background-color: #2563eb; }"
+        "QPushButton:hover { background-color: #1976d2; }"
     )
     _STATS_BTN_INACTIVE = (
         "QPushButton {"
@@ -1703,7 +1833,7 @@ class MainWindowEx(Ui_MainWindow):
         "  border: 1px solid #cbd5e1; border-radius: 4px;"
         "  padding: 7px 20px; font-size: 13px;"
         "}"
-        "QPushButton:hover { background-color: #3b82f6; color: white; border-color: #3b82f6; }"
+        "QPushButton:hover { background-color: #1565c0; color: white; border-color: #1565c0; }"
     )
 
     def _set_active_btn(self, active_btn):
@@ -1780,8 +1910,8 @@ class MainWindowEx(Ui_MainWindow):
         x, w = range(len(labels)), 0.35
 
         for bars, vals, color, lbl in [
-            ([i - w / 2 for i in x], reg, "#3498db", "Registered"),
-            ([i + w / 2 for i in x], chk, "#27ae60", "Checked-in"),
+            ([i - w / 2 for i in x], reg, "#1565c0", "Registered"),
+            ([i + w / 2 for i in x], chk, "#2e7d32", "Checked-in"),
         ]:
             b = ax.bar(bars, vals, w, label=lbl, color=color, alpha=0.85)
             for bar in b:
@@ -1816,9 +1946,9 @@ class MainWindowEx(Ui_MainWindow):
             total += counts[d]
             cumulative.append(total)
 
-        ax.plot(dates, cumulative, marker='o', color='#e67e22',
+        ax.plot(dates, cumulative, marker='o', color='#1565c0',
                 linewidth=2, markersize=5, label="Cumulative Registrations")
-        ax.fill_between(range(len(dates)), cumulative, alpha=0.15, color='#e67e22')
+        ax.fill_between(range(len(dates)), cumulative, alpha=0.15, color='#1565c0')
 
         n = len(cumulative)
         show_idx = {0, n - 1} | set(range(0, n, max(1, n // 6))) if n else set()
@@ -1850,7 +1980,7 @@ class MainWindowEx(Ui_MainWindow):
         sizes = [chk, len(items) - chk]
         labels = [f"Checked-in ({chk})", f"Not Checked-in ({len(items) - chk})"]
         wedges, _, autotexts = ax.pie(
-            sizes, labels=labels, colors=["#27ae60", "#e74c3c"],
+            sizes, labels=labels, colors=["#1565c0", "#b0bec5"],
             autopct='%1.1f%%', explode=(0.05, 0), startangle=90,
             textprops={'fontsize': 10}
         )
@@ -1862,80 +1992,192 @@ class MainWindowEx(Ui_MainWindow):
 
     def apply_stylesheet(self):
         self.MainWindow.setStyleSheet("""
-            /* ── Theme B: Slate Blue ── */
-            QMainWindow { background-color: white; }
+            /* ══ Professional Deep Blue ══ */
+            QMainWindow { background-color: #f4f6f9; }
 
-            QPushButton {
-                background-color: #3b82f6; color: white;
-                border: none; padding: 8px 15px;
-                border-radius: 5px; font-size: 12px;
+            /* ── Sidebar ── */
+            QWidget#sidebar {
+                background: #0a1929;
+                border-right: 1px solid #071221;
             }
-            QPushButton:hover   { background-color: #2563eb; }
-            QPushButton:pressed { background-color: #1d4ed8; }
-            QPushButton:disabled { background-color: #cbd5e1; color: #94a3b8; }
+            QLabel#sidebarTitle {
+                color: #546e7a; font-size: 10px; font-weight: 700;
+                letter-spacing: 2px; background: transparent; padding: 0 16px;
+            }
+            QLabel#sidebarVersion {
+                color: #263238; font-size: 10px; background: transparent;
+            }
+            QFrame#sidebarSep {
+                background: #1a2744; border: none; max-height: 1px;
+            }
+            QPushButton[objectName^="nav"] {
+                background: transparent; color: #8094b4;
+                border: none; border-radius: 0; text-align: left;
+                padding: 0 20px; font-size: 13px; font-weight: 400;
+            }
+            QPushButton[objectName^="nav"]:hover {
+                background: rgba(255,255,255,0.05); color: #cdd8f0;
+            }
+            QPushButton[objectName^="nav"]:checked {
+                background: #1565c0; color: white;
+                font-weight: 600; border-left: 3px solid #64b5f6;
+            }
 
+            /* ── Page title bar ── */
+            QWidget#pageTitleBar {
+                background: white;
+                border-bottom: 1px solid #dde3ec;
+            }
+            QLabel#pageTitle {
+                color: #0f2547; font-size: 15px; font-weight: 600;
+            }
+
+            /* ── Status bar ── */
+            QWidget#statusBar {
+                background: white; border-top: 1px solid #dde3ec;
+            }
+            QLabel#lblStatusRecords, QLabel#lblStatusEvent,
+            QLabel#lblStatusTime,    QLabel#lblStatusUser {
+                color: #8094b4; font-size: 11px; background: transparent;
+            }
+
+            /* ── Content ── */
+            QWidget#rightPanel   { background: #f4f6f9; }
+            QStackedWidget       { background: #f4f6f9; }
+            QWidget#contentWidget { background: #f4f6f9; }
+
+            /* ── Buttons ──
+               Primary   #1565c0 — Add, Register, main CTA
+               Secondary #1976d2 — View, Edit, secondary action
+               Danger    #c62828 — Delete
+               Neutral   #546e7a — Refresh, Export, Prev/Next
+               Outline   white + border — Import, Download, History
+            */
+            QPushButton {
+                background-color: #1565c0; color: white;
+                border: none; padding: 7px 14px;
+                border-radius: 6px; font-size: 12px; font-weight: 500;
+            }
+            QPushButton:hover   { background-color: #1976d2; }
+            QPushButton:pressed { background-color: #0d47a1; }
+            QPushButton:disabled {
+                background-color: #eceff1; color: #b0bec5;
+                border: 1px solid #eceff1;
+            }
+
+            /* ── Tables ── */
             QTableWidget {
                 background-color: white;
-                alternate-background-color: #f8fafc;
-                border: 1px solid #e2e8f0;
-                border-radius: 6px;
-                gridline-color: #e2e8f0;
+                alternate-background-color: #f4f6f9;
+                border: 1px solid #dde3ec;
+                border-radius: 8px;
+                gridline-color: #eef2f8;
+                outline: none;
             }
-            QTableWidget::item { color: #111827; padding: 4px; }
-            QTableWidget::item:selected { background-color: #dbeafe; color: #1e40af; }
+            QTableWidget::item { color: #0f2547; padding: 5px 8px; }
+            QTableWidget::item:selected {
+                background-color: #e3f2fd; color: #0d47a1;
+            }
+            QTableWidget::item:hover { background-color: #eef5fd; }
             QHeaderView::section {
-                background-color: #f1f5f9; color: #374151;
-                padding: 8px; border: none;
-                border-bottom: 2px solid #e2e8f0;
-                font-weight: bold; font-size: 12px;
+                background-color: #f4f6f9; color: #455a7a;
+                padding: 9px 8px; border: none;
+                border-bottom: 2px solid #dde3ec;
+                font-weight: 600; font-size: 12px;
             }
 
+            /* ── Inputs ── */
             QLineEdit, QTextEdit, QComboBox, QDateEdit, QTimeEdit {
-                padding: 6px; border: 1px solid #d1d5db;
-                border-radius: 5px; background-color: white; color: #111827;
+                padding: 6px 10px; border: 1.5px solid #dde3ec;
+                border-radius: 6px; background-color: white;
+                color: #0f2547; font-size: 12px;
+                selection-background-color: #1565c0;
             }
-            QLineEdit:focus, QComboBox:focus { border: 1px solid #3b82f6; }
-            QLineEdit:disabled { background-color: #f9fafb; color: #9ca3af; }
+            QLineEdit:focus, QComboBox:focus, QTextEdit:focus {
+                border-color: #1565c0; background-color: #fafcff;
+            }
+            QLineEdit:disabled { background-color: #f4f6f9; color: #8094b4; }
+            QComboBox::drop-down { border: none; width: 22px; }
+            QComboBox QAbstractItemView {
+                background: white; color: #0f2547;
+                selection-background-color: #1565c0; selection-color: white;
+                border: 1px solid #dde3ec; border-radius: 6px;
+                outline: none; padding: 4px;
+            }
 
+            /* ── GroupBox ── */
             QGroupBox {
-                border: 1px solid #e5e7eb; border-radius: 6px;
-                margin-top: 10px; font-weight: bold;
-                padding: 15px; background-color: white;
+                border: 1.5px solid #dde3ec; border-radius: 8px;
+                margin-top: 12px; font-weight: 600; font-size: 12px;
+                padding: 14px 12px; background-color: white; color: #0f2547;
             }
             QGroupBox::title {
                 subcontrol-origin: margin; subcontrol-position: top left;
-                padding: 4px 10px; background-color: #f1f5f9;
-                color: #374151; border-radius: 4px;
+                padding: 3px 10px; background-color: #f4f6f9;
+                color: #455a7a; border-radius: 4px; left: 12px;
             }
 
-            QTabWidget::pane { border: 1px solid #e5e7eb; border-radius: 6px; background: white; }
-            QTabBar::tab {
-                background: #f3f4f6; color: #6b7280;
-                padding: 8px 16px; border-radius: 5px 5px 0 0;
-                font-size: 12px; margin-right: 2px;
+            /* ── Scrollbars ── */
+            QScrollBar:vertical {
+                background: #eef2f8; width: 6px; border-radius: 3px; margin: 0;
             }
-            QTabBar::tab:selected { background: white; color: #111827; font-weight: bold; border-top: 2px solid #3b82f6; }
-            QTabBar::tab:hover:!selected { background: #e5e7eb; color: #374151; }
+            QScrollBar::handle:vertical {
+                background: #b0bec5; border-radius: 3px; min-height: 24px;
+            }
+            QScrollBar::handle:vertical:hover { background: #78909c; }
+            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
+            QScrollBar:horizontal {
+                background: #eef2f8; height: 6px; border-radius: 3px;
+            }
+            QScrollBar::handle:horizontal { background: #b0bec5; border-radius: 3px; }
+            QScrollBar::handle:horizontal:hover { background: #78909c; }
+            QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal { width: 0; }
 
-            QScrollBar:vertical { background: #f9fafb; width: 8px; border-radius: 4px; }
-            QScrollBar::handle:vertical { background: #d1d5db; border-radius: 4px; min-height: 20px; }
-            QScrollBar:horizontal { background: #f9fafb; height: 8px; border-radius: 4px; }
-            QScrollBar::handle:horizontal { background: #d1d5db; border-radius: 4px; min-width: 20px; }
+            /* ── Labels & Checkboxes ── */
+            QLabel { color: #0f2547; }
+            QCheckBox { color: #0f2547; spacing: 6px; }
+            QCheckBox::indicator {
+                width: 15px; height: 15px; border-radius: 4px;
+                border: 1.5px solid #b0bec5; background: white;
+            }
+            QCheckBox::indicator:checked {
+                background: #1565c0; border-color: #1565c0;
+            }
 
-            QLabel { color: #111827; }
-            QCheckBox { color: #111827; }
-            QWidget#contentWidget { background-color: #f9fafb; }
-
+            /* ── Dialogs ── */
             QMessageBox { background-color: white; }
-            QMessageBox QLabel { color: #111827; font-size: 13px; min-width: 280px; }
+            QMessageBox QLabel { color: #0f2547; font-size: 13px; min-width: 280px; }
             QMessageBox QPushButton {
-                background-color: #3b82f6; color: white; border: none;
-                padding: 7px 22px; border-radius: 5px;
+                background-color: #1565c0; color: white; border: none;
+                padding: 7px 22px; border-radius: 6px;
                 font-size: 12px; min-width: 80px;
             }
-            QMessageBox QPushButton:hover   { background-color: #2563eb; }
-            QMessageBox QPushButton:pressed { background-color: #1d4ed8; }
-
+            QMessageBox QPushButton:hover { background-color: #1976d2; }
             QDialog { background-color: white; }
-            QDialog QLabel { color: #111827; }
+            QDialog QLabel { color: #0f2547; }
+            QToolTip {
+                background: #0f2547; color: #e8f0fe; border: none;
+                padding: 5px 10px; border-radius: 5px; font-size: 11px;
+            }
         """)
+        self._apply_light_dashboard()
+
+    def _apply_light_dashboard(self):
+        card_map = {
+            'cardTotalEvents':    '#0f2547',
+            'cardTotalAttendees': '#1565c0',
+            'cardTotalRegs':      '#1976d2',
+            'cardTotalCheckin':   '#1e88e5',
+        }
+        for name, bg in card_map.items():
+            card = getattr(self, name, None)
+            if card:
+                card.setStyleSheet(
+                    f"QWidget#{name}{{background:{bg};border-radius:10px;padding:8px;}}"
+                )
+        light_tbl = "background:white;alternate-background-color:#f8fafc;gridline-color:#e2e8f0;"
+        light_hdr = ("QHeaderView::section{background:#f1f5f9;color:#374151;"
+                     "font-weight:bold;padding:6px;border-bottom:2px solid #e2e8f0;}")
+        for tbl in [self.dashUpcomingTable, self.dashRecentTable]:
+            tbl.setStyleSheet(light_tbl)
+            tbl.horizontalHeader().setStyleSheet(light_hdr)
