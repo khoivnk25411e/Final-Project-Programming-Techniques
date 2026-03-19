@@ -4495,6 +4495,14 @@
             "RegistrationDate": "2026-03-14 09:02:06",
             "Status": "Registered",
             "CheckinTime": null
+        },
+        {
+            "RegistrationId": "7CF798EA",
+            "EventId": "evt_a0eb40c7",
+            "AttendeeId": "att_5dace30f",
+            "RegistrationDate": "2026-03-19 09:19:50",
+            "Status": "Registered",
+            "CheckinTime": null
         }
     ]
 }
