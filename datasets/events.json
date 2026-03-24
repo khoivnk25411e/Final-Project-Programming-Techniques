@@ -1,83 +1,83 @@
 {
     "events": [
         {
-            "EventId": "evt_09388197",
-            "EventName": "Hội thảo AI & Machine Learning 2026",
-            "EventDate": "15/01/2026",
-            "EventTime": "08:30",
-            "Location": "Hội trường A - ĐH Bách Khoa TP.HCM",
-            "Description": "Chủ đề: Ứng dụng AI trong công nghiệp và giáo dục"
+            "EventId": "evt_d5771a09",
+            "EventName": "AI & Machine Learning Symposium 2026",
+            "EventDate": "2026-01-15",
+            "EventTime": "08:30 AM",
+            "Location": "Grand Hall A - HCMC University of Technology",
+            "Description": "Theme: AI Applications in Industry and Education"
         },
         {
-            "EventId": "evt_dc3f6a81",
-            "EventName": "Workshop: Docker & Kubernetes Thực chiến",
-            "EventDate": "22/01/2026",
-            "EventTime": "09:00",
-            "Location": "Phòng Lab 201 - FPT Software HCM",
-            "Description": "Thực hành triển khai microservices với container"
+            "EventId": "evt_d15e498e",
+            "EventName": "Workshop: Docker & Kubernetes Hands-on",
+            "EventDate": "2026-01-22",
+            "EventTime": "09:00 AM",
+            "Location": "Lab 201 - FPT Software Tech Hub",
+            "Description": "Practical microservices deployment with containers"
         },
         {
-            "EventId": "evt_a0eb40c7",
-            "EventName": "Ngày hội việc làm IT 2026",
-            "EventDate": "05/02/2026",
-            "EventTime": "08:00",
-            "Location": "Nhà thi đấu Phú Thọ TP.HCM",
-            "Description": "Kết nối 50+ doanh nghiệp công nghệ hàng đầu"
+            "EventId": "evt_f6b8694b",
+            "EventName": "IT Career Fair 2026",
+            "EventDate": "2026-02-05",
+            "EventTime": "08:00 AM",
+            "Location": "Phu Tho Indoor Stadium, HCMC",
+            "Description": "Connecting with 50+ leading tech enterprises"
         },
         {
-            "EventId": "evt_14f89c68",
-            "EventName": "Seminar: Bảo mật Web & Ethical Hacking",
-            "EventDate": "18/02/2026",
-            "EventTime": "14:00",
-            "Location": "Hội trường B - ĐH CNTT TP.HCM",
-            "Description": "Giới thiệu OWASP Top 10 và các kỹ thuật pentest"
+            "EventId": "evt_5ca15a68",
+            "EventName": "Seminar: Web Security & Ethical Hacking",
+            "EventDate": "2026-02-18",
+            "EventTime": "02:00 PM",
+            "Location": "Hall B - University of Information Technology",
+            "Description": "Introduction to OWASP Top 10 and pentesting techniques"
         },
         {
-            "EventId": "evt_45ff2a50",
+            "EventId": "evt_618b0da4",
             "EventName": "Tech Talk: Startup & Product Development",
-            "EventDate": "01/03/2026",
-            "EventTime": "10:00",
-            "Location": "Không gian Đổi mới Sáng tạo TP.HCM",
-            "Description": "Chia sẻ từ founders của Momo, Tiki, Sky Mavis"
+            "EventDate": "2026-03-01",
+            "EventTime": "10:00 AM",
+            "Location": "Saigon Innovation & Startup Center",
+            "Description": "Insights from founders of Momo, Tiki, and Sky Mavis"
         },
         {
-            "EventId": "evt_065941c0",
-            "EventName": "Hackathon: Giải pháp Chuyển đổi Số 2026",
-            "EventDate": "08/03/2026",
-            "EventTime": "08:00",
-            "Location": "ĐH Kinh tế TP.HCM - Cơ sở Nguyễn Tri Phương",
-            "Description": "48h hackathon, giải thưởng 100 triệu đồng"
+            "EventId": "evt_4c2f970c",
+            "EventName": "Hackathon: Digital Transformation Solutions 2026",
+            "EventDate": "2026-03-08",
+            "EventTime": "08:00 AM",
+            "Location": "UEH University - Nguyen Tri Phuong Campus",
+            "Description": "48-hour hackathon with a 100 million VND prize pool"
         },
         {
-            "EventId": "evt_f0fa0152",
-            "EventName": "Hội nghị Cloud Computing Việt Nam",
-            "EventDate": "20/03/2026",
-            "EventTime": "08:30",
-            "Location": "GEM Center - Q.1 TP.HCM",
-            "Description": "AWS, Azure, GCP — xu hướng cloud 2026"
+            "EventId": "evt_561282f8",
+            "EventName": "Vietnam Cloud Computing Conference",
+            "EventDate": "2026-03-20",
+            "EventTime": "08:30 AM",
+            "Location": "GEM Center - District 1, HCMC",
+            "Description": "AWS, Azure, GCP — Cloud trends for 2026"
         },
         {
-            "EventId": "evt_668ee425",
+            "EventId": "evt_8c8f98d7",
             "EventName": "Workshop: React Native & Flutter",
-            "EventDate": "28/03/2026",
-            "EventTime": "09:00",
-            "Location": "Phòng Lab KMS Technology",
-            "Description": "Phát triển ứng dụng mobile đa nền tảng"
+            "EventDate": "2026-03-28",
+            "EventTime": "09:00 AM",
+            "Location": "KMS Technology Lab",
+            "Description": "Cross-platform mobile application development"
         },
         {
-            "EventId": "evt_41ab62ff",
+            "EventId": "evt_8b136945",
             "EventName": "Data Science Summit 2026",
-            "EventDate": "10/04/2026",
-            "EventTime": "08:00",
-            "Location": "Hội trường Nguyễn Du - ĐH Khoa học TN",
-            "Description": "Phân tích dữ liệu lớn và BI trong doanh nghiệp"
+            "EventDate": "2026-04-10",
+            "EventTime": "08:00 AM",
+            "Location": "Nguyen Du Hall - University of Science",
+            "Description": "Big Data analysis and BI for enterprises"
         },
         {
-            "EventId": "evt_67aec66a",
+            "EventId": "evt_3e6fa8c4",
             "EventName": "DevFest Ho Chi Minh City 2026",
-            "EventDate": "25/04/2026",
-            "EventTime": "08:30",
-            "Location": "Saigon Innovation Hub - Quận 3",
+            "EventDate": "2026-04-25",
+            "EventTime": "08:30 AM",
+            "Location": "Saigon Innovation Hub - District 3",
             "Description": "Google Developer Festival — Android, Flutter, Firebase"
         }
     ]
