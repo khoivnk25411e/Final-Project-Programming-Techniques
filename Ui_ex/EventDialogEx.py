@@ -1,45 +1,69 @@
-from PyQt6.QtWidgets import QMessageBox, QDialog
-from PyQt6.QtCore import QDate, QTime
-from ui.EventDialog import Ui_EventDialog
+import re
+from PyQt6.QtWidgets import QDialog, QMessageBox
+from ui.UserDialog import Ui_UserDialog
 
-
-class EventDialogEx(Ui_EventDialog):
-    def __init__(self, parent=None, event_data=None):
+class UserDialogEx(Ui_UserDialog):
+    def __init__(self, parent=None, user_data=None):
+        """user_data: User object if editing, None if creating new"""
         self.dialog = QDialog(parent)
         super().setupUi(self.dialog)
-        self.event_data = event_data
+        self.user_data = user_data
         self.setupSignalAndSlot()
-        if event_data:
-            self.load_event_data()
-        else:
-            self.dateInput.setDate(QDate.currentDate())
-            self.timeInput.setTime(QTime.currentTime())
+        if user_data:
+            self.load_user_data()
 
     def setupSignalAndSlot(self):
         self.btnSave.clicked.connect(self.validate_and_accept)
 
-    def load_event_data(self):
-        self.nameInput.setText(self.event_data.EventName)
-        date_parts = self.event_data.EventDate.split('/')
-        self.dateInput.setDate(QDate(int(date_parts[2]), int(date_parts[1]), int(date_parts[0])))
-        time_parts = self.event_data.EventTime.split(':')
-        self.timeInput.setTime(QTime(int(time_parts[0]), int(time_parts[1])))
-        self.locationInput.setText(self.event_data.Location)
-        self.descriptionInput.setText(self.event_data.Description if self.event_data.Description else "")
+    def load_user_data(self):
+        self.lineEditFullName.setText(self.user_data.FullName)
+        self.lineEditUsername.setText(self.user_data.UserName)
+        self.lineEditEmail.setText(self.user_data.Email)
+        # Leave password blank (keep current if not entered)
+        self.lineEditSecQuestion.setText(self.user_data.SecurityQuestion or "")
+        self.lineEditSecAnswer.setText(self.user_data.SecurityAnswer or "")
+        # Set role
+        idx = self.comboRole.findData(self.user_data.Role)
+        if idx >= 0:
+            self.comboRole.setCurrentIndex(idx)
+        # Do not allow changing own role if necessary (handled in Ex)
 
     def validate_and_accept(self):
-        if not self.nameInput.text().strip() or not self.locationInput.text().strip():
-            QMessageBox.warning(self.dialog, "Error", "Please fill in event name and location!")
+        full_name = self.lineEditFullName.text().strip()
+        username  = self.lineEditUsername.text().strip()
+        email     = self.lineEditEmail.text().strip()
+        password  = self.lineEditPassword.text()
+
+        if not full_name or not username or not email:
+            QMessageBox.warning(self.dialog, "Error", "Please fill in full name, username, and email!")
+            return
+
+        if not re.match(r'^[\w.+-]+@[\w-]+\.[\w.]+$', email):
+            QMessageBox.warning(self.dialog, "Invalid Email", "Email format is invalid!\nExample: name@example.com")
+            return
+
+        if not re.match(r'^[\w]{3,30}$', username):
+            QMessageBox.warning(self.dialog, "Invalid Username",
+                "Username must be 3-30 characters, only letters, numbers and underscore!")
+            return
+
+        if not self.user_data and len(password) < 6:
+            QMessageBox.warning(self.dialog, "Error", "Password must be at least 6 characters long!")
+            return
+        if self.user_data and password and len(password) < 6:
+            QMessageBox.warning(self.dialog, "Error", "Password must be at least 6 characters long!")
             return
         self.dialog.accept()
 
     def get_data(self):
         return {
-            'name':        self.nameInput.text().strip(),
-            'date':        self.dateInput.date().toString("dd/MM/yyyy"),
-            'time':        self.timeInput.time().toString("HH:mm"),
-            'location':    self.locationInput.text().strip(),
-            'description': self.descriptionInput.toPlainText().strip()
+            'full_name':       self.lineEditFullName.text().strip(),
+            'username':        self.lineEditUsername.text().strip(),
+            'email':           self.lineEditEmail.text().strip(),
+            'password':        self.lineEditPassword.text(),   # empty = keep current
+            'role':            self.comboRole.currentData(),
+            'sec_question':    self.lineEditSecQuestion.text().strip(),
+            'sec_answer':      self.lineEditSecAnswer.text().strip().lower()
         }
 
     def exec(self):
