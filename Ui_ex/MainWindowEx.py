@@ -150,7 +150,7 @@ class MainWindowEx(Ui_MainWindow):
     def _check_permission(self):
         """Returns True if current user is admin. Shows warning if not."""
         user = getattr(self, 'login_user', None)
-        if user and user.Role == "admin":
+        if user and (user.Role or "").lower() == "admin":
             return True
         _msg(self.MainWindow, "warn", "Access Denied",
              "⛔ You do not have permission to perform this action.\n"
@@ -162,7 +162,7 @@ class MainWindowEx(Ui_MainWindow):
         if user is None:
             return
 
-        is_admin = (user.Role == "admin")
+        is_admin = ((user.Role or "").lower() == "admin")
 
         self.lblLoginUser.setText(f"👤  {user.FullName}  ({user.UserName})")
         if is_admin:
@@ -196,6 +196,14 @@ class MainWindowEx(Ui_MainWindow):
             self.btnRefreshAttendee.setEnabled(True)
             self.btnRefreshRegistration.setEnabled(True)
             self.btnRefreshCheckin.setEnabled(True)
+
+            for btn in [self.btnAddEvent, self.btnEditEvent, self.btnDeleteEvent,
+                        self.btnImportEvent, self.btnDownloadEventTemplate]:
+                self._dim_button(btn)
+            for btn in [self.btnAddAttendee, self.btnEditAttendee, self.btnDeleteAttendee,
+                        self.btnImportAttendee, self.btnDownloadTemplate,
+                        self.btnHistoryAttendee]:
+                self._dim_button(btn)
 
     # Style cho button bị vô hiệu hoá (staff không có quyền)
     _DISABLED_BTN_STYLE = (
@@ -254,8 +262,9 @@ class MainWindowEx(Ui_MainWindow):
     def _setup_status_bar(self):
         user = getattr(self, 'login_user', None)
         if user and hasattr(self, 'lblStatusUser'):
+            role_str = (user.Role or "staff").upper()
             self.lblStatusUser.setText(
-                f"👤  {user.FullName}  ({user.Role.upper()})"
+                f"👤  {user.FullName}  ({role_str})"
             )
         self._status_timer = QTimer(self.MainWindow)
         self._status_timer.timeout.connect(self._tick_clock)
@@ -350,7 +359,7 @@ class MainWindowEx(Ui_MainWindow):
         self.btnStatsPie.clicked.connect(self.show_pie_chart)
 
         user = getattr(self, 'login_user', None)
-        if user and user.Role == "admin":
+        if user and (user.Role or "").lower() == "admin":
             self.btnAddUser.clicked.connect(self.add_user)
             self.btnEditUser.clicked.connect(self.edit_user)
             self.btnDeleteUser.clicked.connect(self.delete_user)
@@ -359,15 +368,20 @@ class MainWindowEx(Ui_MainWindow):
 
         all_tables = [self.eventTable, self.attendeeTable,
                       self.registrationTable, self.checkinTable]
-        if user and user.Role == "admin":
+        if user and (user.Role or "").lower() == "admin":
             all_tables.append(self.userTable)
 
         for tbl in all_tables:
-            tbl.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-            tbl.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+            try:
+                tbl.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+                tbl.verticalHeader().setVisible(False)
+            except RuntimeError:
+                pass
 
-        self.checkinTable.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Fixed)
-        self.checkinTable.verticalHeader().setDefaultSectionSize(36)
+        try:
+            self.checkinTable.verticalHeader().setVisible(False)
+        except RuntimeError:
+            pass
 
     def load_initial_data(self):
         self.load_dashboard()
@@ -377,16 +391,25 @@ class MainWindowEx(Ui_MainWindow):
         self.load_checkin_event_combo()
         self.load_stats_event_combo()
 
-        for tbl in [self.eventTable, self.attendeeTable,
-                    self.registrationTable, self.checkinTable, self.userTable]:
+        _init_tables = [self.eventTable, self.attendeeTable,
+                        self.registrationTable, self.checkinTable]
+        if hasattr(self, 'userTable') and self.userTable is not None:
+            try:
+                self.userTable.setAlternatingRowColors(True)
+            except RuntimeError:
+                pass
+        for tbl in _init_tables:
             tbl.setAlternatingRowColors(True)
 
         from PyQt6.QtWidgets import QAbstractItemView
         self.attendeeTable.setSelectionMode(QAbstractItemView.SelectionMode.ExtendedSelection)
         self.registrationTable.setSelectionMode(QAbstractItemView.SelectionMode.ExtendedSelection)
-        self.setup_chart()
+        try:
+            self.setup_chart()
+        except Exception as e:
+            print(f"Chart setup error: {e}")
         user = getattr(self, 'login_user', None)
-        if user and user.Role == "admin":
+        if user and (user.Role or "").lower() == "admin":
             self.load_users()
 
     def change_password(self):
@@ -412,13 +435,14 @@ class MainWindowEx(Ui_MainWindow):
     def load_users(self):
         users = Users()
         users.import_json("datasets/users.json")
-        role_lbl = lambda r: "🔑 Admin" if r == "admin" else "🧑‍💼 Staff"
+        role_lbl = lambda r: "🔑 Admin" if (r or "").lower() == "admin" else "🧑‍💼 Staff"
         rows_data = [
             [u.UserId, u.FullName, u.UserName, u.Email, role_lbl(u.Role)]
             for u in users.list
         ]
-        self._fill_table(self.userTable, rows_data)
-        self._pad_table(self.userTable, len(rows_data))
+        if hasattr(self, 'userTable') and self.userTable is not None:
+            self._fill_table(self.userTable, rows_data)
+            self._pad_table(self.userTable, len(rows_data))
 
     def _users_db(self):
         u = Users()
@@ -429,7 +453,7 @@ class MainWindowEx(Ui_MainWindow):
         user.FullName = data['full_name']
         user.UserName = data['username']
         user.Email = data['email']
-        user.Role = data['role']
+        user.Role = data['role'] or "staff"
         user.SecurityQuestion = data['sec_question']
         user.SecurityAnswer = data['sec_answer']
 
@@ -446,6 +470,8 @@ class MainWindowEx(Ui_MainWindow):
             return
         new_user = User()
         new_user.UserId = "usr_" + str(uuid.uuid4())[:8]
+        if not data.get("role"):
+            data["role"] = "staff"
         self._apply_user_data(new_user, data)
         new_user.Password = Users.hash_password(data['password'])
         users.add_item(new_user)
@@ -1991,7 +2017,8 @@ class MainWindowEx(Ui_MainWindow):
         self._chart_done()
 
     def apply_stylesheet(self):
-        self.MainWindow.setStyleSheet("""
+        try:
+            self.MainWindow.setStyleSheet("""
             /* ══ Professional Deep Blue ══ */
             QMainWindow { background-color: #f4f6f9; }
 
@@ -2160,7 +2187,9 @@ class MainWindowEx(Ui_MainWindow):
                 padding: 5px 10px; border-radius: 5px; font-size: 11px;
             }
         """)
-        self._apply_light_dashboard()
+            self._apply_light_dashboard()
+        except Exception as e:
+            print(f"Stylesheet error: {e}")
 
     def _apply_light_dashboard(self):
         card_map = {
@@ -2179,5 +2208,8 @@ class MainWindowEx(Ui_MainWindow):
         light_hdr = ("QHeaderView::section{background:#f1f5f9;color:#374151;"
                      "font-weight:bold;padding:6px;border-bottom:2px solid #e2e8f0;}")
         for tbl in [self.dashUpcomingTable, self.dashRecentTable]:
-            tbl.setStyleSheet(light_tbl)
-            tbl.horizontalHeader().setStyleSheet(light_hdr)
+            try:
+                tbl.setStyleSheet(light_tbl)
+                tbl.horizontalHeader().setStyleSheet(light_hdr)
+            except RuntimeError:
+                pass

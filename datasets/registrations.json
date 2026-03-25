@@ -4493,8 +4493,8 @@
             "EventId": "evt_668ee425",
             "AttendeeId": "att_5dace30f",
             "RegistrationDate": "2026-03-14 09:02:06",
-            "Status": "Registered",
-            "CheckinTime": null
+            "Status": "Checked-in",
+            "CheckinTime": "2026-03-19 09:26:54"
         }
     ]
 }
