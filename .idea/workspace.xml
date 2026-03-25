@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f5cb465-3941-469c-97f7-ac58b0629d80" name="Changes" comment="update">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/logo.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/attendees.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/attendees.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/events.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/events.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/registrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/registrations.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/RegistrationDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/RegistrationDialog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/RegistrationDialog.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ui/RegistrationDialog.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/remember.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/remember.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,12 +100,13 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/GIT_TDLT/Final-Project-Programming-Techniques/ui&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/GIT_TDLT/Final-Project-Programming-Techniques/images&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.externalTools&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\GIT_TDLT\Final-Project-Programming-Techniques\images" />
       <recent name="D:\GIT_TDLT\Final-Project-Programming-Techniques\ui" />
       <recent name="$PROJECT_DIR$/Ui_ex" />
     </key>
