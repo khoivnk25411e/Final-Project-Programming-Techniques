@@ -61,7 +61,7 @@
       <string>QLineEdit { border: 1px solid #cbd5e1; border-radius: 4px; padding: 6px 10px; font-size: 13px; background: white; color: #1e293b; }</string>
      </property>
      <property name="placeholderText">
-      <string>Search by name or email...</string>
+      <string>Search by name, organisation, or email...</string>
      </property>
     </widget>
    </item>
@@ -142,7 +142,7 @@
         <x>0</x>
         <y>0</y>
         <width>506</width>
-        <height>360</height>
+        <height>353</height>
        </rect>
       </property>
       <property name="styleSheet">

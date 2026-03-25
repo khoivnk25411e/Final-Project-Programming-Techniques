@@ -2,843 +2,851 @@
     "attendees": [
         {
             "AttendeeId": "att_8070defd",
-            "Name": "Nguyễn Khoa Hùng",
-            "Email": "hung.nguyen38@outlook.com",
+            "Name": "Ethan Collins",
+            "Email": "ethan.collins38@outlook.com",
             "Phone": "0942458591",
             "Organization": "Deloitte Vietnam",
             "Position": "Frontend Developer"
         },
         {
             "AttendeeId": "att_a54d5e44",
-            "Name": "Lê Hương Hiền",
-            "Email": "hien.le74@viettel.com.vn",
+            "Name": "Sophia Nguyen",
+            "Email": "sophia.nguyen74@viettel.com.vn",
             "Phone": "0904335942",
             "Organization": "HCMC Department of IT",
             "Position": "Lecturer"
         },
         {
             "AttendeeId": "att_14648e43",
-            "Name": "Ngô Tuấn Phong",
-            "Email": "phong.ngo85@hcmut.edu.vn",
+            "Name": "Marcus Pham",
+            "Email": "marcus.pham85@hcmut.edu.vn",
             "Phone": "0903678638",
             "Organization": "HCMC Department of IT",
             "Position": "Frontend Developer"
         },
         {
             "AttendeeId": "att_8ec56978",
-            "Name": "Hoàng Hương Thảo",
-            "Email": "thao.hoang53@yahoo.com",
+            "Name": "Ava Hoang",
+            "Email": "ava.hoang53@yahoo.com",
             "Phone": "0937374122",
-            "Organization": "Đại học Khoa học Tự nhiên",
+            "Organization": "University of Natural Sciences",
             "Position": "Mobile Developer"
         },
         {
             "AttendeeId": "att_953dd31e",
-            "Name": "Tô Khoa Đạt",
-            "Email": "dat.to15@hust.edu.vn",
+            "Name": "Lucas Turner",
+            "Email": "lucas.turner15@hust.edu.vn",
             "Phone": "0773094235",
             "Organization": "Axon Active Vietnam",
             "Position": "Backend Developer"
         },
         {
             "AttendeeId": "att_46f7726d",
-            "Name": "Đặng Mỹ Uyên",
-            "Email": "uyen.dang56@viettel.com.vn",
+            "Name": "Isabella Dang",
+            "Email": "isabella.dang56@viettel.com.vn",
             "Phone": "0982166941",
-            "Organization": "Đại học Kinh tế TP.HCM",
+            "Organization": "University of Economics Ho Chi Minh City",
             "Position": "Researcher"
         },
         {
             "AttendeeId": "att_5979ddc8",
-            "Name": "Đặng Thanh Trang",
-            "Email": "trang.dang39@yahoo.com",
+            "Name": "Chloe Tran",
+            "Email": "chloe.tran39@yahoo.com",
             "Phone": "0375663623",
             "Organization": "Intel Vietnam",
             "Position": "Lecturer"
         },
         {
             "AttendeeId": "att_18e6864a",
-            "Name": "Huỳnh Phúc Minh",
-            "Email": "minh.huynh36@hcmut.edu.vn",
+            "Name": "Noah Huynh",
+            "Email": "noah.huynh36@hcmut.edu.vn",
             "Phone": "0933871230",
             "Organization": "PwC Vietnam",
             "Position": "Intern"
         },
         {
             "AttendeeId": "att_cefa666e",
-            "Name": "Dương Thúy Hoa",
-            "Email": "hoa.duong91@vnpt.vn",
+            "Name": "Lily Duong",
+            "Email": "lily.duong91@vnpt.vn",
             "Phone": "0326440561",
             "Organization": "Cyberlogitec",
             "Position": "Consultant"
         },
         {
             "AttendeeId": "att_ebc4ba8b",
-            "Name": "Vũ Hữu Đạt",
-            "Email": "dat.vu50@uit.edu.vn",
+            "Name": "Owen Vu",
+            "Email": "owen.vu50@uit.edu.vn",
             "Phone": "0332110460",
             "Organization": "Viettel Solutions",
             "Position": "Cloud Engineer"
         },
         {
             "AttendeeId": "att_e5917509",
-            "Name": "Bùi Anh Trung",
-            "Email": "trung.bui73@uit.edu.vn",
+            "Name": "Caleb Bui",
+            "Email": "caleb.bui73@uit.edu.vn",
             "Phone": "0393396987",
             "Organization": "VNPT Technology",
             "Position": "Business Analyst"
         },
         {
             "AttendeeId": "att_0dc9b2cb",
-            "Name": "Trịnh Diễm Hoa",
-            "Email": "hoa.trinh84@uit.edu.vn",
+            "Name": "Zoe Trinh",
+            "Email": "zoe.trinh84@uit.edu.vn",
             "Phone": "0767700828",
             "Organization": "Shopee Vietnam",
             "Position": "Project Manager"
         },
         {
             "AttendeeId": "att_65eb427b",
-            "Name": "Hoàng Trung Quân",
-            "Email": "quan.hoang21@gmail.com",
+            "Name": "Dylan Hoang",
+            "Email": "dylan.hoang21@gmail.com",
             "Phone": "0943564251",
-            "Organization": "Công ty TNHH ABC Tech",
+            "Organization": "ABC Tech Co., Ltd.",
             "Position": "DevOps Engineer"
         },
         {
             "AttendeeId": "att_9e730991",
-            "Name": "Ngô Công Cường",
-            "Email": "cuong.ngo59@uit.edu.vn",
+            "Name": "Aiden Ngo",
+            "Email": "aiden.ngo59@uit.edu.vn",
             "Phone": "0788852574",
             "Organization": "Siemens Vietnam",
             "Position": "CTO"
         },
         {
             "AttendeeId": "att_84815fe6",
-            "Name": "Nguyễn Minh Tuấn",
-            "Email": "tuan.nguyen78@hcmut.edu.vn",
+            "Name": "Mason Nguyen",
+            "Email": "mason.nguyen78@hcmut.edu.vn",
             "Phone": "0352871534",
             "Organization": "Momo",
             "Position": "Frontend Developer"
         },
         {
             "AttendeeId": "att_863525e0",
-            "Name": "Nguyễn Linh Nga",
-            "Email": "nga.nguyen32@vnpt.vn",
+            "Name": "Harper Nguyen",
+            "Email": "harper.nguyen32@vnpt.vn",
             "Phone": "0946007072",
             "Organization": "Cyberlogitec",
             "Position": "Lecturer"
         },
         {
             "AttendeeId": "att_77a7423b",
-            "Name": "Phan Quốc Minh",
-            "Email": "minh.phan30@vnpt.vn",
+            "Name": "Liam Phan",
+            "Email": "liam.phan30@vnpt.vn",
             "Phone": "0791009594",
             "Organization": "KPMG Vietnam",
             "Position": "QA Engineer"
         },
         {
             "AttendeeId": "att_12f574ef",
-            "Name": "Phạm Phúc Khánh",
-            "Email": "khanh.pham49@fpt.edu.vn",
+            "Name": "Emma Pham",
+            "Email": "emma.pham49@fpt.edu.vn",
             "Phone": "0915041154",
             "Organization": "Nashtech Vietnam",
             "Position": "HR Manager"
         },
         {
             "AttendeeId": "att_92ffa245",
-            "Name": "Lê Tiến Đức",
-            "Email": "duc.le18@vnpt.vn",
+            "Name": "James Le",
+            "Email": "james.le18@vnpt.vn",
             "Phone": "0963154051",
             "Organization": "Startup XYZ",
             "Position": "System Architect"
         },
         {
             "AttendeeId": "att_87eea71b",
-            "Name": "Huỳnh Khoa Sơn",
-            "Email": "son.huynh87@uit.edu.vn",
+            "Name": "Sebastian Huynh",
+            "Email": "sebastian.huynh87@uit.edu.vn",
             "Phone": "0984374754",
             "Organization": "HCMC Department of IT",
             "Position": "Technical Lead"
         },
         {
             "AttendeeId": "att_21539b36",
-            "Name": "Đỗ Oanh Uyên",
-            "Email": "uyen.do76@hust.edu.vn",
+            "Name": "Mia Do",
+            "Email": "mia.do76@hust.edu.vn",
             "Phone": "0945159166",
             "Organization": "VNG Corporation",
             "Position": "Product Manager"
         },
         {
             "AttendeeId": "att_2c7fe43a",
-            "Name": "Lương Diễm Hiền",
-            "Email": "hien.luong85@fpt.edu.vn",
+            "Name": "Grace Luong",
+            "Email": "grace.luong85@fpt.edu.vn",
             "Phone": "0902191066",
             "Organization": "HCMC Department of IT",
             "Position": "Lecturer"
         },
         {
             "AttendeeId": "att_36ec9f8f",
-            "Name": "Lê Ngọc Trang",
-            "Email": "trang.le52@yahoo.com",
+            "Name": "Natalie Le",
+            "Email": "natalie.le52@yahoo.com",
             "Phone": "0794993055",
             "Organization": "VNPT Technology",
             "Position": "Researcher"
         },
         {
             "AttendeeId": "att_8a46d23e",
-            "Name": "Trịnh Quốc Việt",
-            "Email": "viet.trinh83@viettel.com.vn",
+            "Name": "Carter Trinh",
+            "Email": "carter.trinh83@viettel.com.vn",
             "Phone": "0705076817",
             "Organization": "Vietnam AI Lab",
             "Position": "System Architect"
         },
         {
             "AttendeeId": "att_d6fe979c",
-            "Name": "Phan Minh Dũng",
-            "Email": "dung.phan94@uit.edu.vn",
+            "Name": "Ryan Phan",
+            "Email": "ryan.phan94@uit.edu.vn",
             "Phone": "0368106470",
             "Organization": "Samsung Vietnam",
             "Position": "AI Researcher"
         },
         {
             "AttendeeId": "att_01db5032",
-            "Name": "Trần Minh Bình",
-            "Email": "binh.tran61@ueh.edu.vn",
+            "Name": "Tyler Tran",
+            "Email": "tyler.tran61@ueh.edu.vn",
             "Phone": "0945171761",
             "Organization": "Viettel Solutions",
             "Position": "UI/UX Designer"
         },
         {
             "AttendeeId": "att_e7c6e2a1",
-            "Name": "Hoàng Duy Hào",
-            "Email": "hao.hoang45@hust.edu.vn",
+            "Name": "Logan Hoang",
+            "Email": "logan.hoang45@hust.edu.vn",
             "Phone": "0322264748",
             "Organization": "Intel Vietnam",
             "Position": "CEO"
         },
         {
             "AttendeeId": "att_98dae903",
-            "Name": "Trịnh Minh Bình",
-            "Email": "binh.trinh93@vnpt.vn",
+            "Name": "Elijah Trinh",
+            "Email": "elijah.trinh93@vnpt.vn",
             "Phone": "0902564689",
             "Organization": "Axon Active Vietnam",
             "Position": "Consultant"
         },
         {
             "AttendeeId": "att_318ae0a8",
-            "Name": "Huỳnh Duy Quân",
-            "Email": "quan.huynh71@fpt.edu.vn",
+            "Name": "Jackson Huynh",
+            "Email": "jackson.huynh71@fpt.edu.vn",
             "Phone": "0371983738",
             "Organization": "FPT Software",
             "Position": "Backend Developer"
         },
         {
             "AttendeeId": "att_71a3729f",
-            "Name": "Hồ Linh Vân",
-            "Email": "van.ho68@hcmut.edu.vn",
+            "Name": "Aria Ho",
+            "Email": "aria.ho68@hcmut.edu.vn",
             "Phone": "0389164991",
-            "Organization": "Đại học Sư phạm Kỹ thuật",
+            "Organization": "University of Technology Education",
             "Position": "UI/UX Designer"
         },
         {
             "AttendeeId": "att_7cd38e9f",
-            "Name": "Trần Xuân Tâm",
-            "Email": "tam.tran79@gmail.com",
+            "Name": "Nathan Tran",
+            "Email": "nathan.tran79@gmail.com",
             "Phone": "0351959074",
-            "Organization": "Đại học Kinh tế TP.HCM",
+            "Organization": "University of Economics Ho Chi Minh City",
             "Position": "HR Manager"
         },
         {
             "AttendeeId": "att_f0d1e185",
-            "Name": "Đinh Thành Bình",
-            "Email": "binh.dinh75@yahoo.com",
+            "Name": "Oliver Dinh",
+            "Email": "oliver.dinh75@yahoo.com",
             "Phone": "0972149597",
             "Organization": "KPMG Vietnam",
             "Position": "Product Manager"
         },
         {
             "AttendeeId": "att_d7f0cdc0",
-            "Name": "Vũ Bảo Dũng",
-            "Email": "dung.vu82@fpt.edu.vn",
+            "Name": "Wyatt Vu",
+            "Email": "wyatt.vu82@fpt.edu.vn",
             "Phone": "0761666754",
             "Organization": "KPMG Vietnam",
             "Position": "Product Manager"
         },
         {
             "AttendeeId": "att_f477d774",
-            "Name": "Lương Xuân Nga",
-            "Email": "nga.luong50@hcmut.edu.vn",
+            "Name": "Scarlett Luong",
+            "Email": "scarlett.luong50@hcmut.edu.vn",
             "Phone": "0986271130",
             "Organization": "VNG Corporation",
             "Position": "CTO"
         },
         {
             "AttendeeId": "att_998b4b1d",
-            "Name": "Đặng Oanh Hương",
-            "Email": "huong.dang19@gmail.com",
+            "Name": "Victoria Dang",
+            "Email": "victoria.dang19@gmail.com",
             "Phone": "0392677407",
-            "Organization": "Đại học CNTT TP.HCM",
+            "Organization": "University of Information Technology HCMC",
             "Position": "Marketing Manager"
         },
         {
             "AttendeeId": "att_b6202ca1",
-            "Name": "Võ Thu Vân",
-            "Email": "van.vo54@yahoo.com",
+            "Name": "Penelope Vo",
+            "Email": "penelope.vo54@yahoo.com",
             "Phone": "0327199635",
             "Organization": "Momo",
             "Position": "DevOps Engineer"
         },
         {
             "AttendeeId": "att_c2d8b9d6",
-            "Name": "Trịnh Tuyết Như",
-            "Email": "nhu.trinh93@vnpt.vn",
+            "Name": "Stella Trinh",
+            "Email": "stella.trinh93@vnpt.vn",
             "Phone": "0906022741",
             "Organization": "Axon Active Vietnam",
             "Position": "Researcher"
         },
         {
             "AttendeeId": "att_f07245c0",
-            "Name": "Hoàng Linh Dung",
-            "Email": "dung.hoang23@vnpt.vn",
+            "Name": "Hazel Hoang",
+            "Email": "hazel.hoang23@vnpt.vn",
             "Phone": "0965569244",
             "Organization": "Momo",
             "Position": "Operations Manager"
         },
         {
             "AttendeeId": "att_9e0403f5",
-            "Name": "Bùi Hương Phương",
-            "Email": "phuong.bui91@hcmut.edu.vn",
+            "Name": "Ruby Bui",
+            "Email": "ruby.bui91@hcmut.edu.vn",
             "Phone": "0799196204",
             "Organization": "VNPT Technology",
             "Position": "Scrum Master"
         },
         {
             "AttendeeId": "att_781043a3",
-            "Name": "Trần Đức Trung",
-            "Email": "trung.tran64@hcmut.edu.vn",
+            "Name": "Finn Tran",
+            "Email": "finn.tran64@hcmut.edu.vn",
             "Phone": "0911059486",
             "Organization": "Tiki",
             "Position": "Consultant"
         },
         {
             "AttendeeId": "att_c578f2e2",
-            "Name": "Võ Mai Tâm",
-            "Email": "tam.vo66@vnpt.vn",
+            "Name": "Luna Vo",
+            "Email": "luna.vo66@vnpt.vn",
             "Phone": "0381162230",
-            "Organization": "Đại học Khoa học Tự nhiên",
+            "Organization": "University of Natural Sciences",
             "Position": "Product Manager"
         },
         {
             "AttendeeId": "att_982ccce0",
-            "Name": "Hoàng Nam Bình",
-            "Email": "binh.hoang57@viettel.com.vn",
+            "Name": "Hunter Hoang",
+            "Email": "hunter.hoang57@viettel.com.vn",
             "Phone": "0773484601",
             "Organization": "Samsung Vietnam",
             "Position": "Business Analyst"
         },
         {
             "AttendeeId": "att_7f4c124c",
-            "Name": "Đỗ Ngọc Uyên",
-            "Email": "uyen.do55@fpt.edu.vn",
+            "Name": "Violet Do",
+            "Email": "violet.do55@fpt.edu.vn",
             "Phone": "0322724590",
             "Organization": "Shopee Vietnam",
             "Position": "Consultant"
         },
         {
             "AttendeeId": "att_a3463ae5",
-            "Name": "Ngô Công Việt",
-            "Email": "viet.ngo29@fpt.edu.vn",
+            "Name": "Eli Ngo",
+            "Email": "eli.ngo29@fpt.edu.vn",
             "Phone": "0973970445",
             "Organization": "Nashtech Vietnam",
             "Position": "Frontend Developer"
         },
         {
             "AttendeeId": "att_5187d152",
-            "Name": "Bùi Hà Thu",
-            "Email": "thu.bui95@fpt.edu.vn",
+            "Name": "Nora Bui",
+            "Email": "nora.bui95@fpt.edu.vn",
             "Phone": "0333670896",
             "Organization": "Vietnam AI Lab",
             "Position": "Student"
         },
         {
             "AttendeeId": "att_136011d7",
-            "Name": "Trần Yến Hiền",
-            "Email": "hien.tran35@hust.edu.vn",
+            "Name": "Ellie Tran",
+            "Email": "ellie.tran35@hust.edu.vn",
             "Phone": "0366120253",
             "Organization": "Cyberlogitec",
             "Position": "CEO"
         },
         {
             "AttendeeId": "att_f554d2c1",
-            "Name": "Vũ Văn Tuấn",
-            "Email": "tuan.vu34@uit.edu.vn",
+            "Name": "Asher Vu",
+            "Email": "asher.vu34@uit.edu.vn",
             "Phone": "0355674183",
             "Organization": "KMS Technology",
             "Position": "Product Manager"
         },
         {
             "AttendeeId": "att_4d4ef575",
-            "Name": "Võ Phúc Trung",
-            "Email": "trung.vo75@uit.edu.vn",
+            "Name": "Leo Vo",
+            "Email": "leo.vo75@uit.edu.vn",
             "Phone": "0776555772",
-            "Organization": "Đại học Bách Khoa TP.HCM",
+            "Organization": "Ho Chi Minh City University of Technology",
             "Position": "Data Analyst"
         },
         {
             "AttendeeId": "att_14aeb21f",
-            "Name": "Võ Thành Thắng",
-            "Email": "thang.vo43@gmail.com",
+            "Name": "Gavin Vo",
+            "Email": "gavin.vo43@gmail.com",
             "Phone": "0948290770",
             "Organization": "Shopee Vietnam",
             "Position": "Intern"
         },
         {
             "AttendeeId": "att_11ebd1a5",
-            "Name": "Ngô Công Sơn",
-            "Email": "son.ngo24@uit.edu.vn",
+            "Name": "Ezra Ngo",
+            "Email": "ezra.ngo24@uit.edu.vn",
             "Phone": "0764188992",
             "Organization": "VNPT Technology",
             "Position": "Senior Developer"
         },
         {
             "AttendeeId": "att_deab6e1a",
-            "Name": "Nguyễn Trung Nhân",
-            "Email": "nhan.nguyen78@fpt.edu.vn",
+            "Name": "Isaac Nguyen",
+            "Email": "isaac.nguyen78@fpt.edu.vn",
             "Phone": "0368235969",
-            "Organization": "Đại học CNTT TP.HCM",
+            "Organization": "University of Information Technology HCMC",
             "Position": "Researcher"
         },
         {
             "AttendeeId": "att_ae24ad23",
-            "Name": "Tô Long Tuấn",
-            "Email": "tuan.to25@hcmut.edu.vn",
+            "Name": "Hudson To",
+            "Email": "hudson.to25@hcmut.edu.vn",
             "Phone": "0796188935",
             "Organization": "Startup XYZ",
             "Position": "Frontend Developer"
         },
         {
             "AttendeeId": "att_b9316377",
-            "Name": "Đặng Diễm Giang",
-            "Email": "giang.dang34@uit.edu.vn",
+            "Name": "Evelyn Dang",
+            "Email": "evelyn.dang34@uit.edu.vn",
             "Phone": "0373919694",
             "Organization": "KPMG Vietnam",
             "Position": "HR Manager"
         },
         {
             "AttendeeId": "att_28127454",
-            "Name": "Trịnh Thị Hồng",
-            "Email": "hong.trinh46@fpt.edu.vn",
+            "Name": "Vivian Trinh",
+            "Email": "vivian.trinh46@fpt.edu.vn",
             "Phone": "0386406444",
             "Organization": "Intel Vietnam",
             "Position": "AI Researcher"
         },
         {
             "AttendeeId": "att_19ad4fec",
-            "Name": "Phan Trà My",
-            "Email": "my.phan31@yahoo.com",
+            "Name": "Audrey Phan",
+            "Email": "audrey.phan31@yahoo.com",
             "Phone": "0349647849",
             "Organization": "Startup XYZ",
             "Position": "Lecturer"
         },
         {
             "AttendeeId": "att_2fc7af7f",
-            "Name": "Lê Tuấn Tuấn",
-            "Email": "tuan.le49@fpt.edu.vn",
+            "Name": "Landon Le",
+            "Email": "landon.le49@fpt.edu.vn",
             "Phone": "0983472189",
-            "Organization": "Đại học Bách Khoa TP.HCM",
+            "Organization": "Ho Chi Minh City University of Technology",
             "Position": "Senior Developer"
         },
         {
             "AttendeeId": "att_a883cade",
-            "Name": "Lý Mỹ Trang",
-            "Email": "trang.ly19@hust.edu.vn",
+            "Name": "Claire Ly",
+            "Email": "claire.ly19@hust.edu.vn",
             "Phone": "0384262081",
             "Organization": "HCMC Department of IT",
             "Position": "Student"
         },
         {
             "AttendeeId": "att_fb87d35f",
-            "Name": "Hồ Lan Giang",
-            "Email": "giang.ho93@gmail.com",
+            "Name": "Naomi Ho",
+            "Email": "naomi.ho93@gmail.com",
             "Phone": "0948132769",
             "Organization": "VNG Corporation",
             "Position": "DevOps Engineer"
         },
         {
             "AttendeeId": "att_e765dc8f",
-            "Name": "Đinh Gia Bình",
-            "Email": "binh.dinh81@fpt.edu.vn",
+            "Name": "Beau Dinh",
+            "Email": "beau.dinh81@fpt.edu.vn",
             "Phone": "0948658158",
-            "Organization": "Đại học Sư phạm Kỹ thuật",
+            "Organization": "University of Technology Education",
             "Position": "CEO"
         },
         {
             "AttendeeId": "att_f6e58963",
-            "Name": "Đinh Nam Toàn",
-            "Email": "toan.dinh50@hust.edu.vn",
+            "Name": "Cole Dinh",
+            "Email": "cole.dinh50@hust.edu.vn",
             "Phone": "0789468772",
             "Organization": "Samsung Vietnam",
             "Position": "Co-Founder"
         },
         {
             "AttendeeId": "att_f77680fc",
-            "Name": "Dương Thành Việt",
-            "Email": "viet.duong70@hust.edu.vn",
+            "Name": "Wesley Duong",
+            "Email": "wesley.duong70@hust.edu.vn",
             "Phone": "0335147994",
             "Organization": "Cyberlogitec",
             "Position": "Lecturer"
         },
         {
             "AttendeeId": "att_03d51d5a",
-            "Name": "Đinh Yến Oanh",
-            "Email": "oanh.dinh40@hcmut.edu.vn",
+            "Name": "Jasmine Dinh",
+            "Email": "jasmine.dinh40@hcmut.edu.vn",
             "Phone": "0392299954",
             "Organization": "HCMC Department of IT",
             "Position": "Technical Lead"
         },
         {
             "AttendeeId": "att_4025c4ca",
-            "Name": "Bùi Kim Uyên",
-            "Email": "uyen.bui79@yahoo.com",
+            "Name": "Savannah Bui",
+            "Email": "savannah.bui79@yahoo.com",
             "Phone": "0963530518",
             "Organization": "VNG Corporation",
             "Position": "Backend Developer"
         },
         {
             "AttendeeId": "att_f036becc",
-            "Name": "Phan Đức Nghĩa",
-            "Email": "nghia.phan62@ueh.edu.vn",
+            "Name": "Adrian Phan",
+            "Email": "adrian.phan62@ueh.edu.vn",
             "Phone": "0778816912",
             "Organization": "Samsung Vietnam",
             "Position": "Senior Developer"
         },
         {
             "AttendeeId": "att_1ec807b5",
-            "Name": "Ngô Thúy Uyên",
-            "Email": "uyen.ngo84@gmail.com",
+            "Name": "Piper Ngo",
+            "Email": "piper.ngo84@gmail.com",
             "Phone": "0767381734",
             "Organization": "Bosch Vietnam",
             "Position": "Software Engineer"
         },
         {
             "AttendeeId": "att_54071b73",
-            "Name": "Đặng Bảo Hưng",
-            "Email": "hung.dang63@vnpt.vn",
+            "Name": "Connor Dang",
+            "Email": "connor.dang63@vnpt.vn",
             "Phone": "0774700025",
             "Organization": "Bosch Vietnam",
             "Position": "Project Manager"
         },
         {
             "AttendeeId": "att_d300c901",
-            "Name": "Lý Thị Linh",
-            "Email": "linh.ly53@uit.edu.vn",
+            "Name": "Bella Ly",
+            "Email": "bella.ly53@uit.edu.vn",
             "Phone": "0978841505",
             "Organization": "Axon Active Vietnam",
             "Position": "Business Analyst"
         },
         {
             "AttendeeId": "att_3ed144a2",
-            "Name": "Trịnh Văn Nhân",
-            "Email": "nhan.trinh60@viettel.com.vn",
+            "Name": "Dominic Trinh",
+            "Email": "dominic.trinh60@viettel.com.vn",
             "Phone": "0761454696",
-            "Organization": "Đại học CNTT TP.HCM",
+            "Organization": "University of Information Technology HCMC",
             "Position": "Lecturer"
         },
         {
             "AttendeeId": "att_d4df4c34",
-            "Name": "Dương Mai Ánh",
-            "Email": "anh.duong43@uit.edu.vn",
+            "Name": "Maya Duong",
+            "Email": "maya.duong43@uit.edu.vn",
             "Phone": "0354551070",
             "Organization": "Intel Vietnam",
             "Position": "QA Engineer"
         },
         {
             "AttendeeId": "att_3fdf7f62",
-            "Name": "Hồ Linh Thảo",
-            "Email": "thao.ho63@hcmut.edu.vn",
+            "Name": "Hailey Ho",
+            "Email": "hailey.ho63@hcmut.edu.vn",
             "Phone": "0938890439",
-            "Organization": "Đại học Bách Khoa TP.HCM",
+            "Organization": "Ho Chi Minh City University of Technology",
             "Position": "Intern"
         },
         {
             "AttendeeId": "att_eac79c60",
-            "Name": "Đỗ Tuấn Trung",
-            "Email": "trung.do18@gmail.com",
+            "Name": "Cooper Do",
+            "Email": "cooper.do18@gmail.com",
             "Phone": "0905148725",
             "Organization": "Viettel Solutions",
             "Position": "Co-Founder"
         },
         {
             "AttendeeId": "att_637ab73f",
-            "Name": "Hoàng Lan Giang",
-            "Email": "giang.hoang70@yahoo.com",
+            "Name": "Layla Hoang",
+            "Email": "layla.hoang70@yahoo.com",
             "Phone": "0764656838",
             "Organization": "Intel Vietnam",
             "Position": "Student"
         },
         {
             "AttendeeId": "att_307f73a9",
-            "Name": "Đỗ Mai Như",
-            "Email": "nhu.do87@yahoo.com",
+            "Name": "Sadie Do",
+            "Email": "sadie.do87@yahoo.com",
             "Phone": "0976218367",
-            "Organization": "Đại học Khoa học Tự nhiên",
+            "Organization": "University of Natural Sciences",
             "Position": "HR Manager"
         },
         {
             "AttendeeId": "att_b842a6f0",
-            "Name": "Đặng Xuân Phương",
-            "Email": "phuong.dang58@uit.edu.vn",
+            "Name": "Theo Dang",
+            "Email": "theo.dang58@uit.edu.vn",
             "Phone": "0982275009",
             "Organization": "Deloitte Vietnam",
             "Position": "Student"
         },
         {
             "AttendeeId": "att_bd43db59",
-            "Name": "Vũ Minh Tùng",
-            "Email": "tung.vu48@viettel.com.vn",
+            "Name": "Brandon Vu",
+            "Email": "brandon.vu48@viettel.com.vn",
             "Phone": "0941689025",
             "Organization": "Shopee Vietnam",
             "Position": "Marketing Manager"
         },
         {
             "AttendeeId": "att_3fb1e776",
-            "Name": "Đỗ Thanh Nga",
-            "Email": "nga.do92@ueh.edu.vn",
+            "Name": "Kylie Do",
+            "Email": "kylie.do92@ueh.edu.vn",
             "Phone": "0908047416",
             "Organization": "Cyberlogitec",
             "Position": "System Architect"
         },
         {
             "AttendeeId": "att_e6b62248",
-            "Name": "Đỗ Oanh Quỳnh",
-            "Email": "quynh.do29@uit.edu.vn",
+            "Name": "Quinn Do",
+            "Email": "quinn.do29@uit.edu.vn",
             "Phone": "0979753457",
-            "Organization": "Công ty TNHH ABC Tech",
+            "Organization": "ABC Tech Co., Ltd.",
             "Position": "CTO"
         },
         {
             "AttendeeId": "att_f13663d1",
-            "Name": "Trịnh Tiến Phong",
-            "Email": "phong.trinh65@viettel.com.vn",
+            "Name": "Bentley Trinh",
+            "Email": "bentley.trinh65@viettel.com.vn",
             "Phone": "0336407373",
             "Organization": "KMS Technology",
             "Position": "Project Manager"
         },
         {
             "AttendeeId": "att_5906f64c",
-            "Name": "Lê Khoa Khánh",
-            "Email": "khanh.le67@fpt.edu.vn",
+            "Name": "Miles Le",
+            "Email": "miles.le67@fpt.edu.vn",
             "Phone": "0397358385",
             "Organization": "Tiki",
             "Position": "Software Engineer"
         },
         {
             "AttendeeId": "att_6531d4bd",
-            "Name": "Bùi Thành Quân",
-            "Email": "quan.bui37@ueh.edu.vn",
+            "Name": "Micah Bui",
+            "Email": "micah.bui37@ueh.edu.vn",
             "Phone": "0336709938",
             "Organization": "VNPT Technology",
             "Position": "Scrum Master"
         },
         {
             "AttendeeId": "att_076731db",
-            "Name": "Võ Nam Anh",
-            "Email": "anh.vo76@fpt.edu.vn",
+            "Name": "Jace Vo",
+            "Email": "jace.vo76@fpt.edu.vn",
             "Phone": "0935049282",
-            "Organization": "Sở KH&CN TP.HCM",
+            "Organization": "HCMC Department of Science and Technology",
             "Position": "Frontend Developer"
         },
         {
             "AttendeeId": "att_51c1ee08",
-            "Name": "Vũ Tiến Trung",
-            "Email": "trung.vu72@hust.edu.vn",
+            "Name": "Camden Vu",
+            "Email": "camden.vu72@hust.edu.vn",
             "Phone": "0902561176",
             "Organization": "Momo",
             "Position": "Project Manager"
         },
         {
             "AttendeeId": "att_4fe6c469",
-            "Name": "Vũ Tuyết Phương",
-            "Email": "phuong.vu84@ueh.edu.vn",
+            "Name": "Phoebe Vu",
+            "Email": "phoebe.vu84@ueh.edu.vn",
             "Phone": "0709907391",
             "Organization": "Shopee Vietnam",
             "Position": "Frontend Developer"
         },
         {
             "AttendeeId": "att_773d26f2",
-            "Name": "Trịnh Long Minh",
-            "Email": "minh.trinh99@hust.edu.vn",
+            "Name": "Sawyer Trinh",
+            "Email": "sawyer.trinh99@hust.edu.vn",
             "Phone": "0336144280",
             "Organization": "VNPT Technology",
             "Position": "Project Manager"
         },
         {
             "AttendeeId": "att_45de65f8",
-            "Name": "Phan Kim Dung",
-            "Email": "dung.phan78@outlook.com",
+            "Name": "Kimberly Phan",
+            "Email": "kimberly.phan78@outlook.com",
             "Phone": "0984630331",
-            "Organization": "Sở KH&CN TP.HCM",
+            "Organization": "HCMC Department of Science and Technology",
             "Position": "System Architect"
         },
         {
             "AttendeeId": "att_dc3b4ed7",
-            "Name": "Lương Trà Như",
-            "Email": "nhu.luong46@yahoo.com",
+            "Name": "Madeline Luong",
+            "Email": "madeline.luong46@yahoo.com",
             "Phone": "0985970190",
             "Organization": "VNG Corporation",
             "Position": "Mobile Developer"
         },
         {
             "AttendeeId": "att_922e27ef",
-            "Name": "Nguyễn Diễm Giang",
-            "Email": "giang.nguyen45@gmail.com",
+            "Name": "Diana Nguyen",
+            "Email": "diana.nguyen45@gmail.com",
             "Phone": "0915901239",
             "Organization": "HCMC Department of IT",
             "Position": "Business Analyst"
         },
         {
             "AttendeeId": "att_7c31003d",
-            "Name": "Lý Minh Hưng",
-            "Email": "hung.ly11@viettel.com.vn",
+            "Name": "Spencer Ly",
+            "Email": "spencer.ly11@viettel.com.vn",
             "Phone": "0348875173",
             "Organization": "Bosch Vietnam",
             "Position": "AI Researcher"
         },
         {
             "AttendeeId": "att_59de3bda",
-            "Name": "Trần Linh Trang",
-            "Email": "trang.tran71@yahoo.com",
+            "Name": "Autumn Tran",
+            "Email": "autumn.tran71@yahoo.com",
             "Phone": "0937722755",
             "Organization": "Bosch Vietnam",
             "Position": "Product Manager"
         },
         {
             "AttendeeId": "att_48485969",
-            "Name": "Trần Quốc Hải",
-            "Email": "hai.tran82@hcmut.edu.vn",
+            "Name": "Colton Tran",
+            "Email": "colton.tran82@hcmut.edu.vn",
             "Phone": "0935163953",
-            "Organization": "Đại học Khoa học Tự nhiên",
+            "Organization": "University of Natural Sciences",
             "Position": "Marketing Manager"
         },
         {
             "AttendeeId": "att_5a35784f",
-            "Name": "Tô Công Đạt",
-            "Email": "dat.to89@fpt.edu.vn",
+            "Name": "Ryder To",
+            "Email": "ryder.to89@fpt.edu.vn",
             "Phone": "0797381684",
             "Organization": "Intel Vietnam",
             "Position": "Cloud Engineer"
         },
         {
             "AttendeeId": "att_e23b2839",
-            "Name": "Lương Hà Hồng",
-            "Email": "hong.luong82@viettel.com.vn",
+            "Name": "Amber Luong",
+            "Email": "amber.luong82@viettel.com.vn",
             "Phone": "0912664863",
-            "Organization": "Trung tâm Đổi mới Sáng tạo",
+            "Organization": "Innovation Center",
             "Position": "UI/UX Designer"
         },
         {
             "AttendeeId": "att_a4b5fc16",
-            "Name": "Võ Đức Hào",
-            "Email": "hao.vo40@outlook.com",
+            "Name": "Declan Vo",
+            "Email": "declan.vo40@outlook.com",
             "Phone": "0772259379",
             "Organization": "FPT Software",
             "Position": "Software Engineer"
         },
         {
             "AttendeeId": "att_d5409101",
-            "Name": "Tô Yến Hồng",
-            "Email": "hong.to14@fpt.edu.vn",
+            "Name": "Jade To",
+            "Email": "jade.to14@fpt.edu.vn",
             "Phone": "0345743227",
             "Organization": "HCMC Department of IT",
             "Position": "Tech Lead"
         },
         {
             "AttendeeId": "att_a16f52a3",
-            "Name": "Vũ Khoa Đạt",
-            "Email": "dat.vu90@viettel.com.vn",
+            "Name": "Knox Vu",
+            "Email": "knox.vu90@viettel.com.vn",
             "Phone": "0988132648",
-            "Organization": "Đại học Khoa học Tự nhiên",
+            "Organization": "University of Natural Sciences",
             "Position": "Marketing Manager"
         },
         {
             "AttendeeId": "att_fc6b02a8",
-            "Name": "Hoàng Linh Thủy",
-            "Email": "thuy.hoang28@yahoo.com",
+            "Name": "Serena Hoang",
+            "Email": "serena.hoang28@yahoo.com",
             "Phone": "0913783722",
             "Organization": "Vietnam AI Lab",
             "Position": "Technical Lead"
         },
         {
             "AttendeeId": "att_6d5a4e0c",
-            "Name": "Lương Hùng Phong",
-            "Email": "phong.luong25@hust.edu.vn",
+            "Name": "Rhett Luong",
+            "Email": "rhett.luong25@hust.edu.vn",
             "Phone": "0347752972",
             "Organization": "VNPT Technology",
             "Position": "IT Manager"
         },
         {
             "AttendeeId": "att_55798ffd",
-            "Name": "Dương Đức Toàn",
-            "Email": "toan.duong15@uit.edu.vn",
+            "Name": "Paxton Duong",
+            "Email": "paxton.duong15@uit.edu.vn",
             "Phone": "0355200476",
-            "Organization": "Đại học Bách Khoa TP.HCM",
+            "Organization": "Ho Chi Minh City University of Technology",
             "Position": "Product Manager"
         },
         {
             "AttendeeId": "att_2aac2ba5",
-            "Name": "Lương Xuân An",
-            "Email": "an.luong96@hcmut.edu.vn",
+            "Name": "Jonah Luong",
+            "Email": "jonah.luong96@hcmut.edu.vn",
             "Phone": "0761674975",
-            "Organization": "Trung tâm Đổi mới Sáng tạo",
+            "Organization": "Innovation Center",
             "Position": "Consultant"
         },
         {
             "AttendeeId": "att_8893156a",
-            "Name": "Đinh Oanh Vân",
-            "Email": "van.dinh45@outlook.com",
+            "Name": "Willow Dinh",
+            "Email": "willow.dinh45@outlook.com",
             "Phone": "0768312936",
-            "Organization": "Công ty TNHH ABC Tech",
+            "Organization": "ABC Tech Co., Ltd.",
             "Position": "Co-Founder"
         },
         {
             "AttendeeId": "att_6085db6f",
-            "Name": "Phan Minh Thanh",
-            "Email": "phanminhthanh9d@gmail.com",
+            "Name": "Matthew Phan",
+            "Email": "matthew.phan9d@gmail.com",
             "Phone": "0936363636",
             "Organization": "UTE",
-            "Position": "Lao Công"
+            "Position": "Janitor"
         },
         {
             "AttendeeId": "att_6b043aee",
-            "Name": "Tạ Đỗ Công Minh",
-            "Email": "minhtdck25411e@st.uel.edu.vn",
+            "Name": "Timothy Crawford",
+            "Email": "timothyc25411e@st.uel.edu.vn",
             "Phone": "0918181818",
             "Organization": "UEL",
-            "Position": "Sinh viên"
+            "Position": "Student"
         },
         {
             "AttendeeId": "att_15136e68",
-            "Name": "Nguyễn Quang Quốc An",
-            "Email": "annqqk25411e@st.uel.edu.vn",
+            "Name": "Andrew Kelley",
+            "Email": "andrewk25411e@st.uel.edu.vn",
             "Phone": "0938383838",
             "Organization": "UEL",
-            "Position": "Sinh Viên"
+            "Position": "Student"
         },
         {
             "AttendeeId": "att_8f3226fc",
-            "Name": "Obama",
+            "Name": "Barack Obama",
             "Email": "Obama@gmail.com",
             "Phone": "03570123123",
-            "Organization": "USA-WHITE HOUSE",
-            "Position": "Presidents"
+            "Organization": "USA - White House",
+            "Position": "President"
         },
         {
             "AttendeeId": "att_5dace30f",
-            "Name": "Thích Hoàng Khang",
-            "Email": "khangt2109@gmail.com",
+            "Name": "Patrick Howard",
+            "Email": "patrickh2109@gmail.com",
             "Phone": "095656565",
             "Organization": "UEL",
-            "Position": "SV"
+            "Position": "Student"
+        },
+        {
+            "AttendeeId": "att_ead80bfa",
+            "Name": "Kevin Walsh",
+            "Email": "kevinpro30@gmail.com",
+            "Phone": "0367034311",
+            "Organization": "UEL-K25411E",
+            "Position": "Student"
         }
     ]
 }
