@@ -55,8 +55,8 @@ class EmailSenderThread(QThread):
         self.email_data_list = email_data_list
         self.event_name = event_name
 
-        self.SENDER_EMAIL = "nguyenthanhdangkhoa9h@gmail.com"
-        self.APP_PASSWORD = "rqwd zbcn fszy qeon"
+        self.SENDER_EMAIL = ""
+        self.APP_PASSWORD = ""
 
     def run(self):
         success = 0
